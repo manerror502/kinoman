@@ -1,0 +1,71 @@
+@import "vars/vars";
+
+html{
+  -webkit-text-size-adjust: none;
+  height: 100%;
+}
+body {
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: @font-family__sans, sans-serif;
+  font-size: @font-size--base;
+  line-height: @line-height--base;
+  color: @colors__grays--lighter;
+  background: rgb(37,52,70);
+  background: @gradient__body;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: none;
+  backface-visibility: hidden;
+
+  &.no-scroll {
+    overflow: hidden;
+  }
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+ul,
+li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#app {
+  overflow: hidden;
+}
+
+button,
+.btn {
+  display: inline-block;
+  vertical-align: top;
+  font-family: inherit;
+  color: @colors__white;
+  font-weight: @font-weight__sans__bold;
+  background: none;
+  line-height: @line-height--base;
+  text-align: center;
+  text-decoration: none;
+  border: 0;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
+}
