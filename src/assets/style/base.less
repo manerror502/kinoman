@@ -1,8 +1,9 @@
-@import "vars/vars";
+@import "vars/vars.module";
 
 html{
   -webkit-text-size-adjust: none;
   height: 100%;
+  scroll-behavior: smooth;
 }
 body {
   min-height: 100%;
@@ -13,7 +14,6 @@ body {
   line-height: @line-height--base;
   color: @colors__grays--lighter;
   background: rgb(37,52,70);
-  background: @gradient__body;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: none;
@@ -49,6 +49,11 @@ li {
 
 #app {
   overflow: hidden;
+}
+
+.img{
+  max-width: 100%;
+  display: block;
 }
 
 button,

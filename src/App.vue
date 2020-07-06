@@ -7,4 +7,9 @@
 <style lang="less">
 @import 'assets/style/base.less';
 @import 'assets/style/manGrid.css';
+
+#app{
+  height: 3000px;
+  background-image: @gradient__body;
+}
 </style>
