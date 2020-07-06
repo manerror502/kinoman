@@ -1,14 +1,31 @@
 <template>
   <div id="app">
-    <router-view />
+    <component :is="layout">
+      <router-view />
+    </component>
   </div>
 </template>
 
-<style lang="less">
-@import 'assets/style/base.less';
-@import 'assets/style/manGrid.css';
+<script>
+import MainLayout from '@/layouts/MainLayout'
 
-#app{
+export default {
+  components: {
+    MainLayout
+  },
+  computed: {
+    layout () {
+      return (this.$route.meta.layout || 'main') + '-layout'
+    }
+  }
+}
+</script>
+
+<style lang="less">
+@import "assets/style/base.less";
+@import "assets/style/manGrid.css";
+
+#app {
   height: 3000px;
   background-image: @gradient__body;
 }

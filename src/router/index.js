@@ -8,6 +8,7 @@ const routes = [
   {
     path: '/',
     name: 'Home',
+    meta: { layout: 'Main', title: 'Умные плейлисты 🔮' },
     component: Home
   }
   // {
