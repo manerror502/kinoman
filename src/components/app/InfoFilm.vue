@@ -96,12 +96,13 @@ export default {
 }
 
 .infofilm {
-  position: fixed;
-  top: 0;
-  z-index: 4;
-  height: 100vh;
+  margin: auto;
+  max-width: 700px;
+  width: 100%;
+  height: 100%;
   background-color: rgb(48, 62, 79);
-  border-left: @border-width + 1 solid fade(@colors__grays, 20%);
+  // border: @border-width + 1 solid fade(@colors__grays, 20%);
+  border-radius: @border-radius__small;
   transition: 0.2s ease;
   overflow-x: hidden;
 
@@ -143,7 +144,7 @@ export default {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  filter: blur(10px);
+  filter: blur(50px);
   overflow: hidden;
 }
 

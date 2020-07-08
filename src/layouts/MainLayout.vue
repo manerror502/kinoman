@@ -93,3 +93,23 @@ export default {
   }
 }
 </script>
+
+<style lang="less">
+@import "@/assets/style/vars/vars.module";
+
+.playlists {
+  width: 100%;
+  margin-top: 44px;
+  animation: opacity-animate 0.2s 3s ease-in-out 1 forwards;
+  opacity: 0;
+}
+
+.playlists__title {
+  font-size: @font-size--large;
+  font-family: @font-family__sans__black;
+  color: @colors__grays--lighter;
+  user-select: none;
+  margin-bottom: 23px;
+  border-bottom: @border-width solid fade(@colors__border, 40%);
+}
+</style>

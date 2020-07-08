@@ -1,244 +1,277 @@
 <template>
   <ul class="playlists__wrap row">
-    <li class="playlists__item">
-      <a href="">
-        <div
-          class="playlists__item-img"
-        >
-          <img
-            class=""
-            src="https://kinopoiskapiunofficial.tech/images/posters/kp/311.jpg"
-            alt=""
-          >
+    <hooper
+      :mouse-drag="false"
+      :wheel-control="false"
+      :items-to-show="3.5"
+      :infinite-scroll="true"
+      pagination="no"
+      style="height: 100%"
+    >
+      <slide>
+        <div class="playlists__item">
+          <a href="">
+            <div
+              class="playlists__item-img green"
+            >
+              <img
+                class=""
+                src="https://kinopoiskapiunofficial.tech/images/posters/kp/311.jpg"
+                alt=""
+              >
 
-          <div class="playlists__item-hover">
-            <button class="heart">
-              <svg viewBox="0 0 512 512">
-                <path
-                  fill="currentColor"
-                  d="M511.812,167.164C508.179,89.995,448.439,29.1,377.056,28.529c-0.352,0-0.688,0-1.04,0
+              <div class="playlists__item-hover">
+                <button class="heart">
+                  <svg viewBox="0 0 512 512">
+                    <path
+                      fill="currentColor"
+                      d="M511.812,167.164C508.179,89.995,448.439,29.1,377.056,28.529c-0.352,0-0.688,0-1.04,0
                         c-65.963,0-102.73,48.413-120.016,81.095c-17.285-32.681-54.052-81.095-120.015-81.095c-0.352,0-0.703,0-1.04,0
                         C63.562,29.101,3.821,89.995,0.188,167.164c-4.468,94.63,71.035,158.132,183.814,254.225
                         c19.526,16.641,40.298,34.336,62.125,53.439l9.873,8.643l9.873-8.642c21.826-19.102,42.598-36.797,62.125-53.439
                         C440.777,325.295,516.28,261.794,511.812,167.164z"
-                />
-              </svg>
-            </button>
-            <button>
-              <svg viewBox="0 0 494.942 494.942">
-                <path
-                  fill="currentColor"
-                  d="m353.53 319.966c-5.714-1.165-11.624-1.789-17.677-1.789-48.731 0-88.383 39.651-88.383 88.383s39.651 88.383 88.383 88.383 88.383-39.651 88.383-88.383v-159.089h70.706v-70.706h-141.412z"
-                /><path
-                  fill="currentColor"
-                  d="m0 0h494.942v70.706h-494.942z"
-                /><path
-                  fill="currentColor"
-                  d="m0 141.412h318.177v70.706h-318.177z"
-                /><path
-                  id="path-1_7_"
-                  fill="currentColor"
-                  d="m0 282.824h212.118v70.706h-212.118z"
-                  transform="translate(1 9)"
-                /><path
-                  id="path-1_6_"
-                  fill="currentColor"
-                  d="m0 424.236h212.118v70.706h-212.118z"
-                  transform="translate(1 13)"
-                />
+                    />
+                  </svg>
+                </button>
+                <button>
+                  <svg viewBox="0 0 494.942 494.942">
+                    <path
+                      fill="currentColor"
+                      d="m353.53 319.966c-5.714-1.165-11.624-1.789-17.677-1.789-48.731 0-88.383 39.651-88.383 88.383s39.651 88.383 88.383 88.383 88.383-39.651 88.383-88.383v-159.089h70.706v-70.706h-141.412z"
+                    /><path
+                      fill="currentColor"
+                      d="m0 0h494.942v70.706h-494.942z"
+                    /><path
+                      fill="currentColor"
+                      d="m0 141.412h318.177v70.706h-318.177z"
+                    /><path
+                      id="path-1_7_"
+                      fill="currentColor"
+                      d="m0 282.824h212.118v70.706h-212.118z"
+                      transform="translate(1 9)"
+                    /><path
+                      id="path-1_6_"
+                      fill="currentColor"
+                      d="m0 424.236h212.118v70.706h-212.118z"
+                      transform="translate(1 13)"
+                    />
 
-              </svg>
-            </button>
-          </div>
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div class="playlists__item-title">
+              <h5>КиноЛента Дня</h5>
+            </div>
+            <div class="playlists__item-descr">
+              <h6>Обновлён сегодня</h6>
+            </div>
+          </a>
         </div>
-        <div class="playlists__item-title">
-          <h5>КиноЛента Дня</h5>
-        </div>
-        <div class="playlists__item-descr">
-          <h6>Обновлён сегодня</h6>
-        </div>
-      </a>
-    </li>
+      </slide>
 
-    <li class="playlists__item">
-      <div
-        class="playlists__item-img"
-      >
-        <img
-          class=""
-          src="https://kinopoiskapiunofficial.tech/images/posters/kp/311.jpg"
-          alt=""
-        >
+      <slide>
+        <div class="playlists__item">
+          <a href="">
+            <div
+              class="playlists__item-img yellow"
+            >
+              <img
+                class=""
+                src="https://kinopoiskapiunofficial.tech/images/posters/kp/311.jpg"
+                alt=""
+              >
 
-        <div class="playlists__item-hover">
-          <button class="heart">
-            <svg viewBox="0 0 512 512">
-              <path
-                fill="currentColor"
-                d="M511.812,167.164C508.179,89.995,448.439,29.1,377.056,28.529c-0.352,0-0.688,0-1.04,0
+              <div class="playlists__item-hover">
+                <button class="heart">
+                  <svg viewBox="0 0 512 512">
+                    <path
+                      fill="currentColor"
+                      d="M511.812,167.164C508.179,89.995,448.439,29.1,377.056,28.529c-0.352,0-0.688,0-1.04,0
                         c-65.963,0-102.73,48.413-120.016,81.095c-17.285-32.681-54.052-81.095-120.015-81.095c-0.352,0-0.703,0-1.04,0
                         C63.562,29.101,3.821,89.995,0.188,167.164c-4.468,94.63,71.035,158.132,183.814,254.225
                         c19.526,16.641,40.298,34.336,62.125,53.439l9.873,8.643l9.873-8.642c21.826-19.102,42.598-36.797,62.125-53.439
                         C440.777,325.295,516.28,261.794,511.812,167.164z"
-              />
-            </svg>
-          </button>
-          <button>
-            <svg viewBox="0 0 494.942 494.942">
-              <path
-                fill="currentColor"
-                d="m353.53 319.966c-5.714-1.165-11.624-1.789-17.677-1.789-48.731 0-88.383 39.651-88.383 88.383s39.651 88.383 88.383 88.383 88.383-39.651 88.383-88.383v-159.089h70.706v-70.706h-141.412z"
-              /><path
-                fill="currentColor"
-                d="m0 0h494.942v70.706h-494.942z"
-              /><path
-                fill="currentColor"
-                d="m0 141.412h318.177v70.706h-318.177z"
-              /><path
-                id="path-1_7_"
-                fill="currentColor"
-                d="m0 282.824h212.118v70.706h-212.118z"
-                transform="translate(1 9)"
-              /><path
-                id="path-1_6_"
-                fill="currentColor"
-                d="m0 424.236h212.118v70.706h-212.118z"
-                transform="translate(1 13)"
-              />
+                    />
+                  </svg>
+                </button>
+                <button>
+                  <svg viewBox="0 0 494.942 494.942">
+                    <path
+                      fill="currentColor"
+                      d="m353.53 319.966c-5.714-1.165-11.624-1.789-17.677-1.789-48.731 0-88.383 39.651-88.383 88.383s39.651 88.383 88.383 88.383 88.383-39.651 88.383-88.383v-159.089h70.706v-70.706h-141.412z"
+                    /><path
+                      fill="currentColor"
+                      d="m0 0h494.942v70.706h-494.942z"
+                    /><path
+                      fill="currentColor"
+                      d="m0 141.412h318.177v70.706h-318.177z"
+                    /><path
+                      id="path-1_7_"
+                      fill="currentColor"
+                      d="m0 282.824h212.118v70.706h-212.118z"
+                      transform="translate(1 9)"
+                    /><path
+                      id="path-1_6_"
+                      fill="currentColor"
+                      d="m0 424.236h212.118v70.706h-212.118z"
+                      transform="translate(1 13)"
+                    />
 
-            </svg>
-          </button>
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div class="playlists__item-title">
+              <h5>Лучше вместе</h5>
+            </div>
+            <div class="playlists__item-descr">
+              <h6>Обновлён сегодня</h6>
+            </div>
+          </a>
         </div>
-      </div>
-      <div class="playlists__item-title">
-        <h5>КиноЛента Дня</h5>
-      </div>
-      <div class="playlists__item-descr">
-        <h6>Обновлён сегодня</h6>
-      </div>
-    </li>
+      </slide>
 
-    <li class="playlists__item">
-      <div
-        class="playlists__item-img"
-      >
-        <img
-          class=""
-          src="https://kinopoiskapiunofficial.tech/images/posters/kp/311.jpg"
-          alt=""
-        >
+      <slide>
+        <div class="playlists__item">
+          <a href="">
+            <div
+              class="playlists__item-img blue"
+            >
+              <img
+                class=""
+                src="https://kinopoiskapiunofficial.tech/images/posters/kp/311.jpg"
+                alt=""
+              >
 
-        <div class="playlists__item-hover">
-          <button class="heart">
-            <svg viewBox="0 0 512 512">
-              <path
-                fill="currentColor"
-                d="M511.812,167.164C508.179,89.995,448.439,29.1,377.056,28.529c-0.352,0-0.688,0-1.04,0
+              <div class="playlists__item-hover">
+                <button class="heart">
+                  <svg viewBox="0 0 512 512">
+                    <path
+                      fill="currentColor"
+                      d="M511.812,167.164C508.179,89.995,448.439,29.1,377.056,28.529c-0.352,0-0.688,0-1.04,0
                         c-65.963,0-102.73,48.413-120.016,81.095c-17.285-32.681-54.052-81.095-120.015-81.095c-0.352,0-0.703,0-1.04,0
                         C63.562,29.101,3.821,89.995,0.188,167.164c-4.468,94.63,71.035,158.132,183.814,254.225
                         c19.526,16.641,40.298,34.336,62.125,53.439l9.873,8.643l9.873-8.642c21.826-19.102,42.598-36.797,62.125-53.439
                         C440.777,325.295,516.28,261.794,511.812,167.164z"
-              />
-            </svg>
-          </button>
-          <button>
-            <svg viewBox="0 0 494.942 494.942">
-              <path
-                fill="currentColor"
-                d="m353.53 319.966c-5.714-1.165-11.624-1.789-17.677-1.789-48.731 0-88.383 39.651-88.383 88.383s39.651 88.383 88.383 88.383 88.383-39.651 88.383-88.383v-159.089h70.706v-70.706h-141.412z"
-              /><path
-                fill="currentColor"
-                d="m0 0h494.942v70.706h-494.942z"
-              /><path
-                fill="currentColor"
-                d="m0 141.412h318.177v70.706h-318.177z"
-              /><path
-                id="path-1_7_"
-                fill="currentColor"
-                d="m0 282.824h212.118v70.706h-212.118z"
-                transform="translate(1 9)"
-              /><path
-                id="path-1_6_"
-                fill="currentColor"
-                d="m0 424.236h212.118v70.706h-212.118z"
-                transform="translate(1 13)"
-              />
+                    />
+                  </svg>
+                </button>
+                <button>
+                  <svg viewBox="0 0 494.942 494.942">
+                    <path
+                      fill="currentColor"
+                      d="m353.53 319.966c-5.714-1.165-11.624-1.789-17.677-1.789-48.731 0-88.383 39.651-88.383 88.383s39.651 88.383 88.383 88.383 88.383-39.651 88.383-88.383v-159.089h70.706v-70.706h-141.412z"
+                    /><path
+                      fill="currentColor"
+                      d="m0 0h494.942v70.706h-494.942z"
+                    /><path
+                      fill="currentColor"
+                      d="m0 141.412h318.177v70.706h-318.177z"
+                    /><path
+                      id="path-1_7_"
+                      fill="currentColor"
+                      d="m0 282.824h212.118v70.706h-212.118z"
+                      transform="translate(1 9)"
+                    /><path
+                      id="path-1_6_"
+                      fill="currentColor"
+                      d="m0 424.236h212.118v70.706h-212.118z"
+                      transform="translate(1 13)"
+                    />
 
-            </svg>
-          </button>
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div class="playlists__item-title">
+              <h5>Remember Me</h5>
+            </div>
+            <div class="playlists__item-descr">
+              <h6>Обновлён сегодня</h6>
+            </div>
+          </a>
         </div>
-      </div>
-      <div class="playlists__item-title">
-        <h5>КиноЛента Дня</h5>
-      </div>
-      <div class="playlists__item-descr">
-        <h6>Обновлён сегодня</h6>
-      </div>
-    </li>
+      </slide>
 
-    <li class="playlists__item">
-      <div
-        class="playlists__item-img"
-      >
-        <img
-          class=""
-          src="https://kinopoiskapiunofficial.tech/images/posters/kp/311.jpg"
-          alt=""
-        >
+      <slide>
+        <div class="playlists__item">
+          <a href="">
+            <div
+              class="playlists__item-img purpule"
+            >
+              <img
+                class=""
+                src="https://kinopoiskapiunofficial.tech/images/posters/kp/311.jpg"
+                alt=""
+              >
 
-        <div class="playlists__item-hover">
-          <button class="heart">
-            <svg viewBox="0 0 512 512">
-              <path
-                fill="currentColor"
-                d="M511.812,167.164C508.179,89.995,448.439,29.1,377.056,28.529c-0.352,0-0.688,0-1.04,0
+              <div class="playlists__item-hover">
+                <button class="heart">
+                  <svg viewBox="0 0 512 512">
+                    <path
+                      fill="currentColor"
+                      d="M511.812,167.164C508.179,89.995,448.439,29.1,377.056,28.529c-0.352,0-0.688,0-1.04,0
                         c-65.963,0-102.73,48.413-120.016,81.095c-17.285-32.681-54.052-81.095-120.015-81.095c-0.352,0-0.703,0-1.04,0
                         C63.562,29.101,3.821,89.995,0.188,167.164c-4.468,94.63,71.035,158.132,183.814,254.225
                         c19.526,16.641,40.298,34.336,62.125,53.439l9.873,8.643l9.873-8.642c21.826-19.102,42.598-36.797,62.125-53.439
                         C440.777,325.295,516.28,261.794,511.812,167.164z"
-              />
-            </svg>
-          </button>
-          <button>
-            <svg viewBox="0 0 494.942 494.942">
-              <path
-                fill="currentColor"
-                d="m353.53 319.966c-5.714-1.165-11.624-1.789-17.677-1.789-48.731 0-88.383 39.651-88.383 88.383s39.651 88.383 88.383 88.383 88.383-39.651 88.383-88.383v-159.089h70.706v-70.706h-141.412z"
-              /><path
-                fill="currentColor"
-                d="m0 0h494.942v70.706h-494.942z"
-              /><path
-                fill="currentColor"
-                d="m0 141.412h318.177v70.706h-318.177z"
-              /><path
-                id="path-1_7_"
-                fill="currentColor"
-                d="m0 282.824h212.118v70.706h-212.118z"
-                transform="translate(1 9)"
-              /><path
-                id="path-1_6_"
-                fill="currentColor"
-                d="m0 424.236h212.118v70.706h-212.118z"
-                transform="translate(1 13)"
-              />
+                    />
+                  </svg>
+                </button>
+                <button>
+                  <svg viewBox="0 0 494.942 494.942">
+                    <path
+                      fill="currentColor"
+                      d="m353.53 319.966c-5.714-1.165-11.624-1.789-17.677-1.789-48.731 0-88.383 39.651-88.383 88.383s39.651 88.383 88.383 88.383 88.383-39.651 88.383-88.383v-159.089h70.706v-70.706h-141.412z"
+                    /><path
+                      fill="currentColor"
+                      d="m0 0h494.942v70.706h-494.942z"
+                    /><path
+                      fill="currentColor"
+                      d="m0 141.412h318.177v70.706h-318.177z"
+                    /><path
+                      id="path-1_7_"
+                      fill="currentColor"
+                      d="m0 282.824h212.118v70.706h-212.118z"
+                      transform="translate(1 9)"
+                    /><path
+                      id="path-1_6_"
+                      fill="currentColor"
+                      d="m0 424.236h212.118v70.706h-212.118z"
+                      transform="translate(1 13)"
+                    />
 
-            </svg>
-          </button>
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div class="playlists__item-title">
+              <h5>Дежавю</h5>
+            </div>
+            <div class="playlists__item-descr">
+              <h6>Обновлён сегодня</h6>
+            </div>
+          </a>
         </div>
-      </div>
-      <div class="playlists__item-title">
-        <h5>КиноЛента Дня</h5>
-      </div>
-      <div class="playlists__item-descr">
-        <h6>Обновлён сегодня</h6>
-      </div>
-    </li>
+      </slide>
+
+      <hooper-navigation slot="hooper-addons" />
+    </hooper>
   </ul>
 </template>
 
 <script>
+import { Hooper, Slide, Navigation as HooperNavigation } from 'hooper'
+import 'hooper/dist/hooper.css'
+
 export default {
-  name: 'SmartPlaylists'
+  name: 'SmartPlaylists',
+  components: {
+    Hooper,
+    Slide,
+    HooperNavigation
+  }
 }
 </script>
 
@@ -248,7 +281,6 @@ export default {
 .playlists__item {
   display: flex;
   flex-direction: column;
-  margin-right: 30px;
   padding: 10px;
   border-radius: @border-radius__small;
   overflow: hidden;
@@ -279,6 +311,38 @@ export default {
     left: 50%;
     z-index: 3;
     transform: translate3d(-50%, -50%, 0);
+  }
+
+  &:before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 4;
+  }
+
+  &.green {
+    &:before {
+      background-image: @gradient__green;
+    }
+  }
+
+  &.purpule {
+    &:before {
+      background-image: @gradient__purpule;
+    }
+  }
+
+  &.yellow {
+    &:before {
+      background-image: @gradient__yellow;
+    }
+  }
+
+  &.blue {
+    &:before {
+      background-image: @gradient__blue;
+    }
   }
 }
 
