@@ -3,7 +3,7 @@
     <hooper
       :mouse-drag="false"
       :wheel-control="false"
-      :items-to-show="3.5"
+      :items-to-show="4"
       :infinite-scroll="true"
       pagination="no"
       style="height: 100%"
@@ -21,7 +21,7 @@
               >
 
               <div class="playlists__item-hover">
-                <button class="heart">
+                <button class="">
                   <svg viewBox="0 0 512 512">
                     <path
                       fill="currentColor"
@@ -284,19 +284,21 @@ export default {
   padding: 10px;
   border-radius: @border-radius__small;
   overflow: hidden;
+  border: @border-width solid fade(@colors__green, 0);
+  transition: @transition-duration @transition-timing-function;
 
   &:hover,
   &:focus {
     .playlists__item-hover {
       opacity: 1;
     }
+    border: @border-width solid @colors__green;
   }
 }
 
 .playlists__item-img {
   max-width: 100%;
   max-height: 100%;
-  width: 300px;
   height: 300px;
   overflow: hidden;
   border-radius: @border-radius__small;
@@ -381,7 +383,7 @@ export default {
   button {
     padding: 10px;
     margin: 10px;
-    color: @colors__grays--lighter;
+    color: fade(@colors__grays--lighter, 70%);
     border-radius: @buttons__border-radius;
     overflow: hidden;
 
@@ -398,7 +400,8 @@ export default {
     &:focus,
     &:active {
       color: @colors__white;
-      background-color: fade(#fff, 10%);
+      // background-color: fade(#fff, 10%);
+      transform: scale(1.2);
     }
 
     &.heart {

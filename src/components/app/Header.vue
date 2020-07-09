@@ -66,7 +66,7 @@ export default {
   methods: {
     handleScroll (evt, el) {
       const scroll = window.scrollY
-      if (scroll > 10 && scroll > this.scrollPrev) {
+      if (scroll > 200 && scroll > this.scrollPrev) {
         this.fade = true
         this.headerFixed = false
       } else if (scroll <= 10) {
@@ -97,7 +97,9 @@ export default {
   padding-right: 10px;
 
   &.fixed {
-    background-color: fade(@colors__primary3, 60%);
+    background-color: fade(@colors__primary3, 100%);
+    box-shadow: @shadows__coords-x @shadows__coords-y @shadows__size
+      fade(darken(@colors__primary3, 50%), 50%);
   }
 
   &.fade {
@@ -146,7 +148,7 @@ export default {
   &:focus,
   &:active {
     background-color: fade(#fff, 10%);
-    color: @colors__white;
+    color: @colors__green;
   }
 }
 </style>

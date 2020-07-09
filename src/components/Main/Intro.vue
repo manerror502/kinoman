@@ -63,17 +63,21 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-
 export default {
   name: 'Intro',
-  data: () => ({}),
-  computed: {
-    ...mapGetters(['introFilm'])
+  data: () => ({
+    introFilm: null
+  }),
+  created () {
+    this.getIntroFilm()
   },
   methods: {
-    modalOpen () {
-      this.$store.state.modalOpen = true
+    getIntroFilm () {
+      this.introFilm = this.$store.getters.introFilm
+    },
+    async modalOpen () {
+      await this.$store.dispatch('setInfoFilm', this.introFilm)
+      this.$store.state.app.modalInfoFilmOpen = true
     }
   }
 }

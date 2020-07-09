@@ -6,12 +6,12 @@ export default {
   },
   mutations: {
     setIntroFilm: (state, payload) => {
-      state.IntroFilm = payload
+      state.introFilm = payload
     }
   },
   getters: {
     introFilm: state => {
-      return state.IntroFilm
+      return state.introFilm
     }
   }
 }

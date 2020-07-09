@@ -5,21 +5,23 @@
     <div
       class="infofilm__img"
     >
-      <div class="hidden">
+      <div class="infofilm__img-wrap">
         <div
           class="infofilm__img-bg"
-          :style="{backgroundImage: 'url(' + introFilm.images.backdrops[0].url + ')'}"
+          :style="{backgroundImage: 'url(' + infoFilm.images.backdrops[0].url + ')'}"
         />
       </div>
-      <img
-        class="img"
-        :src="introFilm.data.posterUrl"
-        alt=""
-      >
+      <div class="infofilm__img-preview">
+        <img
+          class="img"
+          :src="infoFilm.data.posterUrl"
+          alt=""
+        >
+      </div>
     </div>
 
     <div class="infofilm__title">
-      <h3>{{ introFilm.data.nameRu }}</h3>
+      <h3>{{ infoFilm.data.nameRu }}</h3>
 
       <button><span>❤</span>  Нравиться </button>
     </div>
@@ -29,60 +31,66 @@
         <li>
           Страна:
           <span
-            v-for="countries in introFilm.data.countries"
+            v-for="countries in infoFilm.data.countries"
             :key="countries.country"
           >/ {{ countries.country }}
           </span>
         </li>
         <li>
           Год:
-          <span>{{ introFilm.data.year }}</span>
+          <span>{{ infoFilm.data.year }}</span>
         </li>
-        <li v-if="introFilm.data.premiereWorld !== null">
-          Премьера в мире: <span>{{ introFilm.data.premiereWorld }}</span>
+        <li v-if="infoFilm.data.premiereWorld !== null">
+          Премьера в мире: <span>{{ infoFilm.data.premiereWorld }}</span>
           (год / месяц / день)
         </li>
         <li>
           Жанр:
           <span
-            v-for="genre in introFilm.data.genres"
+            v-for="genre in infoFilm.data.genres"
             :key="genre.genre"
           >/ {{ genre.genre }}
           </span>
         </li>
-        <li v-if="introFilm.data.slogan !== null">
+        <li v-if="infoFilm.data.slogan !== null">
           Слоган:
-          <span>{{ introFilm.data.slogan }}</span>
+          <span>{{ infoFilm.data.slogan }}</span>
         </li>
-        <li v-if="introFilm.data.filmLength !== null">
+        <li v-if="infoFilm.data.filmLength !== null">
           Длина:
-          <span>{{ introFilm.data.filmLength }}</span>
+          <span>{{ infoFilm.data.filmLength }}</span>
         </li>
-        <li v-if="introFilm.data.ratingAgeLimits !== null">
+        <li v-if="infoFilm.data.ratingAgeLimits !== null">
           Возрастное ограничение:
-          <span>{{ introFilm.data.ratingAgeLimits }}+</span>
+          <span>{{ infoFilm.data.ratingAgeLimits }}+</span>
         </li>
         <li>
           Рейтинг:
-          <span class="green">{{ introFilm.rating.rating }}</span>
+          <span class="green">{{ infoFilm.rating.rating }}</span>
         </li>
       </ul>
 
       <p>
-        {{ introFilm.data.description }}
+        {{ infoFilm.data.description }}
       </p>
     </div>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
 
 export default {
   name: 'InfoFilm',
-  data: () => ({}),
-  computed: {
-    ...mapGetters(['introFilm'])
+  data: () => ({
+    infoFilm: null
+  }),
+  created () {
+    this.getIntroFilm()
+  },
+  methods: {
+    getIntroFilm () {
+      this.infoFilm = this.$store.state.infoFilm.infoFilm
+    }
   }
 }
 </script>
@@ -90,7 +98,7 @@ export default {
 <style lang="less">
 @import "@/assets/style/vars/vars.module";
 
-.hidden {
+.infofilm__img-wrap {
   overflow: hidden;
   height: 100%;
 }
@@ -109,10 +117,10 @@ export default {
   overflow-x: hidden;
 
   &::-webkit-scrollbar {
-    width: 5px;
+    width: 10px;
 
     &-track {
-      background: #1f1f1f00;
+      background: rgb(68, 88, 112);
     }
 
     &-thumb {
@@ -126,18 +134,19 @@ export default {
   height: 20%;
   position: relative;
   z-index: 2;
+}
 
-  img {
-    position: absolute;
-    top: 20%;
-    left: 50%;
-    transform: translate3d(-50%, 0%, 0);
-    z-index: 3;
-    width: 150px;
-    height: 200px;
-    box-shadow: @shadows__coords-x @shadows__coords-y @shadows__size + 6
-      fade(@colors__black, 35%);
-  }
+.infofilm__img-preview {
+  width: 150px;
+  height: 200px;
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate3d(-50%, 0%, 0);
+  z-index: 3;
+  overflow: hidden;
+  box-shadow: @shadows__coords-x @shadows__coords-y @shadows__size + 6
+    fade(@colors__black, 35%);
 }
 
 .infofilm__img-bg {
@@ -155,8 +164,8 @@ export default {
   flex-direction: column;
   justify-content: center;
   text-align: center;
-  margin: 0 10px;
-  margin-top: 70px;
+  margin: 0 30px;
+  margin-top: 80px;
   padding-bottom: 10px;
   border-bottom: @border-width solid fade(@colors__grays, 30%);
 
@@ -166,6 +175,7 @@ export default {
     font-family: "Product Sans Medium";
     font-weight: 500;
     color: @colors__grays--lighter;
+    margin-bottom: 10px;
   }
 
   button {

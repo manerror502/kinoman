@@ -33,9 +33,11 @@
         </section>
       </main>
 
-      <Modal v-show="modal">
-        <InfoFilm />
-      </Modal>
+      <transition name="modal-fade">
+        <Modal v-if="modal">
+          <InfoFilm />
+        </Modal>
+      </transition>
     </div>
   </div>
 </template>
@@ -44,7 +46,7 @@
 import Header from '@/components/app/Header.vue'
 import Intro from '@/components/Main/Intro.vue'
 import NavBarFilms from '@/components/Main/NavBarFilms.vue'
-import Modal from '@/components/app/Modal.vue'
+// import Modal from '@/components/app/Modal.vue'
 import InfoFilm from '@/components/app/InfoFilm.vue'
 
 import randomIdArr from '@/utils/arrOperations'
@@ -55,7 +57,7 @@ export default {
     Header,
     Intro,
     NavBarFilms,
-    Modal,
+    Modal: () => import('@/components/app/Modal.vue'),
     InfoFilm
   },
   data: () => ({
@@ -66,7 +68,7 @@ export default {
       return this.$route.meta.title || 'Ваше Кино'
     },
     modal () {
-      const modalOpen = this.$store.state.modalOpen
+      const modalOpen = this.$store.state.app.modalInfoFilmOpen
       return modalOpen
     }
   },
@@ -96,8 +98,6 @@ export default {
         const filmId = await randomIdArr(filmsArr.data.films).filmId
         const film = await this.$store.dispatch('getInfoFilm', filmId)
 
-        console.log(film)
-
         if (film.images.backdrops.length) {
           await this.$store.dispatch('setIntroFilm', film)
           this.loading = false
@@ -114,6 +114,16 @@ export default {
 
 <style lang="less">
 @import "@/assets/style/vars/vars.module";
+
+.modal-fade-enter,
+.modal-fade-leave-active {
+  opacity: 0;
+}
+
+.modal-fade-enter-active,
+.modal-fade-leave-active {
+  transition: 0.2s ease;
+}
 
 .playlists {
   width: 100%;

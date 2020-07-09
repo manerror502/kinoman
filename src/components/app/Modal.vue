@@ -1,19 +1,17 @@
 <template>
-  <transition name="modal-fade">
-    <div
-      class="modal"
+  <div
+    class="modal"
+  >
+    <button
+      class="modal__close"
+      @click="modalClose"
     >
-      <button
-        class="modal__close"
-        @click="modalClose"
-      >
-        <div>
-          X
-        </div>
-      </button>
-      <slot />
-    </div>
-  </transition>
+      <div>
+        X
+      </div>
+    </button>
+    <slot />
+  </div>
 </template>
 
 <script>
@@ -22,7 +20,7 @@ export default {
   data: () => ({}),
   methods: {
     modalClose () {
-      this.$store.state.modalOpen = false
+      this.$store.state.app.modalInfoFilmOpen = false
     }
   }
 }
@@ -30,16 +28,6 @@ export default {
 
 <style lang="less">
 @import "@/assets/style/vars/vars.module";
-
-.modal-fade-enter,
-.modal-fade-leave-active {
-  opacity: 0;
-}
-
-.modal-fade-enter-active,
-.modal-fade-leave-active {
-  transition: 0.2s ease;
-}
 
 .modal {
   width: 100%;
