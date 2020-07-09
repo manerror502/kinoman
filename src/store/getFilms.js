@@ -17,8 +17,7 @@ export default {
         }
       })
         .then(films => {
-          const film = randomIdArr(films.data.films)
-          return film.filmId
+          return films
           // dispatch('getInfoFilm', film)
         })
         .catch(error => {
@@ -27,6 +26,8 @@ export default {
         })
     },
     getInfoFilm ({ dispatch }, payload) {
+      console.log(payload)
+
       const url = `https://kinopoiskapiunofficial.tech/api/v2.1/films/${payload}?append_to_response=RATING&append_to_response=POSTERS`
 
       return axios(url, {

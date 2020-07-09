@@ -1,14 +1,47 @@
 <template>
-  <div class="modal">
-    <slot />
-  </div>
+  <transition name="modal-fade">
+    <div
+      class="modal"
+    >
+      <button
+        class="modal__close"
+        @click="modalClose"
+      >
+        <div>
+          X
+        </div>
+      </button>
+      <slot />
+    </div>
+  </transition>
 </template>
+
+<script>
+export default {
+  name: 'Modal',
+  data: () => ({}),
+  methods: {
+    modalClose () {
+      this.$store.state.modalOpen = false
+    }
+  }
+}
+</script>
 
 <style lang="less">
 @import "@/assets/style/vars/vars.module";
 
+.modal-fade-enter,
+.modal-fade-leave-active {
+  opacity: 0;
+}
+
+.modal-fade-enter-active,
+.modal-fade-leave-active {
+  transition: 0.2s ease;
+}
+
 .modal {
-  opacity: 1;
   width: 100%;
   height: 100%;
   position: fixed;
@@ -20,4 +53,17 @@
   padding: 20px;
 }
 
+.modal__close {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  width: 100%;
+  height: 100%;
+
+  div {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+  }
+}
 </style>

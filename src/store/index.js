@@ -6,7 +6,9 @@ import intro from './intro'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-  state: {},
+  state: {
+    modalOpen: false
+  },
   mutations: {},
   actions: {},
   modules: {

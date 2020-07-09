@@ -96,6 +96,8 @@ export default {
 }
 
 .infofilm {
+  position: relative;
+  z-index: 10;
   margin: auto;
   max-width: 700px;
   width: 100%;

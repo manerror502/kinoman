@@ -1,23 +1,16 @@
 <template>
   <div>
     <SmartPlaylists />
-    <Modal>
-      <InfoFilm />
-    </Modal>
   </div>
 </template>
 
 <script>
 import SmartPlaylists from '@/components/Main/SmartPlaylists.vue'
-import Modal from '@/components/app/Modal.vue'
-import InfoFilm from '@/components/app/InfoFilm.vue'
 
 export default {
   name: 'Home',
   components: {
-    SmartPlaylists,
-    Modal,
-    InfoFilm
+    SmartPlaylists
   }
 }
 </script>

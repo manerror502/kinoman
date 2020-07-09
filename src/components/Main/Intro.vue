@@ -2,60 +2,63 @@
   <section
     class="intro"
   >
-    <a
-      href=""
+    <div
+      class="intro__image"
+      :style="{backgroundImage: 'url(' + introFilm.images.backdrops[0].url + ')'}"
     >
-      <div
-        class="intro__image"
-        :style="{backgroundImage: 'url(' + introFilm.images.backdrops[0].url + ')'}"
-      >
-        <div class="container-fluid">
-          <div class="row">
-            <div class="intro__descr">
-              <div class="row justify-content-between align-items-center">
-                <div class="col-4  d-flex flex-column">
-                  <div class="intro__wrap bg-c">
-                    <h2 class="intro__title">
-                      {{ introFilm.data.nameRu }}
-                    </h2>
-                    <p class="intro__text">
-                      {{ introFilm.data.description }}
-                    </p>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="intro__descr">
+            <div class="row justify-content-between align-items-center">
+              <div class="col-4  d-flex flex-column">
+                <div class="intro__wrap bg-c">
+                  <h2 class="intro__title">
+                    {{ introFilm.data.nameRu }}
+                  </h2>
+                  <p class="intro__text">
+                    {{ introFilm.data.description }}
+                  </p>
 
-                    <ul class="intro__descr-item">
+                  <ul class="intro__descr-item">
+                    <li>
+                      Страна:
+                      <span
+                        v-for="countries in introFilm.data.countries"
+                        :key="countries.country"
+                      >/ {{ countries.country }}
+                      </span>
+                    </li>
 
-                      <li>Страна:
-                        <span
-                          v-for="countries in introFilm.data.countries"
-                          :key="countries.country"
-                        >/ {{ countries.country }}
-                        </span>
-                      </li>
+                    <li>
+                      Год:
+                      <span>{{ introFilm.data.year }}
+                      </span>
+                    </li>
+                    <li>
+                      Жанр:
+                      <span
+                        v-for="genre in introFilm.data.genres"
+                        :key="genre.genre"
+                      >/ {{ genre.genre }} </span>
+                    </li>
 
-                      <li>Год:
-                        <span>{{ introFilm.data.year }}
-                        </span>
-                      </li>
-                      <li>Жанр:
-                        <span
-                          v-for="genre in introFilm.data.genres"
-                          :key="genre.genre"
-                        >/ {{ genre.genre }} </span>
-                      </li>
-
-                      <li>КиноПоиск:
-                        <span>{{ introFilm.rating.rating }}</span>
-                      </li>
-                    </ul>
-                  </div>
+                    <li>
+                      КиноПоиск:
+                      <span>{{ introFilm.rating.rating }}</span>
+                    </li>
+                  </ul>
                 </div>
-
               </div>
             </div>
           </div>
         </div>
       </div>
-    </a>
+    </div>
+
+    <button
+      class="btn btn--intro"
+      @click="modalOpen"
+    />
   </section>
 </template>
 
@@ -67,12 +70,26 @@ export default {
   data: () => ({}),
   computed: {
     ...mapGetters(['introFilm'])
+  },
+  methods: {
+    modalOpen () {
+      this.$store.state.modalOpen = true
+    }
   }
 }
 </script>
 
 <style lang="less">
 @import "@/assets/style/vars/vars.module";
+
+.btn--intro {
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
 
 a {
   text-decoration: none;

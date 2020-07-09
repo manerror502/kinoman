@@ -32,6 +32,10 @@
           </div>
         </section>
       </main>
+
+      <Modal v-show="modal">
+        <InfoFilm />
+      </Modal>
     </div>
   </div>
 </template>
@@ -40,13 +44,19 @@
 import Header from '@/components/app/Header.vue'
 import Intro from '@/components/Main/Intro.vue'
 import NavBarFilms from '@/components/Main/NavBarFilms.vue'
+import Modal from '@/components/app/Modal.vue'
+import InfoFilm from '@/components/app/InfoFilm.vue'
+
+import randomIdArr from '@/utils/arrOperations'
 
 export default {
   name: 'MainLayout',
   components: {
     Header,
     Intro,
-    NavBarFilms
+    NavBarFilms,
+    Modal,
+    InfoFilm
   },
   data: () => ({
     loading: true
@@ -54,6 +64,10 @@ export default {
   computed: {
     pageTitle () {
       return this.$route.meta.title || 'Ваше Кино'
+    },
+    modal () {
+      const modalOpen = this.$store.state.modalOpen
+      return modalOpen
     }
   },
   async created () {
@@ -74,11 +88,15 @@ export default {
         page: ['1', '2', '3', '4', '5']
       }
       try {
-        const filmId = await this.$store.dispatch(
+        const filmsArr = await this.$store.dispatch(
           'getReleasesArr',
           releasesSettings
         )
+
+        const filmId = await randomIdArr(filmsArr.data.films).filmId
         const film = await this.$store.dispatch('getInfoFilm', filmId)
+
+        console.log(film)
 
         if (film.images.backdrops.length) {
           await this.$store.dispatch('setIntroFilm', film)
