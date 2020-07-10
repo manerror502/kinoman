@@ -1,5 +1,5 @@
 <template>
-  <div
+  <section
     class="infofilm"
   >
     <div
@@ -8,7 +8,7 @@
       <div class="infofilm__img-wrap">
         <div
           class="infofilm__img-bg"
-          :style="{backgroundImage: 'url(' + infoFilm.images.backdrops[0].url + ')'}"
+          :style="{backgroundImage: 'url(' + infoFilm.data.posterUrl + ')'}"
         />
       </div>
       <div class="infofilm__img-preview">
@@ -24,6 +24,13 @@
       <h3>{{ infoFilm.data.nameRu }}</h3>
 
       <button><span>❤</span>  Нравиться </button>
+
+      <a
+        target="_blank"
+        v-if="trailerFilm.trailers"
+        :href="trailerFilm.trailers[0].url"
+        class="btn--trailer"
+      > Смотерть трейлер </a>
     </div>
 
     <div class="infofilm__descr">
@@ -52,6 +59,7 @@
           >/ {{ genre.genre }}
           </span>
         </li>
+
         <li v-if="infoFilm.data.slogan !== null">
           Слоган:
           <span>{{ infoFilm.data.slogan }}</span>
@@ -70,26 +78,86 @@
         </li>
       </ul>
 
+      <div class="infofilm__heading">
+        <h2>Описание</h2>
+      </div>
+
       <p>
         {{ infoFilm.data.description }}
       </p>
     </div>
-  </div>
+
+    <div class="row infofilm__staff">
+      <div class="col-12">
+        <div class="infofilm__heading">
+          <h2>Актёры</h2>
+        </div>
+      </div>
+
+      <div
+        class="col-4"
+        v-for="staff in staffFilm"
+        :key="staff.staffId"
+      >
+        <div
+          class="infofilm__staff-item"
+        >
+          <div class="infofilm__staff-img">
+            <img
+              :src="staff.posterUrl"
+              alt=""
+              class="img"
+            >
+          </div>
+
+          <div class="infofilm__staff-title">
+            <h4>{{ staff.nameRu }}</h4>
+
+            <!-- <h5>{{ staff.professionText }}</h5> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </template>
 
 <script>
-
 export default {
   name: 'InfoFilm',
   data: () => ({
-    infoFilm: null
+    infoFilm: {},
+    trailerFilm: {},
+    staffFilm: [],
+    loading: true
   }),
   created () {
-    this.getIntroFilm()
+    // Получем фильм
+    this.getInfoFilm()
   },
   methods: {
-    getIntroFilm () {
-      this.infoFilm = this.$store.state.infoFilm.infoFilm
+    async getInfoFilm () {
+      try {
+        this.infoFilm = await this.$store.state.infoFilm.infoFilm
+        const filmId = this.infoFilm.data.filmId
+
+        // Получаем трейлер фильма
+        this.trailerFilm = await this.$store.dispatch('getTrailerFilm', filmId)
+
+        // Получаем персонал фильма
+        const staff = await this.$store.dispatch('getStaffFilm', filmId)
+        await this.filterStaff(staff)
+
+        this.loading = false
+      } catch (e) {
+        console.log(e)
+      }
+    },
+    filterStaff (arr) {
+      arr.forEach(element => {
+        if (element.professionKey === 'ACTOR' && this.staffFilm.length < 6) {
+          this.staffFilm.push(element)
+        }
+      })
     }
   }
 }
@@ -107,6 +175,7 @@ export default {
   position: relative;
   z-index: 10;
   margin: auto;
+  padding-bottom: 20px;
   max-width: 700px;
   width: 100%;
   height: 100%;
@@ -164,7 +233,7 @@ export default {
   flex-direction: column;
   justify-content: center;
   text-align: center;
-  margin: 0 30px;
+  margin: 0 10px;
   margin-top: 80px;
   padding-bottom: 10px;
   border-bottom: @border-width solid fade(@colors__grays, 30%);
@@ -175,37 +244,41 @@ export default {
     font-family: "Product Sans Medium";
     font-weight: 500;
     color: @colors__grays--lighter;
+    margin: 0 30px;
     margin-bottom: 10px;
   }
 
-  button {
-    display: inline-block;
-    background-color: @colors__grays;
+  button,
+  .btn--trailer {
+    background-color: fade(@colors__primary, 80%);
     max-width: 300px;
-    margin: 0 auto;
+    margin: 10px auto;
+    color: fade(@colors__grays--lighter, 70%);
     font-size: @font-size--normal;
     font-family: @font-family__sans;
     font-weight: 400;
-    border-radius: @buttons__border-radius;
+    border-radius: @buttons__border-radius + 30px;
     padding: 5px 30px;
     transition: @transition-duration @transition-timing-function;
     box-shadow: @shadows__coords-x @shadows__coords-y @shadows__size
       fade(@colors__black, 10%);
 
-    span {
-      color: @colors__red;
-      transition: @transition-duration @transition-timing-function;
-    }
-
     &:hover,
     &:focus,
     &:active {
       color: @colors__white;
-      background-color: @colors__red;
+      background-color: fade(@colors__primary, 100%);
+    }
+  }
 
-      span {
-        color: @colors__green;
-      }
+  .btn--trailer {
+    border-radius: @buttons__border-radius;
+    background-color: fade(@colors__primary2, 60%);
+
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: fade(@colors__primary2, 100%);
     }
   }
 }
@@ -213,12 +286,13 @@ export default {
 .infofilm__descr {
   padding: 10px;
   ul {
+    padding: 10px 0;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     text-align: left;
     max-width: 100%;
-    font-size: @font-size__coefficient--small;
+    font-size: @font-size--normal;
     border-bottom: @border-width solid fade(@colors__grays, 30%);
   }
 
@@ -258,11 +332,70 @@ export default {
   }
 
   p {
-    padding-top: 10px;
-    font-size: @font-size__coefficient--normal + 20px;
+    padding: 10px 0;
+    font-size: @font-size--normal;
     font-family: @font-family__sans;
     font-weight: 400;
     line-height: @line-height--small;
+    border-bottom: @border-width solid fade(@colors__grays, 30%);
+  }
+}
+
+.infofilm__heading {
+  h2 {
+    color: @colors__grays;
+    font-size: @font-size--normal + 10;
+    font-family: @font-family__sans__black;
+  }
+}
+
+.infofilm__staff {
+  padding: 10px;
+  margin: 0 auto;
+}
+
+.infofilm__staff-item {
+  display: flex;
+  max-height: 294px;
+  height: 100%;
+  flex-direction: column;
+  border: @border-width solid fade(@colors__grays, 10%);
+  border-radius: @border-radius__small;
+  overflow: hidden;
+  margin: 10px;
+  padding: 10px;
+  background-color: fade(#fff, 10%);
+}
+
+.infofilm__staff-img {
+  max-width: 200px;
+  max-height: 200px;
+  margin: 0 auto;
+  overflow: hidden;
+  box-shadow: @shadows__coords-x @shadows__coords-y @shadows__size
+    fade(@colors__black, 20%);
+
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.infofilm__staff-title {
+  text-align: center;
+  margin-top: 10px;
+
+  h4,
+  h5 {
+    font-size: @font-size--normal;
+    font-family: @font-family__sans;
+    font-weight: @font-weight__sans__bold;
+    // border-bottom: @border-width + 1 solid fade(@colors__grays, 40%);
+  }
+
+  h5 {
+    font-weight: @font-weight__sans__regular;
+    border-bottom: 0;
   }
 }
 </style>
