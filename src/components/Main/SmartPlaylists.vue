@@ -1,6 +1,38 @@
 <template>
   <ul class="playlists__wrap row">
+    <div
+      v-if="!playlistInfo"
+      class="playlists__day"
+    >
+      <div class="col-4">
+        <div class="playlists__day-img">
+          <img
+            class="img"
+            src="https://kinopoiskapiunofficial.tech/images/posters/kp/311.jpg"
+            alt=""
+          >
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="playlists__day-descr">
+          <div class="playlists__day-title">
+            <h4>КиноЛента дня</h4>
+          </div>
+
+          <div class="playlists__day-info">
+            <p>Смотрите плейлист с подходящими именно вам фильмами и сериалами. Обновляется каждый день, учитывает ваши предпочтения и использует кинематографическую магию!</p>
+
+            <div class="playlists__day-btn">
+              <button>Создать</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <hooper
+      v-else
       :mouse-drag="false"
       :wheel-control="false"
       :items-to-show="4"
@@ -271,6 +303,11 @@ export default {
     Hooper,
     Slide,
     HooperNavigation
+  },
+  computed: {
+    userInfo () {
+      return this.$store.state.playlistInfo
+    }
   }
 }
 </script>
@@ -410,6 +447,75 @@ export default {
       &:active {
         color: @colors__green;
       }
+    }
+  }
+}
+
+.playlists__day {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  max-height: 100%;
+  background-color: fade(@colors__primary2, 50%);
+  border-radius: @border-radius__small;
+  overflow: hidden;
+  padding: 20px;
+}
+
+.playlists__day-img {
+  max-width: 350px;
+  max-height: 350px;
+  overflow: hidden;
+  border-radius: @border-radius__small;
+  box-shadow: @shadows__coords-x @shadows__coords-y @shadows__size
+    fade(#000, 20%);
+}
+
+.playlists__day-descr {
+  padding: 10px 20px;
+  height: 100%;
+}
+
+.playlists__day-title {
+  h4 {
+    font-family: @font-family__sans__black;
+    font-size: @font-size--large;
+    border-bottom: @border-width solid fade(@colors__grays--lighter, 50%);
+  }
+}
+
+.playlists__day-info {
+  max-width: 500px;
+  height: 250px;
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  p {
+    font-size: @font-size--normal;
+    font-family: @font-family__sans;
+    font-weight: @font-weight__sans__regular;
+    line-height: @line-height--normal;
+  }
+}
+
+.playlists__day-btn {
+  button {
+    opacity: 1;
+    background-image: @gradient__green;
+    color: @colors__white;
+    line-height: @line-height--normal;
+    font-size: @font-size--normal;
+    padding: 10px 30px;
+    border-radius: 50px;
+    box-shadow: @shadows__coords-x @shadows__coords-y @shadows__size
+      fade(#000, 20%);
+    transition: @transition-duration @transition-timing-function;
+
+    &:hover,
+    &:focus,
+    &:active {
+      transform: scale(1.1);
     }
   }
 }

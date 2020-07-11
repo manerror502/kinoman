@@ -28,5 +28,6 @@ export default {
 #app {
   background-image: @gradient__body;
   overflow: hidden;
+  height: 3000px;
 }
 </style>
