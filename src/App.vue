@@ -26,7 +26,7 @@ export default {
 @import "assets/style/manGrid.css";
 
 #app {
-  height: 3000px;
   background-image: @gradient__body;
+  overflow: hidden;
 }
 </style>

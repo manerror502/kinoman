@@ -4,8 +4,12 @@ import './registerServiceWorker'
 import router from './router'
 import store from './store'
 
+import VScrollLock from 'v-scroll-lock'
+import Loader from './components/app/Loader'
+
 Vue.config.productionTip = false
 
+// Для отслеживания скролла
 Vue.directive('scroll', {
   inserted: function (el, binding) {
     const f = function (evt) {
@@ -17,6 +21,8 @@ Vue.directive('scroll', {
   }
 })
 
+Vue.use(VScrollLock)
+Vue.component('Loader', Loader)
 new Vue({
   router,
   store,

@@ -2,119 +2,123 @@
   <section
     class="infofilm"
   >
-    <div
-      class="infofilm__img"
-    >
-      <div class="infofilm__img-wrap">
-        <div
-          class="infofilm__img-bg"
-          :style="{backgroundImage: 'url(' + infoFilm.data.posterUrl + ')'}"
-        />
-      </div>
-      <div class="infofilm__img-preview">
-        <img
-          class="img"
-          :src="infoFilm.data.posterUrl"
-          alt=""
-        >
-      </div>
-    </div>
+    <Loader v-if="loading" />
 
-    <div class="infofilm__title">
-      <h3>{{ infoFilm.data.nameRu }}</h3>
-
-      <button><span>❤</span>  Нравиться </button>
-
-      <a
-        target="_blank"
-        v-if="trailerFilm.trailers"
-        :href="trailerFilm.trailers[0].url"
-        class="btn--trailer"
-      > Смотерть трейлер </a>
-    </div>
-
-    <div class="infofilm__wrap">
-      <div class="infofilm__descr">
-        <ul>
-          <li>
-            Страна:
-            <span
-              v-for="countries in infoFilm.data.countries"
-              :key="countries.country"
-            >/ {{ countries.country }}
-            </span>
-          </li>
-          <li>
-            Год:
-            <span>{{ infoFilm.data.year }}</span>
-          </li>
-          <li v-if="infoFilm.data.premiereWorld !== null">
-            Премьера в мире: <span>{{ infoFilm.data.premiereWorld }}</span>
-            (год / месяц / день)
-          </li>
-          <li>
-            Жанр:
-            <span
-              v-for="genre in infoFilm.data.genres"
-              :key="genre.genre"
-            >/ {{ genre.genre }}
-            </span>
-          </li>
-
-          <li v-if="infoFilm.data.slogan !== null">
-            Слоган:
-            <span>{{ infoFilm.data.slogan }}</span>
-          </li>
-          <li v-if="infoFilm.data.filmLength !== null">
-            Длина:
-            <span>{{ infoFilm.data.filmLength }}</span>
-          </li>
-          <li v-if="infoFilm.data.ratingAgeLimits !== null">
-            Возрастное ограничение:
-            <span>{{ infoFilm.data.ratingAgeLimits }}+</span>
-          </li>
-          <li>
-            Рейтинг:
-            <span class="green">{{ infoFilm.rating.rating }}</span>
-          </li>
-        </ul>
-
-        <div class="infofilm__heading">
-          <h2>Описание</h2>
-        </div>
-
-        <p>
-          {{ infoFilm.data.description }}
-        </p>
-      </div>
-
-      <div class="row infofilm__staff">
-        <div class="col-12">
-          <div class="infofilm__heading">
-            <h2>Актёры</h2>
-          </div>
-        </div>
-
-        <div
-          class="col-4"
-          v-for="staff in staffFilm"
-          :key="staff.staffId"
-        >
+    <div v-else>
+      <div
+        class="infofilm__img"
+      >
+        <div class="infofilm__img-wrap">
           <div
-            class="infofilm__staff-item"
+            class="infofilm__img-bg"
+            :style="{backgroundImage: 'url(' + infoFilm.data.posterUrl + ')'}"
+          />
+        </div>
+        <div class="infofilm__img-preview">
+          <img
+            class="img"
+            :src="infoFilm.data.posterUrl"
+            alt=""
           >
-            <div class="infofilm__staff-img">
-              <img
-                :src="staff.posterUrl"
-                alt=""
-                class="img"
-              >
+        </div>
+      </div>
+
+      <div class="infofilm__title">
+        <h3>{{ infoFilm.data.nameRu }}</h3>
+
+        <button><span>❤</span>  Нравиться </button>
+
+        <a
+          target="_blank"
+          v-if="trailerFilm.trailers"
+          :href="trailerFilm.trailers[0].url"
+          class="btn--trailer"
+        > Смотерть трейлер </a>
+      </div>
+
+      <div class="infofilm__wrap">
+        <div class="infofilm__descr">
+          <ul>
+            <li>
+              Страна:
+              <span
+                v-for="countries in infoFilm.data.countries"
+                :key="countries.country"
+              >/ {{ countries.country }}
+              </span>
+            </li>
+            <li>
+              Год:
+              <span>{{ infoFilm.data.year }}</span>
+            </li>
+            <li v-if="infoFilm.data.premiereWorld !== null">
+              Премьера в мире: <span>{{ infoFilm.data.premiereWorld }}</span>
+              (год / месяц / день)
+            </li>
+            <li>
+              Жанр:
+              <span
+                v-for="genre in infoFilm.data.genres"
+                :key="genre.genre"
+              >/ {{ genre.genre }}
+              </span>
+            </li>
+
+            <li v-if="infoFilm.data.slogan">
+              Слоган:
+              <span>{{ infoFilm.data.slogan }}</span>
+            </li>
+            <li v-if="infoFilm.data.filmLength ">
+              Длина:
+              <span>{{ infoFilm.data.filmLength }}</span>
+            </li>
+            <li v-if="infoFilm.data.ratingAgeLimits ">
+              Возрастное ограничение:
+              <span>{{ infoFilm.data.ratingAgeLimits }}+</span>
+            </li>
+            <li>
+              Рейтинг:
+              <span class="green">{{ infoFilm.rating.rating }}</span>
+            </li>
+          </ul>
+
+          <div class="infofilm__heading">
+            <h2>Описание</h2>
+          </div>
+
+          <p>
+            {{ infoFilm.data.description }}
+          </p>
+        </div>
+
+        <div class="row infofilm__staff">
+          <div class="col-12">
+            <div class="infofilm__heading">
+              <h2>Актёры</h2>
             </div>
+          </div>
 
-            <div class="infofilm__staff-title">
-              <h4>{{ staff.nameRu || staff.nameEn }}</h4>
+          <div
+            class="col-4"
+            v-for="staff in staffFilm"
+            :key="staff.staffId"
+          >
+            <div
+              class="infofilm__staff-item"
+            >
+              <div class="infofilm__staff-img">
+                <img
+                  :src="staff.posterUrl"
+                  alt=""
+                  class="img"
+                >
+              </div>
 
-            <!-- <h5>{{ staff.professionText }}</h5> -->
+              <div class="infofilm__staff-title">
+                <h4>{{ staff.nameRu || staff.nameEn }}</h4>
+
+                <!-- <h5>{{ staff.professionText }}</h5> -->
+              </div>
             </div>
           </div>
         </div>
@@ -163,7 +167,7 @@ export default {
     },
     filterStaff (arr) {
       arr.forEach(element => {
-        if (element.professionKey === 'ACTOR' && this.staffFilm.length < 6) {
+        if (element.professionKey === 'ACTOR' && this.staffFilm.length < 9) {
           this.staffFilm.push(element)
         }
       })
@@ -209,7 +213,7 @@ export default {
 }
 
 .infofilm__img {
-  height: 20%;
+  height: 160px;
   position: relative;
   z-index: 2;
 }
@@ -323,7 +327,7 @@ export default {
     }
 
     &:last-child {
-      font-size: @font-size--normal;
+      font-size: @font-size--normal + 10;
       font-weight: 600;
       color: #f60;
 

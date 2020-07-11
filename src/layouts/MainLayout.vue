@@ -1,8 +1,13 @@
 <template>
-  <div>
+  <div
+    class="page"
+  >
     <Header />
 
-    <div v-if="loading" />
+    <Loader
+      v-if="loading"
+      style="min-height: 100vh"
+    />
 
     <div v-else>
       <main
@@ -34,7 +39,10 @@
       </main>
 
       <transition name="modal-fade">
-        <Modal v-if="modal">
+        <Modal
+          v-if="modal"
+          v-scroll-lock="modal"
+        >
           <InfoFilm />
         </Modal>
       </transition>
@@ -46,7 +54,6 @@
 import Header from '@/components/app/Header.vue'
 import Intro from '@/components/Main/Intro.vue'
 import NavBarFilms from '@/components/Main/NavBarFilms.vue'
-// import Modal from '@/components/app/Modal.vue'
 import InfoFilm from '@/components/app/InfoFilm.vue'
 
 import randomIdArr from '@/utils/arrOperations'
@@ -72,6 +79,7 @@ export default {
       return modalOpen
     }
   },
+
   async created () {
     // Получение фильма в интро
     await this.getIntroFilm()
