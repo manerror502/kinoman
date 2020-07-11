@@ -1,14 +1,14 @@
 <template>
   <ul class="playlists__wrap row">
     <div
-      v-if="!playlistInfo"
+      v-if="playlistInfo"
       class="playlists__day"
     >
       <div class="col-4">
         <div class="playlists__day-img">
           <img
             class="img"
-            src="https://kinopoiskapiunofficial.tech/images/posters/kp/311.jpg"
+            src="../../assets/img/smartPlaylist/1.jpg"
             alt=""
           >
         </div>
@@ -44,11 +44,11 @@
         <div class="playlists__item">
           <a href="">
             <div
-              class="playlists__item-img green"
+              class="playlists__item-img"
             >
               <img
                 class=""
-                src="https://kinopoiskapiunofficial.tech/images/posters/kp/311.jpg"
+                src="../../assets/img/smartPlaylist/1.jpg"
                 alt=""
               >
 
@@ -106,11 +106,11 @@
         <div class="playlists__item">
           <a href="">
             <div
-              class="playlists__item-img yellow"
+              class="playlists__item-img"
             >
               <img
                 class=""
-                src="https://kinopoiskapiunofficial.tech/images/posters/kp/311.jpg"
+                src="../../assets/img/smartPlaylist/2.jpg"
                 alt=""
               >
 
@@ -168,11 +168,11 @@
         <div class="playlists__item">
           <a href="">
             <div
-              class="playlists__item-img blue"
+              class="playlists__item-img"
             >
               <img
                 class=""
-                src="https://kinopoiskapiunofficial.tech/images/posters/kp/311.jpg"
+                src="../../assets/img/smartPlaylist/3.jpg"
                 alt=""
               >
 
@@ -217,7 +217,7 @@
               </div>
             </div>
             <div class="playlists__item-title">
-              <h5>Remember Me</h5>
+              <h5>Помни меня</h5>
             </div>
             <div class="playlists__item-descr">
               <h6>Обновлён сегодня</h6>
@@ -230,11 +230,11 @@
         <div class="playlists__item">
           <a href="">
             <div
-              class="playlists__item-img purpule"
+              class="playlists__item-img"
             >
               <img
                 class=""
-                src="https://kinopoiskapiunofficial.tech/images/posters/kp/311.jpg"
+                src="../../assets/img/smartPlaylist/4.jpg"
                 alt=""
               >
 
@@ -352,37 +352,6 @@ export default {
     transform: translate3d(-50%, -50%, 0);
   }
 
-  &:before {
-    content: "";
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    z-index: 4;
-  }
-
-  &.green {
-    &:before {
-      background-image: @gradient__green;
-    }
-  }
-
-  &.purpule {
-    &:before {
-      background-image: @gradient__purpule;
-    }
-  }
-
-  &.yellow {
-    &:before {
-      background-image: @gradient__yellow;
-    }
-  }
-
-  &.blue {
-    &:before {
-      background-image: @gradient__blue;
-    }
-  }
 }
 
 .playlists__item-title,
