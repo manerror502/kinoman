@@ -33,87 +33,89 @@
       > Смотерть трейлер </a>
     </div>
 
-    <div class="infofilm__descr">
-      <ul>
-        <li>
-          Страна:
-          <span
-            v-for="countries in infoFilm.data.countries"
-            :key="countries.country"
-          >/ {{ countries.country }}
-          </span>
-        </li>
-        <li>
-          Год:
-          <span>{{ infoFilm.data.year }}</span>
-        </li>
-        <li v-if="infoFilm.data.premiereWorld !== null">
-          Премьера в мире: <span>{{ infoFilm.data.premiereWorld }}</span>
-          (год / месяц / день)
-        </li>
-        <li>
-          Жанр:
-          <span
-            v-for="genre in infoFilm.data.genres"
-            :key="genre.genre"
-          >/ {{ genre.genre }}
-          </span>
-        </li>
+    <div class="infofilm__wrap">
+      <div class="infofilm__descr">
+        <ul>
+          <li>
+            Страна:
+            <span
+              v-for="countries in infoFilm.data.countries"
+              :key="countries.country"
+            >/ {{ countries.country }}
+            </span>
+          </li>
+          <li>
+            Год:
+            <span>{{ infoFilm.data.year }}</span>
+          </li>
+          <li v-if="infoFilm.data.premiereWorld !== null">
+            Премьера в мире: <span>{{ infoFilm.data.premiereWorld }}</span>
+            (год / месяц / день)
+          </li>
+          <li>
+            Жанр:
+            <span
+              v-for="genre in infoFilm.data.genres"
+              :key="genre.genre"
+            >/ {{ genre.genre }}
+            </span>
+          </li>
 
-        <li v-if="infoFilm.data.slogan !== null">
-          Слоган:
-          <span>{{ infoFilm.data.slogan }}</span>
-        </li>
-        <li v-if="infoFilm.data.filmLength !== null">
-          Длина:
-          <span>{{ infoFilm.data.filmLength }}</span>
-        </li>
-        <li v-if="infoFilm.data.ratingAgeLimits !== null">
-          Возрастное ограничение:
-          <span>{{ infoFilm.data.ratingAgeLimits }}+</span>
-        </li>
-        <li>
-          Рейтинг:
-          <span class="green">{{ infoFilm.rating.rating }}</span>
-        </li>
-      </ul>
+          <li v-if="infoFilm.data.slogan !== null">
+            Слоган:
+            <span>{{ infoFilm.data.slogan }}</span>
+          </li>
+          <li v-if="infoFilm.data.filmLength !== null">
+            Длина:
+            <span>{{ infoFilm.data.filmLength }}</span>
+          </li>
+          <li v-if="infoFilm.data.ratingAgeLimits !== null">
+            Возрастное ограничение:
+            <span>{{ infoFilm.data.ratingAgeLimits }}+</span>
+          </li>
+          <li>
+            Рейтинг:
+            <span class="green">{{ infoFilm.rating.rating }}</span>
+          </li>
+        </ul>
 
-      <div class="infofilm__heading">
-        <h2>Описание</h2>
-      </div>
-
-      <p>
-        {{ infoFilm.data.description }}
-      </p>
-    </div>
-
-    <div class="row infofilm__staff">
-      <div class="col-12">
         <div class="infofilm__heading">
-          <h2>Актёры</h2>
+          <h2>Описание</h2>
         </div>
+
+        <p>
+          {{ infoFilm.data.description }}
+        </p>
       </div>
 
-      <div
-        class="col-4"
-        v-for="staff in staffFilm"
-        :key="staff.staffId"
-      >
-        <div
-          class="infofilm__staff-item"
-        >
-          <div class="infofilm__staff-img">
-            <img
-              :src="staff.posterUrl"
-              alt=""
-              class="img"
-            >
+      <div class="row infofilm__staff">
+        <div class="col-12">
+          <div class="infofilm__heading">
+            <h2>Актёры</h2>
           </div>
+        </div>
 
-          <div class="infofilm__staff-title">
-            <h4>{{ staff.nameRu }}</h4>
+        <div
+          class="col-4"
+          v-for="staff in staffFilm"
+          :key="staff.staffId"
+        >
+          <div
+            class="infofilm__staff-item"
+          >
+            <div class="infofilm__staff-img">
+              <img
+                :src="staff.posterUrl"
+                alt=""
+                class="img"
+              >
+            </div>
+
+            <div class="infofilm__staff-title">
+              <h4>{{ staff.nameRu || staff.nameEn }}</h4>
 
             <!-- <h5>{{ staff.professionText }}</h5> -->
+            </div>
           </div>
         </div>
       </div>
@@ -138,19 +140,26 @@ export default {
     async getInfoFilm () {
       try {
         this.infoFilm = await this.$store.state.infoFilm.infoFilm
-        const filmId = this.infoFilm.data.filmId
-
-        // Получаем трейлер фильма
-        this.trailerFilm = await this.$store.dispatch('getTrailerFilm', filmId)
-
-        // Получаем персонал фильма
-        const staff = await this.$store.dispatch('getStaffFilm', filmId)
-        await this.filterStaff(staff)
-
-        this.loading = false
       } catch (e) {
         console.log(e)
       }
+      const filmId = this.infoFilm.data.filmId
+
+      // Получаем трейлер фильма
+      await this.getTrailerFilm(filmId)
+
+      // Получаем персонал фильма
+      await this.getStaffFilm(filmId)
+
+      this.loading = false
+    },
+
+    async getTrailerFilm (filmId) {
+      this.trailerFilm = await this.$store.dispatch('getTrailerFilm', filmId)
+    },
+    async getStaffFilm (filmId) {
+      const staff = await this.$store.dispatch('getStaffFilm', filmId)
+      await this.filterStaff(staff)
     },
     filterStaff (arr) {
       arr.forEach(element => {
@@ -283,8 +292,11 @@ export default {
   }
 }
 
-.infofilm__descr {
+.infofilm__wrap {
   padding: 10px;
+}
+
+.infofilm__descr {
   ul {
     padding: 10px 0;
     display: flex;
@@ -342,6 +354,8 @@ export default {
 }
 
 .infofilm__heading {
+  border-bottom: @border-width solid fade(@colors__grays, 30%);
+
   h2 {
     color: @colors__grays;
     font-size: @font-size--normal + 10;
@@ -350,7 +364,6 @@ export default {
 }
 
 .infofilm__staff {
-  padding: 10px;
   margin: 0 auto;
 }
 
@@ -365,18 +378,18 @@ export default {
   margin: 10px;
   padding: 10px;
   background-color: fade(#fff, 10%);
+  box-shadow: @shadows__coords-x @shadows__coords-y @shadows__size
+    fade(@colors__black, 20%);
 }
 
 .infofilm__staff-img {
-  max-width: 200px;
-  max-height: 200px;
+  max-width: 120px;
+  max-height: 190px;
   margin: 0 auto;
   overflow: hidden;
-  box-shadow: @shadows__coords-x @shadows__coords-y @shadows__size
-    fade(@colors__black, 20%);
 
   img {
-    width: 100%;
+    width: 120px;
     height: 100%;
   }
 }
