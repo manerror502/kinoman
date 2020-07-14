@@ -28,12 +28,23 @@
 
         <button><span>❤</span>  Нравиться </button>
 
-        <a
+        <!-- <a
           target="_blank"
           v-if="trailerFilm.trailers"
           :href="trailerFilm.trailers[0].url"
           class="btn--trailer"
-        > Смотерть трейлер </a>
+        > Смотерть трейлер </a> -->
+      </div>
+
+      <div
+        v-if="trailerFilm.trailers"
+        class="infofilm__trailer"
+      >
+        <youtube
+          player-width="100%"
+          player-height="350"
+          :video-id="videoId"
+        />
       </div>
 
       <div class="infofilm__wrap">
@@ -42,7 +53,7 @@
             <li>
               Страна:
               <span
-                v-for="countries in infoFilm.data.countries"
+                v-for="countries in infoFilm.data.countries "
                 :key="countries.country"
               >/ {{ countries.country }}
               </span>
@@ -51,7 +62,7 @@
               Год:
               <span>{{ infoFilm.data.year }}</span>
             </li>
-            <li v-if="infoFilm.data.premiereWorld !== null">
+            <li v-if="infoFilm.data.premiereWorld">
               Премьера в мире: <span>{{ infoFilm.data.premiereWorld }}</span>
               (год / месяц / день)
             </li>
@@ -134,10 +145,11 @@ export default {
     infoFilm: {},
     trailerFilm: {},
     staffFilm: [],
+    videoId: 'videoId',
     loading: true
   }),
   created () {
-    // Получем фильм
+    // Получаем всю информацию о фильме
     this.getInfoFilm()
   },
   methods: {
@@ -159,11 +171,28 @@ export default {
     },
 
     async getTrailerFilm (filmId) {
-      this.trailerFilm = await this.$store.dispatch('getTrailerFilm', filmId)
+      try {
+        this.trailerFilm = await this.$store.dispatch('getTrailerFilm', filmId)
+      } catch (e) {
+        console.log(e)
+      }
+
+      if (this.trailerFilm.trailers) {
+        // получаем id для ютуба
+        this.videoId = this.$youtube.getIdFromURL(
+          this.trailerFilm.trailers[0].url
+        )
+      }
     },
     async getStaffFilm (filmId) {
-      const staff = await this.$store.dispatch('getStaffFilm', filmId)
-      await this.filterStaff(staff)
+      try {
+        const staff = await this.$store.dispatch('getStaffFilm', filmId)
+
+        // фильтруем только актёров
+        await this.filterStaff(staff)
+      } catch (e) {
+        console.log(e)
+      }
     },
     filterStaff (arr) {
       arr.forEach(element => {
@@ -249,7 +278,6 @@ export default {
   margin: 0 10px;
   margin-top: 80px;
   padding-bottom: 10px;
-  border-bottom: @border-width solid fade(@colors__grays, 30%);
 
   h3 {
     font-size: @font-size--normal + 5;
@@ -294,6 +322,11 @@ export default {
       background-color: fade(@colors__primary2, 100%);
     }
   }
+}
+
+.infofilm__trailer {
+  border-bottom: @border-width solid fade(@colors__grays, 30%);
+  padding-bottom: 20px;
 }
 
 .infofilm__wrap {
@@ -373,7 +406,7 @@ export default {
 
 .infofilm__staff-item {
   display: flex;
-  max-height: 294px;
+  max-height: 265px;
   height: 100%;
   flex-direction: column;
   border: @border-width solid fade(@colors__grays, 10%);
