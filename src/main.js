@@ -6,6 +6,7 @@ import store from './store'
 
 import VScrollLock from 'v-scroll-lock'
 import Loader from './components/app/Loader'
+import VueYouTubeEmbed from 'vue-youtube-embed'
 
 Vue.config.productionTip = false
 
@@ -23,6 +24,8 @@ Vue.directive('scroll', {
 
 Vue.use(VScrollLock)
 Vue.component('Loader', Loader)
+Vue.use(VueYouTubeEmbed)
+
 new Vue({
   router,
   store,
