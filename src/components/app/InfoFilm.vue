@@ -52,10 +52,7 @@
           <ul>
             <li>
               Страна:
-              <span
-                v-for="countries in infoFilm.data.countries "
-                :key="countries.country"
-              >/ {{ countries.country }}
+              <span> {{ infoFilm.data.countries }}
               </span>
             </li>
             <li>
@@ -63,15 +60,11 @@
               <span>{{ infoFilm.data.year }}</span>
             </li>
             <li v-if="infoFilm.data.premiereWorld">
-              Премьера в мире: <span>{{ infoFilm.data.premiereWorld }}</span>
-              (год / месяц / день)
+              Премьера в мире: <span>{{ infoFilm.data.premiereWorld }} </span> (год-месяц-день)
             </li>
             <li>
               Жанр:
-              <span
-                v-for="genre in infoFilm.data.genres"
-                :key="genre.genre"
-              >/ {{ genre.genre }}
+              <span> {{ infoFilm.data.genres }}
               </span>
             </li>
 
@@ -148,29 +141,51 @@ export default {
     videoId: 'videoId',
     loading: true
   }),
-  created () {
+  async created () {
     // Получаем всю информацию о фильме
-    this.getInfoFilm()
+    await this.getInfoFilm()
+    this.loading = false
   },
   methods: {
     async getInfoFilm () {
+      // Получаем основную информацию массивы
+      await this.getBasicInfo()
+
+      const filmId = this.infoFilm.data.filmId
+      // Получаем трейлер фильма
+      this.getTrailer(filmId)
+      // Получаем персонал фильма
+      this.getStaff(filmId)
+
+      // Фильтруем массивы
+      this.filterGenres()
+      this.filterCountries()
+    },
+
+    async getBasicInfo () {
       try {
         this.infoFilm = await this.$store.state.infoFilm.infoFilm
       } catch (e) {
         console.log(e)
       }
-      const filmId = this.infoFilm.data.filmId
-
-      // Получаем трейлер фильма
-      await this.getTrailerFilm(filmId)
-
-      // Получаем персонал фильма
-      await this.getStaffFilm(filmId)
-
-      this.loading = false
     },
 
-    async getTrailerFilm (filmId) {
+    async filterGenres () {
+      const genres = await this.infoFilm.data.genres
+      const genresFormated = genres.map(genre => genre.genre).join(', ')
+
+      this.infoFilm.data.genres = genresFormated
+    },
+    async filterCountries () {
+      const countries = await this.infoFilm.data.countries
+      const countriesFormated = countries
+        .map(country => country.country)
+        .join(', ')
+
+      this.infoFilm.data.countries = countriesFormated
+    },
+
+    async getTrailer (filmId) {
       try {
         this.trailerFilm = await this.$store.dispatch('getTrailerFilm', filmId)
       } catch (e) {
@@ -184,12 +199,12 @@ export default {
         )
       }
     },
-    async getStaffFilm (filmId) {
+    async getStaff (filmId) {
       try {
         const staff = await this.$store.dispatch('getStaffFilm', filmId)
 
         // фильтруем только актёров
-        await this.filterStaff(staff)
+        this.filterStaff(staff)
       } catch (e) {
         console.log(e)
       }

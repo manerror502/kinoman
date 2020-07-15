@@ -22,10 +22,7 @@
                   <ul class="intro__descr-item">
                     <li>
                       Страна:
-                      <span
-                        v-for="countries in introFilm.data.countries"
-                        :key="countries.country"
-                      >/ {{ countries.country }}
+                      <span> {{ introFilm.data.countries }}
                       </span>
                     </li>
 
@@ -34,12 +31,11 @@
                       <span>{{ introFilm.data.year }}
                       </span>
                     </li>
+
                     <li>
                       Жанр:
-                      <span
-                        v-for="genre in introFilm.data.genres"
-                        :key="genre.genre"
-                      >/ {{ genre.genre }} </span>
+                      <span> {{ introFilm.data.genres }}
+                      </span>
                     </li>
 
                     <li>
@@ -68,8 +64,10 @@ export default {
   data: () => ({
     introFilm: null
   }),
-  created () {
-    this.getIntroFilm()
+  async created () {
+    await this.getIntroFilm()
+    this.filterGenres()
+    this.filterCountries()
   },
   methods: {
     getIntroFilm () {
@@ -78,6 +76,21 @@ export default {
     async modalOpen () {
       await this.$store.dispatch('setInfoFilm', this.introFilm)
       this.$store.state.app.modalInfoFilmOpen = true
+    },
+
+    filterGenres () {
+      const genres = this.introFilm.data.genres
+      const genresFormated = genres.map(genre => genre.genre).join(', ')
+
+      this.introFilm.data.genres = genresFormated
+    },
+    filterCountries () {
+      const countries = this.introFilm.data.countries
+      const countriesFormated = countries
+        .map(country => country.country)
+        .join(', ')
+
+      this.introFilm.data.countries = countriesFormated
     }
   }
 }
@@ -180,6 +193,7 @@ a {
 }
 
 .intro__text {
+  padding: 0 10px;
   display: -webkit-box;
   font-family: "Product Sans Light";
   font-weight: 300;
