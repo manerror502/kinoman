@@ -55,6 +55,7 @@ import Header from '@/components/app/Header.vue'
 import Intro from '@/components/Main/Intro.vue'
 import NavBarFilms from '@/components/Main/NavBarFilms.vue'
 import InfoFilm from '@/components/app/InfoFilm.vue'
+import Modal from '@/components/app/Modal.vue'
 
 import randomIdArr from '@/utils/arrOperations'
 
@@ -64,7 +65,7 @@ export default {
     Header,
     Intro,
     NavBarFilms,
-    Modal: () => import('@/components/app/Modal.vue'),
+    Modal,
     InfoFilm
   },
   data: () => ({
@@ -83,6 +84,7 @@ export default {
   async created () {
     // Получение фильма в интро
     await this.getIntroFilm()
+    this.loading = false
   },
   methods: {
     async getIntroFilm () {
@@ -108,7 +110,6 @@ export default {
 
         if (film.images.backdrops.length) {
           await this.$store.dispatch('setIntroFilm', film)
-          this.loading = false
         } else {
           await this.getIntroFilm()
         }
