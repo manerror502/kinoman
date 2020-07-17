@@ -7,12 +7,12 @@
     <div class="container-fluid">
       <div class="row justify-content-between">
         <div class="col-6">
-          <a
+          <h2
             href=""
-            class="header__logo"
+            class="header__title"
           >
-            КиноMan 👓
-          </a>
+            {{ pageTitle }}
+          </h2>
         </div>
         <nav class="col nav">
           <a
@@ -63,6 +63,11 @@ export default {
     fade: false,
     scrollPrev: 0
   }),
+  computed: {
+    pageTitle () {
+      return this.$route.meta.title || 'Ваше Кино'
+    }
+  },
   methods: {
     handleScroll (evt, el) {
       const scroll = window.scrollY
@@ -86,20 +91,24 @@ export default {
 <style lang="less">
 @import "@/assets/style/vars/vars.module";
 
+.header__container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 11;
+}
+
 .header {
   border-bottom: @border-width solid fade(@colors__grays--lighter, 20%);
   overflow: hidden;
-  position: fixed;
-  top: 0;
-  z-index: 5;
   width: 100%;
   transition: @transition-duration @transition-timing-function;
   padding-right: 10px;
 
   &.fixed {
-    background-color: fade(@colors__primary3, 100%);
+    background-color: fade(@colors__body, 100%);
     box-shadow: @shadows__coords-x @shadows__coords-y @shadows__size
-      fade(darken(@colors__primary3, 50%), 50%);
+      fade(darken(@colors__body, 50%), 50%);
   }
 
   &.fade {
@@ -107,23 +116,14 @@ export default {
   }
 }
 
-.header__logo {
-  font-family: "Product Sans Medium", sans-serif;
+.header__title {
+  font-family: @font-family__sans__black;
   color: @colors__grays--lighter;
-  font-size: @font-size--large;
+  font-size: @font-size--large - 5;
   line-height: @line-height--large;
-  letter-spacing: 2px;
   user-select: none;
-  font-weight: 500;
-  text-decoration: none;
-
+  font-weight: 900;
   transition: @transition-duration @transition-timing-function;
-
-  &:hover,
-  &:focus,
-  &:active {
-    color: darken(@colors__grays--lighter, 10%);
-  }
 }
 
 .nav {
@@ -135,7 +135,6 @@ export default {
 .nav__link {
   display: inline-block;
   color: @colors__grays--lighter;
-
   height: 100%;
   transition: @transition-duration @transition-timing-function;
   padding: 10px;

@@ -1,80 +1,64 @@
 <template>
-  <div
-    class="page"
-  >
-    <Header />
+  <transition name="fade">
+    <div
+      class="page"
+    >
+      <div class="row no-gutters justify-content-end">
+        <aside
+          style="position: fixed"
+          class="navbar__container col-2 "
+        >
+          <Navbar />
+        </aside>
 
-    <Loader
-      v-if="loading"
-      style="min-height: 100vh"
-    />
-
-    <div v-else>
-      <main
-        class="row no-gutters"
-      >
-        <Intro />
-
-        <section class="playlists">
-          <div class="container-fluid">
-            <div class="row">
-              <div class="col">
-                <h3 class="playlists__title">
-                  {{ pageTitle }}
-                </h3>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-9">
-                <router-view />
-              </div>
-
-              <aside class="col-3">
-                <NavBarFilms />
-              </aside>
+        <div class="col-10 no-padding">
+          <div class="row no-gutters">
+            <div
+              style="position: fixed"
+              class="header__container col-10 no-padding"
+            >
+              <Header />
             </div>
           </div>
-        </section>
-      </main>
 
-      <transition name="modal-fade">
-        <Modal
-          v-if="modal"
-          v-scroll-lock="modal"
-        >
-          <InfoFilm />
-        </Modal>
-      </transition>
+          <Loader
+            v-if="loading"
+            style="min-height: 100vh"
+          />
+
+          <div
+            class="row no-gutters"
+            v-else
+          >
+            <main
+              class="row no-gutters w-100"
+            >
+              <transition name="fade">
+                <router-view />
+              </transition>
+            </main>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
+  </transition>
 </template>
 
 <script>
 import Header from '@/components/app/Header.vue'
-import Intro from '@/components/Main/Intro.vue'
-import NavBarFilms from '@/components/Main/NavBarFilms.vue'
-import InfoFilm from '@/components/app/InfoFilm.vue'
-import Modal from '@/components/app/Modal.vue'
-
+import Navbar from '@/components/Main/NavBar.vue'
 import randomIdArr from '@/utils/arrOperations'
 
 export default {
   name: 'MainLayout',
   components: {
     Header,
-    Intro,
-    NavBarFilms,
-    Modal,
-    InfoFilm
+    Navbar
   },
   data: () => ({
     loading: true
   }),
   computed: {
-    pageTitle () {
-      return this.$route.meta.title || 'Ваше Кино'
-    },
     modal () {
       const modalOpen = this.$store.state.app.modalInfoFilmOpen
       return modalOpen
@@ -124,21 +108,23 @@ export default {
 <style lang="less">
 @import "@/assets/style/vars/vars.module";
 
-.modal-fade-enter,
-.modal-fade-leave-active {
+.fade-enter,
+.fade-leave-active {
   opacity: 0;
 }
 
-.modal-fade-enter-active,
-.modal-fade-leave-active {
+.fade-enter-active,
+.fade-leave-active {
   transition: 0.2s ease;
+}
+
+.w-100{
+  width: 100%;
 }
 
 .playlists {
   width: 100%;
   margin-top: 44px;
-  animation: opacity-animate 0.2s 3s ease-in-out 1 forwards;
-  opacity: 0;
 }
 
 .playlists__title {

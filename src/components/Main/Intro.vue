@@ -10,11 +10,12 @@
         <div class="row">
           <div class="intro__descr">
             <div class="row justify-content-between align-items-center">
-              <div class="col-4  d-flex flex-column">
+              <div class="col-5  d-flex flex-column">
                 <div class="intro__wrap bg-c">
                   <h2 class="intro__title">
                     {{ introFilm.data.nameRu }}
                   </h2>
+
                   <p class="intro__text">
                     {{ introFilm.data.description }}
                   </p>
@@ -53,7 +54,7 @@
 
     <button
       class="btn btn--intro"
-      @click="modalOpen"
+      @click="$router.push('/film/' + introFilm.data.filmId)"
     />
   </section>
 </template>
@@ -72,10 +73,6 @@ export default {
   methods: {
     getIntroFilm () {
       this.introFilm = this.$store.getters.introFilm
-    },
-    async modalOpen () {
-      await this.$store.dispatch('setInfoFilm', this.introFilm)
-      this.$store.state.app.modalInfoFilmOpen = true
     },
 
     filterGenres () {
@@ -106,6 +103,7 @@ export default {
   position: absolute;
   top: 0;
   left: 0;
+  z-index: 5;
 }
 
 a {
@@ -122,12 +120,13 @@ a {
 }
 
 .intro {
+  position: relative;
   width: 100%;
-  height: 80vh;
+  height: 500px;
   box-shadow: @shadows__coords-x @shadows__coords-y @shadows__size
     fade(@colors__black, 50%);
   overflow: hidden;
-  background-color: @colors__primary3;
+  background-color: @colors__body;
 }
 
 .intro__image {
@@ -141,14 +140,12 @@ a {
   background-size: cover;
   background-position: top;
   background-repeat: no-repeat;
-  transform: scale(1.2);
-  animation: intro-scale 3s ease-in-out 1 forwards;
   // background-attachment: fixed;
   // border-radius: 0 0 @border-radius__small @border-radius__small;
 
   &::after {
     content: "";
-    opacity: 0;
+    opacity: 1;
     width: 100%;
     height: 100%;
     position: absolute;
@@ -159,8 +156,6 @@ a {
       rgba(4, 4, 4, 0.7) 35%,
       rgba(9, 9, 9, 0) 60%
     );
-
-    animation: opacity-animate 0.2s 3s ease-in-out 1 forwards;
   }
 }
 
@@ -171,12 +166,11 @@ a {
 }
 
 .intro__descr {
+  padding: 10px;
   width: 100%;
-  opacity: 0;
   position: relative;
   z-index: 2;
   padding: 10px 0;
-  animation: opacity-animate 0.2s 3s ease-in-out 1 forwards;
   text-align: center;
 }
 
@@ -190,6 +184,9 @@ a {
   letter-spacing: 2px;
   overflow: hidden;
   text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 .intro__text {

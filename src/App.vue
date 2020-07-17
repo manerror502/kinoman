@@ -1,8 +1,10 @@
 <template>
   <div id="app">
-    <component :is="layout">
-      <router-view />
-    </component>
+    <transition name="fade">
+      <component :is="layout">
+        <router-view />
+      </component>
+    </transition>
   </div>
 </template>
 
@@ -26,8 +28,21 @@ export default {
 @import "assets/style/manGrid.css";
 
 #app {
-  background-image: @gradient__body;
+  background-image: @colors__body;
   overflow: hidden;
   height: 3000px;
 }
+
+::-webkit-scrollbar {
+    width: 10px;
+
+    &-track {
+      background: rgb(68, 88, 112);
+    }
+
+    &-thumb {
+      background: rgb(31, 31, 31);
+      border-radius: @border-radius__large;
+    }
+  }
 </style>
