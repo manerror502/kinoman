@@ -1,5 +1,5 @@
 <template>
-  <InfoFilm />
+  <component :is="param" />
 </template>
 
 <script>
@@ -9,6 +9,15 @@ export default {
   name: 'Details',
   components: {
     InfoFilm
+  },
+  computed: {
+    param () {
+      if (this.$route.params.id) {
+        return 'infoFilm'
+      } else {
+        return 'infoPlaylist'
+      }
+    }
   }
 }
 </script>
