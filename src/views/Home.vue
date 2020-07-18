@@ -19,18 +19,38 @@
         </div>
       </div>
     </section>
+
+    <section class="playlists">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col">
+            <h3 class="playlists__title">
+              Подборки
+            </h3>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <Collections />
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 </template>
 
 <script>
-import SmartPlaylists from '@/components/Main/SmartPlaylists.vue'
-import Intro from '@/components/Main/Intro.vue'
+import SmartPlaylists from '@/components/Main/SmartPlaylists'
+import Collections from '@/components/Main/Collections'
+import Intro from '@/components/Main/Intro'
 
 export default {
   name: 'Home',
   components: {
     SmartPlaylists,
-    Intro
+    Intro,
+    Collections
   }
 }
 </script>

@@ -30,7 +30,6 @@ export default {
 #app {
   background-image: @colors__body;
   overflow: hidden;
-  height: 3000px;
 }
 
 ::-webkit-scrollbar {

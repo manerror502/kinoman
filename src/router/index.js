@@ -29,6 +29,12 @@ const routes = [
     name: 'InfoPlaylist',
     meta: { layout: 'Main', title: 'Плейлист' },
     component: Details
+  },
+  {
+    path: '/collection/:colId',
+    name: 'InfoCollection',
+    meta: { layout: 'Main', title: 'Коллеция' },
+    component: Details
   }
 ]
 

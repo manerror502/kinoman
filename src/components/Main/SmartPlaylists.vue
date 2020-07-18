@@ -1,5 +1,5 @@
 <template>
-  <section class="playlists__wrap row ">
+  <ul class="playlists__wrap row ">
     <div
       v-if="playlistInfo"
       class="playlists__day"
@@ -31,7 +31,7 @@
       </div>
     </div>
 
-    <div class="playlists__item">
+    <li class="playlists__item">
       <router-link to="/kinolenta/day">
         <div
           class="playlists__item-img"
@@ -77,9 +77,9 @@
           <h6>Обновлён сегодня</h6>
         </div>
       </router-link>
-    </div>
+    </li>
 
-    <div class="playlists__item">
+    <li class="playlists__item">
       <a href="">
         <div
           class="playlists__item-img"
@@ -125,9 +125,9 @@
           <h6>Обновлён сегодня</h6>
         </div>
       </a>
-    </div>
+    </li>
 
-    <div class="playlists__item">
+    <li class="playlists__item">
       <a href="">
         <div
           class="playlists__item-img"
@@ -173,9 +173,9 @@
           <h6>Обновлён сегодня</h6>
         </div>
       </a>
-    </div>
+    </li>
 
-    <div class="playlists__item">
+    <li class="playlists__item">
       <a href="">
         <div
           class="playlists__item-img"
@@ -221,8 +221,8 @@
           <h6>Обновлён сегодня</h6>
         </div>
       </a>
-    </div>
-  </section>
+    </li>
+  </ul>
 </template>
 
 <script>

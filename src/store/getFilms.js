@@ -94,6 +94,23 @@ export default {
           console.log(error)
           return error
         })
+    },
+    getCollections ({ dispatch }, payload) {
+      const url = 'https://kinopoiskapiunofficial.tech/api/v1/collections/films?listType=BEST_FILMS_LIST&listId=1'
+
+      return axios(url, {
+        method: 'GET',
+        headers: {
+          'X-API-KEY': '0c5711e4-5890-4625-863f-08e2cffe91a3'
+        }
+      })
+        .then(collections => {
+          return collections.data
+        })
+        .catch(error => {
+          console.log(error)
+          return error
+        })
     }
   }
 }

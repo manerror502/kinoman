@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import getFilms from './getFilms'
 import intro from './intro'
 import infoFilm from './infoFilm'
+import collections from './collections'
 
 Vue.use(Vuex)
 
@@ -17,6 +18,7 @@ export default new Vuex.Store({
   modules: {
     getFilms,
     intro,
-    infoFilm
+    infoFilm,
+    collections
   }
 })

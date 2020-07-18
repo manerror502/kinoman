@@ -68,6 +68,8 @@ export default {
   async created () {
     // Получение фильма в интро
     await this.getIntroFilm()
+    // Получение колекций
+    await this.getCollections()
     this.loading = false
   },
   methods: {
@@ -100,6 +102,14 @@ export default {
       } catch (e) {
         console.log(e)
       }
+    },
+    async getCollections () {
+      try {
+        const collections = await this.$store.dispatch('getCollections')
+        await this.$store.dispatch('setCollections', collections)
+      } catch (e) {
+        console.log(e)
+      }
     }
   }
 }
@@ -118,7 +128,7 @@ export default {
   transition: 0.2s ease;
 }
 
-.w-100{
+.w-100 {
   width: 100%;
 }
 

@@ -1,0 +1,73 @@
+<template>
+  <div class="collections">
+    <div class="row justify-content-between">
+      <router-link
+        :to="'/collection/' + item.id"
+        tag="a"
+        v-for="item in collections.items"
+        :key="item.id"
+      >
+        <div
+          class="collection__item"
+        >
+          <h5>{{ item.title }}</h5>
+        </div>
+      </router-link>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'Collections',
+  data: () => ({
+    collections: null
+  }),
+  computed: {},
+  async created () {
+    await this.getCollections()
+  },
+  methods: {
+    getCollections () {
+      this.collections = this.$store.getters.collections
+    }
+  }
+}
+</script>
+
+<style lang="less">
+@import "@/assets/style/vars/vars.module";
+
+.collections {
+  width: 100%;
+  padding: 15px;
+}
+
+.collection__item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  padding: 10px;
+  margin-right: 10px;
+  margin-bottom: 30px;
+  max-width: 300px;
+  max-height: 300px;
+  width: 300px;
+  height: 300px;
+  background-image: @gradient__primary;
+  border-radius: @border-radius__large;
+  overflow: hidden;
+  box-shadow: @shadows__coords-x @shadows__coords-y @shadows__size
+    fade(@colors__blackPrimary, 50%);
+
+  h5 {
+    color: @colors__grays--lighter;
+    font-family: @font-family__sans;
+    font-weight: 700;
+    font-size: @font-size--large;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+</style>
