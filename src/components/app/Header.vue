@@ -6,7 +6,7 @@
   >
     <div class="container-fluid">
       <div class="row justify-content-between">
-        <div class="col-6">
+        <div class="col-10">
           <h2
             href=""
             class="header__title"

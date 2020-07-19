@@ -116,6 +116,9 @@
 <script>
 import FilmBanner from '@/components/Details/FilmBanner'
 
+import filterCountriesArr from '@/utils/filterCountries.js'
+import filterGenresArr from '@/utils/filterGenres.js'
+
 export default {
   name: 'InfoFilm',
   data: () => ({
@@ -159,17 +162,12 @@ export default {
 
     async filterGenres () {
       const genres = await this.infoFilm.data.genres
-      const genresFormated = genres.map(genre => genre.genre).join(', ')
-
-      this.infoFilm.data.genres = genresFormated
+      this.infoFilm.data.genres = filterGenresArr(genres)
     },
     async filterCountries () {
       const countries = await this.infoFilm.data.countries
-      const countriesFormated = countries
-        .map(country => country.country)
-        .join(', ')
 
-      this.infoFilm.data.countries = countriesFormated
+      this.infoFilm.data.countries = filterCountriesArr(countries)
     },
     filterStaff (arr) {
       arr.forEach(element => {

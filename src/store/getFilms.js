@@ -1,5 +1,5 @@
 import axios from 'axios'
-import randomIdArr from '@/utils/arrOperations'
+import randomIdArr from '@/utils/randomIdArr'
 
 export default {
   actions: {
@@ -106,6 +106,23 @@ export default {
       })
         .then(collections => {
           return collections.data
+        })
+        .catch(error => {
+          console.log(error)
+          return error
+        })
+    },
+    getNewRelease ({ dispatch }, payload) {
+      const url = `https://kinopoiskapiunofficial.tech/api/v2.1/films/releases?year=${payload.year}&month=${payload.month}&page=${payload.page}`
+
+      return axios(url, {
+        method: 'GET',
+        headers: {
+          'X-API-KEY': '0c5711e4-5890-4625-863f-08e2cffe91a3'
+        }
+      })
+        .then(newRelease => {
+          return newRelease.data
         })
         .catch(error => {
           console.log(error)

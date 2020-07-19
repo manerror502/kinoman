@@ -32,9 +32,7 @@
           <main
             class="row no-gutters w-100"
           >
-            <transition name="fade">
-              <router-view />
-            </transition>
+            <router-view />
           </main>
         </div>
       </div>
@@ -45,7 +43,7 @@
 <script>
 import Header from '@/components/app/Header.vue'
 import Navbar from '@/components/Main/NavBar.vue'
-import randomIdArr from '@/utils/arrOperations'
+import randomIdArr from '@/utils/randomIdArr'
 
 export default {
   name: 'MainLayout',
