@@ -7,7 +7,7 @@
         <div class="row">
           <div class="col">
             <h3 class="playlists__title">
-              Умные плейлисты 🔮
+              Умные плейлисты
             </h3>
           </div>
         </div>
