@@ -1,6 +1,6 @@
 <template>
   <div class="collections">
-    <div class="row justify-content-between">
+    <div class="row justify-content-around">
       <router-link
         :to="'/collection/' + item.id"
         tag="a"
@@ -44,6 +44,7 @@ export default {
 }
 
 .collection__item {
+  opacity: 0.9;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -60,6 +61,7 @@ export default {
   overflow: hidden;
   box-shadow: @shadows__coords-x @shadows__coords-y @shadows__size
     fade(@colors__blackPrimary, 50%);
+  transition: @transition-duration @transition-timing-function;
 
   h5 {
     color: @colors__grays--lighter;
@@ -68,6 +70,11 @@ export default {
     font-size: @font-size--large;
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+
+  &:hover,
+  &:focus {
+    opacity: 1;
   }
 }
 </style>

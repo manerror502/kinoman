@@ -255,7 +255,7 @@ export default {
   overflow: hidden;
   border: @border-width solid fade(@colors__green, 0);
   transition: @transition-duration @transition-timing-function;
-  margin-right: 30px;
+  margin-right: 10px;
 
   &:hover,
   &:focus {

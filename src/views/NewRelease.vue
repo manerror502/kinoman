@@ -1,5 +1,7 @@
 <template>
-  <div />
+  <section class="release">
+    <datagrid />
+  </section>
 </template>
 
 <script>

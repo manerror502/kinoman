@@ -1,47 +1,45 @@
 <template>
-  <transition name="fade">
-    <div
-      class="page"
-    >
-      <div class="row no-gutters justify-content-end">
-        <aside
-          style="position: fixed"
-          class="navbar__container col-2 "
-        >
-          <Navbar />
-        </aside>
+  <div
+    class="page"
+  >
+    <div class="row no-gutters justify-content-end">
+      <aside
+        style="position: fixed"
+        class="navbar__container col-2 "
+      >
+        <Navbar />
+      </aside>
 
-        <div class="col-10 no-padding">
-          <div class="row no-gutters">
-            <div
-              style="position: fixed"
-              class="header__container col-10 no-padding"
-            >
-              <Header />
-            </div>
-          </div>
-
-          <Loader
-            v-if="loading"
-            style="min-height: 100vh"
-          />
-
+      <div class="col-10 no-padding">
+        <div class="row no-gutters">
           <div
-            class="row no-gutters"
-            v-else
+            style="position: fixed"
+            class="header__container col-10 no-padding"
           >
-            <main
-              class="row no-gutters w-100"
-            >
-              <transition name="fade">
-                <router-view />
-              </transition>
-            </main>
+            <Header />
           </div>
+        </div>
+
+        <Loader
+          v-if="loading"
+          style="min-height: 100vh"
+        />
+
+        <div
+          class="row no-gutters"
+          v-else
+        >
+          <main
+            class="row no-gutters w-100"
+          >
+            <transition name="fade">
+              <router-view />
+            </transition>
+          </main>
         </div>
       </div>
     </div>
-  </transition>
+  </div>
 </template>
 
 <script>

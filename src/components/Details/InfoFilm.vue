@@ -3,7 +3,6 @@
     class="infofilm"
   >
     <Loader
-      style=""
       v-if="loading"
     />
 
@@ -228,7 +227,7 @@ export default {
   z-index: 2;
   padding: 30px 20px;
   background-color: @colors__body;
-  border-radius: @border-radius__big;
+  border-radius: @border-radius__big + 20;
 }
 
 .infofilm__trailer {
