@@ -60,6 +60,9 @@
 </template>
 
 <script>
+import filterCountriesArr from '@/utils/filterCountries.js'
+import filterGenresArr from '@/utils/filterGenres.js'
+
 export default {
   name: 'Intro',
   data: () => ({
@@ -75,19 +78,14 @@ export default {
       this.introFilm = this.$store.getters.introFilm
     },
 
-    filterGenres () {
-      const genres = this.introFilm.data.genres
-      const genresFormated = genres.map(genre => genre.genre).join(', ')
-
-      this.introFilm.data.genres = genresFormated
+    async filterGenres () {
+      const genres = await this.introFilm.data.genres
+      this.introFilm.data.genres = filterGenresArr(genres)
     },
-    filterCountries () {
-      const countries = this.introFilm.data.countries
-      const countriesFormated = countries
-        .map(country => country.country)
-        .join(', ')
+    async filterCountries () {
+      const countries = await this.introFilm.data.countries
 
-      this.introFilm.data.countries = countriesFormated
+      this.introFilm.data.countries = filterCountriesArr(countries)
     }
   }
 }
