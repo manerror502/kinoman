@@ -128,6 +128,8 @@ export default {
     font-weight: 500;
     color: @colors__grays--lighter;
     margin-bottom: 30px;
+    text-shadow: @shadows__coords-x @shadows__coords-y @shadows__size + 10
+      fade(@colors__black, 20%);
   }
 
   button {
