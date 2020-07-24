@@ -1,60 +1,79 @@
 <template>
-  <router-link
-    tag="a"
-    :to="'/film/' + itemInfo.filmId"
-    class="filmitem col-4"
-  >
-    <div class="filmitem__img">
-      <img
-        :src="itemInfo.posterUrl"
-        alt=""
-        class="img"
+  <li>
+    <div class="filmitem__relative">
+      <router-link
+        tag="a"
+        :to="'/film/' + itemInfo.filmId"
+        class="filmitem"
       >
-    </div>
-
-    <div class="filmitem__content">
-      <div class="filmitem__text">
-        <div class="filmitem__title">
-          <h3>{{ itemInfo.nameRu }}</h3>
+        <div class="filmitem__img">
+          <img
+            :src="itemInfo.posterUrl"
+            alt=""
+            class="img"
+          >
         </div>
-        <ul class="filmitem__ul">
-          <li>{{ itemInfo.releaseDate }}</li>
-          <li>{{ filterGenres }}</li>
-          <li>{{ filterCountries }}</li>
-          <li>{{ itemInfo.duration }} минут</li>
-        </ul>
-      </div>
 
-      <div class="filmitem__rating">
-        <h5 :class="rating">
-          {{ itemInfo.rating }}
-        </h5>
-      </div>
+        <div class="filmitem__content">
+          <div class="filmitem__text">
+            <div class="filmitem__title">
+              <h3>{{ itemInfo.nameRu }}</h3>
+            </div>
+            <ul class="filmitem__ul">
+              <li>{{ itemInfo.releaseDate }}</li>
+              <li>{{ filterGenres }}</li>
+              <li>{{ filterCountries }}</li>
+              <li>{{ itemInfo.duration }} минут</li>
+            </ul>
+          </div>
 
-      <button class="filmitem__menu">
-        <svg viewBox="0 0 515.555 515.555">
-          <path
-            fill="currentColor"
-            d="m303.347 18.875c25.167 25.167 25.167 65.971 0 91.138s-65.971 25.167-91.138 0-25.167-65.971 0-91.138c25.166-25.167 65.97-25.167 91.138 0"
-          /><path
-            fill="currentColor"
-            d="m303.347 212.209c25.167 25.167 25.167 65.971 0 91.138s-65.971 25.167-91.138 0-25.167-65.971 0-91.138c25.166-25.167 65.97-25.167 91.138 0"
-          /><path
-            fill="currentColor"
-            d="m303.347 405.541c25.167 25.167 25.167 65.971 0 91.138s-65.971 25.167-91.138 0-25.167-65.971 0-91.138c25.166-25.167 65.97-25.167 91.138 0"
-          />
-        </svg>
-      </button>
+          <div class="filmitem__rating">
+            <h5 :class="rating">
+              {{ itemInfo.rating }}
+            </h5>
+          </div>
+        </div>
+      </router-link>
+
+      <div class="filmitem__menu">
+        <button
+          @click="targetMenu"
+          class="filmitem__menu-button"
+        >
+          <svg viewBox="0 0 515.555 515.555">
+            <path
+              fill="currentColor"
+              d="m303.347 18.875c25.167 25.167 25.167 65.971 0 91.138s-65.971 25.167-91.138 0-25.167-65.971 0-91.138c25.166-25.167 65.97-25.167 91.138 0"
+            /><path
+              fill="currentColor"
+              d="m303.347 212.209c25.167 25.167 25.167 65.971 0 91.138s-65.971 25.167-91.138 0-25.167-65.971 0-91.138c25.166-25.167 65.97-25.167 91.138 0"
+            /><path
+              fill="currentColor"
+              d="m303.347 405.541c25.167 25.167 25.167 65.971 0 91.138s-65.971 25.167-91.138 0-25.167-65.971 0-91.138c25.166-25.167 65.97-25.167 91.138 0"
+            />
+          </svg>
+        </button>
+
+        <MenuFilm v-if="menu" />
+      </div>
     </div>
-  </router-link>
+  </li>
 </template>
 
 <script>
+import MenuFilm from '@/components/app/MenuFilm.vue'
+
 import filterCountriesArr from '@/utils/filterCountries.js'
 import filterGenresArr from '@/utils/filterGenres.js'
 
 export default {
   name: 'FilmItemInfo',
+  data: () => ({
+    menu: false
+  }),
+  components: {
+    MenuFilm
+  },
   props: {
     itemInfo: {
       type: Object,
@@ -79,6 +98,20 @@ export default {
       const countries = this.itemInfo.countries
       return filterCountriesArr(countries)
     }
+  },
+  created () {
+    this.getFilmInfo()
+  },
+  methods: {
+    getFilmInfo () {
+      try {
+      } catch (e) {
+        console.log(e)
+      }
+    },
+    targetMenu () {
+      this.menu = !this.menu
+    }
   }
 }
 </script>
@@ -98,15 +131,16 @@ export default {
   }
 }
 
+.filmitem__relative {
+  position: relative;
+}
+
 .filmitem {
-  max-width: 450px;
   width: 100%;
-  padding: 0 12px;
   background-color: @colors__blackPrimary;
   overflow: hidden;
   display: flex;
   position: relative;
-  margin-right: 20px;
   margin-bottom: 20px;
   transition: @transition-duration @transition-timing-function;
   user-select: none;
@@ -122,8 +156,7 @@ export default {
 }
 
 .filmitem__img {
-  max-width: 185px;
-  height: 100%;
+  max-width: 150px;
   max-height: 230px;
   margin-right: 10px;
 
@@ -143,10 +176,10 @@ export default {
   display: flex;
 
   h3 {
-    font-size: @font-size--normal + 10;
+    font-size: @font-size--normal + 5;
     font-family: @font-family__sans__black;
     font-weight: 900;
-    line-height: @line-height--small + 5;
+    line-height: @line-height--small + 7;
     color: @colors__grays--lighter;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -198,11 +231,8 @@ export default {
   }
 }
 
-.filmitem__menu {
-  padding: 5px;
-  position: absolute;
-  right: 0px;
-  top: 20px;
+.filmitem__menu-button {
+  padding: 5px 0;
   width: 60px;
   color: @colors__grays;
   border-radius: @border-radius__small;
@@ -214,5 +244,11 @@ export default {
     background-color: fade(#fff, 10%);
     color: @colors__green;
   }
+}
+
+.filmitem__menu {
+  position: absolute;
+  right: 0px;
+  top: 10px;
 }
 </style>
