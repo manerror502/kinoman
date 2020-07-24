@@ -5,8 +5,9 @@
       v-else
       class="container-fluid"
     >
-      <ul class="row">
+      <ul class="row justify-content-arround">
         <FilmItemInfo
+          class="col-xl-4 col-lg-6"
           v-for="release in newRelease.releases"
           :key="release.filmId"
           :item-info="release"

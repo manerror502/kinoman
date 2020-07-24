@@ -61,7 +61,7 @@
               </li>
               <li>
                 Рейтинг:
-                <span class="green">{{ infoFilm.rating.rating || 'Нет информации' }}</span>
+                <span :class="rating">{{ infoFilm.rating.rating || 'Нет информации' }}</span>
               </li>
             </ul>
           </div>
@@ -130,6 +130,17 @@ export default {
   }),
   components: {
     FilmBanner
+  },
+  computed: {
+    rating () {
+      if (this.infoFilm.rating.rating >= 6.5) {
+        return 'green'
+      } else if (this.infoFilm.rating.rating >= 4.1) {
+        return 'yellow'
+      } else {
+        return 'red'
+      }
+    }
   },
   async created () {
     // Получаем всю информацию о фильме

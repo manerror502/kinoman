@@ -35,8 +35,8 @@ export default {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 5;
-  background-color: fade(darken(@colors__primary, 40%), 90%);
+  z-index: 100;
+  background-color: fade(darken(@colors__blackPrimary, 10%), 50%);
   display: flex;
   padding: 20px 0;
   overflow: hidden;

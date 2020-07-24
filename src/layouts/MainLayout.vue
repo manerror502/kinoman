@@ -37,19 +37,24 @@
         </div>
       </div>
     </div>
+
+    <Modal v-if="modal" />
   </div>
 </template>
 
 <script>
 import Header from '@/components/app/Header.vue'
 import Navbar from '@/components/Main/NavBar.vue'
+import Modal from '@/components/app/Modal.vue'
+
 import randomIdArr from '@/utils/randomIdArr'
 
 export default {
   name: 'MainLayout',
   components: {
     Header,
-    Navbar
+    Navbar,
+    Modal
   },
   data: () => ({
     loading: true

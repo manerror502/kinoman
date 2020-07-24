@@ -84,7 +84,6 @@ export default {
     },
     async filterCountries () {
       const countries = await this.introFilm.data.countries
-
       this.introFilm.data.countries = filterCountriesArr(countries)
     }
   }

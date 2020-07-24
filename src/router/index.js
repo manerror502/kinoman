@@ -15,7 +15,7 @@ const routes = [
   {
     path: '/new-release',
     name: 'NewRelease',
-    meta: { layout: 'Main', title: 'Новые релизы, фильмы и сериалы' },
+    meta: { layout: 'Main', title: 'Новые релизы' },
     component: () => import('@/views/NewRelease.vue')
   },
   {

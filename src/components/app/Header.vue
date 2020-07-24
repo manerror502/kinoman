@@ -65,7 +65,7 @@ export default {
   }),
   computed: {
     pageTitle () {
-      return this.$route.meta.title || 'Ваше Кино'
+      return this.$route.meta.title
     }
   },
   methods: {
