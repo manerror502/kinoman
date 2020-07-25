@@ -5,15 +5,8 @@
         tag="a"
         :to="'/film/' + itemInfo.filmId"
         class="filmitem"
+        :style="{backgroundImage: 'url(' + itemInfo.posterUrl + ')'}"
       >
-        <div class="filmitem__img">
-          <img
-            :src="itemInfo.posterUrl"
-            alt=""
-            class="img"
-          >
-        </div>
-
         <div class="filmitem__content">
           <div class="filmitem__text">
             <div class="filmitem__title">
@@ -54,7 +47,10 @@
           </svg>
         </button>
 
-        <MenuFilm v-if="menu" />
+        <MenuFilm
+          v-if="menu"
+          @closeMenu="closeMenu"
+        />
       </div>
     </div>
   </li>
@@ -102,6 +98,7 @@ export default {
   created () {
     this.getFilmInfo()
   },
+
   methods: {
     getFilmInfo () {
       try {
@@ -111,6 +108,10 @@ export default {
     },
     targetMenu () {
       this.menu = !this.menu
+    },
+    closeMenu () {
+      console.log('dddd')
+      this.menu = false
     }
   }
 }
@@ -145,6 +146,23 @@ export default {
   transition: @transition-duration @transition-timing-function;
   user-select: none;
   border-radius: @border-radius__small - 5;
+  background-size: cover;
+  background-position: top;
+  background-repeat: no-repeat;
+
+  &::after {
+    content: "";
+    opacity: 1;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    bottom: 0;
+    background: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.8) 0%,
+      rgba(9, 9, 9, 0) 100%
+    );
+  }
 
   &:hover,
   &:focus,
@@ -161,13 +179,17 @@ export default {
   margin-right: 10px;
 
   img {
-    height: 100%;
+    object-fit: cover;
+    object-position: center;
   }
 }
 
 .filmitem__content {
+  width: 100%;
   padding: 10px;
   overflow: hidden;
+  position: relative;
+  z-index: 3;
 }
 
 .filmitem__title {
@@ -250,5 +272,6 @@ export default {
   position: absolute;
   right: 0px;
   top: 10px;
+  z-index: 4;
 }
 </style>
