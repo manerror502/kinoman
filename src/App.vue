@@ -8,14 +8,16 @@
 
 <script>
 import MainLayout from '@/layouts/MainLayout'
+import EmptyLayout from '@/layouts/EmptyLayout'
 
 export default {
   components: {
-    MainLayout
+    MainLayout,
+    EmptyLayout
   },
   computed: {
     layout () {
-      return (this.$route.meta.layout || 'main') + '-layout'
+      return (this.$route.meta.layout) + '-layout'
     }
   }
 }
@@ -34,12 +36,12 @@ export default {
     width: 10px;
 
     &-track {
-      background: rgb(68, 88, 112);
+      background: @colors__blackPrimary;
     }
 
     &-thumb {
-      background: rgb(31, 31, 31);
-      border-radius: @border-radius__large;
+      background: @colors__grays;
+      border-radius: @border-radius__small;
     }
   }
 </style>

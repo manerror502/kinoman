@@ -25,7 +25,7 @@
         <div class="row">
           <div class="col">
             <h3 class="playlists__title">
-              Подборки
+              Специально для вас
             </h3>
           </div>
         </div>
@@ -42,15 +42,14 @@
 
 <script>
 import SmartPlaylists from '@/components/Main/SmartPlaylists'
-import Collections from '@/components/Main/Collections'
+// import Collections from '@/components/Main/Collections'
 import Intro from '@/components/Main/Intro'
 
 export default {
   name: 'Home',
   components: {
     SmartPlaylists,
-    Intro,
-    Collections
+    Intro
   }
 }
 </script>

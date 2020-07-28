@@ -1,6 +1,7 @@
 <template>
   <div
     class="menu"
+    ref="menu"
   >
     <!-- <div class="menu__header">
       <a class="menu__title">
@@ -25,7 +26,9 @@
 </template>
 <script>
 export default {
-  name: 'Menu'
+  name: 'Menu',
+  mounted () {},
+  methods: {}
 }
 </script>
 
@@ -37,7 +40,7 @@ export default {
   flex-direction: column;
   width: 200px;
   position: absolute;
-  left: 100%;
+  right: 100%;
   top: 0;
   z-index: 4;
   background-color: @colors__blackGrays;

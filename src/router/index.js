@@ -35,6 +35,30 @@ const routes = [
     name: 'InfoCollection',
     meta: { layout: 'Main', title: 'Коллеция' },
     component: Details
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    meta: {
+      layout: 'Empty'
+    },
+    component: () => import('../views/Login.vue')
+  },
+  {
+    path: '/registered',
+    name: 'Registered',
+    meta: {
+      layout: 'Empty'
+    },
+    component: () => import('../views/Registered.vue')
+  },
+  {
+    path: '*',
+    name: '404',
+    meta: {
+      layout: 'main'
+    },
+    component: () => import('../views/Home.vue')
   }
 ]
 

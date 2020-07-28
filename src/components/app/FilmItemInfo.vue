@@ -1,6 +1,6 @@
 <template>
   <li>
-    <div class="filmitem__relative">
+    <div class="filmitem__link">
       <router-link
         tag="a"
         :to="'/film/' + itemInfo.filmId"
@@ -13,10 +13,18 @@
               <h3>{{ itemInfo.nameRu }}</h3>
             </div>
             <ul class="filmitem__ul">
-              <li>{{ itemInfo.releaseDate }}</li>
-              <li>{{ filterGenres }}</li>
-              <li>{{ filterCountries }}</li>
-              <li>{{ itemInfo.duration }} минут</li>
+              <li>
+                {{ itemInfo.releaseDate || itemInfo.year }}
+              </li>
+              <li v-if="itemInfo.countries">
+                {{ filterGenres }}
+              </li>
+              <li v-if="itemInfo.genres">
+                {{ filterCountries }}
+              </li>
+              <li v-if="itemInfo.duration">
+                {{ itemInfo.duration }} минут
+              </li>
             </ul>
           </div>
 
@@ -121,19 +129,18 @@ export default {
 @import "@/assets/style/vars/vars.module";
 
 .filmitem__link {
-  max-width: 500px;
+  position: relative;
+  border: @border-width solid fade(@colors__green, 0);
+  margin-bottom: 20px;
+  border-radius: @border-radius__small;
+  overflow: hidden;
+  transition: @transition-duration @transition-timing-function;
+
   &:hover,
   &:focus,
   &:active {
-    .filmitem {
-      background-color: fade(#fff, 10%);
-      color: @colors__green;
-    }
+    border: @border-width solid @colors__green;
   }
-}
-
-.filmitem__relative {
-  position: relative;
 }
 
 .filmitem {
@@ -142,13 +149,12 @@ export default {
   overflow: hidden;
   display: flex;
   position: relative;
-  margin-bottom: 20px;
-  transition: @transition-duration @transition-timing-function;
   user-select: none;
   border-radius: @border-radius__small - 5;
   background-size: cover;
   background-position: top;
   background-repeat: no-repeat;
+  transition: @transition-duration @transition-timing-function;
 
   &::after {
     content: "";
@@ -188,13 +194,12 @@ export default {
   width: 100%;
   padding: 10px;
   overflow: hidden;
-  position: relative;
   z-index: 3;
+  padding-right: 20%;
 }
 
 .filmitem__title {
   margin-bottom: 20px;
-  max-width: 220px;
   display: flex;
 
   h3 {
@@ -210,7 +215,6 @@ export default {
 }
 
 .filmitem__ul {
-  max-width: 220px;
   li {
     font-size: @font-size--normal;
     line-height: @line-height--normal;

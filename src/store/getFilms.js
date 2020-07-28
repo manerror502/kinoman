@@ -17,7 +17,7 @@ export default {
         }
       })
         .then(films => {
-          return films
+          return films.data.films
           // dispatch('getInfoFilm', film)
         })
         .catch(error => {
@@ -96,7 +96,8 @@ export default {
         })
     },
     getCollections ({ dispatch }, payload) {
-      const url = 'https://kinopoiskapiunofficial.tech/api/v1/collections/films?listType=BEST_FILMS_LIST&listId=1'
+      const url =
+        'https://kinopoiskapiunofficial.tech/api/v1/collections/films?listType=BEST_FILMS_LIST&listId=1'
 
       return axios(url, {
         method: 'GET',
@@ -123,6 +124,23 @@ export default {
       })
         .then(newRelease => {
           return newRelease.data
+        })
+        .catch(error => {
+          console.log(error)
+          return error
+        })
+    },
+    getCollection ({ dispatch }, payload) {
+      const url = `https://kinopoiskapiunofficial.tech/api/v2.1/films/top?listId=${payload}`
+
+      return axios(url, {
+        method: 'GET',
+        headers: {
+          'X-API-KEY': '0c5711e4-5890-4625-863f-08e2cffe91a3'
+        }
+      })
+        .then(collection => {
+          return collection.data
         })
         .catch(error => {
           console.log(error)

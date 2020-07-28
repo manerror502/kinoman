@@ -44,7 +44,7 @@
 
 <script>
 import Header from '@/components/app/Header.vue'
-import Navbar from '@/components/Main/NavBar.vue'
+import Navbar from '@/components/app/NavBar.vue'
 import Modal from '@/components/app/Modal.vue'
 
 import randomIdArr from '@/utils/randomIdArr'
@@ -69,8 +69,6 @@ export default {
   async created () {
     // Получение фильма в интро
     await this.getIntroFilm()
-    // Получение колекций
-    await this.getCollections()
     this.loading = false
   },
   methods: {
@@ -92,7 +90,7 @@ export default {
           releasesSettings
         )
 
-        const filmId = await randomIdArr(filmsArr.data.films).filmId
+        const filmId = await randomIdArr(filmsArr).filmId
         const film = await this.$store.dispatch('getInfoFilm', filmId)
 
         if (film.images.backdrops.length) {
@@ -103,15 +101,15 @@ export default {
       } catch (e) {
         console.log(e)
       }
-    },
-    async getCollections () {
-      try {
-        const collections = await this.$store.dispatch('getCollections')
-        await this.$store.dispatch('setCollections', collections)
-      } catch (e) {
-        console.log(e)
-      }
     }
+    // async getCollections () {
+    //   try {
+    //     const collections = await this.$store.dispatch('getCollections')
+    //     await this.$store.dispatch('setCollections', collections)
+    //   } catch (e) {
+    //     console.log(e)
+    //   }
+    // }
   }
 }
 </script>
