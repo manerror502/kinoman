@@ -17,7 +17,7 @@ export default {
   },
   computed: {
     layout () {
-      return (this.$route.meta.layout) + '-layout'
+      return this.$route.meta.layout + '-layout'
     }
   }
 }
@@ -33,15 +33,15 @@ export default {
 }
 
 ::-webkit-scrollbar {
-    width: 10px;
+  width: 10px;
 
-    &-track {
-      background: @colors__blackPrimary;
-    }
-
-    &-thumb {
-      background: @colors__grays;
-      border-radius: @border-radius__small;
-    }
+  &-track {
+    background: @colors__grays;
   }
+
+  &-thumb {
+    background: @colors__blackPrimary;
+    border-radius: @border-radius__small;
+  }
+}
 </style>

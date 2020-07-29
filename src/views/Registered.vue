@@ -2,80 +2,43 @@
   <!--sign window registr-->
   <form
     class="sign__login"
-    @submit.prevent="onSubmit"
   >
-    <h2>Блиц опрос 🤔</h2>
+    <h2>Создать аккаунт КиноMan</h2>
 
-    <small
-      v-if="$v.userName.$dirty && !$v.userName.required"
-      class="invalid"
-    >Поле Имя не должно быть пустым</small>
+    <small>Поле Имя не должно быть пустым</small>
     <p>Ваше имя?</p>
     <input
       v-model.trim="userName"
       autofocus
       type="text"
       placeholder="Имя пользователя"
-      :class="{ invalid: $v.userName.$dirty && !$v.userName.required }"
     >
 
-    <small
-      v-if="$v.email.$dirty && !$v.email.required"
-      class="invalid"
-    >Поле E-mail не должно быть пустым</small>
-    <small
-      v-else-if="$v.email.$dirty && !$v.email.email"
-      class="invalid"
-    >Введите коректный E-mail</small>
+    <small>Поле E-mail не должно быть пустым</small>
+    <small>Введите коректный E-mail</small>
 
     <p>Ваша Электонная почта?</p>
     <input
-      v-model.trim="email"
       type="text"
       placeholder="Электонная почта"
-      :class="{
-        invalid:
-          ($v.email.$dirty && !$v.email.required) ||
-          ($v.email.$dirty && !$v.email.email),
-      }"
     >
 
-    <small
-      v-if="$v.age.$dirty && !$v.age.between"
-      class="invalid"
-    >Возраст должен быть от {{ $v.age.$params.between.min }} до {{ $v.age.$params.between.max }}</small>
+    <small>Возраст должен быть от до </small>
 
     <p>Сколько вам лет?</p>
     <input
-      v-model.trim.lazy="age"
       type="text"
       placeholder="Возраст"
-      :class="{
-        invalid:
-          ($v.email.$dirty && !$v.email.between)
-      }"
     >
 
-    <small
-      v-if="$v.password.$dirty && !$v.password.required"
-      class="invalid"
-    >Введите пароль</small>
-    <small
-      v-else-if="$v.password.$dirty && !$v.password.minLength"
-      class="invalid"
-    >Пароль должен быть {{ $v.password.$params.minLength.min }} символов
-      сейчас он {{ password.length }}</small>
+    <small>Введите пароль</small>
+    <small>Пароль должен быть  символов
+      сейчас он </small>
 
     <p>Ваш пароль? Я никому не расскажу!</p>
     <input
-      v-model.trim="password"
       type="password"
       placeholder="Password"
-      :class="{
-        invalid:
-          ($v.password.$dirty && !$v.password.required) ||
-          ($v.password.$dirty && !$v.password.minLength),
-      }"
     >
 
     <button
@@ -89,167 +52,106 @@
       tag="a"
       to="/login"
     >
-      У меня уже есть аккаунт GaTeMan
+      У меня уже есть аккаунт КиноMan
     </router-link>
   </form>
 </template>
 
 <script>
-// import { email, required, minLength, between } from 'vuelidate/lib/validators'
-
 export default {
   name: 'Registr'
-  // data: () => ({
-  //   email: '',
-  //   password: '',
-  //   userName: '',
-  //   age: 0
-  // }),
-  // validations: {
-  //   email: { email, required },
-  //   password: { required, minLength: minLength(8) },
-  //   userName: { required },
-  //   age: { between: between(0, 100) }
-  // },
-  // methods: {
-  //   async onSubmit () {
-  //     if (this.$v.$invalid) {
-  //       this.$v.$touch()
-  //       return
-  //     }
-  //     const formData = {
-  //       email: this.email,
-  //       password: this.password,
-  //       userName: this.userName,
-  //       age: this.age
-  //     }
-
-  //     try {
-  //       await this.$store.dispatch('register', formData)
-  //       this.$router.push('/')
-  //     } catch (e) {}
-  //   }
-  // }
 }
 </script>
 
-<style lang="less" scoped>
-
-.login{
-  width: 100%;
-  height: 100%;
-  display: -webkit-flex;
-  display: -moz-flex;
-  display: -ms-flex;
-  display: -o-flex;
-  display: flex;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 100;
-}
-
-.login__form{
-  width: 100%;
-  max-width: 500px;
-  padding: 30px 20px;
-  background-color: #555555;
-  margin: auto;
-
-}
+<style lang="less" >
+@import "@/assets/style/vars/vars.module";
 
 .sign__login {
   text-align: center;
   position: relative;
 
   h2 {
-    color: #ffffff;
+    font-family: @font-family__sans;
+    color: @colors__grays;
+    font-size: @font-size--normal + 5;
+    line-height: @line-height--large;
+    color: @colors__grays--lighter;
     text-align: center;
-    text-transform: uppercase;
-    font-weight: 500;
     margin-bottom: 20px;
+    box-shadow: @shadows__coords-x @shadows__coords-y @shadows__size
+      fade(@colors__black, 20%);
   }
 
   small {
-    color: #e83535;
-    font-size: 16px;
-    transition: 0.2s ease;
+    display: none;
+    color: @colors__red;
+    font-size: @font-size--normal;
+    transition: @transition-duration @transition-timing-function;
+
+    &.invalid {
+      display: block;
+    }
   }
 
   input {
+    font-family: @font-family__sans;
+    font-size: @font-size--normal;
+    width: 250px;
     border: 0;
     background: none;
     display: block;
     margin: 20px auto;
     margin-top: 10px;
     text-align: center;
-    border: 2px solid #3498db;
+    border: @border-width + 1 solid @colors__primary;
     padding: 14px 10px;
-    width: 200px;
     outline: none;
-    color: #ffffff;
-    border-radius: 24px;
-    transition: 0.3s ease;
+    color: @colors__white;
+    border-radius: @border-radius__large;
+    transition: @transition-duration @transition-timing-function;
 
     &:focus {
       width: 280px;
-      border-color: #2ecc71;
+      border-color: @colors__green;
     }
 
     &.invalid {
-      border: 2px solid #d91e1e;
+      border: @border-width + 1 solid @colors__red;
     }
   }
 
   a {
-    cursor: pointer;
-    transition: 0.1s linear;
-    color: #9e9e9e;
+    transition: @transition-duration @transition-timing-function;
+    color: @colors__grays;
     text-decoration: underline;
-    &:hover {
-      color: #2ecc71;
-    }
+
+    &:hover,
     &:focus {
-      color: #2ecc71;
+      color: @colors__green;
       outline: none;
     }
   }
 }
 
 .btn--login {
+  font-family: @font-family__sans;
+  font-size: @font-size--normal - 5;
+  color: @colors__grays--lighter;
   display: block;
   margin: 20px auto;
   text-align: center;
-  border: 2px solid #2ecc71;
-  padding: 14px 40px;
+  border: @border-width + 1 solid @colors__green;
+  padding: 14px 70px;
   outline: none;
-  color: #ffffff;
-  border-radius: 24px;
-  transition: 0.3s ease;
+  border-radius: @border-radius__large;
+  transition: @transition-duration @transition-timing-function;
 
   &:hover {
-    background-color: #2ecc71;
+    background-color: @colors__green;
   }
 
   &:focus {
-    background-color: #2ecc71;
-  }
-}
-
-.close {
-  background: none;
-  border: none;
-  position: absolute;
-  top: 0;
-  right: 0;
-
-  img {
-    width: 30px;
-    height: 30px;
-  }
-
-  &:hover {
-    transform: translateY(-10px);
+    background-color: @colors__green;
   }
 }
 </style>

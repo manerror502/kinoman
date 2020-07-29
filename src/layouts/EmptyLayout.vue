@@ -1,6 +1,14 @@
 <template>
-  <div class="sign">
-    <div class="sign__row">
+  <section class="sign">
+    <Loader
+      style="width: 100%"
+      v-if="loading"
+    />
+
+    <div
+      v-else
+      class="sign__row"
+    >
       <div class="container-fluid">
         <div class="row justify-content-end align-items-center">
           <div class="col-lg-6">
@@ -10,6 +18,7 @@
               class="sign__logo"
             >
               <img
+                class="img"
                 src="@/assets/img/logo/logo.png"
                 alt=""
                 draggable="false"
@@ -19,13 +28,15 @@
               <p>Минимум информации, максимум интереса!</p>
             </div>
 
-            <div class="sign__film">
-              <FilmItemInfo
-                class="sing__item col-6"
-                v-for="release in newRelease"
-                :key="release.filmId"
-                :item-info="release"
-              />
+            <div class="sign__animation">
+              <div class="sign__film">
+                <FilmItemInfo
+                  class="sing__item col-6"
+                  v-for="release in newRelease"
+                  :key="release.filmId"
+                  :item-info="release"
+                />
+              </div>
             </div>
           </div>
           <div class="col-lg-6 d-flex">
@@ -36,7 +47,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -99,7 +110,6 @@ export default {
 @import "@/assets/style/vars/vars.module";
 
 .sign {
-  width: 100%;
   height: 100vh;
   display: flex;
   align-items: center;
@@ -112,10 +122,13 @@ export default {
 
 .sign__dialog {
   margin: auto;
-  width: 500px;
-  padding: 40px;
-  background-color: rgba(54, 53, 77, 0.88);
-  border-radius: 30px;
+  max-width: 600px;
+  width: 100%;
+  background-color: @colors__blackGrays;
+  border-radius: @border-radius__large;
+  box-shadow: @shadows__coords-x @shadows__coords-y @shadows__size
+    fade(@colors__black, 20%);
+  padding-bottom: 20px;
 }
 
 .sign__logo {
@@ -145,12 +158,38 @@ export default {
   }
 }
 
+.sign__animation {
+  position: relative;
+  overflow: hidden;
+  padding: 0 10px;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      rgba(24, 24, 24, 1) 0%,
+      rgba(24, 24, 24, 0) 31%,
+      rgba(24, 24, 24, 0) 51%,
+      rgba(24, 24, 24, 0) 70%,
+      rgba(24, 24, 24, 1) 100%
+    );
+  }
+}
+
 .sign__film {
   display: flex;
   flex-wrap: nowrap;
   max-width: 100%;
   overflow: hidden;
   user-select: none;
+  padding: 0 10px;
+  position: relative;
 }
 
 .sing__item {
@@ -165,4 +204,5 @@ export default {
     transform: translateX(-5000px);
   }
 }
+
 </style>
