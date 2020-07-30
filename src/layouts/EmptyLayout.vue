@@ -53,7 +53,7 @@
 <script>
 import FilmItemInfo from '@/components/app/FilmItemInfo'
 
-// import messages from '@/utils/messages'
+import messages from '@/utils/messages'
 
 export default {
   name: 'EmptyLayout',
@@ -65,15 +65,15 @@ export default {
     FilmItemInfo
   },
   computed: {
-    // error () {
-    //   return this.$store.getters.error
-    // }
+    error () {
+      return this.$store.getters.error
+    }
   },
   watch: {
-    // error (fbError) {
-    //   this.$toast.error(messages[fbError.code] || 'Что-то пошло не так')
-    //   console.log(fbError)
-    // }
+    error (fbError) {
+      this.$toast.error(messages[fbError.code] || 'Что-то пошло не так')
+      console.log(fbError)
+    }
   },
   async created () {
     // Получение новых релизов
@@ -205,4 +205,75 @@ export default {
   }
 }
 
+// стили компонентов
+
+.sign__login {
+  text-align: left;
+  position: relative;
+
+  h2 {
+    padding: 0 10px;
+    font-family: @font-family__sans;
+    color: @colors__grays;
+    font-size: @font-size--normal + 5;
+    line-height: @line-height--large;
+    color: @colors__grays--lighter;
+    text-align: left;
+    margin-bottom: 20px;
+    box-shadow: @shadows__coords-x @shadows__coords-y @shadows__size
+      fade(@colors__black, 20%);
+  }
+
+  small {
+    display: block;
+    margin-top: 10px;
+    color: @colors__red;
+    font-size: @font-size--normal;
+    transition: @transition-duration @transition-timing-function;
+  }
+
+  input {
+    font-family: @font-family__sans;
+    font-size: @font-size--normal;
+    width: 90%;
+    border: 0;
+    background: @colors__blackPrimary;
+    display: block;
+    margin-top: 20px;
+    text-align: left;
+    border: @border-width + 1 solid @colors__primary;
+    padding: 14px 10px;
+    outline: none;
+    color: @colors__white;
+    border-radius: @border-radius__large;
+    transition: @transition-duration @transition-timing-function;
+
+    &:focus {
+      width: 95%;
+      border-color: @colors__green;
+    }
+
+    &.invalid {
+      border: @border-width + 1 solid @colors__red;
+    }
+  }
+
+  a {
+    transition: @transition-duration @transition-timing-function;
+    color: @colors__grays;
+    font-size: @font-size--normal - 5;
+    text-align: left;
+    text-decoration: underline;
+
+    &:hover,
+    &:focus {
+      color: @colors__green;
+      outline: none;
+    }
+  }
+}
+
+.sign__wrap {
+  margin: 20px;
+}
 </style>

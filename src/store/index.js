@@ -4,21 +4,34 @@ import getFilms from './getFilms'
 import intro from './intro'
 import infoFilm from './infoFilm'
 import collections from './collections'
+import auth from './auth'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    error: null,
     app: {
       modalInfoFilmOpen: false
     }
   },
-  mutations: {},
+  mutations: {
+    setError (state, error) {
+      state.error = error
+    },
+    clearError (state) {
+      state.error = null
+    }
+  },
+  getters: {
+    error: s => s.error
+  },
   actions: {},
   modules: {
     getFilms,
     intro,
     infoFilm,
-    collections
+    collections,
+    auth
   }
 })

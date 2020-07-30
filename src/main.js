@@ -10,6 +10,7 @@ import VueYouTubeEmbed from 'vue-youtube-embed'
 import Vuelidate from 'vuelidate'
 // https://vuejsexamples.com/yet-another-toast-notification-plugin-for-vue-js/
 import VueToast from 'vue-toast-notification'
+import 'vue-toast-notification/dist/theme-default.css'
 // https://console.firebase.google.com/project/kinoman-1cc31/overview?hl=ru
 import firebase from 'firebase/app'
 import 'firebase/auth'
