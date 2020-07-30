@@ -91,7 +91,11 @@ export default {
         password: this.password,
         userName: this.userName
       }
-      console.log(formData)
+
+      try {
+        await this.$store.dispatch('registr', formData)
+        this.$router.push('/')
+      } catch (e) {}
     }
   }
 }
