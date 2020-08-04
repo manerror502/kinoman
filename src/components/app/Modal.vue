@@ -2,14 +2,6 @@
   <div
     class="modal"
   >
-    <button
-      class="modal__close"
-      @click="modalClose"
-    >
-      <div>
-        X
-      </div>
-    </button>
     <slot />
   </div>
 </template>
@@ -18,11 +10,7 @@
 export default {
   name: 'Modal',
   data: () => ({}),
-  methods: {
-    modalClose () {
-      this.$store.state.app.modalInfoFilmOpen = false
-    }
-  }
+  methods: {}
 }
 </script>
 

@@ -6,7 +6,7 @@
   >
     <div class="container-fluid">
       <div class="row justify-content-between">
-        <div class="col-10">
+        <div class="col-9">
           <h2
             href=""
             class="header__title"
@@ -17,9 +17,13 @@
         <nav class="col nav">
           <router-link
             tag="a"
-            to="/login"
+            :to="userInfo"
             class="nav__link"
           >
+            <span class="nav__link-user">
+              {{ name }}
+            </span>
+
             <svg
               viewBox="-42 0 512 512.002"
             >
@@ -67,6 +71,16 @@ export default {
   computed: {
     pageTitle () {
       return this.$route.meta.title
+    },
+    name () {
+      return this.$store.getters.info.name
+    },
+    userInfo () {
+      if (!Object.keys(this.$store.getters.info).length) {
+        return '/login'
+      } else {
+        return '/profile'
+      }
     }
   },
   methods: {
@@ -107,7 +121,7 @@ export default {
   padding-right: 10px;
 
   &.fixed {
-    background-color: fade(@colors__body, 100%);
+    background-color: fade(@colors__blackPrimary, 100%);
     box-shadow: @shadows__coords-x @shadows__coords-y @shadows__size
       fade(darken(@colors__body, 50%), 50%);
   }
@@ -134,7 +148,8 @@ export default {
 }
 
 .nav__link {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   color: @colors__grays--lighter;
   height: 100%;
   transition: @transition-duration @transition-timing-function;
@@ -150,5 +165,16 @@ export default {
     background-color: fade(#fff, 10%);
     color: @colors__green;
   }
+}
+
+.nav__link-user {
+  font-family: @font-family__sans;
+  color: @colors__grays--lighter;
+  font-size: @font-size--normal;
+  font-weight: @font-weight__sans__bold;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-right: 10px;
 }
 </style>

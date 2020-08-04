@@ -1,7 +1,7 @@
 <template>
   <ul class="playlists__wrap row ">
     <div
-      v-if="playlistInfo"
+      v-if="userInfo"
       class="playlists__day"
     >
       <div class="col-4">
@@ -24,204 +24,216 @@
             <p>Смотрите плейлист с подходящими именно вам фильмами и сериалами. Обновляется каждый день, учитывает ваши предпочтения и использует кинематографическую магию!</p>
 
             <div class="playlists__day-btn">
-              <button>Создать</button>
+              <router-link
+                to="/login"
+                tag="button"
+              >
+                Создать
+              </router-link>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <li class="playlists__item">
-      <router-link to="/kinolenta/day">
-        <div
-          class="playlists__item-img"
-        >
-          <img
-            class=""
-            src="../../assets/img/smartPlaylist/1.jpg"
-            alt=""
+    <div
+      class="row no-gutters"
+      v-else
+    >
+      <li
+        class="playlists__item"
+      >
+        <router-link to="/kinolenta/day">
+          <div
+            class="playlists__item-img"
           >
+            <img
+              class=""
+              src="../../assets/img/smartPlaylist/1.jpg"
+              alt=""
+            >
 
-          <div class="playlists__item-hover">
-            <button>
-              <svg viewBox="0 0 494.942 494.942">
-                <path
-                  fill="currentColor"
-                  d="m353.53 319.966c-5.714-1.165-11.624-1.789-17.677-1.789-48.731 0-88.383 39.651-88.383 88.383s39.651 88.383 88.383 88.383 88.383-39.651 88.383-88.383v-159.089h70.706v-70.706h-141.412z"
-                /><path
-                  fill="currentColor"
-                  d="m0 0h494.942v70.706h-494.942z"
-                /><path
-                  fill="currentColor"
-                  d="m0 141.412h318.177v70.706h-318.177z"
-                /><path
-                  id="path-1_7_"
-                  fill="currentColor"
-                  d="m0 282.824h212.118v70.706h-212.118z"
-                  transform="translate(1 9)"
-                /><path
-                  id="path-1_6_"
-                  fill="currentColor"
-                  d="m0 424.236h212.118v70.706h-212.118z"
-                  transform="translate(1 13)"
-                />
+            <div class="playlists__item-hover">
+              <button>
+                <svg viewBox="0 0 494.942 494.942">
+                  <path
+                    fill="currentColor"
+                    d="m353.53 319.966c-5.714-1.165-11.624-1.789-17.677-1.789-48.731 0-88.383 39.651-88.383 88.383s39.651 88.383 88.383 88.383 88.383-39.651 88.383-88.383v-159.089h70.706v-70.706h-141.412z"
+                  /><path
+                    fill="currentColor"
+                    d="m0 0h494.942v70.706h-494.942z"
+                  /><path
+                    fill="currentColor"
+                    d="m0 141.412h318.177v70.706h-318.177z"
+                  /><path
+                    id="path-1_7_"
+                    fill="currentColor"
+                    d="m0 282.824h212.118v70.706h-212.118z"
+                    transform="translate(1 9)"
+                  /><path
+                    id="path-1_6_"
+                    fill="currentColor"
+                    d="m0 424.236h212.118v70.706h-212.118z"
+                    transform="translate(1 13)"
+                  />
 
-              </svg>
-            </button>
+                </svg>
+              </button>
+            </div>
           </div>
-        </div>
-        <div class="playlists__item-title">
-          <h5>КиноЛента Дня</h5>
-        </div>
-        <div class="playlists__item-descr">
-          <h6>Обновлён сегодня</h6>
-        </div>
-      </router-link>
-    </li>
+          <div class="playlists__item-title">
+            <h5>КиноЛента Дня</h5>
+          </div>
+          <div class="playlists__item-descr">
+            <h6>Обновлён сегодня</h6>
+          </div>
+        </router-link>
+      </li>
 
-    <li class="playlists__item">
-      <a href="">
-        <div
-          class="playlists__item-img"
-        >
-          <img
-            class=""
-            src="../../assets/img/smartPlaylist/2.jpg"
-            alt=""
+      <li class="playlists__item">
+        <a href="">
+          <div
+            class="playlists__item-img"
           >
+            <img
+              class=""
+              src="../../assets/img/smartPlaylist/2.jpg"
+              alt=""
+            >
 
-          <div class="playlists__item-hover">
-            <button>
-              <svg viewBox="0 0 494.942 494.942">
-                <path
-                  fill="currentColor"
-                  d="m353.53 319.966c-5.714-1.165-11.624-1.789-17.677-1.789-48.731 0-88.383 39.651-88.383 88.383s39.651 88.383 88.383 88.383 88.383-39.651 88.383-88.383v-159.089h70.706v-70.706h-141.412z"
-                /><path
-                  fill="currentColor"
-                  d="m0 0h494.942v70.706h-494.942z"
-                /><path
-                  fill="currentColor"
-                  d="m0 141.412h318.177v70.706h-318.177z"
-                /><path
-                  id="path-1_7_"
-                  fill="currentColor"
-                  d="m0 282.824h212.118v70.706h-212.118z"
-                  transform="translate(1 9)"
-                /><path
-                  id="path-1_6_"
-                  fill="currentColor"
-                  d="m0 424.236h212.118v70.706h-212.118z"
-                  transform="translate(1 13)"
-                />
+            <div class="playlists__item-hover">
+              <button>
+                <svg viewBox="0 0 494.942 494.942">
+                  <path
+                    fill="currentColor"
+                    d="m353.53 319.966c-5.714-1.165-11.624-1.789-17.677-1.789-48.731 0-88.383 39.651-88.383 88.383s39.651 88.383 88.383 88.383 88.383-39.651 88.383-88.383v-159.089h70.706v-70.706h-141.412z"
+                  /><path
+                    fill="currentColor"
+                    d="m0 0h494.942v70.706h-494.942z"
+                  /><path
+                    fill="currentColor"
+                    d="m0 141.412h318.177v70.706h-318.177z"
+                  /><path
+                    id="path-1_7_"
+                    fill="currentColor"
+                    d="m0 282.824h212.118v70.706h-212.118z"
+                    transform="translate(1 9)"
+                  /><path
+                    id="path-1_6_"
+                    fill="currentColor"
+                    d="m0 424.236h212.118v70.706h-212.118z"
+                    transform="translate(1 13)"
+                  />
 
-              </svg>
-            </button>
+                </svg>
+              </button>
+            </div>
           </div>
-        </div>
-        <div class="playlists__item-title">
-          <h5>Лучше вместе</h5>
-        </div>
-        <div class="playlists__item-descr">
-          <h6>Обновлён сегодня</h6>
-        </div>
-      </a>
-    </li>
+          <div class="playlists__item-title">
+            <h5>Лучше вместе</h5>
+          </div>
+          <div class="playlists__item-descr">
+            <h6>Обновлён сегодня</h6>
+          </div>
+        </a>
+      </li>
 
-    <li class="playlists__item">
-      <a href="">
-        <div
-          class="playlists__item-img"
-        >
-          <img
-            class=""
-            src="../../assets/img/smartPlaylist/3.jpg"
-            alt=""
+      <li class="playlists__item">
+        <a href="">
+          <div
+            class="playlists__item-img"
           >
+            <img
+              class=""
+              src="../../assets/img/smartPlaylist/3.jpg"
+              alt=""
+            >
 
-          <div class="playlists__item-hover">
-            <button>
-              <svg viewBox="0 0 494.942 494.942">
-                <path
-                  fill="currentColor"
-                  d="m353.53 319.966c-5.714-1.165-11.624-1.789-17.677-1.789-48.731 0-88.383 39.651-88.383 88.383s39.651 88.383 88.383 88.383 88.383-39.651 88.383-88.383v-159.089h70.706v-70.706h-141.412z"
-                /><path
-                  fill="currentColor"
-                  d="m0 0h494.942v70.706h-494.942z"
-                /><path
-                  fill="currentColor"
-                  d="m0 141.412h318.177v70.706h-318.177z"
-                /><path
-                  id="path-1_7_"
-                  fill="currentColor"
-                  d="m0 282.824h212.118v70.706h-212.118z"
-                  transform="translate(1 9)"
-                /><path
-                  id="path-1_6_"
-                  fill="currentColor"
-                  d="m0 424.236h212.118v70.706h-212.118z"
-                  transform="translate(1 13)"
-                />
+            <div class="playlists__item-hover">
+              <button>
+                <svg viewBox="0 0 494.942 494.942">
+                  <path
+                    fill="currentColor"
+                    d="m353.53 319.966c-5.714-1.165-11.624-1.789-17.677-1.789-48.731 0-88.383 39.651-88.383 88.383s39.651 88.383 88.383 88.383 88.383-39.651 88.383-88.383v-159.089h70.706v-70.706h-141.412z"
+                  /><path
+                    fill="currentColor"
+                    d="m0 0h494.942v70.706h-494.942z"
+                  /><path
+                    fill="currentColor"
+                    d="m0 141.412h318.177v70.706h-318.177z"
+                  /><path
+                    id="path-1_7_"
+                    fill="currentColor"
+                    d="m0 282.824h212.118v70.706h-212.118z"
+                    transform="translate(1 9)"
+                  /><path
+                    id="path-1_6_"
+                    fill="currentColor"
+                    d="m0 424.236h212.118v70.706h-212.118z"
+                    transform="translate(1 13)"
+                  />
 
-              </svg>
-            </button>
+                </svg>
+              </button>
+            </div>
           </div>
-        </div>
-        <div class="playlists__item-title">
-          <h5>Помни меня</h5>
-        </div>
-        <div class="playlists__item-descr">
-          <h6>Обновлён сегодня</h6>
-        </div>
-      </a>
-    </li>
+          <div class="playlists__item-title">
+            <h5>Помни меня</h5>
+          </div>
+          <div class="playlists__item-descr">
+            <h6>Обновлён сегодня</h6>
+          </div>
+        </a>
+      </li>
 
-    <li class="playlists__item">
-      <a href="">
-        <div
-          class="playlists__item-img"
-        >
-          <img
-            class=""
-            src="../../assets/img/smartPlaylist/4.jpg"
-            alt=""
+      <li class="playlists__item">
+        <a href="">
+          <div
+            class="playlists__item-img"
           >
+            <img
+              class=""
+              src="../../assets/img/smartPlaylist/4.jpg"
+              alt=""
+            >
 
-          <div class="playlists__item-hover">
-            <button>
-              <svg viewBox="0 0 494.942 494.942">
-                <path
-                  fill="currentColor"
-                  d="m353.53 319.966c-5.714-1.165-11.624-1.789-17.677-1.789-48.731 0-88.383 39.651-88.383 88.383s39.651 88.383 88.383 88.383 88.383-39.651 88.383-88.383v-159.089h70.706v-70.706h-141.412z"
-                /><path
-                  fill="currentColor"
-                  d="m0 0h494.942v70.706h-494.942z"
-                /><path
-                  fill="currentColor"
-                  d="m0 141.412h318.177v70.706h-318.177z"
-                /><path
-                  id="path-1_7_"
-                  fill="currentColor"
-                  d="m0 282.824h212.118v70.706h-212.118z"
-                  transform="translate(1 9)"
-                /><path
-                  id="path-1_6_"
-                  fill="currentColor"
-                  d="m0 424.236h212.118v70.706h-212.118z"
-                  transform="translate(1 13)"
-                />
+            <div class="playlists__item-hover">
+              <button>
+                <svg viewBox="0 0 494.942 494.942">
+                  <path
+                    fill="currentColor"
+                    d="m353.53 319.966c-5.714-1.165-11.624-1.789-17.677-1.789-48.731 0-88.383 39.651-88.383 88.383s39.651 88.383 88.383 88.383 88.383-39.651 88.383-88.383v-159.089h70.706v-70.706h-141.412z"
+                  /><path
+                    fill="currentColor"
+                    d="m0 0h494.942v70.706h-494.942z"
+                  /><path
+                    fill="currentColor"
+                    d="m0 141.412h318.177v70.706h-318.177z"
+                  /><path
+                    id="path-1_7_"
+                    fill="currentColor"
+                    d="m0 282.824h212.118v70.706h-212.118z"
+                    transform="translate(1 9)"
+                  /><path
+                    id="path-1_6_"
+                    fill="currentColor"
+                    d="m0 424.236h212.118v70.706h-212.118z"
+                    transform="translate(1 13)"
+                  />
 
-              </svg>
-            </button>
+                </svg>
+              </button>
+            </div>
           </div>
-        </div>
-        <div class="playlists__item-title">
-          <h5>Дежавю</h5>
-        </div>
-        <div class="playlists__item-descr">
-          <h6>Обновлён сегодня</h6>
-        </div>
-      </a>
-    </li>
+          <div class="playlists__item-title">
+            <h5>Дежавю</h5>
+          </div>
+          <div class="playlists__item-descr">
+            <h6>Обновлён сегодня</h6>
+          </div>
+        </a>
+      </li>
+    </div>
   </ul>
 </template>
 
@@ -236,9 +248,17 @@ export default {
   //   Slide,
   //   HooperNavigation
   // },
+  data: () => ({
+    playlists: [
+      { title: 'Кинолента дня', url: '/kinolenta/day' },
+      { title: 'Лучше вместе', url: '/kinolenta/together' },
+      { title: 'Помни меня', url: '/kinolenta/rememberme' },
+      { title: 'Дежавю', url: '/kinolenta/dejavu' }
+    ]
+  }),
   computed: {
     userInfo () {
-      return this.$store.state.playlistInfo
+      return !Object.keys(this.$store.getters.info).length
     }
   }
 }

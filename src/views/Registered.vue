@@ -94,7 +94,7 @@ export default {
 
       try {
         await this.$store.dispatch('registr', formData)
-        this.$router.push('/')
+        this.$router.push('/?user=new')
       } catch (e) {}
     }
   }
