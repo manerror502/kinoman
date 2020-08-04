@@ -65,8 +65,12 @@ export default {
       return modalOpen
     }
   },
+  async mounted () {
+    // Получение информации о пользователе
+    if (!Object.keys(this.$store.getters.info).length) {
+      await this.$store.dispatch('fetchInfo')
+    }
 
-  async created () {
     // Получение фильма в интро
     await this.getIntroFilm()
     this.loading = false

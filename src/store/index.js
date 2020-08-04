@@ -5,6 +5,7 @@ import intro from './intro'
 import infoFilm from './infoFilm'
 import collections from './collections'
 import auth from './auth'
+import info from './info'
 
 Vue.use(Vuex)
 
@@ -32,6 +33,7 @@ export default new Vuex.Store({
     intro,
     infoFilm,
     collections,
-    auth
+    auth,
+    info
   }
 })
