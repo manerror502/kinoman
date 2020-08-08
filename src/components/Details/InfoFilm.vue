@@ -31,7 +31,7 @@
             <ul class="infofilm__attributes">
               <li>
                 Страна:
-                <span> {{ infoFilm.data.countries || 'Нет информации' }}
+                <span> {{ filterCountries || 'Нет информации' }}
                 </span>
               </li>
               <li>
@@ -43,7 +43,7 @@
               </li>
               <li>
                 Жанр:
-                <span> {{ infoFilm.data.genres || 'Нет информации' }}
+                <span> {{ filterGenres || 'Нет информации' }}
                 </span>
               </li>
 
@@ -140,8 +140,17 @@ export default {
       } else {
         return 'red'
       }
+    },
+    filterGenres () {
+      const genres = this.infoFilm.data.genres
+      return filterGenresArr(genres)
+    },
+    filterCountries () {
+      const countries = this.infoFilm.data.countries
+      return filterCountriesArr(countries)
     }
   },
+
   async created () {
     // Получаем всю информацию о фильме
     await this.getInfoFilm()
@@ -157,10 +166,6 @@ export default {
       this.getTrailer(filmId)
       // Получаем персонал фильма
       this.getStaff(filmId)
-
-      // Фильтруем массивы
-      this.filterGenres()
-      this.filterCountries()
     },
 
     async getBasicInfo (filmId) {
@@ -171,15 +176,6 @@ export default {
       }
     },
 
-    async filterGenres () {
-      const genres = await this.infoFilm.data.genres
-      this.infoFilm.data.genres = filterGenresArr(genres)
-    },
-    async filterCountries () {
-      const countries = await this.infoFilm.data.countries
-
-      this.infoFilm.data.countries = filterCountriesArr(countries)
-    },
     filterStaff (arr) {
       arr.forEach(element => {
         if (element.professionKey === 'ACTOR' && this.staffFilm.length < 8) {

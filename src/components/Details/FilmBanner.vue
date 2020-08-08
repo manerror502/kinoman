@@ -120,15 +120,33 @@ export default {
       const filmReccomendInfo = {
         genres: this.bannerInfo.data.genres,
         countries: this.bannerInfo.data.countries,
-        year: this.bannerInfo.data.premiereRu
+        year: this.bannerInfo.data.year,
+        type: this.bannerInfo.data.type
       }
 
       // Проверяем есть ли в массиве понравившихся такой id
       if (!this.filmsLike.includes(String(filmId))) {
         try {
           // Если нет
+
+          // Добавляем в рекоммендации жанры
+          filmReccomendInfo.genres.forEach(element => {
+            this.$store.dispatch('addedRecommendGenres', element.genre)
+          })
+
+          // Добавляем в рекоммендации страны
+          filmReccomendInfo.countries.forEach(element =>
+            this.$store.dispatch('addedRecommendCountries', element.country)
+          )
+
+          // Добавляем в рекоммендации год
+          this.$store.dispatch('addedRecommendYear', filmReccomendInfo.year)
+
+          // Добавляем в рекоммендации тип
+          this.$store.dispatch('addedRecommendType', filmReccomendInfo.type)
+
+          // Добавляем в понравившиеся
           const film = await this.$store.dispatch('like', filmInfo)
-          await this.$store.dispatch('recommend', filmReccomendInfo)
           this.filmsLike.push(String(film.filmId))
 
           // Перерисовка компонента
