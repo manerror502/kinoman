@@ -2,7 +2,15 @@
   <div
     class="page"
   >
-    <div class="row no-gutters justify-content-end">
+    <Loader
+      v-if="loading"
+      style="min-height: 100vh"
+    />
+
+    <div
+      v-else
+      class="row no-gutters justify-content-end"
+    >
       <aside
         style="position: fixed"
         class="navbar__container col-2 "
@@ -20,14 +28,8 @@
           </div>
         </div>
 
-        <Loader
-          v-if="loading"
-          style="min-height: 100vh"
-        />
-
         <div
           class="row no-gutters"
-          v-else
         >
           <main
             class="row no-gutters w-100"
@@ -70,7 +72,6 @@ export default {
     if (!Object.keys(this.$store.getters.info).length) {
       await this.$store.dispatch('fetchInfo')
     }
-
     // Получение фильма в интро
     await this.getIntroFilm()
     this.loading = false

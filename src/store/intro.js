@@ -10,8 +10,6 @@ export default {
     }
   },
   getters: {
-    introFilm: state => {
-      return state.introFilm
-    }
+    introFilm: s => s.introFilm
   }
 }

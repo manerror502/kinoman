@@ -32,7 +32,6 @@
 
         <div class="row">
           <div class="col">
-            <Collections />
           </div>
         </div>
       </div>

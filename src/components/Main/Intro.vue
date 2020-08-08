@@ -2,7 +2,9 @@
   <section
     class="intro"
   >
+    <Loader v-if="loading" />
     <div
+      v-else
       class="intro__image"
       :style="{backgroundImage: 'url(' + introFilm.images.backdrops[0].url + ')'}"
     >
@@ -66,16 +68,19 @@ import filterGenresArr from '@/utils/filterGenres.js'
 export default {
   name: 'Intro',
   data: () => ({
-    introFilm: null
+    introFilm: null,
+    loading: true
   }),
-  async created () {
+  async mounted () {
     await this.getIntroFilm()
     this.filterGenres()
     this.filterCountries()
+
+    this.loading = false
   },
   methods: {
     getIntroFilm () {
-      this.introFilm = this.$store.getters.introFilm
+      this.introFilm = this.$store.state.intro.introFilm
     },
 
     async filterGenres () {
