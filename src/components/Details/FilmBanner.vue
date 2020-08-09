@@ -107,6 +107,14 @@ export default {
     try {
       this.filmsLike = await this.$store.dispatch('fetchLikeFilm')
     } catch (e) {}
+
+    const genreName = 'аниме'
+    const filtersGenres = await this.$store.state.filters.filters
+
+    console.log(filtersGenres)
+    const findGenre = filtersGenres.genres.find(genre => genre.genre === genreName)
+
+    console.log(findGenre)
   },
   methods: {
     async like () {
