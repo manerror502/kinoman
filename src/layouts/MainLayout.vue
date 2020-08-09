@@ -74,6 +74,7 @@ export default {
     }
     // Получение фильма в интро
     await this.getIntroFilm()
+    await this.getFilters()
     this.loading = false
   },
   methods: {
@@ -106,6 +107,10 @@ export default {
       } catch (e) {
         console.log(e)
       }
+    },
+    async getFilters () {
+      const filters = await this.$store.dispatch('getFiltersJSON')
+      await this.$store.dispatch('setFilters', filters)
     }
     // async getCollections () {
     //   try {
