@@ -146,6 +146,23 @@ export default {
           console.log(error)
           return error
         })
+    },
+    getFiltersJSON ({ dispatch }) {
+      const url = 'https://kinopoiskapiunofficial.tech/api/v2.1/films/filters'
+
+      return axios(url, {
+        method: 'GET',
+        headers: {
+          'X-API-KEY': '0c5711e4-5890-4625-863f-08e2cffe91a3'
+        }
+      })
+        .then(filters => {
+          return filters.data
+        })
+        .catch(error => {
+          console.log(error)
+          return error
+        })
     }
   }
 }
