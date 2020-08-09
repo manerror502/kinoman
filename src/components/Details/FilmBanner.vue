@@ -90,6 +90,7 @@ export default {
   },
   data: () => ({
     filmsLike: [],
+    filters: null,
     counter: 0
   }),
   computed: {
@@ -107,14 +108,6 @@ export default {
     try {
       this.filmsLike = await this.$store.dispatch('fetchLikeFilm')
     } catch (e) {}
-
-    const genreName = 'аниме'
-    const filtersGenres = await this.$store.state.filters.filters
-
-    console.log(filtersGenres)
-    const findGenre = filtersGenres.genres.find(genre => genre.genre === genreName)
-
-    console.log(findGenre)
   },
   methods: {
     async like () {
@@ -136,31 +129,17 @@ export default {
       if (!this.filmsLike.includes(String(filmId))) {
         try {
           // Если нет
+          this.filters = this.$store.state.filters.filters
 
-          // Добавляем в рекоммендации жанры
-          filmReccomendInfo.genres.forEach(element => {
-            this.$store.dispatch('addedRecommendGenres', element.genre)
-          })
+          this.genresRecommendSet(filmReccomendInfo)
+          this.countriesRecommendSet(filmReccomendInfo)
+          this.yearRecommendSet(filmReccomendInfo)
+          this.typeRecommendSet(filmReccomendInfo)
 
-          // Добавляем в рекоммендации страны
-          filmReccomendInfo.countries.forEach(element =>
-            this.$store.dispatch('addedRecommendCountries', element.country)
-          )
-
-          // Добавляем в рекоммендации год
-          this.$store.dispatch('addedRecommendYear', filmReccomendInfo.year)
-
-          // Добавляем в рекоммендации тип
-          this.$store.dispatch('addedRecommendType', filmReccomendInfo.type)
-
-          // Добавляем в понравившиеся
-          const film = await this.$store.dispatch('like', filmInfo)
-          this.filmsLike.push(String(film.filmId))
+          this.addedInLikes(filmInfo)
 
           // Перерисовка компонента
           this.counter++
-
-          this.$toast.success(`"${film.title}" добавлен в понравившиеся`)
         } catch (e) {}
       } else {
         // Если есть
@@ -174,6 +153,46 @@ export default {
 
         this.$toast.error(`"${film.title}" удалён из понравившегося`)
       }
+    },
+    genresRecommendSet (filmReccomendInfo) {
+      // Добавляем в рекоммендации жанры
+      filmReccomendInfo.genres.forEach(element => {
+        const genreName = element.genre
+
+        // Ищем жанр фильма в массиве всех жаноров
+        const findGenre = this.filters.genres.find(
+          genre => genre.genre === genreName
+        )
+        this.$store.dispatch('addedRecommendGenres', findGenre.id)
+      })
+    },
+    countriesRecommendSet (filmReccomendInfo) {
+      // Добавляем в рекоммендации страны
+      filmReccomendInfo.countries.forEach(element => {
+        const countryName = element.country
+
+        // Ищем страны фильма в массиве всех стран
+        const findCountry = this.filters.countries.find(
+          country => country.country === countryName
+        )
+
+        this.$store.dispatch('addedRecommendCountries', findCountry.id)
+      })
+    },
+    yearRecommendSet (filmReccomendInfo) {
+      // Добавляем в рекоммендации год
+      this.$store.dispatch('addedRecommendYear', filmReccomendInfo.year)
+    },
+    typeRecommendSet (filmReccomendInfo) {
+      // Добавляем в рекоммендации тип
+      this.$store.dispatch('addedRecommendType', filmReccomendInfo.type)
+    },
+    async addedInLikes (filmInfo) {
+      // Добавляем в понравившиеся
+      const film = await this.$store.dispatch('like', filmInfo)
+      this.filmsLike.push(String(film.filmId))
+
+      this.$toast.success(`"${film.title}" добавлен в понравившиеся`)
     }
   }
 }
