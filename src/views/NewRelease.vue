@@ -49,9 +49,6 @@ export default {
   components: {
     FilmItemInfo
   },
-  directives: {
-
-  },
   methods: {
     async getNewRelease () {
       const currentDate = new Date()
@@ -90,13 +87,9 @@ export default {
 
     async loadMore () {
       this.lazyLoading = true
-      const scrollY = window.scrollY
-      console.log(scrollY)
 
       await this.getMoreNewRelease()
 
-      window.scrollY = scrollY
-      console.log(window.scrollY)
       this.lazyLoading = false
     },
 
