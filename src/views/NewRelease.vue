@@ -5,14 +5,27 @@
       v-else
       class="container-fluid"
     >
-      <ul class="row justify-content-arround">
+      <ul
+        class="row justify-content-arround"
+      >
         <FilmItemInfo
           class="col-xl-4 col-lg-6"
-          v-for="release in newRelease.releases"
+          v-for="release in newRelease.films"
           :key="release.filmId"
           :item-info="release"
         />
       </ul>
+
+      <Loader v-if="lazyLoading" />
+
+      <button
+        v-if="page <= newRelease.pagesCount - 1"
+        @click.prevent="loadMore"
+        class="lazyload"
+        ref="filmItem"
+      >
+        Загрузить больше
+      </button>
     </div>
   </section>
 </template>
@@ -24,7 +37,10 @@ export default {
   name: 'NewRelease',
   data: () => ({
     newRelease: {},
-    loading: true
+    page: 1,
+
+    loading: true,
+    lazyLoading: false
   }),
   async created () {
     await this.getNewRelease()
@@ -33,15 +49,23 @@ export default {
   components: {
     FilmItemInfo
   },
+  directives: {
+
+  },
   methods: {
     async getNewRelease () {
       const currentDate = new Date()
-      const currentMonth = await this.currentMonth(currentDate)
       const currentYear = await this.currentYear(currentDate)
 
       const options = {
-        month: currentMonth,
-        year: currentYear,
+        rating: {
+          from: '0',
+          to: '10'
+        },
+        year: {
+          from: currentYear,
+          to: currentYear
+        },
         page: 1
       }
 
@@ -62,6 +86,50 @@ export default {
         year: 'numeric'
       }
       return new Intl.DateTimeFormat('en-EN', options).format(date)
+    },
+
+    async loadMore () {
+      this.lazyLoading = true
+      const scrollY = window.scrollY
+      console.log(scrollY)
+
+      await this.getMoreNewRelease()
+
+      window.scrollY = scrollY
+      console.log(window.scrollY)
+      this.lazyLoading = false
+    },
+
+    async getMoreNewRelease () {
+      const currentDate = new Date()
+      const currentYear = await this.currentYear(currentDate)
+
+      this.page++
+
+      const options = {
+        rating: {
+          from: '0',
+          to: '10'
+        },
+        year: {
+          from: currentYear,
+          to: currentYear
+        },
+        page: this.page
+      }
+
+      try {
+        const newRelease = await this.$store.dispatch('getNewRelease', options)
+
+        newRelease.films.forEach(film => {
+          this.newRelease.films.push(film)
+        })
+      } catch (e) {
+        console.log(e)
+      }
+    },
+    lazyLoad () {
+      console.log('e')
     }
   }
 }
@@ -72,5 +140,27 @@ export default {
 
 .collection {
   padding-top: 50px;
+}
+
+.lazyload {
+  display: block;
+  flex-direction: column;
+  justify-content: center;
+  background-color: fade(@colors__green, 80%);
+  border-radius: @buttons__border-radius;
+  padding: 10px 50px;
+  margin: 30px auto;
+  transition: @transition-duration @transition-timing-function;
+
+  text-align: center;
+  font-family: @font-family__sans;
+  font-size: @font-size--normal + 5;
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: @colors__white;
+    background-color: fade(@colors__green, 100%);
+  }
 }
 </style>
