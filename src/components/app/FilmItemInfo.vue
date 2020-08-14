@@ -165,7 +165,8 @@ export default {
     bottom: 0;
     background: linear-gradient(
       to right,
-      rgba(0, 0, 0, 0.8) 0%,
+      rgba(0, 0, 0, 0.9) 0%,
+      rgba(0, 0, 0, 0.8) 30%,
       rgba(9, 9, 9, 0) 100%
     );
   }
@@ -192,7 +193,7 @@ export default {
 
 .filmitem__content {
   width: 100%;
-  padding: 10px;
+  padding: 30px 10px;
   overflow: hidden;
   z-index: 3;
   padding-right: 20%;

@@ -133,7 +133,11 @@ export default {
 
           this.genresRecommendSet(filmReccomendInfo)
           this.countriesRecommendSet(filmReccomendInfo)
-          this.yearRecommendSet(filmReccomendInfo)
+
+          if (filmReccomendInfo.type === 'FILM') {
+            this.yearRecommendSet(filmReccomendInfo)
+          }
+
           this.typeRecommendSet(filmReccomendInfo)
 
           this.addedInLikes(filmInfo)

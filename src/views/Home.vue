@@ -32,6 +32,7 @@
 
         <div class="row">
           <div class="col">
+            <Recommends />
           </div>
         </div>
       </div>
@@ -146,6 +147,7 @@
 import SmartPlaylists from '@/components/Main/SmartPlaylists'
 // import Collections from '@/components/Main/Collections'
 import Intro from '@/components/Main/Intro'
+import Recommends from '@/components/Main/Recommends'
 import Modal from '@/components/app/Modal.vue'
 
 export default {
@@ -154,7 +156,8 @@ export default {
   components: {
     SmartPlaylists,
     Intro,
-    Modal
+    Modal,
+    Recommends
   },
   computed: {
     modal () {
