@@ -74,18 +74,22 @@ export default {
         throw e
       }
     },
-    async fetchReccomend ({ commit, dispatch }) {
+    async fetchRecomend ({ commit, dispatch, getters }) {
       try {
-        const uid = await dispatch('getUid')
-        const filmsLike =
-          (
-            await firebase
-              .database()
-              .ref(`/users/${uid}/films/like/`)
-              .once('value')
-          ).val() || {}
+        if (getters.info) {
+          const uid = await dispatch('getUid')
+          const filmsLike =
+            (
+              await firebase
+                .database()
+                .ref(`/users/${uid}/reccomend`)
+                .once('value')
+            ).val() || {}
 
-        return Object.keys(filmsLike)
+          return filmsLike
+        } else {
+          return {}
+        }
       } catch (e) {
         commit('setError', e)
         throw e

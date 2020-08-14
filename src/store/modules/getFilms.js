@@ -26,8 +26,6 @@ export default {
         })
     },
     getInfoFilm ({ dispatch }, payload) {
-      console.log(payload)
-
       const url = `https://kinopoiskapiunofficial.tech/api/v2.1/films/${payload}?append_to_response=RATING&append_to_response=POSTERS&append_to_response=REVIEW`
 
       return axios(url, {
@@ -114,7 +112,7 @@ export default {
         })
     },
     getNewRelease ({ dispatch }, payload) {
-      const url = `https://kinopoiskapiunofficial.tech/api/v2.1/films/releases?year=${payload.year}&month=${payload.month}&page=${payload.page}`
+      const url = `https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-filters?order=YEAR&ratingFrom=${payload.rating.from}&ratingTo=${payload.rating.to}&yearFrom=${payload.year.from}&yearTo=${payload.year.to}&page=${payload.page}`
 
       return axios(url, {
         method: 'GET',
@@ -122,8 +120,9 @@ export default {
           'X-API-KEY': '0c5711e4-5890-4625-863f-08e2cffe91a3'
         }
       })
-        .then(newRelease => {
-          return newRelease.data
+        .then(releaseFilms => {
+          return releaseFilms.data
+          // dispatch('getInfoFilm', film)
         })
         .catch(error => {
           console.log(error)
@@ -158,6 +157,25 @@ export default {
       })
         .then(filters => {
           return filters.data
+        })
+        .catch(error => {
+          console.log(error)
+          return error
+        })
+    },
+    getRecommendFilm ({ dispatch }, { country, genre, minYear, page }) {
+      const url = `https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-filters?country=${country}&genre=${genre}&order=RATING&ratingTo=10&yearFrom=${minYear}&yearTo=2020&page=${randomIdArr(
+        page
+      )}`
+
+      return axios(url, {
+        method: 'GET',
+        headers: {
+          'X-API-KEY': '0c5711e4-5890-4625-863f-08e2cffe91a3'
+        }
+      })
+        .then(recommedFilm => {
+          return recommedFilm.data
         })
         .catch(error => {
           console.log(error)
