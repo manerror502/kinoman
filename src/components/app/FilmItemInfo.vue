@@ -117,8 +117,8 @@ export default {
     targetMenu () {
       this.menu = !this.menu
     },
-    closeMenu () {
-      console.log('dddd')
+    closeMenu (e) {
+      console.log(e)
       this.menu = false
     }
   }
