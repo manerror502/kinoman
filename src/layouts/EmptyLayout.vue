@@ -88,7 +88,7 @@ export default {
           to: '10'
         },
         year: {
-          from: '2019',
+          from: '2010',
           to: '2020'
         },
         page: ['1', '2', '3', '4', '5']
@@ -106,8 +106,8 @@ export default {
 }
 </script>
 
-<style lang="less">
-@import "@/assets/style/vars/vars.module";
+<style lang="scss">
+@import "@/assets/style/vars/_vars";
 
 .sign {
   height: 100vh;
@@ -124,10 +124,7 @@ export default {
   margin: auto;
   max-width: 600px;
   width: 100%;
-  background-color: @colors__blackGrays;
-  border-radius: @border-radius__large;
-  box-shadow: @shadows__coords-x @shadows__coords-y @shadows__size
-    fade(@colors__black, 20%);
+  border-radius: $border-radius__large;
   padding-bottom: 20px;
 }
 
@@ -151,10 +148,9 @@ export default {
   user-select: none;
 
   p {
-    font-family: @font-family__sans;
-    color: @colors__grays;
-    font-size: @font-size--normal + 5;
-    line-height: @line-height--large;
+    font-family: $font-family__sans;
+    font-size: $font-size--normal + 5;
+    line-height: $line-height--large;
   }
 }
 
@@ -171,14 +167,6 @@ export default {
     z-index: 2;
     width: 100%;
     height: 100%;
-    background: linear-gradient(
-      90deg,
-      rgba(24, 24, 24, 1) 0%,
-      rgba(24, 24, 24, 0) 31%,
-      rgba(24, 24, 24, 0) 51%,
-      rgba(24, 24, 24, 0) 70%,
-      rgba(24, 24, 24, 1) 100%
-    );
   }
 }
 
@@ -213,61 +201,46 @@ export default {
 
   h2 {
     padding: 0 10px;
-    font-family: @font-family__sans;
-    color: @colors__grays;
-    font-size: @font-size--normal + 5;
-    line-height: @line-height--large;
-    color: @colors__grays--lighter;
+    font-family: $font-family__sans;
+    font-size: $font-size--normal + 5;
+    line-height: $line-height--large;
     text-align: left;
     margin-bottom: 20px;
-    box-shadow: @shadows__coords-x @shadows__coords-y @shadows__size
-      fade(@colors__black, 20%);
   }
 
   small {
     display: block;
     margin-top: 10px;
-    color: @colors__red;
-    font-size: @font-size--normal;
-    transition: @transition-duration @transition-timing-function;
+    font-size: $font-size--normal;
+    transition: $transition-duration $transition-timing-function;
   }
 
   input {
-    font-family: @font-family__sans;
-    font-size: @font-size--normal;
+    font-family: $font-family__sans;
+    font-size: $font-size--normal;
     width: 90%;
     border: 0;
-    background: @colors__blackPrimary;
     display: block;
     margin-top: 20px;
     text-align: left;
-    border: @border-width + 1 solid @colors__primary;
     padding: 14px 10px;
     outline: none;
-    color: @colors__white;
-    border-radius: @border-radius__large;
-    transition: @transition-duration @transition-timing-function;
+    border-radius: $border-radius__large;
+    transition: $transition-duration $transition-timing-function;
 
     &:focus {
       width: 95%;
-      border-color: @colors__green;
-    }
-
-    &.invalid {
-      border: @border-width + 1 solid @colors__red;
     }
   }
 
   a {
-    transition: @transition-duration @transition-timing-function;
-    color: @colors__grays;
-    font-size: @font-size--normal - 5;
+    transition: $transition-duration $transition-timing-function;
+    font-size: $font-size--normal - 5;
     text-align: left;
     text-decoration: underline;
 
     &:hover,
     &:focus {
-      color: @colors__green;
       outline: none;
     }
   }

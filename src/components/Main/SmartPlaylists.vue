@@ -55,7 +55,7 @@
 
             <div class="playlists__item-hover">
               <button>
-                <svg viewBox="0 0 494.942 494.942">
+                <!-- <svg viewBox="0 0 494.942 494.942">
                   <path
                     fill="currentColor"
                     d="m353.53 319.966c-5.714-1.165-11.624-1.789-17.677-1.789-48.731 0-88.383 39.651-88.383 88.383s39.651 88.383 88.383 88.383 88.383-39.651 88.383-88.383v-159.089h70.706v-70.706h-141.412z"
@@ -77,7 +77,12 @@
                     transform="translate(1 13)"
                   />
 
-                </svg>
+                </svg> -->
+
+                <img
+                  src="./../../assets/img/slider/clapperboard.svg"
+                  alt=""
+                >
               </button>
             </div>
           </div>
@@ -103,7 +108,7 @@
 
             <div class="playlists__item-hover">
               <button>
-                <svg viewBox="0 0 494.942 494.942">
+                <!-- <svg viewBox="0 0 494.942 494.942">
                   <path
                     fill="currentColor"
                     d="m353.53 319.966c-5.714-1.165-11.624-1.789-17.677-1.789-48.731 0-88.383 39.651-88.383 88.383s39.651 88.383 88.383 88.383 88.383-39.651 88.383-88.383v-159.089h70.706v-70.706h-141.412z"
@@ -125,7 +130,12 @@
                     transform="translate(1 13)"
                   />
 
-                </svg>
+                </svg> -->
+
+                <img
+                  src="./../../assets/img/slider/clapperboard.svg"
+                  alt=""
+                >
               </button>
             </div>
           </div>
@@ -151,7 +161,7 @@
 
             <div class="playlists__item-hover">
               <button>
-                <svg viewBox="0 0 494.942 494.942">
+                <!-- <svg viewBox="0 0 494.942 494.942">
                   <path
                     fill="currentColor"
                     d="m353.53 319.966c-5.714-1.165-11.624-1.789-17.677-1.789-48.731 0-88.383 39.651-88.383 88.383s39.651 88.383 88.383 88.383 88.383-39.651 88.383-88.383v-159.089h70.706v-70.706h-141.412z"
@@ -173,7 +183,12 @@
                     transform="translate(1 13)"
                   />
 
-                </svg>
+                </svg> -->
+
+                <img
+                  src="./../../assets/img/slider/clapperboard.svg"
+                  alt=""
+                >
               </button>
             </div>
           </div>
@@ -199,7 +214,7 @@
 
             <div class="playlists__item-hover">
               <button>
-                <svg viewBox="0 0 494.942 494.942">
+                <!-- <svg viewBox="0 0 494.942 494.942">
                   <path
                     fill="currentColor"
                     d="m353.53 319.966c-5.714-1.165-11.624-1.789-17.677-1.789-48.731 0-88.383 39.651-88.383 88.383s39.651 88.383 88.383 88.383 88.383-39.651 88.383-88.383v-159.089h70.706v-70.706h-141.412z"
@@ -221,7 +236,12 @@
                     transform="translate(1 13)"
                   />
 
-                </svg>
+                </svg> -->
+
+                <img
+                  src="./../../assets/img/slider/clapperboard.svg"
+                  alt=""
+                >
               </button>
             </div>
           </div>
@@ -264,17 +284,16 @@ export default {
 }
 </script>
 
-<style lang="less">
-@import "@/assets/style/vars/vars.module";
+<style lang="scss">
+@import "@/assets/style/vars/_vars";
 
 .playlists__item {
   display: flex;
   flex-direction: column;
   padding: 10px;
-  border-radius: @border-radius__small;
+  border-radius: $border-radius__small;
   overflow: hidden;
-  border: @border-width solid fade(@colors__green, 0);
-  transition: @transition-duration @transition-timing-function;
+  transition: $transition-duration $transition-timing-function;
   margin-right: 10px;
 
   &:hover,
@@ -282,7 +301,6 @@ export default {
     .playlists__item-hover {
       opacity: 1;
     }
-    border: @border-width solid @colors__green;
   }
 }
 
@@ -292,7 +310,7 @@ export default {
   width: 300px;
   height: 300px;
   overflow: hidden;
-  border-radius: @border-radius__small;
+  border-radius: $border-radius__small;
   position: relative;
   z-index: 2;
 
@@ -308,17 +326,15 @@ export default {
   text-align: left;
 
   h5 {
-    font-size: @font-size--normal + 10;
-    font-family: @font-family__sans;
-    color: @colors__grays--lighter;
+    font-size: $font-size--normal + 10;
+    font-family: $font-family__sans;
   }
 }
 
 .playlists__item-descr {
   h6 {
-    font-size: @font-size--normal;
+    font-size: $font-size--normal;
     font-weight: 400;
-    color: @colors__grays;
   }
 }
 
@@ -327,35 +343,26 @@ export default {
   position: absolute;
   bottom: 20px;
   right: 20px;
-  background-color: darken(@colors__green, 10%);
+  // background-color: darken($colors__green, 10%);
   z-index: 4;
   border-radius: 50%;
-  transition: @transition-duration @transition-timing-function;
-  box-shadow: @shadows__coords-x 0 @shadows__size
-    fade(@colors__blackPrimary, 40%);
+  transition: $transition-duration $transition-timing-function;
+  // box-shadow: $shadows__coords-x 0 $shadows__size
+  //   fade($colors__blackPrimary, 40%);
 
   button {
     padding: 15px;
     margin: 10px;
-    color: @colors__white;
-    border-radius: @buttons__border-radius;
+    border-radius: $buttons__border-radius;
     overflow: hidden;
 
-    transition: @transition-duration @transition-timing-function;
-    svg {
+    transition: $transition-duration $transition-timing-function;
+    img {
       display: block;
       max-width: 100%;
       max-height: 100%;
-      width: 50px;
-      height: 50px;
-    }
-
-    &.heart {
-      &:hover,
-      &:focus,
-      &:active {
-        color: @colors__green;
-      }
+      width: 100px;
+      height: 100px;
     }
   }
 }
@@ -365,8 +372,7 @@ export default {
   width: 100%;
   height: 100%;
   max-height: 100%;
-  background-color: fade(@colors__primary2, 50%);
-  border-radius: @border-radius__small;
+  border-radius: $border-radius__small;
   overflow: hidden;
   padding: 20px;
   margin: 0 10px;
@@ -376,9 +382,9 @@ export default {
   max-width: 350px;
   max-height: 350px;
   overflow: hidden;
-  border-radius: @border-radius__small;
-  box-shadow: @shadows__coords-x @shadows__coords-y @shadows__size
-    fade(#000, 20%);
+  border-radius: $border-radius__small;
+  box-shadow: $shadows__coords-x $shadows__coords-y $shadows__size
+    fade-out(#000, 0.8%);
 }
 
 .playlists__day-descr {
@@ -388,9 +394,8 @@ export default {
 
 .playlists__day-title {
   h4 {
-    font-family: @font-family__sans__black;
-    font-size: @font-size--large;
-    border-bottom: @border-width solid fade(@colors__grays--lighter, 50%);
+    font-family: $font-family__sans__black;
+    font-size: $font-size--large;
   }
 }
 
@@ -402,25 +407,24 @@ export default {
   flex-direction: column;
   justify-content: space-between;
   p {
-    font-size: @font-size--normal;
-    font-family: @font-family__sans;
-    font-weight: @font-weight__sans__regular;
-    line-height: @line-height--normal;
+    font-size: $font-size--normal;
+    font-family: $font-family__sans;
+    font-weight: $font-weight__sans__regular;
+    line-height: $line-height--normal;
   }
 }
 
 .playlists__day-btn {
   button {
     opacity: 1;
-    background-image: @gradient__green;
-    color: @colors__white;
-    line-height: @line-height--normal;
-    font-size: @font-size--normal;
+
+    line-height: $line-height--normal;
+    font-size: $font-size--normal;
     padding: 10px 30px;
     border-radius: 50px;
-    box-shadow: @shadows__coords-x @shadows__coords-y @shadows__size
-      fade(#000, 20%);
-    transition: @transition-duration @transition-timing-function;
+    box-shadow: $shadows__coords-x $shadows__coords-y $shadows__size
+      fade-out(#000, 0.8%);
+    transition: $transition-duration $transition-timing-function;
 
     &:hover,
     &:focus,

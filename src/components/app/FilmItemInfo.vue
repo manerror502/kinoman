@@ -1,13 +1,18 @@
 <template>
   <li>
-    <div class="filmitem__link">
+    <div
+      class="filmitem__link"
+    >
       <router-link
         tag="a"
         :to="'/film/' + itemInfo.filmId"
         class="filmitem"
         :style="{backgroundImage: 'url(' + itemInfo.posterUrl + ')'}"
       >
-        <div class="filmitem__content">
+        <div
+          class="filmitem__content"
+          @mousemove="closeMenu"
+        >
           <div class="filmitem__text">
             <div class="filmitem__title">
               <h3>{{ itemInfo.nameRu }}</h3>
@@ -40,6 +45,7 @@
         <button
           @click="targetMenu"
           class="filmitem__menu-button"
+          tabindex="-1"
         >
           <svg viewBox="0 0 515.555 515.555">
             <path
@@ -58,6 +64,7 @@
         <MenuFilm
           v-if="menu"
           @closeMenu="closeMenu"
+          :menu-info="itemInfo"
         />
       </div>
     </div>
@@ -106,6 +113,7 @@ export default {
   created () {
     this.getFilmInfo()
   },
+  mounted () {},
 
   methods: {
     getFilmInfo () {
@@ -117,44 +125,26 @@ export default {
     targetMenu () {
       this.menu = !this.menu
     },
-    closeMenu (e) {
-      console.log(e)
+    closeMenu () {
       this.menu = false
     }
   }
 }
 </script>
 
-<style lang="less">
-@import "@/assets/style/vars/vars.module";
+<style lang="scss">
+@import "@/assets/style/vars/_vars";
 
 .filmitem__link {
-  position: relative;
-  border: @border-width solid fade(@colors__green, 0);
-  margin-bottom: 20px;
-  border-radius: @border-radius__small;
-  overflow: hidden;
-  transition: @transition-duration @transition-timing-function;
-
-  &:hover,
-  &:focus,
-  &:active {
-    border: @border-width solid @colors__green;
-  }
-}
-
-.filmitem {
   width: 100%;
-  background-color: @colors__blackPrimary;
-  overflow: hidden;
-  display: flex;
   position: relative;
-  user-select: none;
-  border-radius: @border-radius__small - 5;
-  background-size: cover;
-  background-position: top;
-  background-repeat: no-repeat;
-  transition: @transition-duration @transition-timing-function;
+  margin-bottom: 20px;
+  border-radius: $border-radius__small;
+  overflow: hidden;
+  transition: $transition-duration $transition-timing-function;
+  padding: 0 1px;
+  box-shadow: $shadows__coords-x - 1 $shadows__coords-y - 3 $shadows__size
+    fade-out(#000, 0.5%);
 
   &::after {
     content: "";
@@ -170,12 +160,24 @@ export default {
       rgba(9, 9, 9, 0) 100%
     );
   }
+}
+
+.filmitem {
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  position: relative;
+  user-select: none;
+  border-radius: $border-radius__small - 5;
+  background-size: cover;
+  background-position: top;
+  background-repeat: no-repeat;
+  transition: $transition-duration $transition-timing-function;
 
   &:hover,
   &:focus,
   &:active {
-    background-color: fade(#fff, 10%);
-    color: @colors__green;
+    background-color: fade-out(#fff, 0.9%);
     cursor: pointer;
   }
 }
@@ -184,6 +186,7 @@ export default {
   max-width: 150px;
   max-height: 230px;
   margin-right: 10px;
+  overflow: hidden;
 
   img {
     object-fit: cover;
@@ -204,11 +207,10 @@ export default {
   display: flex;
 
   h3 {
-    font-size: @font-size--normal + 5;
-    font-family: @font-family__sans__black;
+    font-size: $font-size--normal + 5;
+    font-family: $font-family__sans__black;
     font-weight: 900;
-    line-height: @line-height--small + 7;
-    color: @colors__grays--lighter;
+    line-height: $line-height--small + 7;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -217,10 +219,9 @@ export default {
 
 .filmitem__ul {
   li {
-    font-size: @font-size--normal;
-    line-height: @line-height--normal;
+    font-size: $font-size--normal;
+    line-height: $line-height--normal;
     font-weight: 400;
-    color: @colors__grays;
     margin-bottom: 5px;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -228,7 +229,7 @@ export default {
 
     &:first-child {
       font-weight: 300;
-      font-family: @font-family__sans__light;
+      font-family: $font-family__sans__light;
     }
   }
 }
@@ -239,43 +240,28 @@ export default {
   bottom: 20px;
 
   h5 {
-    font-size: @font-size--large - 10;
-    line-height: @line-height--normal;
+    font-size: $font-size--large - 10;
+    line-height: $line-height--normal;
     font-weight: 400;
-    color: @colors__green;
-
-    &.green {
-      color: @colors__green;
-    }
-
-    &.yellow {
-      color: @colors__yellow;
-    }
-
-    &.red {
-      color: @colors__red;
-    }
   }
 }
 
 .filmitem__menu-button {
   padding: 5px 0;
   width: 60px;
-  color: @colors__grays;
-  border-radius: @border-radius__small;
-  transition: @transition-duration @transition-timing-function;
+  border-radius: $border-radius__small;
+  transition: $transition-duration $transition-timing-function;
 
   &:hover,
   &:focus,
   &:active {
-    background-color: fade(#fff, 10%);
-    color: @colors__green;
+    background-color: fade-out(#fff, 0.9%);
   }
 }
 
 .filmitem__menu {
   position: absolute;
-  right: 0px;
+  right: 5px;
   top: 10px;
   z-index: 4;
 }

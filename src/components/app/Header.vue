@@ -6,7 +6,23 @@
   >
     <div class="container-fluid">
       <div class="row justify-content-between">
-        <div class="col-9">
+        <div class="col-9 d-flex">
+          <button
+            class="header__back"
+            @click.prevent="back"
+          >
+            <svg viewBox="0 0 512 512">
+              <path
+                fill="currentColor"
+                d="M256,0C114.615,0,0,114.615,0,256s114.615,256,256,256s256-114.615,256-256S397.385,0,256,0z M256,480
+                C132.288,480,32,379.712,32,256S132.288,32,256,32s224,100.288,224,224S379.712,480,256,480z"
+              />
+              <path
+                fill="currentColor"
+                d="M292.64,116.8l-128,128c-6.204,6.241-6.204,16.319,0,22.56l128,128l22.56-22.72L198.56,256L315.2,139.36L292.64,116.8z"
+              />
+            </svg>
+          </button>
           <h2
             href=""
             class="header__title"
@@ -38,50 +54,25 @@
             </svg>
           </router-link>
 
-          <a
-            href=""
+          <router-link
+            tag="a"
+            to="/search"
             class="nav__link"
           >
-            <svg
-              viewBox="0 0 368 368"
-            >
-
+            <svg viewBox="0 0 512 512">
               <path
                 fill="currentColor"
-                d="M344,144h-29.952c-2.512-8.2-5.8-16.12-9.792-23.664l21.16-21.16c4.528-4.528,7.024-10.56,7.024-16.984
-              c0-6.416-2.496-12.448-7.024-16.976l-22.64-22.64c-9.048-9.048-24.888-9.072-33.952,0l-21.16,21.16
-              c-7.536-3.992-15.464-7.272-23.664-9.792V24c0-13.232-10.768-24-24-24h-32c-13.232,0-24,10.768-24,24v29.952
-              c-8.2,2.52-16.12,5.8-23.664,9.792l-21.168-21.16c-9.36-9.36-24.592-9.36-33.952,0l-22.648,22.64
-              c-9.352,9.36-9.352,24.592,0,33.952l21.16,21.168c-3.992,7.536-7.272,15.464-9.792,23.664H24c-13.232,0-24,10.768-24,24v32
-              C0,213.232,10.768,224,24,224h29.952c2.52,8.2,5.8,16.12,9.792,23.664l-21.16,21.168c-9.36,9.36-9.36,24.592,0,33.952
-              l22.64,22.648c9.36,9.352,24.592,9.352,33.952,0l21.168-21.16c7.536,3.992,15.464,7.272,23.664,9.792V344
-              c0,13.232,10.768,24,24,24h32c13.232,0,24-10.768,24-24v-29.952c8.2-2.52,16.128-5.8,23.664-9.792l21.16,21.168
-              c9.072,9.064,24.912,9.048,33.952,0l22.64-22.64c4.528-4.528,7.024-10.56,7.024-16.976c0-6.424-2.496-12.448-7.024-16.976
-              l-21.16-21.168c3.992-7.536,7.272-15.464,9.792-23.664H344c13.232,0,24-10.768,24-24v-32C368,154.768,357.232,144,344,144z
-              M352,200c0,4.408-3.584,8-8,8h-36c-3.648,0-6.832,2.472-7.744,6c-2.832,10.92-7.144,21.344-12.832,30.976
-              c-1.848,3.144-1.344,7.144,1.232,9.72l25.44,25.448c1.504,1.504,2.336,3.512,2.336,5.664c0,2.152-0.832,4.16-2.336,5.664
-              l-22.64,22.64c-3.008,3.008-8.312,3.008-11.328,0l-25.44-25.44c-2.576-2.584-6.576-3.08-9.728-1.232
-              c-9.616,5.68-20.04,10-30.968,12.824c-3.52,0.904-5.992,4.088-5.992,7.736v36c0,4.408-3.584,8-8,8h-32c-4.408,0-8-3.592-8-8v-36
-              c0-3.648-2.472-6.832-6-7.744c-10.92-2.824-21.344-7.136-30.976-12.824c-1.264-0.752-2.664-1.112-4.064-1.112
-              c-2.072,0-4.12,0.8-5.664,2.344l-25.44,25.44c-3.128,3.12-8.2,3.12-11.328,0l-22.64-22.64c-3.128-3.128-3.128-8.208,0-11.328
-              l25.44-25.44c2.584-2.584,3.088-6.584,1.232-9.72c-5.68-9.632-10-20.048-12.824-30.976c-0.904-3.528-4.088-6-7.736-6H24
-              c-4.408,0-8-3.592-8-8v-32c0-4.408,3.592-8,8-8h36c3.648,0,6.832-2.472,7.744-6c2.824-10.92,7.136-21.344,12.824-30.976
-              c1.856-3.144,1.352-7.144-1.232-9.72l-25.44-25.44c-3.12-3.12-3.12-8.2,0-11.328l22.64-22.64c3.128-3.128,8.2-3.12,11.328,0
-              l25.44,25.44c2.584,2.584,6.576,3.096,9.72,1.232c9.632-5.68,20.048-10,30.976-12.824c3.528-0.912,6-4.096,6-7.744V24
-              c0-4.408,3.592-8,8-8h32c4.416,0,8,3.592,8,8v36c0,3.648,2.472,6.832,6,7.744c10.928,2.824,21.352,7.144,30.968,12.824
-              c3.152,1.856,7.152,1.36,9.728-1.232l25.44-25.44c3.016-3.024,8.32-3.016,11.328,0l22.64,22.64
-              c1.504,1.504,2.336,3.52,2.336,5.664s-0.832,4.16-2.336,5.664l-25.44,25.44c-2.576,2.584-3.088,6.584-1.232,9.72
-              c5.688,9.632,10,20.048,12.832,30.976c0.904,3.528,4.088,6,7.736,6h36c4.416,0,8,3.592,8,8V200z"
+                d="M181.341,0C81.352,0,0.008,81.344,0.008,181.333s81.344,181.333,181.333,181.333s181.333-81.344,181.333-181.333
+                    S281.331,0,181.341,0z M181.341,341.333c-88.235,0-160-71.765-160-160s71.765-160,160-160s160,71.765,160,160
+                    S269.576,341.333,181.341,341.333z"
               />
-
               <path
                 fill="currentColor"
-                d="M184,112c-39.696,0-72,32.304-72,72s32.304,72,72,72c39.704,0,72-32.304,72-72S223.704,112,184,112z M184,240
-              c-30.88,0-56-25.12-56-56s25.12-56,56-56c30.872,0,56,25.12,56,56S214.872,240,184,240z"
+                d="M508.872,493.803L309.555,294.485c-4.16-4.16-10.923-4.16-15.083,0c-4.16,4.16-4.16,10.923,0,15.083l199.317,199.317
+                    c2.091,2.069,4.821,3.115,7.552,3.115c2.731,0,5.461-1.045,7.531-3.115C513.032,504.725,513.032,497.963,508.872,493.803z"
               />
-
             </svg>
-          </a>
+          </router-link>
         </nav>
       </div>
     </div>
@@ -111,6 +102,7 @@ export default {
       }
     }
   },
+  mounted () {},
   methods: {
     handleScroll () {
       const scroll = window.scrollY
@@ -126,13 +118,16 @@ export default {
       }
 
       this.scrollPrev = scroll
+    },
+    back () {
+      window.history.length > 1 ? this.$router.go(-1) : this.$router.push('/')
     }
   }
 }
 </script>
 
-<style lang="less">
-@import "@/assets/style/vars/vars.module";
+<style lang="scss">
+@import "@/assets/style/vars/_vars";
 
 .header__container {
   position: fixed;
@@ -142,31 +137,30 @@ export default {
 }
 
 .header {
-  border-bottom: @border-width solid fade(@colors__grays--lighter, 20%);
   overflow: hidden;
   width: 100%;
-  transition: @transition-duration @transition-timing-function;
+  transition: $transition-duration $transition-timing-function;
   padding-right: 10px;
-
-  &.fixed {
-    background-color: fade(@colors__blackPrimary, 100%);
-    box-shadow: @shadows__coords-x @shadows__coords-y @shadows__size
-      fade(darken(@colors__body, 50%), 50%);
-  }
 
   &.fade {
     transform: translateY(-100%);
   }
 }
 
+.header__back {
+  margin-top: 10px;
+  margin-right: 20px;
+  width: $font-size--large - 5;
+  transition: $transition-duration $transition-timing-function;
+}
+
 .header__title {
-  font-family: @font-family__sans__black;
-  color: @colors__grays--lighter;
-  font-size: @font-size--large - 5;
-  line-height: @line-height--large;
+  font-family: $font-family__sans__black;
+  font-size: $font-size--large - 5;
+  line-height: $line-height--large;
   user-select: none;
   font-weight: 900;
-  transition: @transition-duration @transition-timing-function;
+  transition: $transition-duration $transition-timing-function;
 }
 
 .nav {
@@ -178,28 +172,25 @@ export default {
 .nav__link {
   display: inline-flex;
   align-items: center;
-  color: @colors__grays--lighter;
   height: 100%;
-  transition: @transition-duration @transition-timing-function;
+  transition: $transition-duration $transition-timing-function;
   padding: 10px;
 
   svg {
-    width: @font-size--large;
+    width: $font-size--large;
   }
 
   &:hover,
   &:focus,
   &:active {
-    background-color: fade(#fff, 10%);
-    color: @colors__green;
+    background-color: fade-out(#fff, 0.9%);
   }
 }
 
 .nav__link-user {
-  font-family: @font-family__sans;
-  color: @colors__grays--lighter;
-  font-size: @font-size--normal;
-  font-weight: @font-weight__sans__bold;
+  font-family: $font-family__sans;
+  font-size: $font-size--normal;
+  font-weight: $font-weight__sans__bold;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

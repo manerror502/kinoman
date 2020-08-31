@@ -4,7 +4,7 @@
 
     <div
       class="row"
-      v-else-if="!$store.getters.info"
+      v-else-if="userInfo"
     >
       <div class="col-lg-12 d-flex justify-content-center">
         <div class="recommends__no">
@@ -13,14 +13,14 @@
           </div>
 
           <div class="recommends__animation">
-            <div class="recommends__film row">
+            <ul class="recommends__film row">
               <FilmItemInfo
                 class="recommends__film-item col-6"
                 v-for="release in newRelease"
                 :key="release.filmId"
                 :item-info="release"
               />
-            </div>
+            </ul>
           </div>
 
           <router-link
@@ -36,13 +36,21 @@
 
     <div
       class="row"
-      v-else-if="!Object.keys(this.recommendsInfo).length"
+      v-else-if="recommendsInfoLength"
     >
       <div class="col d-flex justify-content-center">
         <div class="recommends__no">
+          <div class="recommends__no-img">
+            <img
+              src="../../assets/img/alien/spaceship.svg"
+              alt="Alien"
+            >
+          </div>
           <div class="recommends__text">
             <p>Нам пока нечего вам рекомендовать</p>
           </div>
+
+          <Search />
         </div>
       </div>
     </div>
@@ -59,19 +67,37 @@
           :item-info="recommends"
         />
       </div>
+
+      <div
+        class="col-12"
+        v-if="!($route.fullPath === '/')"
+      >
+        <Loader v-if="lazyLoading" />
+
+        <button
+          v-if="page <= recommends.pagesCount"
+          @click.prevent="loadMore"
+          class="lazyload"
+          ref="filmItem"
+        >
+          Загрузить больше
+        </button>
+      </div>
     </div>
   </section>
 </template>
 
 <script>
 import FilmItemInfo from '@/components/app/FilmItemInfo'
+import Search from '@/components/app/Search'
 
 import randomIdArr from '@/utils/randomIdArr'
 
 export default {
   name: 'Recommends',
   components: {
-    FilmItemInfo
+    FilmItemInfo,
+    Search
   },
   data: () => ({
     recommends: null,
@@ -80,10 +106,23 @@ export default {
     countriesArr: [],
     yearArr: [],
 
-    loading: true
+    page: 1,
+
+    loading: true,
+    lazyLoading: false
+
+    // Если нет рекомендаций
   }),
-  async mounted () {
-    if (this.$store.getters.info) {
+  computed: {
+    userInfo () {
+      return !Object.keys(this.$store.getters.info).length
+    },
+    recommendsInfoLength () {
+      return !Object.keys(this.recommendsInfo).length
+    }
+  },
+  async created () {
+    if (Object.keys(this.$store.getters.info).length) {
       // Получения информации о рекомендациях
       this.recommendsInfo = await this.$store.dispatch('fetchRecomend')
 
@@ -107,7 +146,7 @@ export default {
       this.countriesSort()
       this.yearSort()
     },
-    genresSort () {
+    async genresSort () {
       const genres = Object.entries(this.recommendsInfo.genres)
 
       // перебор массива в новый
@@ -119,11 +158,15 @@ export default {
       })
 
       // сортировка массива по наибольшой численности
-      this.genresArr.sort((a, b) => (a.genreLength > b.genreLength ? -1 : 1))
+      await this.genresArr.sort(
+        (a, b) => (a.genreLength > b.genreLength ? -1 : 1)
+      )
+      // Удаляем не нужные эелементы, чтобы в дальнейшем не было ошибок
+      const genresCropped = this.genresArr.slice(0, 3)
+      this.genresArr = genresCropped
     },
     countriesSort () {
       const countries = Object.entries(this.recommendsInfo.countries)
-
       // перебор массива в новый
       countries.forEach(country => {
         const countryLength = Object.keys(country[1]).length
@@ -139,6 +182,10 @@ export default {
       this.countriesArr.sort(
         (a, b) => (a.countryLength > b.countryLength ? -1 : 1)
       )
+
+      // Удаляем не нужные эелементы, чтобы в дальнейшем не было ошибок
+      const countriesCropped = this.countriesArr.slice(0, 3)
+      this.countriesArr = countriesCropped
     },
     yearSort () {
       const years = Object.entries(this.recommendsInfo.year)
@@ -156,25 +203,57 @@ export default {
 
       // сортировка массива по наибольшой численности
       this.yearArr.sort((a, b) => (a.yearLength > b.yearLength ? -1 : 1))
+
+      // Удаляем не нужные эелементы, чтобы в дальнейшем не было ошибок
+      const yearCropped = this.yearArr.slice(0, 3)
+      this.yearArr = yearCropped
     },
 
     async getRecommendsFilms () {
-      // Для выбора одной из наиболее частых стран просмотра
-      const countryRandom = [this.countriesArr[0], this.countriesArr[1]]
-      // Для выбора одной из наиболее частых жаноров просмотра
-      const genreRandom = [this.genresArr[0], this.genresArr[1]]
-
       const recommendsInfo = {
-        country: randomIdArr(countryRandom).countryId,
-        genre: randomIdArr(genreRandom).genreId,
-        minYear: this.yearArr[0].year,
-        page: ['1', '2', '3', '4', '5']
+        country: randomIdArr(this.countriesArr).countryId,
+        genre: randomIdArr(this.genresArr).genreId,
+        minYear: randomIdArr(this.yearArr).year,
+        page: this.page
       }
 
       this.recommends = await this.$store.dispatch(
         'getRecommendFilm',
         recommendsInfo
       )
+    },
+
+    async loadMore () {
+      this.lazyLoading = true
+
+      await this.getMoreRecommends()
+
+      this.lazyLoading = false
+    },
+    async getMoreRecommends () {
+      this.page++
+
+      const recommendsInfo = {
+        country: randomIdArr(this.countriesArr).countryId,
+        genre: randomIdArr(this.genresArr).genreId,
+        minYear: randomIdArr(this.yearArr).year,
+        page: this.page
+      }
+      try {
+        const recommends = await this.$store.dispatch(
+          'getRecommendFilm',
+          recommendsInfo
+        )
+
+        recommends.films.forEach(film => {
+          this.recommends.films.push(film)
+        })
+      } catch (e) {
+        console.log(e)
+      }
+    },
+    lazyLoad () {
+      console.log('e')
     },
 
     async getNewReleaseFilm () {
@@ -184,7 +263,7 @@ export default {
           to: '10'
         },
         year: {
-          from: '2000',
+          from: '2019',
           to: '2020'
         },
         page: ['1', '2', '3', '4', '5']
@@ -202,8 +281,8 @@ export default {
 }
 </script>
 
-<style lang="less">
-@import "@/assets/style/vars/vars.module";
+<style lang="scss">
+@import "@/assets/style/vars/_vars";
 
 .recommends {
   max-width: 100%;
@@ -218,31 +297,40 @@ export default {
   flex-direction: column;
 }
 
+.recommends__no-img {
+  width: 100%;
+  display: flex;
+  margin: 0 auto;
+
+  img {
+    max-width: 350px;
+    width: 100%;
+    margin: 0 auto;
+  }
+}
+
 .recommends__text {
   max-width: 100%;
+  padding: 14px 10px;
+  border-radius: $border-radius__large - 6;
+  margin-bottom: 10px;
 
   p {
-    font-size: @font-size--normal + 15;
-    font-family: @font-family__sans;
-    color: @colors__grays;
-    font-weight: @font-weight__sans__bold;
+    font-size: $font-size--normal + 15;
+    font-family: $font-family__sans;
+    font-weight: $font-weight__sans__bold;
     text-align: center;
-    margin-bottom: 20px;
   }
 }
 
 .recommends__btn {
   margin: 10px auto;
   opacity: 1;
-  background-image: @gradient__blue;
-  color: @colors__white;
-  line-height: @line-height--normal;
-  font-size: @font-size--normal;
+  line-height: $line-height--normal;
+  font-size: $font-size--normal;
   padding: 10px 50px;
-  border-radius: @border-radius__small;
-  box-shadow: @shadows__coords-x @shadows__coords-y @shadows__size
-    fade(#000, 20%);
-  transition: @transition-duration @transition-timing-function;
+  border-radius: $border-radius__small;
+  transition: $transition-duration $transition-timing-function;
 
   &:hover,
   &:focus,
@@ -266,14 +354,6 @@ export default {
     z-index: 2;
     width: 100%;
     height: 100%;
-    background: linear-gradient(
-      90deg,
-      rgba(24, 24, 24, 1) 0%,
-      rgba(24, 24, 24, 0) 31%,
-      rgba(24, 24, 24, 0) 51%,
-      rgba(24, 24, 24, 0) 70%,
-      rgba(24, 24, 24, 1) 100%
-    );
   }
 }
 
@@ -296,5 +376,18 @@ export default {
   100% {
     transform: translateX(-5000px);
   }
+}
+
+.lazyload {
+  display: block;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: $buttons__border-radius;
+  padding: 10px 50px;
+  margin: 30px auto;
+  transition: $transition-duration $transition-timing-function;
+  text-align: center;
+  font-family: $font-family__sans;
+  font-size: $font-size--normal + 5;
 }
 </style>

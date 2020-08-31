@@ -1,4 +1,7 @@
-@import "vars/vars.module";
+@import "vars/_vars";
+@import "themes/dark";
+@import "themes/blue";
+@import "themes/white";
 
 html {
   -webkit-text-size-adjust: none;
@@ -9,17 +12,25 @@ body {
   min-height: 100%;
   margin: 0;
   padding: 0;
-  font-family: @font-family__sans, sans-serif;
-  font-size: @font-size--base;
-  line-height: @line-height--base;
-  color: @colors__grays--lighter;
-  background: @colors__body;
+  font-family: $font-family__sans, sans-serif;
+  font-size: $font-size--base;
+  line-height: $line-height--base;
   width: 100%;
   height: 100%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: none;
   backface-visibility: hidden;
+}
+
+body {
+  background: $colors__body;
+  color: $colors__grays--lighter;
+}
+
+button,
+.btn {
+  color: $colors__white;
 }
 
 *,
@@ -60,10 +71,9 @@ button,
   display: inline-block;
   vertical-align: top;
   font-family: inherit;
-  color: @colors__white;
-  font-weight: @font-weight__sans__bold;
+  font-weight: $font-weight__sans__bold;
   background: none;
-  line-height: @line-height--base;
+  line-height: $line-height--base;
   text-align: center;
   text-decoration: none;
   border: 0;

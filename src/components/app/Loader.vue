@@ -16,7 +16,7 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style lang="scss">
 .loader {
   display: flex;
   justify-content: center;

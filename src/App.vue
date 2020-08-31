@@ -1,5 +1,9 @@
 <template>
-  <div id="app">
+  <div
+    id="app"
+    class="app"
+    :class="`app--${theme.currentTheme}`"
+  >
     <component :is="layout">
       <router-view />
     </component>
@@ -7,41 +11,48 @@
 </template>
 
 <script>
-import MainLayout from '@/layouts/mainLayout'
-import EmptyLayout from '@/layouts/emptyLayout'
+import mainLayout from '@/layouts/mainLayout'
+import emptyLayout from '@/layouts/emptyLayout'
 
+import { mapState } from 'vuex'
 export default {
+  name: 'App',
+  data: () => ({}),
   components: {
-    MainLayout,
-    EmptyLayout
+    mainLayout,
+    emptyLayout
   },
   computed: {
+    ...mapState(['theme']),
     layout () {
       return this.$route.meta.layout + '-layout'
+    }
+  },
+  watch: {
+    theme (value) {
+      console.log(value)
     }
   }
 }
 </script>
 
-<style lang="less">
-@import "assets/style/base.less";
-@import "assets/style/manGrid.css";
+<style  lang="scss">
+@import "./assets/style/_base.scss";
+@import "./assets/style/manGrid.css";
 
-#app {
-  background-image: @colors__body;
-  overflow: hidden;
+.app {
+  min-height: 100vh;
 }
 
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 15px;
 
   &-track {
-    background: @colors__grays;
+    background: $colors__blackPrimary;
   }
 
   &-thumb {
-    background: @colors__blackPrimary;
-    border-radius: @border-radius__small;
+    background: $colors__grays;
   }
 }
 </style>

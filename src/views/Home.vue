@@ -147,7 +147,7 @@
 import SmartPlaylists from '@/components/Main/SmartPlaylists'
 // import Collections from '@/components/Main/Collections'
 import Intro from '@/components/Main/Intro'
-import Recommends from '@/components/Main/Recommends'
+import Recommends from '@/components/app/Recommends'
 import Modal from '@/components/app/Modal.vue'
 
 export default {
@@ -172,16 +172,14 @@ export default {
 }
 </script>
 
-<style lang="less">
-@import "@/assets/style/vars/vars.module";
+<style lang="scss">
+@import "@/assets/style/vars/_vars";
 
 .modal__dialog {
   width: 100%;
   max-width: 500px;
   padding: 15px;
-
-  background: @colors__blackPrimary;
-  border-radius: @border-radius__small;
+  border-radius: $border-radius__small;
   margin: auto;
 }
 
@@ -199,9 +197,8 @@ export default {
 .modal__text {
   p {
     text-align: center;
-    font-family: @font-family__sans;
-    color: @colors__grays;
-    font-size: @font-size--normal + 5;
+    font-family: $font-family__sans;
+    font-size: $font-size--normal + 5;
   }
 }
 
@@ -212,18 +209,13 @@ export default {
     display: inline-flex;
     flex-direction: column;
     justify-content: center;
-    background-color: fade(@colors__green, 80%);
-    border-radius: @buttons__border-radius;
+    border-radius: $buttons__border-radius;
     padding: 10px 50px;
     margin: 0 auto;
-    transition: @transition-duration @transition-timing-function;
-
-    &:hover,
-    &:focus,
-    &:active {
-      color: @colors__white;
-      background-color: fade(@colors__green, 100%);
-    }
+    transition: $transition-duration $transition-timing-function;
+    text-align: center;
+    font-family: $font-family__sans;
+    font-size: $font-size--normal + 5;
   }
 }
 </style>

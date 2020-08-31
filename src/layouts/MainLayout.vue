@@ -39,15 +39,12 @@
         </div>
       </div>
     </div>
-
-    <Modal v-if="modal" />
   </div>
 </template>
 
 <script>
 import Header from '@/components/app/Header.vue'
 import Navbar from '@/components/app/NavBar.vue'
-import Modal from '@/components/app/Modal.vue'
 
 import randomIdArr from '@/utils/randomIdArr'
 
@@ -55,18 +52,12 @@ export default {
   name: 'MainLayout',
   components: {
     Header,
-    Navbar,
-    Modal
+    Navbar
   },
   data: () => ({
     loading: true
   }),
-  computed: {
-    modal () {
-      const modalOpen = this.$store.state.app.modalInfoFilmOpen
-      return modalOpen
-    }
-  },
+  computed: {},
   async mounted () {
     // Получение информации о пользователе
     if (!Object.keys(this.$store.getters.info).length) {
@@ -124,8 +115,8 @@ export default {
 }
 </script>
 
-<style lang="less">
-@import "@/assets/style/vars/vars.module";
+<style lang="scss">
+@import "@/assets/style/vars/_vars";
 
 .fade-enter,
 .fade-leave-active {
@@ -147,11 +138,9 @@ export default {
 }
 
 .playlists__title {
-  font-size: @font-size--large;
-  font-family: @font-family__sans__black;
-  color: @colors__grays--lighter;
+  font-size: $font-size--large;
+  font-family: $font-family__sans__black;
   user-select: none;
   margin-bottom: 23px;
-  border-bottom: @border-width solid fade(@colors__border, 40%);
 }
 </style>

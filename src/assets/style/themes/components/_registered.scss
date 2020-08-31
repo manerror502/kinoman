@@ -1,0 +1,12 @@
+.btn--login {
+  color: $colors__grays--lighter;
+  border: $border-width + 1 solid $colors__green;
+
+  &:hover {
+    background-color: $colors__green;
+  }
+
+  &:focus {
+    background-color: $colors__green;
+  }
+}

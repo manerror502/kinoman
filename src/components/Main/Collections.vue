@@ -35,8 +35,8 @@ export default {
 }
 </script>
 
-<style lang="less">
-@import "@/assets/style/vars/vars.module";
+<style lang="scss">
+@import "@/assets/style/vars/_vars";
 
 .collections {
   width: 100%;
@@ -56,18 +56,18 @@ export default {
   max-height: 300px;
   width: 300px;
   height: 300px;
-  background-image: @gradient__primary;
-  border-radius: @border-radius__large;
+  background-image: $gradient__primary;
+  border-radius: $border-radius__large;
   overflow: hidden;
-  box-shadow: @shadows__coords-x @shadows__coords-y @shadows__size
-    fade(@colors__blackPrimary, 50%);
-  transition: @transition-duration @transition-timing-function;
+  box-shadow: $shadows__coords-x $shadows__coords-y $shadows__size
+    fade-out($colors__blackPrimary, 0.5%);
+  transition: $transition-duration $transition-timing-function;
 
   h5 {
-    color: @colors__grays--lighter;
-    font-family: @font-family__sans;
+    color: $colors__grays--lighter;
+    font-family: $font-family__sans;
     font-weight: 700;
-    font-size: @font-size--large;
+    font-size: $font-size--large;
     overflow: hidden;
     text-overflow: ellipsis;
   }

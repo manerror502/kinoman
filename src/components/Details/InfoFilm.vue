@@ -68,7 +68,10 @@
         </div>
 
         <div class="infofilm__wrap">
-          <div class="infofilm__descr">
+          <div
+            class="infofilm__descr"
+            v-if="infoFilm.data.description"
+          >
             <div class="infofilm__heading">
               <h2>Описание</h2>
             </div>
@@ -78,7 +81,9 @@
             </p>
           </div>
 
-          <div class="row infofilm__staff">
+          <div
+            class="row infofilm__staff"
+          >
             <div class="infofilm__heading">
               <h2>Актёры</h2>
             </div>
@@ -102,10 +107,15 @@
                 <div class="infofilm__staff-title">
                   <h4>{{ staff.nameRu || staff.nameEn }}</h4>
 
-                <!-- <h5>{{ staff.professionText }}</h5> -->
+                  <!-- <h5>{{ staff.professionText }}</h5> -->
                 </div>
               </div>
             </div>
+
+            <div
+              class="infofilm__staff-bg"
+              :style="{backgroundImage: 'url(' + infoFilm.data.posterUrl + ')'}"
+            />
           </div>
         </div>
       </div>
@@ -212,8 +222,8 @@ export default {
 }
 </script>
 
-<style lang="less" >
-@import "@/assets/style/vars/vars.module";
+<style lang="scss" >
+@import "@/assets/style/vars/_vars";
 
 .infofilm {
   position: relative;
@@ -221,8 +231,8 @@ export default {
   padding-bottom: 20px;
   width: 100%;
   min-height: 100vh;
-  // border: @border-width + 1 solid fade(@colors__grays, 20%);
-  border-radius: @border-radius__small;
+  // border: $border-width + 1 solid fade($colors__grays, 20%);
+  border-radius: $border-radius__small;
   transition: 0.2s ease;
 }
 
@@ -231,12 +241,10 @@ export default {
   top: -30px;
   z-index: 2;
   padding: 30px 20px;
-  background-color: @colors__body;
-  border-radius: @border-radius__big + 20;
+  border-radius: $border-radius__big + 20;
 }
 
 .infofilm__trailer {
-  border-bottom: @border-width solid fade(@colors__grays, 30%);
   padding-bottom: 20px;
 }
 
@@ -248,41 +256,24 @@ export default {
   text-align: left;
   max-width: 100%;
   height: 100%;
-  font-size: @font-size--normal;
-  border-bottom: @border-width solid fade(@colors__grays, 30%);
+  font-size: $font-size--normal;
 
   li {
     font-family: "Product Sans Light";
     font-weight: 300;
-    color: @colors__grays;
     max-width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
 
     span {
-      font-family: @font-family__sans;
+      font-family: $font-family__sans;
       font-weight: 400;
-      color: @colors__grays--lighter;
     }
 
     &:last-child {
-      font-size: @font-size--normal + 10;
+      font-size: $font-size--normal + 10;
       font-weight: 600;
       color: #f60;
-
-      span {
-        &.green {
-          color: @colors__green;
-        }
-
-        &.yellow {
-          color: @colors__yellow;
-        }
-
-        &.red {
-          color: @colors__red;
-        }
-      }
     }
   }
 }
@@ -294,11 +285,10 @@ export default {
 .infofilm__descr {
   p {
     padding: 10px 0;
-    font-size: @font-size--normal;
-    font-family: @font-family__sans;
+    font-size: $font-size--normal;
+    font-family: $font-family__sans;
     font-weight: 400;
-    line-height: @line-height--small + 5;
-    border-bottom: @border-width solid fade(@colors__grays, 30%);
+    line-height: $line-height--small + 5;
   }
 }
 
@@ -307,30 +297,45 @@ export default {
   padding-bottom: 10px;
 
   h2 {
-    color: @colors__grays;
-    font-size: @font-size--normal + 10;
-    font-family: @font-family__sans__black;
+    font-size: $font-size--normal + 10;
+    font-family: $font-family__sans__black;
   }
 }
 
 .infofilm__staff {
   margin: 0 auto;
+  position: relative;
+}
+
+.infofilm__staff-bg {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: blur(100px);
+  overflow: hidden;
+  width: 100%;
+  max-height: 400px;
+  height: 100%;
 }
 
 .infofilm__staff-item {
+  position: relative;
+  z-index: 2;
   display: flex;
   max-height: 265px;
   height: 100%;
   flex-direction: column;
-  border: @border-width solid fade(@colors__grays, 10%);
-  border-radius: @border-radius__small;
+  // border: $border-width solid fade($colors__grays, 10%);
+  border-radius: $border-radius__small;
   overflow: hidden;
   margin: 10px;
   margin-left: 0;
   padding: 10px;
-  background-color: fade(#fff, 10%);
-  box-shadow: @shadows__coords-x @shadows__coords-y @shadows__size
-    fade(@colors__black, 5%);
+  // background-color: fade(#fff, 10%);
 }
 
 .infofilm__staff-img {
@@ -341,7 +346,7 @@ export default {
 
   img {
     width: 120px;
-    height: 100%;
+    height: 190px;
   }
 }
 
@@ -349,17 +354,11 @@ export default {
   text-align: center;
   margin-top: 10px;
 
-  h4,
-  h5 {
-    font-size: @font-size--normal;
-    font-family: @font-family__sans;
-    font-weight: @font-weight__sans__bold;
-    // border-bottom: @border-width + 1 solid fade(@colors__grays, 40%);
-  }
-
-  h5 {
-    font-weight: @font-weight__sans__regular;
-    border-bottom: 0;
+  h4 {
+    font-size: $font-size--normal;
+    font-family: $font-family__sans;
+    font-weight: $font-weight__sans__regular;
+    // border-bottom: $border-width + 1 solid fade($colors__grays, 40%);
   }
 }
 </style>

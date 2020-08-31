@@ -28,7 +28,7 @@
     <div class="navbar__playlists">
       <h5>КиноЛенты </h5>
 
-      <button class="navbar__playlists-item">
+      <!-- <button class="navbar__playlists-item">
         <div class="navbar__playlists-wrap">
           <p>
             Новая КиноЛента
@@ -46,9 +46,13 @@
             </span>
           </p>
         </div>
-      </button>
+      </button> -->
 
-      <button class="navbar__playlists-item">
+      <router-link
+        to="/yourMovie"
+        class="navbar__playlists-item"
+        tag="a"
+      >
         <div class="navbar__playlists-wrap">
           <p>
             Ваше кино
@@ -83,7 +87,34 @@
             </span>
           </p>
         </div>
-      </button>
+      </router-link>
+
+      <router-link
+        to="/yourBookmarks"
+        class="navbar__playlists-item"
+        tag="a"
+      >
+        <div class="navbar__playlists-wrap">
+          <p>
+            Ваши закладки
+
+            <span>
+              <svg
+                class=""
+                viewBox="0 0 423.936 423.936"
+              >
+                <path
+                  fill="currentColor"
+                  d="M327.68,0H96.256c-22.528,0-40.96,18.432-40.96,40.96v357.376c0,9.728,5.632,18.944,14.336,23.04
+                  c9.216,4.096,19.456,3.072,27.136-3.072l0.512-0.512l114.688-96.768l114.688,96.768l0.512,0.512
+                  c4.608,3.584,10.24,5.632,15.872,5.632c3.584,0,7.68-1.024,11.264-3.072c8.704-4.096,14.336-13.312,14.336-23.04V40.96
+                  C368.64,18.432,350.208,0,327.68,0z"
+                />
+              </svg>
+            </span>
+          </p>
+        </div>
+      </router-link>
     </div>
   </nav>
 </template>
@@ -93,23 +124,22 @@ export default {
   name: 'Navbar',
   data: () => ({
     links: [
-      { title: 'Главная 🏠', url: '/', exact: true },
-      { title: 'Новые релизы 🎉', url: '/new-release' },
-      { title: 'Топ-500 🏆', url: '/top-500' },
-      { title: 'Жанры 📚', url: '/genre' }
+      { title: '🏠 Главная ', url: '/', exact: true },
+      { title: '🎉 Новые релизы ', url: '/new-release' },
+      { title: '⭕ Рекоммендации ', url: '/foryou' }
     ]
   })
 }
 </script>
 
-<style lang="less">
-@import "@/assets/style/vars/vars.module";
+<style lang="scss">
+@import "@/assets/style/vars/_vars";
 
 .navbar__container {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 10;
+  z-index: 20;
 }
 
 .navbar {
@@ -117,7 +147,6 @@ export default {
   width: 100%;
   height: 100vh;
   overflow: hidden;
-  background: @colors__blackPrimary;
   user-select: none;
 }
 
@@ -125,7 +154,7 @@ export default {
   user-select: none;
   text-decoration: none;
   cursor: pointer;
-  transition: @transition-duration @transition-timing-function;
+  transition: $transition-duration $transition-timing-function;
   overflow: hidden;
   margin-bottom: 20px;
 
@@ -137,12 +166,10 @@ export default {
 }
 
 .navbar__link {
-  border-bottom: @border-width solid fade(@colors__grays--lighter, 40%);
   li {
-    border-radius: @border-radius__small - 4;
+    border-radius: $border-radius__small - 4;
     user-select: none;
-    font-size: @font-size--normal - 2;
-    color: @colors__grays;
+    font-size: $font-size--normal - 2;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
@@ -150,24 +177,17 @@ export default {
     padding: 10px;
     display: block;
     width: 100%;
-    transition: @transition-duration @transition-timing-function;
+    transition: $transition-duration $transition-timing-function;
 
     &:hover,
     &:focus,
     &:active {
-      color: @colors__grays--lighter;
       cursor: pointer;
-      background-color: fade(#fff, 10%);
     }
 
     &:last-child {
       border-bottom: 0;
       margin-bottom: 10px;
-    }
-
-    &.active {
-      color: @colors__white;
-      background-color: fade(@colors__grays--lighter, 13%);
     }
   }
 }
@@ -179,10 +199,9 @@ export default {
   flex-direction: column;
 
   h5 {
-    font-family: @font-family__sans;
+    font-family: $font-family__sans;
     font-weight: 700;
-    font-size: @font-size--normal;
-    color: @colors__grays;
+    font-size: $font-size--normal;
     margin-bottom: 10px;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -196,7 +215,7 @@ export default {
   align-items: center;
   width: 100%;
   padding: 10px 5px;
-  border-radius: @border-radius__small - 4;
+  border-radius: $border-radius__small - 4;
   height: 57px;
   overflow: hidden;
   text-align: left;
@@ -204,9 +223,8 @@ export default {
   p {
     font-weight: 400;
     padding-left: 60px;
-    color: @colors__grays;
-    font-size: @font-size--normal;
-    line-height: @line-height--normal + 1;
+    font-size: $font-size--normal;
+    line-height: $line-height--normal + 1;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
@@ -221,27 +239,13 @@ export default {
       margin-right: 10px;
       border-radius: 50%;
       overflow: hidden;
-      background: fade(@colors__green, 50%);
       padding: 10px;
 
       svg {
         padding: 0px;
-        width: @font-size--normal;
-        height: @font-size--normal;
+        width: $font-size--normal;
+        height: $font-size--normal;
       }
-    }
-  }
-
-  &:hover,
-  &:focus,
-  &:active {
-    p {
-      color: @colors__grays--lighter;
-    }
-
-    span {
-      background: fade(@colors__green, 80%);
-      color: @colors__grays--lighter;
     }
   }
 }

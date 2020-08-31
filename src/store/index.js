@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import theme from './modules/theme'
 import getFilms from './modules/getFilms'
 import intro from './modules/intro'
 // import infoFilm from './infoFilm'
@@ -9,6 +10,8 @@ import info from './modules/info'
 import filmAction from './modules/filmAction'
 import recommend from './modules/recommend'
 import filters from './modules/filters'
+import playlist from './modules/playlist'
+import settings from './modules/settings'
 
 Vue.use(Vuex)
 
@@ -16,7 +19,7 @@ export default new Vuex.Store({
   state: {
     error: null,
     app: {
-      modalInfoFilmOpen: false
+      modalTheme: false
     }
   },
   mutations: {
@@ -32,6 +35,7 @@ export default new Vuex.Store({
   },
   actions: {},
   modules: {
+    theme,
     getFilms,
     intro,
     // infoFilm,
@@ -40,6 +44,8 @@ export default new Vuex.Store({
     info,
     filmAction,
     recommend,
-    filters
+    filters,
+    playlist,
+    settings
   }
 })

@@ -26,7 +26,7 @@ export default {
         throw e
       }
     },
-    async addedRecommendYear ({ commit, dispatch }, payload) {
+    async addedRecommendYear ({ commit, dispatch }, payload = '2010') {
       try {
         const uid = await dispatch('getUid')
 

@@ -1,4 +1,3 @@
-/* eslint-disable no-useless-catch */
 import firebase from 'firebase/app'
 
 export default {
@@ -18,7 +17,13 @@ export default {
         await firebase
           .database()
           .ref(`/users/${uid}/info`)
-          .set({ name: userName })
+          .set({
+            name: userName,
+            settings: {
+              notifications: true,
+              inTheBeginning: true
+            }
+          })
       } catch (e) {
         commit('setError', e)
         throw e
@@ -28,7 +33,9 @@ export default {
       const user = firebase.auth().currentUser
       return user ? user.uid : null
     },
-    async logout () {
+    async logout ({ commit }) {
+      commit('clearError')
+      commit('clearInfo')
       await firebase.auth().signOut()
     }
   }

@@ -14,8 +14,8 @@ export default {
 }
 </script>
 
-<style lang="less">
-@import "@/assets/style/vars/vars.module";
+<style lang="scss">
+@import "@/assets/style/vars/_vars";
 
 .modal {
   width: 100%;
@@ -24,7 +24,6 @@ export default {
   top: 0;
   left: 0;
   z-index: 100;
-  background-color: fade(darken(@colors__blackPrimary, 10%), 50%);
   display: flex;
   padding: 20px 0;
   overflow: hidden;
@@ -39,7 +38,7 @@ export default {
 
     &-thumb {
       background: rgb(31, 31, 31);
-      border-radius: @border-radius__large;
+      border-radius: $border-radius__large;
     }
   }
 }

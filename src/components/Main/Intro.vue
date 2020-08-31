@@ -95,8 +95,8 @@ export default {
 }
 </script>
 
-<style lang="less">
-@import "@/assets/style/vars/vars.module";
+<style lang="scss">
+@import "@/assets/style/vars/_vars";
 
 .btn--intro {
   width: 100%;
@@ -112,12 +112,8 @@ a {
   text-decoration: none;
 }
 
-.border-r {
-  border-right: @border-width solid @colors__border;
-}
-
 .bg-c {
-  background-color: fade(#fff, 10%);
+  background-color: fade-out(#fff, 0.9%);
   padding-bottom: 20px;
 }
 
@@ -125,10 +121,7 @@ a {
   position: relative;
   width: 100%;
   height: 500px;
-  box-shadow: @shadows__coords-x @shadows__coords-y @shadows__size
-    fade(@colors__black, 50%);
   overflow: hidden;
-  background-color: @colors__body;
 }
 
 .intro__image {
@@ -143,7 +136,7 @@ a {
   background-position: top;
   background-repeat: no-repeat;
   // background-attachment: fixed;
-  // border-radius: 0 0 @border-radius__small @border-radius__small;
+  // border-radius: 0 0 $border-radius__small $border-radius__small;
 
   &::after {
     content: "";
@@ -179,9 +172,8 @@ a {
 .intro__title {
   font-family: "Product Sans Medium";
   font-weight: 500;
-  font-size: @font-size--large;
-  line-height: @line-height--large - 12px;
-  color: @colors__grays--lighter;
+  font-size: $font-size--large;
+  line-height: $line-height--large - 12px;
   margin-bottom: 10px;
   letter-spacing: 2px;
   overflow: hidden;
@@ -196,12 +188,11 @@ a {
   display: -webkit-box;
   font-family: "Product Sans Light";
   font-weight: 300;
-  line-height: @line-height--small + 5px;
-  font-size: @font-size--small + 10px;
+  line-height: $line-height--small + 5px;
+  font-size: $font-size--small + 10px;
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  color: fade(@colors__grays--lighter, 90%);
 }
 
 .intro__descr-item {
@@ -209,35 +200,27 @@ a {
   flex-direction: column;
   flex-wrap: wrap;
   text-align: center;
-  border-top: @border-width solid fade(@colors__border, 50%);
   max-width: 100%;
   padding: 10px;
   margin-top: 10px;
-  color: @colors__white;
-  font-size: @font-size--normal;
+  font-size: $font-size--normal;
 
   li {
     font-family: "Product Sans Light";
     font-weight: 300;
-    color: fade(@colors__grays--lighter, 90%);
     max-width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
 
     span {
-      font-family: @font-family__sans;
+      font-family: $font-family__sans;
       font-weight: 400;
-      color: @colors__grays--lighter;
     }
 
     &:last-child {
-      font-size: @font-size--normal + 5px;
+      font-size: $font-size--normal + 5px;
       font-weight: 600;
       color: #f60;
-
-      span {
-        color: @colors__green;
-      }
     }
   }
 }

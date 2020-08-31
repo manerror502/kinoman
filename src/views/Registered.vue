@@ -101,28 +101,18 @@ export default {
 }
 </script>
 
-<style lang="less" >
-@import "@/assets/style/vars/vars.module";
+<style lang="scss" >
+@import "@/assets/style/vars/_vars";
 
 .btn--login {
-  font-family: @font-family__sans;
-  font-size: @font-size--normal - 5;
-  color: @colors__grays--lighter;
+  font-family: $font-family__sans;
+  font-size: $font-size--normal - 5;
   display: block;
   margin: 20px 0;
   text-align: center;
-  border: @border-width + 1 solid @colors__green;
   padding: 14px 70px;
   outline: none;
-  border-radius: @border-radius__large;
-  transition: @transition-duration @transition-timing-function;
-
-  &:hover {
-    background-color: @colors__green;
-  }
-
-  &:focus {
-    background-color: @colors__green;
-  }
+  border-radius: $border-radius__large;
+  transition: $transition-duration $transition-timing-function;
 }
 </style>

@@ -9,7 +9,11 @@
       </a>
     </div> -->
     <div class="menu__button">
-      <button class="btn">
+      <button
+        class="btn"
+        @click.prevent="like"
+        :class="{like: filmLike}"
+      >
         <span>
           <svg viewBox="0 0 512 512">
             <path
@@ -22,23 +26,18 @@
             />
           </svg>
         </span>
-        Нравиться
+        <p v-if="!filmLike">
+          Нравиться
+        </p>
+
+        <p v-else>
+          Не нравиться
+        </p>
       </button>
-      <button class="btn">
-        <span>
-          <svg viewBox="0 0 512 512">
-            <path
-              fill="currentColor"
-              d="M256,0C114.844,0,0,114.844,0,256s114.844,256,256,256s256-114.844,256-256S397.156,0,256,0z M256,448
-              c-105.865,0-192-86.135-192-192c0-40.406,12.25-78.604,35.542-111.198l267.656,267.656C334.604,435.75,296.406,448,256,448z
-              M412.458,367.198L144.802,99.542C177.396,76.25,215.594,64,256,64c105.865,0,192,86.135,192,192
-              C448,296.406,435.75,334.604,412.458,367.198z"
-            />
-          </svg>
-        </span>
-        Не нравиться
-      </button>
-      <button class="btn">
+      <button
+        class="btn"
+        @click.prevent="bookmark"
+      >
         <span>
           <svg viewBox="0 0 512 512">
             <path
@@ -50,7 +49,13 @@
             />
           </svg>
         </span>
-        В закладки
+        <p v-if="!filmBookmark">
+          В закладки
+        </p>
+
+        <p v-else>
+          Удалить из закладок
+        </p>
       </button>
     </div>
   </div>
@@ -58,13 +63,195 @@
 <script>
 export default {
   name: 'Menu',
-  mounted () {},
-  methods: {}
+  props: {
+    menuInfo: {
+      type: Object,
+      required: true
+    }
+  },
+  data: () => ({
+    filmsLike: [],
+    filmsBookmarks: [],
+    filters: null,
+    counter: 0
+  }),
+  computed: {
+    filmLike () {
+      if (this.filmsLike.length) {
+        const filmId = this.menuInfo.filmId
+        this.filmsLike.includes(String(filmId))
+        return this.filmsLike.includes(String(filmId))
+      } else {
+        return false
+      }
+    },
+    filmBookmark () {
+      if (this.filmsBookmarks.length) {
+        const filmId = this.menuInfo.filmId
+        return this.filmsBookmarks.includes(String(filmId))
+      } else {
+        return false
+      }
+    }
+  },
+  async mounted () {
+    try {
+      this.filmsLike = await this.$store.dispatch('fetchLikeFilm')
+      this.filmsBookmarks = await this.$store.dispatch('fetchBookmarkFilm')
+    } catch (e) {}
+  },
+  methods: {
+    async like () {
+      if (this.$store.getters.info === undefined) {
+        // Если не авторизован
+        this.$router.push('/login')
+        this.$toast.error('Вы не авторизованны')
+      } else {
+        const filmId = this.menuInfo.filmId
+
+        const filmInfo = {
+          title: this.menuInfo.nameRu,
+          filmId
+        }
+
+        const filmReccomendInfo = {
+          genres: this.menuInfo.genres,
+          countries: this.menuInfo.countries,
+          year: this.menuInfo.year,
+          type: this.menuInfo.type
+        }
+
+        // Проверяем есть ли в массиве понравившихся такой id
+        if (!this.filmsLike.includes(String(filmId))) {
+          try {
+            // Если нет
+            this.filters = this.$store.state.filters.filters
+
+            this.genresRecommendSet(filmReccomendInfo)
+            this.countriesRecommendSet(filmReccomendInfo)
+
+            if (filmReccomendInfo.type === 'FILM') {
+              this.yearRecommendSetFilm(filmReccomendInfo)
+            } else {
+              this.yearRecommendSetTvShow('2010')
+            }
+
+            this.typeRecommendSet(filmReccomendInfo)
+
+            this.addedInLikes(filmInfo)
+
+            // Перерисовка компонента
+            this.counter++
+          } catch (e) {}
+        } else {
+          // Если есть
+          const film = await this.$store.dispatch('notLike', filmInfo)
+          // await this.$store.dispatch('deleteRecommend', filmInfo)
+          // Удаляем элементd
+          this.filmsLike = this.filmsLike.filter(filmLike => !film.filmId)
+
+          // Перерисовка компонента
+          this.counter++
+
+          this.$toast.error(`"${film.title}" удалён из понравившегося`)
+        }
+      }
+    },
+    async bookmark () {
+      if (this.$store.getters.info === undefined) {
+        // Если не авторизован
+
+        this.$router.push('/login')
+        this.$toast.error('Вы не авторизованны')
+      } else {
+        const filmId = this.menuInfo.filmId
+
+        const filmInfo = {
+          title: this.menuInfo.nameRu,
+          filmId
+        }
+
+        // Проверяем есть ли в массиве понравившихся такой id
+        if (!this.filmsBookmarks.includes(String(filmId))) {
+          try {
+            // Если нет
+            this.addedInBookmark(filmInfo)
+
+            // Перерисовка компонента
+            this.counter++
+          } catch (e) {}
+        } else {
+          // Если есть
+          const film = await this.$store.dispatch('notBookmarks', filmInfo)
+          // await this.$store.dispatch('deleteRecommend', filmInfo)
+          // Удаляем элементd
+          this.filmsBookmarks = this.filmsBookmarks.filter(
+            filmBookmark => !film.filmId
+          )
+
+          // Перерисовка компонента
+          this.counter++
+
+          this.$toast.error(`"${film.title}" удалён из закладок`)
+        }
+      }
+    },
+
+    genresRecommendSet (filmReccomendInfo) {
+      // Добавляем в рекоммендации жанры
+      filmReccomendInfo.genres.forEach(element => {
+        const genreName = element.genre
+
+        // Ищем жанр фильма в массиве всех жаноров
+        const findGenre = this.filters.genres.find(
+          genre => genre.genre === genreName
+        )
+        this.$store.dispatch('addedRecommendGenres', findGenre.id)
+      })
+    },
+    countriesRecommendSet (filmReccomendInfo) {
+      // Добавляем в рекоммендации страны
+      filmReccomendInfo.countries.forEach(element => {
+        const countryName = element.country
+
+        // Ищем страны фильма в массиве всех стран
+        const findCountry = this.filters.countries.find(
+          country => country.country === countryName
+        )
+
+        this.$store.dispatch('addedRecommendCountries', findCountry.id)
+      })
+    },
+    yearRecommendSetFilm (filmReccomendInfo) {
+      // Добавляем в рекоммендации год
+      this.$store.dispatch('addedRecommendYear', filmReccomendInfo.year)
+    },
+    yearRecommendSetTvShow (year) {
+      // Добавляем в рекоммендации год
+      this.$store.dispatch('addedRecommendYear', year)
+    },
+    typeRecommendSet (filmReccomendInfo) {
+      // Добавляем в рекоммендации тип
+      this.$store.dispatch('addedRecommendType', filmReccomendInfo.type)
+    },
+    async addedInLikes (filmInfo) {
+      // Добавляем в понравившиеся
+      const film = await this.$store.dispatch('like', filmInfo)
+      this.filmsLike.push(String(film.filmId))
+      this.$toast.success(`"${film.title}" добавлен в понравившиеся`)
+    },
+    async addedInBookmark (filmInfo) {
+      // Добавляем в понравившиеся
+      const film = await this.$store.dispatch('bookmarks', filmInfo)
+      this.filmsBookmarks.push(String(film.filmId))
+      this.$toast.success(`"${film.title}" добавлен в закладки`)
+    }
+  }
 }
 </script>
 
-<style lang="less">
-@import "@/assets/style/vars/vars.module";
+<style lang="scss">
+@import "@/assets/style/vars/_vars";
 
 .menu {
   display: flex;
@@ -74,8 +261,7 @@ export default {
   right: 100%;
   top: 0;
   z-index: 4;
-  background-color: @colors__blackGrays;
-  border-radius: @border-radius__small;
+  border-radius: $border-radius__small;
   padding: 5px;
 }
 
@@ -87,14 +273,12 @@ export default {
 .menu__title {
   width: 100%;
   padding-bottom: 5px;
-  border-bottom: @border-width solid fade(@colors__grays, 30%);
 
   h5 {
-    font-size: @font-size--normal + 10;
-    font-family: @font-family__sans;
+    font-size: $font-size--normal + 10;
+    font-family: $font-family__sans;
     font-weight: 700;
-    line-height: @line-height--normal + 7;
-    color: @colors__grays--lighter;
+    line-height: $line-height--normal + 7;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -111,52 +295,28 @@ export default {
     padding: 0 10px;
     align-items: center;
     text-align: left;
-    font-size: @font-size--normal;
-    line-height: @line-height--normal + 7;
-    font-family: @font-family__sans;
+
     font-weight: 400;
-    color: @colors__grays--lighter;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
-    transition: @transition-duration @transition-timing-function;
-    border-radius: @border-radius__small - 4;
+    transition: $transition-duration $transition-timing-function;
+    border-radius: $border-radius__small - 4;
+
+    p {
+      font-size: $font-size--normal;
+      line-height: $line-height--normal + 7;
+      font-family: $font-family__sans;
+    }
 
     span {
       display: inline-flex;
       height: 100%;
       margin-right: 10px;
+      transition: $transition-duration $transition-timing-function;
+
       svg {
         width: 30px;
-      }
-    }
-
-    &:hover,
-    &:focus,
-    &:active {
-      background-color: fade(#fff, 10%);
-      color: @colors__white;
-    }
-
-    &:nth-child(1) {
-      color: @colors__green;
-
-      &:hover,
-      &:focus,
-      &:active {
-        background-color: @colors__green;
-        color: @colors__white;
-      }
-    }
-
-    &:nth-child(2) {
-      color: @colors__red;
-
-      &:hover,
-      &:focus,
-      &:active {
-        background-color: @colors__red;
-        color: @colors__white;
       }
     }
   }

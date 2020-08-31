@@ -1,6 +1,7 @@
 import axios from 'axios'
 import randomIdArr from '@/utils/randomIdArr'
 
+// Да я знаю что axios можно настроить и не повторяться, мне лень
 export default {
   actions: {
     getReleasesArr ({ commit }, payload) {
@@ -13,7 +14,7 @@ export default {
       return axios(url, {
         method: 'GET',
         headers: {
-          'X-API-KEY': '0c5711e4-5890-4625-863f-08e2cffe91a3'
+          'X-API-KEY': process.env.VUE_APP_KINOPOISK
         }
       })
         .then(films => {
@@ -31,7 +32,7 @@ export default {
       return axios(url, {
         method: 'GET',
         headers: {
-          'X-API-KEY': '0c5711e4-5890-4625-863f-08e2cffe91a3'
+          'X-API-KEY': process.env.VUE_APP_KINOPOISK
         }
       })
         .then(film => {
@@ -48,7 +49,7 @@ export default {
       return axios(url, {
         method: 'GET',
         headers: {
-          'X-API-KEY': '0c5711e4-5890-4625-863f-08e2cffe91a3'
+          'X-API-KEY': process.env.VUE_APP_KINOPOISK
         }
       })
         .then(trailer => {
@@ -65,7 +66,7 @@ export default {
       return axios(url, {
         method: 'GET',
         headers: {
-          'X-API-KEY': '0c5711e4-5890-4625-863f-08e2cffe91a3'
+          'X-API-KEY': process.env.VUE_APP_KINOPOISK
         }
       })
         .then(reviews => {
@@ -82,7 +83,7 @@ export default {
       return axios(url, {
         method: 'GET',
         headers: {
-          'X-API-KEY': '0c5711e4-5890-4625-863f-08e2cffe91a3'
+          'X-API-KEY': process.env.VUE_APP_KINOPOISK
         }
       })
         .then(staff => {
@@ -100,7 +101,7 @@ export default {
       return axios(url, {
         method: 'GET',
         headers: {
-          'X-API-KEY': '0c5711e4-5890-4625-863f-08e2cffe91a3'
+          'X-API-KEY': process.env.VUE_APP_KINOPOISK
         }
       })
         .then(collections => {
@@ -117,7 +118,7 @@ export default {
       return axios(url, {
         method: 'GET',
         headers: {
-          'X-API-KEY': '0c5711e4-5890-4625-863f-08e2cffe91a3'
+          'X-API-KEY': process.env.VUE_APP_KINOPOISK
         }
       })
         .then(releaseFilms => {
@@ -135,7 +136,7 @@ export default {
       return axios(url, {
         method: 'GET',
         headers: {
-          'X-API-KEY': '0c5711e4-5890-4625-863f-08e2cffe91a3'
+          'X-API-KEY': process.env.VUE_APP_KINOPOISK
         }
       })
         .then(collection => {
@@ -152,7 +153,7 @@ export default {
       return axios(url, {
         method: 'GET',
         headers: {
-          'X-API-KEY': '0c5711e4-5890-4625-863f-08e2cffe91a3'
+          'X-API-KEY': process.env.VUE_APP_KINOPOISK
         }
       })
         .then(filters => {
@@ -164,18 +165,33 @@ export default {
         })
     },
     getRecommendFilm ({ dispatch }, { country, genre, minYear, page }) {
-      const url = `https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-filters?country=${country}&genre=${genre}&order=RATING&ratingTo=10&yearFrom=${minYear}&yearTo=2020&page=${randomIdArr(
-        page
-      )}`
+      const url = `https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-filters?country=${country}&genre=${genre}&order=RATING&ratingTo=10&yearFrom=${minYear}&yearTo=2020&page=${page}`
 
       return axios(url, {
         method: 'GET',
         headers: {
-          'X-API-KEY': '0c5711e4-5890-4625-863f-08e2cffe91a3'
+          'X-API-KEY': process.env.VUE_APP_KINOPOISK
         }
       })
         .then(recommedFilm => {
           return recommedFilm.data
+        })
+        .catch(error => {
+          console.log(error)
+          return error
+        })
+    },
+    searchFilms ({ dispatch }, keyword) {
+      const url = `https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-keyword?keyword=${keyword}&page=1`
+
+      return axios(url, {
+        method: 'GET',
+        headers: {
+          'X-API-KEY': process.env.VUE_APP_KINOPOISK
+        }
+      })
+        .then(searchFilms => {
+          return searchFilms.data
         })
         .catch(error => {
           console.log(error)

@@ -10,9 +10,11 @@
     </div>
 
     <div class="banner__content">
-      <div class="banner__preview">
+      <div
+        class="banner__preview"
+        :class="{playlist: !param}"
+      >
         <img
-          class=""
           :src="bannerInfo.data.posterUrl"
           alt=""
         >
@@ -24,6 +26,7 @@
         <div
           class="banner__buttoon-wrap"
           :key="counter"
+          v-if="param"
         >
           <button
             @click.prevent="like"
@@ -53,9 +56,14 @@
               />
             </svg>
           </button>
-          <button class="banner__button">
+          <button
+            class="banner__button"
+            @click.prevent="bookmark"
+            :class="{bookmark: filmBookmark}"
+          >
             <svg
               viewBox="0 0 512 512"
+              v-if="!filmBookmark"
             >
               <path
                 fill="currentColor"
@@ -63,6 +71,16 @@
                 c3.904,0,7.74-1.523,10.61-4.394l150.063-150.061L406.06,507.606c4.29,4.29,10.742,5.573,16.347,3.252
                 c5.605-2.322,9.26-7.791,9.26-13.858V15C431.667,6.716,424.951,0,416.667,0z M256.002,321.332c-3.978,0-7.793,1.58-10.606,4.394
                 L110.333,460.787V30h291.333v430.785L266.609,325.726C263.796,322.912,259.981,321.332,256.002,321.332z"
+              />
+            </svg>
+
+            <svg
+              viewBox="-58 0 404 404.54135"
+              v-else
+            >
+              <path
+                fill="currentColor"
+                d="m277.527344 0h-267.257813c-5.523437 0-10 4.476562-10 10v374.527344c-.011719 7.503906 4.183594 14.378906 10.855469 17.804687 6.675781 3.429688 14.707031 2.832031 20.796875-1.550781l111.976563-80.265625 111.976562 80.269531c6.097656 4.367188 14.121094 4.960938 20.792969 1.535156 6.667969-3.425781 10.863281-10.292968 10.863281-17.792968v-374.527344c0-5.523438-4.480469-10-10.003906-10zm0 0"
               />
             </svg>
           </button>
@@ -90,6 +108,7 @@ export default {
   },
   data: () => ({
     filmsLike: [],
+    filmsBookmarks: [],
     filters: null,
     counter: 0
   }),
@@ -97,8 +116,22 @@ export default {
     filmLike () {
       if (this.filmsLike.length) {
         const filmId = this.bannerInfo.data.filmId
-        console.log(this.filmsLike.includes(String(filmId)))
         return this.filmsLike.includes(String(filmId))
+      } else {
+        return false
+      }
+    },
+    filmBookmark () {
+      if (this.filmsBookmarks.length) {
+        const filmId = this.bannerInfo.data.filmId
+        return this.filmsBookmarks.includes(String(filmId))
+      } else {
+        return false
+      }
+    },
+    param () {
+      if (this.$route.params.id) {
+        return true
       } else {
         return false
       }
@@ -107,57 +140,107 @@ export default {
   async mounted () {
     try {
       this.filmsLike = await this.$store.dispatch('fetchLikeFilm')
+      this.filmsBookmarks = await this.$store.dispatch('fetchBookmarkFilm')
     } catch (e) {}
   },
   methods: {
     async like () {
-      const filmId = this.bannerInfo.data.filmId
+      if (this.$store.getters.info === undefined) {
+        // Если не авторизован
 
-      const filmInfo = {
-        title: this.bannerInfo.data.nameRu,
-        filmId
-      }
+        this.$router.push('/login')
+        this.$toast.error('Вы не авторизованны')
+      } else {
+        const filmId = this.bannerInfo.data.filmId
 
-      const filmReccomendInfo = {
-        genres: this.bannerInfo.data.genres,
-        countries: this.bannerInfo.data.countries,
-        year: this.bannerInfo.data.year,
-        type: this.bannerInfo.data.type
-      }
+        const filmInfo = {
+          title: this.bannerInfo.data.nameRu,
+          filmId
+        }
 
-      // Проверяем есть ли в массиве понравившихся такой id
-      if (!this.filmsLike.includes(String(filmId))) {
-        try {
-          // Если нет
-          this.filters = this.$store.state.filters.filters
+        const filmReccomendInfo = {
+          genres: this.bannerInfo.data.genres,
+          countries: this.bannerInfo.data.countries,
+          year: this.bannerInfo.data.year,
+          type: this.bannerInfo.data.type
+        }
 
-          this.genresRecommendSet(filmReccomendInfo)
-          this.countriesRecommendSet(filmReccomendInfo)
+        // Проверяем есть ли в массиве понравившихся такой id
+        if (!this.filmsLike.includes(String(filmId))) {
+          try {
+            // Если нет
+            this.filters = this.$store.state.filters.filters
 
-          if (filmReccomendInfo.type === 'FILM') {
-            this.yearRecommendSet(filmReccomendInfo)
-          }
+            this.genresRecommendSet(filmReccomendInfo)
+            this.countriesRecommendSet(filmReccomendInfo)
 
-          this.typeRecommendSet(filmReccomendInfo)
+            if (filmReccomendInfo.type === 'FILM') {
+              this.yearRecommendSetFilm(filmReccomendInfo)
+            } else {
+              this.yearRecommendSetTvShow('2010')
+            }
 
-          this.addedInLikes(filmInfo)
+            this.typeRecommendSet(filmReccomendInfo)
+
+            this.addedInLikes(filmInfo)
+
+            // Перерисовка компонента
+            this.counter++
+          } catch (e) {}
+        } else {
+          // Если есть
+          const film = await this.$store.dispatch('notLike', filmInfo)
+          // await this.$store.dispatch('deleteRecommend', filmInfo)
+          // Удаляем элементd
+          this.filmsLike = this.filmsLike.filter(filmLike => !film.filmId)
 
           // Перерисовка компонента
           this.counter++
-        } catch (e) {}
-      } else {
-        // Если есть
-        const film = await this.$store.dispatch('notLike', filmInfo)
-        await this.$store.dispatch('deleteRecommend', filmInfo)
-        // Удаляем элемент
-        console.log(this.filmsLike.pop())
 
-        // Перерисовка компонента
-        this.counter++
-
-        this.$toast.error(`"${film.title}" удалён из понравившегося`)
+          this.$toast.error(`"${film.title}" удалён из понравившегося`)
+        }
       }
     },
+    async bookmark () {
+      if (this.$store.getters.info === undefined) {
+        // Если не авторизован
+
+        this.$router.push('/login')
+        this.$toast.error('Вы не авторизованны')
+      } else {
+        const filmId = this.bannerInfo.data.filmId
+
+        const filmInfo = {
+          title: this.bannerInfo.data.nameRu,
+          filmId
+        }
+
+        // Проверяем есть ли в массиве понравившихся такой id
+        if (!this.filmsBookmarks.includes(String(filmId))) {
+          try {
+            // Если нет
+            this.addedInBookmark(filmInfo)
+
+            // Перерисовка компонента
+            this.counter++
+          } catch (e) {}
+        } else {
+          // Если есть
+          const film = await this.$store.dispatch('notBookmarks', filmInfo)
+          // await this.$store.dispatch('deleteRecommend', filmInfo)
+          // Удаляем элементd
+          this.filmsBookmarks = this.filmsBookmarks.filter(
+            filmBookmark => !film.filmId
+          )
+
+          // Перерисовка компонента
+          this.counter++
+
+          this.$toast.error(`"${film.title}" удалён из закладок`)
+        }
+      }
+    },
+
     genresRecommendSet (filmReccomendInfo) {
       // Добавляем в рекоммендации жанры
       filmReccomendInfo.genres.forEach(element => {
@@ -183,9 +266,13 @@ export default {
         this.$store.dispatch('addedRecommendCountries', findCountry.id)
       })
     },
-    yearRecommendSet (filmReccomendInfo) {
+    yearRecommendSetFilm (filmReccomendInfo) {
       // Добавляем в рекоммендации год
       this.$store.dispatch('addedRecommendYear', filmReccomendInfo.year)
+    },
+    yearRecommendSetTvShow (year) {
+      // Добавляем в рекоммендации год
+      this.$store.dispatch('addedRecommendYear', year)
     },
     typeRecommendSet (filmReccomendInfo) {
       // Добавляем в рекоммендации тип
@@ -195,15 +282,20 @@ export default {
       // Добавляем в понравившиеся
       const film = await this.$store.dispatch('like', filmInfo)
       this.filmsLike.push(String(film.filmId))
-
       this.$toast.success(`"${film.title}" добавлен в понравившиеся`)
+    },
+    async addedInBookmark (filmInfo) {
+      // Добавляем в понравившиеся
+      const film = await this.$store.dispatch('bookmarks', filmInfo)
+      this.filmsBookmarks.push(String(film.filmId))
+      this.$toast.success(`"${film.title}" добавлен в закладки`)
     }
   }
 }
 </script>
 
-<style lang="less">
-@import "@/assets/style/vars/vars.module";
+<style lang="scss">
+@import "@/assets/style/vars/_vars";
 
 .banner__wrap {
   overflow: hidden;
@@ -235,12 +327,15 @@ export default {
   left: 90px;
   z-index: 5;
   overflow: hidden;
-  box-shadow: @shadows__coords-x @shadows__coords-y @shadows__size + 10
-    fade(@colors__black, 50%);
 
   img {
     width: 100%;
     height: 100%;
+  }
+
+  &.playlist {
+    max-width: 200px;
+    max-height: 215px;
   }
 }
 
@@ -261,14 +356,11 @@ export default {
   padding-top: 70px;
 
   h3 {
-    font-size: @font-size--large+ 5;
-    // line-height: @line-height--normal;
-    font-family: @font-family__sans__black;
+    font-size: $font-size--large + 5;
+    // line-height: $line-height--normal;
+    font-family: $font-family__sans__black;
     font-weight: 500;
-    color: @colors__grays--lighter;
     margin-bottom: 30px;
-    text-shadow: @shadows__coords-x @shadows__coords-y @shadows__size + 10
-      fade(@colors__black, 20%);
   }
 }
 
@@ -282,30 +374,17 @@ export default {
     justify-content: center;
     margin-right: 30px;
     padding: 10px;
-    background-color: fade(@colors__blackPrimary, 0%);
-    border-radius: @buttons__border-radius;
+    border-radius: $buttons__border-radius;
     max-width: 300px;
-    color: fade(@colors__grays--lighter, 70%);
-    font-size: @font-size--normal;
-    font-family: @font-family__sans;
+    font-size: $font-size--normal;
+    font-family: $font-family__sans;
     font-weight: 400;
-    transition: @transition-duration @transition-timing-function;
-    // box-shadow: @shadows__coords-x @shadows__coords-y @shadows__size
-    //   fade(@colors__black, 20%);
+    transition: $transition-duration $transition-timing-function;
+    // box-shadow: $shadows__coords-x $shadows__coords-y $shadows__size
+    //   fade($colors__black, 20%);
 
     svg {
-      width: @font-size--normal + 20;
-    }
-
-    &:hover,
-    &:focus,
-    &:active {
-      color: @colors__white;
-      // background-color: fade(@colors__blackPrimary, 100%);
-    }
-
-    &.active {
-      color: @colors__green;
+      width: $font-size--normal + 20;
     }
   }
 }

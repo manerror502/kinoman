@@ -128,8 +128,8 @@ export default {
 }
 </script>
 
-<style lang="less">
-@import "@/assets/style/vars/vars.module";
+<style lang="scss">
+@import "@/assets/style/vars/_vars";
 
 .collection {
   padding-top: 50px;
@@ -139,21 +139,13 @@ export default {
   display: block;
   flex-direction: column;
   justify-content: center;
-  background-color: fade(@colors__green, 80%);
-  border-radius: @buttons__border-radius;
+  border-radius: $buttons__border-radius;
   padding: 10px 50px;
   margin: 30px auto;
-  transition: @transition-duration @transition-timing-function;
+  transition: $transition-duration $transition-timing-function;
 
   text-align: center;
-  font-family: @font-family__sans;
-  font-size: @font-size--normal + 5;
-
-  &:hover,
-  &:focus,
-  &:active {
-    color: @colors__white;
-    background-color: fade(@colors__green, 100%);
-  }
+  font-family: $font-family__sans;
+  font-size: $font-size--normal + 5;
 }
 </style>

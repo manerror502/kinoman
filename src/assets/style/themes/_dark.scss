@@ -1,0 +1,73 @@
+.app {
+  &--dark {
+    $gradient__primary: linear-gradient(
+      180deg,
+      rgb(39, 37, 70) 0%,
+      rgb(54, 62, 124) 35%,
+      rgba(48, 22, 61, 1) 71%,
+      rgb(44, 22, 98) 100%
+    ) !global;
+
+    $gradient__green: linear-gradient(
+      90deg,
+      rgb(12, 149, 78) 0%,
+      rgb(37, 189, 128) 80%
+    ) !global;
+
+    $gradient__purpule: radial-gradient(
+      circle,
+      rgba(139, 15, 206, 0.5) 0%,
+      rgba(255, 0, 235, 0.5) 100%
+    ) !global;
+
+    $gradient__yellow: radial-gradient(
+      circle,
+      rgba(205, 167, 29, 0.3) 0%,
+      rgba(217, 126, 17, 0.3) 100%
+    ) !global;
+
+    $gradient__blue: radial-gradient(
+      circle,
+      rgb(205, 152, 29) 0%,
+      rgb(217, 24, 17) 100%
+    ) !global;
+
+    // Palette
+    $colors__body: #181818 !global;
+
+    $colors__white: #fff !global;
+    $colors__black: #000 !global;
+
+    $colors__primary: #365fb1 !global;
+    $colors__primary2: #0081ff !global;
+    $colors__blackPrimary: #252525 !global;
+
+    $colors__second: #d930aa !global;
+
+    // Grays
+    $colors__grays--lighter: #e1e3e7 !global;
+    $colors__grays: #99a9be !global;
+    $colors__blackGrays: #2e2e2e !global;
+
+    // Green
+    $colors__green: #3cd87a !global;
+
+    // Yellow
+    $colors__yellow: #faed78 !global;
+
+    // Red
+    $colors__red: #e72f2f !global;
+
+    // Links
+    $colors__link: $colors__primary;
+    $colors__link--hover: darken(#44529c, $fade);
+
+    // Borders and shadows
+    $colors__shadows: $colors__black;
+
+    $colors__border: $colors__grays--lighter;
+
+    background: $colors__body;
+    @import "./themes__content";
+  }
+}

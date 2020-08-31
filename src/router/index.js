@@ -49,10 +49,41 @@ const routes = [
     component: () => import('../views/Registered.vue')
   },
   {
+    path: '/foryou',
+    name: 'RecommendsForYou',
+    meta: { layout: 'main', title: 'Рекоммендации для вас' },
+    component: () => import('../views/RecommendsForYou.vue')
+  },
+  {
+    path: '/search',
+    name: 'Search',
+    meta: { layout: 'main', title: 'Поиск' },
+    component: () => import('../views/SearchPage.vue')
+  },
+  {
+    path: '/yourMovie',
+    name: 'Your Movie',
+    meta: { layout: 'main', title: 'Ваше любимое кино' },
+    component: () => import('../views/YourMovie.vue')
+  },
+  {
+    path: '/yourBookmarks',
+    name: 'Your Bookmark',
+    meta: { layout: 'main', title: 'Ваши закладки' },
+    component: () => import('../views/YourBookmark.vue')
+  },
+  {
+    path: '/profile',
+    name: 'Profile',
+    meta: { layout: 'main', title: 'Профиль' },
+    component: () => import('../views/Profile.vue')
+  },
+
+  {
     path: '*',
     name: '404',
-    meta: { layout: 'main' },
-    component: () => import('../views/Home.vue')
+    meta: { layout: 'main', title: 'Страница не найдена' },
+    component: () => import('../views/404/404.vue')
   }
 ]
 

@@ -1,0 +1,41 @@
+.header {
+  border-bottom: $border-width solid fade-out($colors__grays--lighter, 0.8%);
+
+  &.fixed {
+    background-color: fade-out($colors__body, 0%);
+    box-shadow: $shadows__coords-x $shadows__coords-y $shadows__size
+      fade-out(darken(#000, 0.5%), 0.7%);
+    border-bottom: $border-width solid fade-out($colors__grays--lighter, 1%);
+  }
+
+  &.fade {
+    transform: translateY(-100%);
+    border-bottom: $border-width solid fade-out($colors__grays--lighter, 1%);
+  }
+}
+
+.header__back {
+  color: $colors__grays--lighter;
+
+  &:hover {
+    color: $colors__green;
+  }
+}
+
+.header__title {
+  color: $colors__grays--lighter;
+}
+
+.nav__link {
+  color: $colors__grays--lighter;
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: $colors__green;
+  }
+}
+
+.nav__link-user {
+  color: $colors__grays--lighter;
+}
