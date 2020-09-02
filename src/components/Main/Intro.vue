@@ -12,7 +12,7 @@
         <div class="row">
           <div class="intro__descr">
             <div class="row justify-content-between align-items-center">
-              <div class="col-5  d-flex flex-column">
+              <div class="col-lg-6  d-flex flex-column">
                 <div class="intro__wrap bg-c">
                   <h2 class="intro__title">
                     {{ introFilm.data.nameRu }}
@@ -148,9 +148,18 @@ a {
     background: linear-gradient(
       to right,
       rgba(0, 0, 0, 1) 0%,
-      rgba(4, 4, 4, 0.7) 35%,
+      rgba(4, 4, 4, 0.7) 40%,
       rgba(9, 9, 9, 0) 60%
     );
+
+    @media (max-width: $breackpoints__md) {
+      background: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 1) 0%,
+        rgba(4, 4, 4, 0.6) 50%,
+        rgba(9, 9, 9, 1) 100%
+      );
+    }
   }
 }
 
@@ -172,7 +181,7 @@ a {
 .intro__title {
   font-family: "Product Sans Medium";
   font-weight: 500;
-  font-size: $font-size--large;
+  @include adaptiv-font($size--large, $size--normal);
   line-height: $line-height--large - 12px;
   margin-bottom: 10px;
   letter-spacing: 2px;
@@ -181,6 +190,10 @@ a {
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
+
+  @media (max-width: $breackpoints__xs) {
+    line-height: $line-height--normal;
+  }
 }
 
 .intro__text {
@@ -189,7 +202,7 @@ a {
   font-family: "Product Sans Light";
   font-weight: 300;
   line-height: $line-height--small + 5px;
-  font-size: $font-size--small + 10px;
+  @include adaptiv-font($size--small + 10, $size--small);
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
   overflow: hidden;
@@ -203,7 +216,7 @@ a {
   max-width: 100%;
   padding: 10px;
   margin-top: 10px;
-  font-size: $font-size--normal;
+  @include adaptiv-font($size--normal, $size--small);
 
   li {
     font-family: "Product Sans Light";

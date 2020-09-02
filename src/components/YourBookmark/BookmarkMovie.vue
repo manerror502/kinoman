@@ -6,10 +6,10 @@
     >
       <ul
         class="row justify-content-arround"
-        v-if="films.length"
+        v-if="bookmarkFilms.length"
       >
         <FilmItemInfo
-          class="col-xl-4 col-lg-6"
+          class="col-xl-4 col-md-6"
           v-for="bookmark in films"
           :key="bookmark.filmId"
           :item-info="bookmark"

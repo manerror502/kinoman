@@ -4,7 +4,7 @@
   &.fixed {
     background-color: fade-out($colors__body, 0%);
     box-shadow: $shadows__coords-x $shadows__coords-y $shadows__size
-      fade-out(darken(#000, 0.5%), 0.7%);
+      fade-out(#000, 0.7%);
     border-bottom: $border-width solid fade-out($colors__grays--lighter, 1%);
   }
 
@@ -32,6 +32,12 @@
   &:hover,
   &:focus,
   &:active {
+    background-color: fade-out(#fff, 0.9%);
+    color: $colors__green;
+  }
+
+  &.active {
+    background-color: fade-out(#fff, 0.9%);
     color: $colors__green;
   }
 }

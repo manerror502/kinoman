@@ -9,7 +9,7 @@
         class="row justify-content-arround"
       >
         <FilmItemInfo
-          class="col-xl-4 col-lg-6"
+          class="col-xl-4 col-md-6"
           v-for="release in newRelease.films"
           :key="release.filmId"
           :item-info="release"

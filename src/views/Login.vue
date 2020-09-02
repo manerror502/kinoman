@@ -105,5 +105,8 @@ export default {
   outline: none;
   border-radius: $border-radius__large;
   transition: $transition-duration $transition-timing-function;
+  @media (max-width: $breackpoints__sm) {
+    padding: 14px 50px;
+  }
 }
 </style>

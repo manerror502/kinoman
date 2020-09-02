@@ -1,7 +1,7 @@
 <template>
   <section class="searchpage">
     <div class="container-fluid">
-      <div class="row">
+      <div class="row justify-content-center">
         <input
           type="text"
           role="search"
@@ -15,7 +15,7 @@
 
         <ul class="searchpage__info row justify-content-arround">
           <FilmItemInfo
-            class="col-xl-4 col-lg-6"
+            class="col-xl-4 col-md-6"
             style="width: 100%;"
             v-for="film in search.films"
             :key="film.filmId"
@@ -58,8 +58,7 @@ export default {
 
 .searchpage__input {
   font-family: $font-family__sans;
-  font-size: $font-size--normal + 10;
-  width: 100%;
+  width: 90%;
   border: 0;
   display: block;
   margin: 20px 0;
@@ -68,10 +67,10 @@ export default {
   outline: none;
   border-radius: $border-radius__large;
   transition: $transition-duration $transition-timing-function;
+  @include adaptiv-font($size--normal + 10, $size--normal);
 }
 
 .searchpage__info {
-  width: 100%;
   border-radius: $border-radius__large;
 
   &::-webkit-scrollbar {

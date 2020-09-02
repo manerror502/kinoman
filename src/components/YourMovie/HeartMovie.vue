@@ -1,15 +1,21 @@
 <template>
-  <section class="playlists">
-    <Loader v-if="loading" />
+  <section
+    class="playlists"
+    style=""
+  >
+    <Loader
+      v-if="loading"
+      style="width: 100vw"
+    />
     <div
       v-else
     >
       <ul
         class="row justify-content-arround"
-        v-if="films.length"
+        v-if="heartFilms.length"
       >
         <FilmItemInfo
-          class="col-xl-4 col-lg-6"
+          class="col-xl-4 col-md-6"
           v-for="heart in films"
           :key="heart.filmId"
           :item-info="heart"

@@ -21,7 +21,12 @@
         active-class="active"
         :exact="link.exact"
       >
-        {{ link.title }}
+        <img
+          :src="link.icon"
+          class="img"
+          alt=""
+        >
+        <span>{{ link.title }}</span>
       </router-link>
     </ul>
 
@@ -124,9 +129,22 @@ export default {
   name: 'Navbar',
   data: () => ({
     links: [
-      { title: '🏠 Главная ', url: '/', exact: true },
-      { title: '🎉 Новые релизы ', url: '/new-release' },
-      { title: '⭕ Рекоммендации ', url: '/foryou' }
+      {
+        title: ' Главная ',
+        url: '/',
+        icon: require('../../assets/img/navBar/home.svg'),
+        exact: true
+      },
+      {
+        title: ' Новые релизы ',
+        url: '/new-release',
+        icon: require('../../assets/img/navBar/new.svg')
+      },
+      {
+        title: ' Рекоммендации ',
+        url: '/foryou',
+        icon: require('../../assets/img/navBar/ball.svg')
+      }
     ]
   })
 }
@@ -140,6 +158,11 @@ export default {
   top: 0;
   left: 0;
   z-index: 20;
+
+  @media (max-width: $breackpoints__md) {
+    display: none;
+    visibility: hidden;
+  }
 }
 
 .navbar {
@@ -167,6 +190,7 @@ export default {
 
 .navbar__link {
   li {
+    display: inline-flex;
     border-radius: $border-radius__small - 4;
     user-select: none;
     font-size: $font-size--normal - 2;
@@ -175,9 +199,14 @@ export default {
     overflow: hidden;
     font-weight: 400;
     padding: 10px;
-    display: block;
     width: 100%;
     transition: $transition-duration $transition-timing-function;
+
+    img {
+      display: inline-block;
+      max-width: $font-size--normal - 2;
+      margin-right: 5px;
+    }
 
     &:hover,
     &:focus,
@@ -188,6 +217,18 @@ export default {
     &:last-child {
       border-bottom: 0;
       margin-bottom: 10px;
+    }
+
+    @media (max-width: $breackpoints__lg) {
+      justify-content: center;
+      img {
+        max-width: 50px;
+      }
+
+      span {
+        display: none;
+        visibility: hidden;
+      }
     }
   }
 }

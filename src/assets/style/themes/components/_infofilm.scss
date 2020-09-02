@@ -37,6 +37,7 @@
 .infofilm__descr {
   p {
     border-bottom: $border-width solid fade-out($colors__grays, 0.7%);
+    color: $colors__grays--lighter;
   }
 }
 

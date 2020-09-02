@@ -6,7 +6,7 @@
   >
     <div class="container-fluid">
       <div class="row justify-content-between">
-        <div class="col-9 d-flex">
+        <div class="col-8 d-flex">
           <button
             class="header__back"
             @click.prevent="back"
@@ -24,13 +24,12 @@
             </svg>
           </button>
           <h2
-            href=""
             class="header__title"
           >
             {{ pageTitle }}
           </h2>
         </div>
-        <nav class="col nav">
+        <nav class="col-lg col-3 nav">
           <router-link
             tag="a"
             :to="userInfo"
@@ -58,6 +57,7 @@
             tag="a"
             to="/search"
             class="nav__link"
+            active-class="active"
           >
             <svg viewBox="0 0 512 512">
               <path
@@ -150,23 +150,31 @@ export default {
 .header__back {
   margin-top: 10px;
   margin-right: 20px;
-  width: $font-size--large - 5;
+  @include adaptiv-image($size--large, $size--large);
   transition: $transition-duration $transition-timing-function;
 }
 
 .header__title {
   font-family: $font-family__sans__black;
-  font-size: $font-size--large - 5;
+  @include adaptiv-font($size--large - 5, $size--normal);
   line-height: $line-height--large;
   user-select: none;
   font-weight: 900;
   transition: $transition-duration $transition-timing-function;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .nav {
   display: flex;
   justify-content: flex-end;
   align-items: center;
+
+  // @media (max-width: $breackpoints__md) {
+  //   display: none;
+  //   visibility: hidden;
+  // }
 }
 
 .nav__link {
@@ -177,13 +185,7 @@ export default {
   padding: 10px;
 
   svg {
-    width: $font-size--large;
-  }
-
-  &:hover,
-  &:focus,
-  &:active {
-    background-color: fade-out(#fff, 0.9%);
+    @include adaptiv-image($size--large, $size--normal);
   }
 }
 
@@ -195,5 +197,10 @@ export default {
   text-overflow: ellipsis;
   white-space: nowrap;
   margin-right: 10px;
+
+  @media (max-width: $breackpoints__md) {
+    display: none;
+    visibility: hidden;
+  }
 }
 </style>

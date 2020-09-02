@@ -200,6 +200,10 @@ export default {
   overflow: hidden;
   z-index: 3;
   padding-right: 20%;
+
+  @media (max-width: $breackpoints__xs) {
+    padding: 5px 10px;
+  }
 }
 
 .filmitem__title {
@@ -207,7 +211,7 @@ export default {
   display: flex;
 
   h3 {
-    font-size: $font-size--normal + 5;
+    @include adaptiv-font($size--normal + 5, $size--small);
     font-family: $font-family__sans__black;
     font-weight: 900;
     line-height: $line-height--small + 7;
@@ -215,11 +219,15 @@ export default {
     text-overflow: ellipsis;
     overflow: hidden;
   }
+
+  @media (max-width: $breackpoints__xs) {
+    max-width: 300px;
+  }
 }
 
 .filmitem__ul {
   li {
-    font-size: $font-size--normal;
+    @include adaptiv-font($size--normal, $size--small);
     line-height: $line-height--normal;
     font-weight: 400;
     margin-bottom: 5px;
@@ -240,7 +248,7 @@ export default {
   bottom: 20px;
 
   h5 {
-    font-size: $font-size--large - 10;
+    @include adaptiv-font($size--large - 10, $size--normal);
     line-height: $line-height--normal;
     font-weight: 400;
   }

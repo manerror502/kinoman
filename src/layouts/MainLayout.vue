@@ -12,17 +12,15 @@
       class="row no-gutters justify-content-end"
     >
       <aside
-        style="position: fixed"
-        class="navbar__container col-2 "
+        class="navbar__container col-lg-2 "
       >
         <Navbar />
       </aside>
 
-      <div class="col-10 no-padding">
+      <div class="col-lg-10 no-padding">
         <div class="row no-gutters">
           <div
-            style="position: fixed"
-            class="header__container col-10 no-padding"
+            class="header__container col-lg-10 no-padding"
           >
             <Header />
           </div>
@@ -133,12 +131,13 @@ export default {
 }
 
 .playlists {
+  max-width: 100%;
   width: 100%;
   margin-top: 44px;
 }
 
 .playlists__title {
-  font-size: $font-size--large;
+  @include adaptiv-font($size--large, $size--normal + 10);
   font-family: $font-family__sans__black;
   user-select: none;
   margin-bottom: 23px;

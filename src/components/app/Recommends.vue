@@ -61,7 +61,7 @@
     >
       <div class="row">
         <FilmItemInfo
-          class="col-xl-4 col-lg-6"
+          class="col-xl-4 col-md-6"
           v-for="recommends in recommends.films"
           :key="recommends.filmId"
           :item-info="recommends"
@@ -363,6 +363,10 @@ export default {
   user-select: none;
   padding: 0 10px;
   position: relative;
+
+  @media (max-width: $breackpoints__md) {
+    display: none;
+  }
 }
 
 .recommends__film-item {

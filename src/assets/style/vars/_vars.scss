@@ -1,5 +1,5 @@
 @import "typografi.scss";
-
+@import "../mixines/size.scss";
 // Project variables
 //////////////////////////////////////////////////////
 //////////////////////////////////////////////////////
@@ -144,16 +144,16 @@ $animation-duration: $transition-duration * 3;
 $breackpoints__min: 320px;
 
 // Extra small screen / XS / phone
-$breackpoints__xs: 359px;
+$breackpoints__xs: 576px;
 
 // Small screen / SM / tablet
 $breackpoints__sm: 768px;
 
 // Medium screen / MD desktop / нетбуки типо чтоле
-$breackpoints__md: 1025px;
+$breackpoints__md: 992px;
 
 // Large screen / LG desktop / небольшие экраны - ноуты
-$breackpoints__lg: 1240px;
+$breackpoints__lg: 1200px;
 
 $breackpoints__xs_max: ($breackpoints__sm - 1);
 $breackpoints__sm_max: ($breackpoints__md - 1);

@@ -12,7 +12,7 @@
       <div class="infofilm__content">
         <div class="row">
           <div
-            class="col-6"
+            class="col-lg-6"
             v-if="trailerFilm.trailers"
           >
             <div
@@ -27,7 +27,7 @@
             </div>
           </div>
 
-          <div class="col-6">
+          <div class="col-lg-6">
             <ul class="infofilm__attributes">
               <li>
                 Страна:
@@ -89,7 +89,7 @@
             </div>
 
             <div
-              class="col-2"
+              class="col-xl-2 col-lg-4 col-md-4"
               v-for="staff in staffFilm"
               :key="staff.staffId"
             >
@@ -242,6 +242,10 @@ export default {
   z-index: 2;
   padding: 30px 20px;
   border-radius: $border-radius__big + 20;
+
+  @media (max-width: $breackpoints__md) {
+    border-radius: $border-radius__big;
+  }
 }
 
 .infofilm__trailer {

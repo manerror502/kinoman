@@ -48,13 +48,12 @@ export default {
 
   input {
     font-family: $font-family__sans;
-    font-size: $font-size--normal + 10;
+    @include adaptiv-font($size--normal + 10, $size--normal);
     width: 100%;
     border: 0;
     display: block;
     margin: 20px 0;
     text-align: left;
-
     padding: 14px 10px;
     outline: none;
     border-radius: $border-radius__large;
@@ -64,7 +63,7 @@ export default {
 }
 
 .search__info {
-  width: 100%;
+  // width: 100%;
   max-height: 500px;
   overflow-y: scroll;
   position: absolute;

@@ -306,6 +306,10 @@ export default {
   height: 400px;
   position: relative;
   z-index: 2;
+
+  @media (max-width: $breackpoints__md) {
+    height: 600px;
+  }
 }
 
 .banner__content {
@@ -337,6 +341,12 @@ export default {
     max-width: 200px;
     max-height: 215px;
   }
+
+  @media (max-width: $breackpoints__md) {
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
 }
 
 .banner__bg {
@@ -357,10 +367,23 @@ export default {
 
   h3 {
     font-size: $font-size--large + 5;
-    // line-height: $line-height--normal;
     font-family: $font-family__sans__black;
     font-weight: 500;
     margin-bottom: 30px;
+  }
+
+  @media (max-width: $breackpoints__md) {
+    padding: 0;
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+    // white-space: nowrap;
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+    line-height: $line-height--normal;
   }
 }
 
@@ -385,6 +408,16 @@ export default {
 
     svg {
       width: $font-size--normal + 20;
+    }
+  }
+
+  @media (max-width: $breackpoints__md) {
+    position: relative;
+    padding-top: 50px;
+    text-align: center;
+
+    button {
+      margin: 0;
     }
   }
 }

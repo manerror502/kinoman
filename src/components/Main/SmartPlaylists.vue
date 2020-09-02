@@ -1,10 +1,10 @@
 <template>
-  <ul class="playlists__wrap row ">
+  <div class="playlists__wrap row ">
     <div
       v-if="userInfo"
-      class="playlists__day"
+      class="playlists__day row"
     >
-      <div class="col-4">
+      <div class="col-lg-4">
         <div class="playlists__day-img">
           <img
             class="img"
@@ -14,7 +14,7 @@
         </div>
       </div>
 
-      <div class="col">
+      <div class="col-lg-6">
         <div class="playlists__day-descr">
           <div class="playlists__day-title">
             <h4>КиноЛента дня</h4>
@@ -36,230 +36,40 @@
       </div>
     </div>
 
-    <div
+    <ul
       class="row no-gutters"
       v-else
     >
       <li
         class="playlists__item"
+        v-for="playlist in playlists"
+        :key="playlist.url"
       >
-        <router-link to="/kinolenta/day">
+        <router-link :to="playlist.url">
           <div
             class="playlists__item-img"
           >
             <img
               class=""
-              src="../../assets/img/smartPlaylist/1.jpg"
+              :src="playlist.img"
               alt=""
             >
-
-            <div class="playlists__item-hover">
-              <button>
-                <!-- <svg viewBox="0 0 494.942 494.942">
-                  <path
-                    fill="currentColor"
-                    d="m353.53 319.966c-5.714-1.165-11.624-1.789-17.677-1.789-48.731 0-88.383 39.651-88.383 88.383s39.651 88.383 88.383 88.383 88.383-39.651 88.383-88.383v-159.089h70.706v-70.706h-141.412z"
-                  /><path
-                    fill="currentColor"
-                    d="m0 0h494.942v70.706h-494.942z"
-                  /><path
-                    fill="currentColor"
-                    d="m0 141.412h318.177v70.706h-318.177z"
-                  /><path
-                    id="path-1_7_"
-                    fill="currentColor"
-                    d="m0 282.824h212.118v70.706h-212.118z"
-                    transform="translate(1 9)"
-                  /><path
-                    id="path-1_6_"
-                    fill="currentColor"
-                    d="m0 424.236h212.118v70.706h-212.118z"
-                    transform="translate(1 13)"
-                  />
-
-                </svg> -->
-
-                <img
-                  src="./../../assets/img/slider/clapperboard.svg"
-                  alt=""
-                >
-              </button>
-            </div>
           </div>
           <div class="playlists__item-title">
-            <h5>КиноЛента Дня</h5>
+            <h5>{{ playlist.title }}</h5>
           </div>
           <div class="playlists__item-descr">
             <h6>Обновлён сегодня</h6>
           </div>
         </router-link>
       </li>
-
-      <li class="playlists__item">
-        <a href="">
-          <div
-            class="playlists__item-img"
-          >
-            <img
-              class=""
-              src="../../assets/img/smartPlaylist/2.jpg"
-              alt=""
-            >
-
-            <div class="playlists__item-hover">
-              <button>
-                <!-- <svg viewBox="0 0 494.942 494.942">
-                  <path
-                    fill="currentColor"
-                    d="m353.53 319.966c-5.714-1.165-11.624-1.789-17.677-1.789-48.731 0-88.383 39.651-88.383 88.383s39.651 88.383 88.383 88.383 88.383-39.651 88.383-88.383v-159.089h70.706v-70.706h-141.412z"
-                  /><path
-                    fill="currentColor"
-                    d="m0 0h494.942v70.706h-494.942z"
-                  /><path
-                    fill="currentColor"
-                    d="m0 141.412h318.177v70.706h-318.177z"
-                  /><path
-                    id="path-1_7_"
-                    fill="currentColor"
-                    d="m0 282.824h212.118v70.706h-212.118z"
-                    transform="translate(1 9)"
-                  /><path
-                    id="path-1_6_"
-                    fill="currentColor"
-                    d="m0 424.236h212.118v70.706h-212.118z"
-                    transform="translate(1 13)"
-                  />
-
-                </svg> -->
-
-                <img
-                  src="./../../assets/img/slider/clapperboard.svg"
-                  alt=""
-                >
-              </button>
-            </div>
-          </div>
-          <div class="playlists__item-title">
-            <h5>Лучше вместе</h5>
-          </div>
-          <div class="playlists__item-descr">
-            <h6>Обновлён сегодня</h6>
-          </div>
-        </a>
-      </li>
-
-      <li class="playlists__item">
-        <a href="">
-          <div
-            class="playlists__item-img"
-          >
-            <img
-              class=""
-              src="../../assets/img/smartPlaylist/3.jpg"
-              alt=""
-            >
-
-            <div class="playlists__item-hover">
-              <button>
-                <!-- <svg viewBox="0 0 494.942 494.942">
-                  <path
-                    fill="currentColor"
-                    d="m353.53 319.966c-5.714-1.165-11.624-1.789-17.677-1.789-48.731 0-88.383 39.651-88.383 88.383s39.651 88.383 88.383 88.383 88.383-39.651 88.383-88.383v-159.089h70.706v-70.706h-141.412z"
-                  /><path
-                    fill="currentColor"
-                    d="m0 0h494.942v70.706h-494.942z"
-                  /><path
-                    fill="currentColor"
-                    d="m0 141.412h318.177v70.706h-318.177z"
-                  /><path
-                    id="path-1_7_"
-                    fill="currentColor"
-                    d="m0 282.824h212.118v70.706h-212.118z"
-                    transform="translate(1 9)"
-                  /><path
-                    id="path-1_6_"
-                    fill="currentColor"
-                    d="m0 424.236h212.118v70.706h-212.118z"
-                    transform="translate(1 13)"
-                  />
-
-                </svg> -->
-
-                <img
-                  src="./../../assets/img/slider/clapperboard.svg"
-                  alt=""
-                >
-              </button>
-            </div>
-          </div>
-          <div class="playlists__item-title">
-            <h5>Помни меня</h5>
-          </div>
-          <div class="playlists__item-descr">
-            <h6>Обновлён сегодня</h6>
-          </div>
-        </a>
-      </li>
-
-      <li class="playlists__item">
-        <a href="">
-          <div
-            class="playlists__item-img"
-          >
-            <img
-              class=""
-              src="../../assets/img/smartPlaylist/4.jpg"
-              alt=""
-            >
-
-            <div class="playlists__item-hover">
-              <button>
-                <!-- <svg viewBox="0 0 494.942 494.942">
-                  <path
-                    fill="currentColor"
-                    d="m353.53 319.966c-5.714-1.165-11.624-1.789-17.677-1.789-48.731 0-88.383 39.651-88.383 88.383s39.651 88.383 88.383 88.383 88.383-39.651 88.383-88.383v-159.089h70.706v-70.706h-141.412z"
-                  /><path
-                    fill="currentColor"
-                    d="m0 0h494.942v70.706h-494.942z"
-                  /><path
-                    fill="currentColor"
-                    d="m0 141.412h318.177v70.706h-318.177z"
-                  /><path
-                    id="path-1_7_"
-                    fill="currentColor"
-                    d="m0 282.824h212.118v70.706h-212.118z"
-                    transform="translate(1 9)"
-                  /><path
-                    id="path-1_6_"
-                    fill="currentColor"
-                    d="m0 424.236h212.118v70.706h-212.118z"
-                    transform="translate(1 13)"
-                  />
-
-                </svg> -->
-
-                <img
-                  src="./../../assets/img/slider/clapperboard.svg"
-                  alt=""
-                >
-              </button>
-            </div>
-          </div>
-          <div class="playlists__item-title">
-            <h5>Дежавю</h5>
-          </div>
-          <div class="playlists__item-descr">
-            <h6>Обновлён сегодня</h6>
-          </div>
-        </a>
-      </li>
-    </div>
-  </ul>
+    </ul>
+  </div>
 </template>
 
 <script>
 // import { Hooper, Slide, Navigation as HooperNavigation } from 'hooper'
-import 'hooper/dist/hooper.css'
+// import 'hooper/dist/hooper.css'
 
 export default {
   name: 'SmartPlaylists',
@@ -270,10 +80,20 @@ export default {
   // },
   data: () => ({
     playlists: [
-      { title: 'Кинолента дня', url: '/kinolenta/day' },
-      { title: 'Лучше вместе', url: '/kinolenta/together' },
-      { title: 'Помни меня', url: '/kinolenta/rememberme' },
-      { title: 'Дежавю', url: '/kinolenta/dejavu' }
+      {
+        title: 'Кинолента дня',
+        url: '/kinolenta/day',
+        img:
+          'https://firebasestorage.googleapis.com/v0/b/kinoman-1cc31.appspot.com/o/app%2FplaylistImg%2F1.jpg?alt=media&token=35db6ac1-3cf5-4e88-b808-c017ed043ea9'
+      },
+      {
+        title: 'Лучше вместе',
+        url: '/kinolenta/together',
+        img:
+          'https://firebasestorage.googleapis.com/v0/b/kinoman-1cc31.appspot.com/o/app%2FplaylistImg%2F2.jpg?alt=media&token=cdd8f439-4021-45c7-afd5-c6ad63d9a985'
+      }
+      // { title: 'Помни меня', url: '/kinolenta/rememberme' },
+      // { title: 'Дежавю', url: '/kinolenta/dejavu' }
     ]
   }),
   computed: {
@@ -286,6 +106,21 @@ export default {
 
 <style lang="scss">
 @import "@/assets/style/vars/_vars";
+
+.playlists__wrap {
+  // @media (max-width: $breackpoints__md) {
+  //   max-width: 100%;
+  //   overflow-x: auto;
+
+  //   &::-webkit-scrollbar {
+  //     display: none;
+  //   }
+  // }
+}
+
+.nowrap {
+  flex-wrap: nowrap;
+}
 
 .playlists__item {
   display: flex;
@@ -307,8 +142,7 @@ export default {
 .playlists__item-img {
   max-width: 100%;
   max-height: 100%;
-  width: 300px;
-  height: 300px;
+  @include adaptiv-image(300, 200);
   overflow: hidden;
   border-radius: $border-radius__small;
   position: relative;
@@ -326,14 +160,14 @@ export default {
   text-align: left;
 
   h5 {
-    font-size: $font-size--normal + 10;
+    @include adaptiv-font($size--normal + 10, $size--normal);
     font-family: $font-family__sans;
   }
 }
 
 .playlists__item-descr {
   h6 {
-    font-size: $font-size--normal;
+    @include adaptiv-font($size--normal, $size--small);
     font-weight: 400;
   }
 }
@@ -385,6 +219,10 @@ export default {
   border-radius: $border-radius__small;
   box-shadow: $shadows__coords-x $shadows__coords-y $shadows__size
     fade-out(#000, 0.8%);
+
+  @media (max-width: $breackpoints__md) {
+    margin: 0 auto;
+  }
 }
 
 .playlists__day-descr {
@@ -395,7 +233,7 @@ export default {
 .playlists__day-title {
   h4 {
     font-family: $font-family__sans__black;
-    font-size: $font-size--large;
+    @include adaptiv-font($size--large, $size--normal);
   }
 }
 
@@ -407,10 +245,14 @@ export default {
   flex-direction: column;
   justify-content: space-between;
   p {
-    font-size: $font-size--normal;
     font-family: $font-family__sans;
     font-weight: $font-weight__sans__regular;
     line-height: $line-height--normal;
+    @include adaptiv-font($size--normal, $size--small);
+  }
+
+  @media (max-width: $breackpoints__md) {
+    height: auto;
   }
 }
 

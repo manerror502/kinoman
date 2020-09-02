@@ -7,12 +7,15 @@
     <component :is="layout">
       <router-view />
     </component>
+
+    <MobileBar />
   </div>
 </template>
 
 <script>
 import mainLayout from '@/layouts/mainLayout'
 import emptyLayout from '@/layouts/emptyLayout'
+import MobileBar from '@/components/mobile/MobileBar'
 
 import { mapState } from 'vuex'
 export default {
@@ -20,7 +23,8 @@ export default {
   data: () => ({}),
   components: {
     mainLayout,
-    emptyLayout
+    emptyLayout,
+    MobileBar
   },
   computed: {
     ...mapState(['theme']),
@@ -42,6 +46,8 @@ export default {
 
 .app {
   min-height: 100vh;
+  position: relative;
+  padding-bottom: 100px;
 }
 
 ::-webkit-scrollbar {

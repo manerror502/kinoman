@@ -10,13 +10,13 @@
       </div>
 
       <div class="row">
-        <div class="col-6">
+        <div class="col-lg-6">
           <router-link
             tag="a"
             to="/profile/preferences"
             class="profile__item large"
           >
-            <div class="profile__item-img col-3">
+            <div class="profile__item-img col-lg-3">
               <img
                 src="../assets/img/profile/profile1.jpg"
                 alt=""
@@ -45,7 +45,7 @@
           </router-link>
         </div>
 
-        <div class="col-6">
+        <div class="col-lg-6">
           <label
             for="theme"
             class="profile__item large"
@@ -97,7 +97,7 @@
       </div>
 
       <div class="row">
-        <div class="col-8">
+        <div class="col-lg-8">
           <label
             for="checkbox"
             class="profile__item"
@@ -131,7 +131,7 @@
           </label>
         </div>
 
-        <div class="col-8">
+        <div class="col-lg-8">
           <label
             for="checkbox1"
             class="profile__item"
@@ -167,7 +167,7 @@
       </div>
 
       <div class="row justify-content-end">
-        <div class="col-2">
+        <div class="col-lg-3">
           <label
             for="logout"
             class="profile__item"
@@ -305,8 +305,8 @@ export default {
 
   h3 {
     font-family: $font-family__sans;
-    font-size: $font-size--large + 10;
     line-height: $line-height--large;
+    @include adaptiv-font($size--large + 10, $size--normal + 10);
   }
 }
 
@@ -327,26 +327,38 @@ export default {
   h4 {
     font-family: $font-family__sans;
     font-weight: $font-weight__sans__regular;
-    font-size: $font-size--normal + 10;
     line-height: $line-height--normal;
     margin-bottom: 20px;
+    @include adaptiv-font($size--normal + 10, $size--small + 10);
   }
 
   p {
     font-family: $font-family__sans;
     font-size: $font-size--normal;
     line-height: $line-height--normal;
+    @include adaptiv-font($size--normal, $size--small);
   }
 
   &.large {
     margin-bottom: 50px;
     padding: 20px;
+    height: 80%;
 
     h4 {
       font-weight: $font-weight__sans__bold;
       font-size: $font-size--large;
       margin-bottom: 30px;
+      @include adaptiv-font($size--large, $size--small + 10);
     }
+
+    @media (max-width: $breackpoints__md) {
+      height: auto;
+    }
+  }
+
+  @media (max-width: $breackpoints__md) {
+    display: block;
+    text-align: center;
   }
 }
 
@@ -355,6 +367,12 @@ export default {
   flex-direction: column;
   justify-content: center;
   overflow: hidden;
+
+  @media (max-width: $breackpoints__md) {
+    max-width: 200px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+  }
 
   img {
     border-radius: 50%;
@@ -427,6 +445,15 @@ export default {
   justify-content: center;
   width: 100%;
 
+  @media (max-width: $breackpoints__md) {
+    flex-direction: column;
+
+    button {
+      display: block;
+      margin: 0 auto;
+    }
+  }
+
   button {
     opacity: 0.5;
     display: inline-flex;
@@ -474,6 +501,12 @@ export default {
     &.active {
       opacity: 1;
       background-position: -20px 0;
+    }
+
+    @media (max-width: $breackpoints__md) {
+      display: block;
+      margin: 0 auto;
+      margin-bottom: 20px;
     }
   }
 }

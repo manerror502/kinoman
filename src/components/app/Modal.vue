@@ -25,9 +25,9 @@ export default {
   left: 0;
   z-index: 100;
   display: flex;
-  padding: 20px 0;
-  overflow: hidden;
-  overflow-y: scroll;
+  padding: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
 
   &::-webkit-scrollbar {
     width: 10px;

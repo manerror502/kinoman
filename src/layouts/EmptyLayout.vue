@@ -11,7 +11,7 @@
     >
       <div class="container-fluid">
         <div class="row justify-content-end align-items-center">
-          <div class="col-lg-6">
+          <div class="col-lg-6 sign__right">
             <router-link
               tag="a"
               to="/"
@@ -128,6 +128,12 @@ export default {
   padding-bottom: 20px;
 }
 
+.sign__right {
+  @media (max-width: $breackpoints__md) {
+    display: none;
+  }
+}
+
 .sign__logo {
   display: flex;
 
@@ -149,8 +155,8 @@ export default {
 
   p {
     font-family: $font-family__sans;
-    font-size: $font-size--normal + 5;
     line-height: $line-height--large;
+    @include adaptiv-font($size--normal + 5, $size--normal);
   }
 }
 
@@ -202,10 +208,10 @@ export default {
   h2 {
     padding: 0 10px;
     font-family: $font-family__sans;
-    font-size: $font-size--normal + 5;
     line-height: $line-height--large;
     text-align: left;
     margin-bottom: 20px;
+    @include adaptiv-font($size--normal + 5, $size--small);
   }
 
   small {
@@ -217,7 +223,6 @@ export default {
 
   input {
     font-family: $font-family__sans;
-    font-size: $font-size--normal;
     width: 90%;
     border: 0;
     display: block;
@@ -227,6 +232,7 @@ export default {
     outline: none;
     border-radius: $border-radius__large;
     transition: $transition-duration $transition-timing-function;
+    @include adaptiv-font($size--normal, $size--small);
 
     &:focus {
       width: 95%;
@@ -238,6 +244,7 @@ export default {
     font-size: $font-size--normal - 5;
     text-align: left;
     text-decoration: underline;
+    @include adaptiv-font($size--normal - 5, $size--small);
 
     &:hover,
     &:focus {
