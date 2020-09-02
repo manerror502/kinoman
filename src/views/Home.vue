@@ -7,14 +7,14 @@
         <div class="row">
           <div class="col">
             <h3 class="playlists__title">
-              Умные плейлисты
+              Новые релизы
             </h3>
           </div>
         </div>
 
         <div class="row">
-          <div class="col-12">
-            <SmartPlaylists />
+          <div class="col-lg-12">
+            <NewRelease />
           </div>
         </div>
       </div>
@@ -144,7 +144,7 @@
 </template>
 
 <script>
-import SmartPlaylists from '@/components/Main/SmartPlaylists'
+import NewRelease from '@/components/Main/NewRelease'
 // import Collections from '@/components/Main/Collections'
 import Intro from '@/components/Main/Intro'
 import Recommends from '@/components/app/Recommends'
@@ -154,7 +154,7 @@ export default {
   name: 'Home',
   data: () => ({}),
   components: {
-    SmartPlaylists,
+    NewRelease,
     Intro,
     Modal,
     Recommends
