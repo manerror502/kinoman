@@ -1,8 +1,5 @@
 <template>
-  <section
-    class="playlists"
-    style=""
-  >
+  <section>
     <Loader
       v-if="loading"
       style="width: 100vw"

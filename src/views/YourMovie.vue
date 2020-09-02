@@ -1,6 +1,6 @@
 <template>
   <div class="row no-gutters your__movie">
-    <section class="playlists">
+    <!-- <section class="playlists">
       <div class="container-fluid">
         <div class="row">
           <div class="col">
@@ -16,7 +16,7 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
 
     <section class="playlists">
       <div class="container-fluid">
@@ -39,21 +39,21 @@
 </template>
 
 <script>
-import SmartPlaylists from '@/components/Main/SmartPlaylists'
+// import SmartPlaylists from '@/components/Main/SmartPlaylists'
 import HeartMovie from '@/components/YourMovie/HeartMovie'
 
 export default {
   name: 'YourMovie',
   components: {
-    SmartPlaylists,
+    // SmartPlaylists,
     HeartMovie
   }
 }
 </script>
 
 <style lang="less">
-
-.your__movie{
+.your__movie {
   margin-top: 50px;
+  width: 100%;
 }
 </style>

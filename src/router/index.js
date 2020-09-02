@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Details from '@/views/Details.vue'
+import ReccomendsForYou from '@/views/RecommendsForYou.vue'
 
 Vue.use(VueRouter)
 
@@ -52,7 +53,7 @@ const routes = [
     path: '/foryou',
     name: 'RecommendsForYou',
     meta: { layout: 'main', title: 'Рекоммендации для вас' },
-    component: () => import('../views/RecommendsForYou.vue')
+    component: ReccomendsForYou
   },
   {
     path: '/search',

@@ -24,6 +24,7 @@ html {
 
 
 .container-fluid {
+  max-width    : 83vw;
   width        : 100%;
   padding-left : 30px;
   padding-right: 15px;
@@ -2067,7 +2068,15 @@ html {
   }
 }
 
+@media (max-width:992px) {
+  .container-fluid {
+    max-width: 100vw;
+  }
+}
+
 @media (min-width:992px) {
+
+
   .flex-lg-row {
     -webkit-box-orient   : horizontal !important;
     -webkit-box-direction: normal !important;

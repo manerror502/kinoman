@@ -41,6 +41,7 @@ export default {
 
 .yourecommends {
   width: 100%;
+  margin: 0 auto;
   margin-top: 100px;
 }
 </style>

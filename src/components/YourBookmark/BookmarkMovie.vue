@@ -1,5 +1,5 @@
 <template>
-  <section class="playlists">
+  <section>
     <Loader v-if="loading" />
     <div
       v-else

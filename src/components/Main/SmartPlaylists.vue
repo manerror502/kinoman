@@ -58,9 +58,9 @@
           <div class="playlists__item-title">
             <h5>{{ playlist.title }}</h5>
           </div>
-          <div class="playlists__item-descr">
+          <!-- <div class="playlists__item-descr">
             <h6>Обновлён сегодня</h6>
-          </div>
+          </div> -->
         </router-link>
       </li>
     </ul>
