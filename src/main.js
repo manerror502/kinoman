@@ -4,6 +4,8 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
+// https://github.com/nuxt/vue-meta
+import VueMeta from 'vue-meta'
 import VScrollLock from 'v-scroll-lock'
 import VueYouTubeEmbed from 'vue-youtube-embed'
 // https://vuelidate.js.org/
@@ -15,6 +17,8 @@ import 'vue-toast-notification/dist/theme-default.css'
 import firebase from 'firebase/app'
 import 'firebase/auth'
 import 'firebase/database'
+
+import titlePlugin from '@/utils/plugins/title.plugin'
 
 import Loader from './components/app/Loader'
 
@@ -38,6 +42,8 @@ Vue.use(VScrollLock)
 Vue.use(VueYouTubeEmbed)
 Vue.use(Vuelidate)
 Vue.use(VueToast)
+Vue.use(VueMeta)
+Vue.use(titlePlugin)
 
 Vue.component('Loader', Loader)
 

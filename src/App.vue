@@ -20,6 +20,11 @@ import MobileBar from '@/components/mobile/MobileBar'
 import { mapState } from 'vuex'
 export default {
   name: 'App',
+  metaInfo () {
+    return {
+      title: this.$title(this.$route.meta.title)
+    }
+  },
   data: () => ({}),
   components: {
     mainLayout,

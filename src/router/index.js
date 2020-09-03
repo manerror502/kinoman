@@ -40,13 +40,13 @@ const routes = [
   {
     path: '/login',
     name: 'Login',
-    meta: { layout: 'empty' },
+    meta: { layout: 'empty', title: 'Войти' },
     component: () => import('../views/Login.vue')
   },
   {
     path: '/registered',
     name: 'Registered',
-    meta: { layout: 'empty' },
+    meta: { layout: 'empty', title: 'Зарегистрироваться' },
     component: () => import('../views/Registered.vue')
   },
   {
