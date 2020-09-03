@@ -1,17 +1,5 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "d02b2f15e8a8760088dc3ad269158b6a",
-    "url": "/favicon.jpg"
-  },
-  {
-    "revision": "8c10580e5dccc7df019e22010a87dc95",
-    "url": "/img/slider.jpg"
-  },
-  {
-    "revision": "a1cdf8acae621a0c8efc4949fd29782b",
-    "url": "/img/slider/matrica.jpg"
-  },
-  {
     "revision": "79927d63b265b511ef3b77abedf6e1d1",
     "url": "/index.html"
   },
