@@ -4,17 +4,19 @@
     class="app"
     :class="`app--${theme.currentTheme}`"
   >
-    <component :is="layout">
-      <router-view />
-    </component>
+    <transition name="slide-fade">
+      <component :is="layout">
+        <router-view />
 
-    <MobileBar />
+        <MobileBar />
+      </component>
+    </transition>
   </div>
 </template>
 
 <script>
-import mainLayout from '@/layouts/mainLayout'
-import emptyLayout from '@/layouts/emptyLayout'
+import MainLayout from '@/layouts/MainLayout'
+import EmptyLayout from '@/layouts/EmptyLayout'
 import MobileBar from '@/components/mobile/MobileBar'
 
 import { mapState } from 'vuex'
@@ -27,14 +29,14 @@ export default {
   },
   data: () => ({}),
   components: {
-    mainLayout,
-    emptyLayout,
+    MainLayout,
+    EmptyLayout,
     MobileBar
   },
   computed: {
     ...mapState(['theme']),
     layout () {
-      return this.$route.meta.layout + '-layout'
+      return (this.$route.meta.layout || 'main') + '-layout'
     }
   },
   watch: {
