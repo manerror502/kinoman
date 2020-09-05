@@ -9,7 +9,7 @@
           :to="link.url"
           active-class="active"
           :exact="link.exact"
-          class="col-4"
+          class="col-2"
         >
           <img
             :src="link.icon"
@@ -42,6 +42,16 @@ export default {
         title: ' Рекоммендации ',
         url: '/foryou',
         icon: require('../../assets/img/navBar/ball.svg')
+      },
+      {
+        title: ' Моё кино ',
+        url: '/yourMovie',
+        icon: require('../../assets/img/navBar/popcorn.svg')
+      },
+      {
+        title: ' Мои закладки ',
+        url: '/yourBookmarks',
+        icon: require('../../assets/img/navBar/bookmark.svg')
       }
     ]
   })
@@ -65,7 +75,7 @@ export default {
 .mobile__links {
   display: flex;
   justify-content: space-between;
-  padding: 0 10px;
+  padding: 0 20px;
 
   li {
     display: flex;
@@ -74,12 +84,11 @@ export default {
     align-items: center;
     text-align: right;
     overflow: hidden;
-    overflow: hidden;
-    padding: 10px;
+    padding: 15px 10px;
     transition: $transition-duration $transition-timing-function;
 
     img {
-      max-width: 50px;
+      max-width: 30px;
     }
   }
 }
