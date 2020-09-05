@@ -4,6 +4,27 @@ import randomIdArr from '@/utils/randomIdArr'
 // Да я знаю что axios можно настроить и не повторяться, мне лень
 export default {
   actions: {
+    getReleasesArrIntro ({ commit }, payload) {
+      const url = `https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-filters?order=RATING&ratingFrom=${
+        payload.rating.from
+      }&ratingTo=${payload.rating.to}&yearFrom=${payload.year.from}&yearTo=${
+        payload.year.to
+      }&page=${randomIdArr(payload.page)}`
+
+      return axios(url, {
+        method: 'GET',
+        headers: {
+          'X-API-KEY': process.env.VUE_APP_KINOPOISK
+        }
+      })
+        .then(films => {
+          return films.data.films
+        })
+        .catch(error => {
+          console.log(error)
+          return error
+        })
+    },
     getReleasesArr ({ commit }, payload) {
       const url = `https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-filters?order=YEAR&ratingFrom=${
         payload.rating.from
@@ -19,7 +40,6 @@ export default {
       })
         .then(films => {
           return films.data.films
-          // dispatch('getInfoFilm', film)
         })
         .catch(error => {
           console.log(error)

@@ -122,6 +122,10 @@ a {
   width: 100%;
   height: 500px;
   overflow: hidden;
+
+  @media (max-width: $breackpoints__md) {
+    height: 400px;
+  }
 }
 
 .intro__image {
@@ -206,6 +210,10 @@ a {
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
   overflow: hidden;
+
+  @media (max-width: $breackpoints__xs) {
+    line-height: $line-height--small;
+  }
 }
 
 .intro__descr-item {

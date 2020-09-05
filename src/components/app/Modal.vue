@@ -28,19 +28,6 @@ export default {
   padding: 0;
   overflow-x: hidden;
   overflow-y: auto;
-
-  &::-webkit-scrollbar {
-    width: 10px;
-
-    &-track {
-      background: rgb(68, 88, 112);
-    }
-
-    &-thumb {
-      background: rgb(31, 31, 31);
-      border-radius: $border-radius__large;
-    }
-  }
 }
 
 .modal__close {

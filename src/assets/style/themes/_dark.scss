@@ -59,8 +59,8 @@
     $colors__red: #e72f2f !global;
 
     // Links
-    $colors__link: $colors__primary;
-    $colors__link--hover: darken(#44529c, $fade);
+    $colors__link: $colors__green;
+    $colors__link--hover: fade-out($colors__green, .3%);
 
     // Borders and shadows
     $colors__shadows: $colors__black;

@@ -38,7 +38,7 @@
 
     $colors__primary: #61a8f8 !global;
     $colors__primary2: #0081ff !global;
-    $colors__blackPrimary: #e7f2fe !global;
+    $colors__blackPrimary: #EFF1F6 !global;
 
     $colors__second: #d930aa !global;
 
@@ -48,7 +48,7 @@
     $colors__blackGrays: #dadada !global;
 
     // Green
-    $colors__green: #25a55c !global;
+    $colors__green: #60CA91 !global;
 
     // Yellow
     $colors__yellow: #dfd51c !global;
@@ -57,8 +57,8 @@
     $colors__red: #c52c1e !global;
 
     // Links
-    $colors__link: $colors__primary;
-    $colors__link--hover: darken(#44529c, $fade);
+    $colors__link: $colors__green;
+    $colors__link--hover: fade-out($colors__green, .3%);
 
     // Borders and shadows
     $colors__shadows: $colors__black;

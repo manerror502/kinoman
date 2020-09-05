@@ -9,40 +9,38 @@
       v-else
       class="sign__row"
     >
-      <div class="container-fluid">
-        <div class="row justify-content-end align-items-center">
-          <div class="col-lg-6 sign__right">
-            <router-link
-              tag="a"
-              to="/"
-              class="sign__logo"
+      <div class="row justify-content-end align-items-center">
+        <div class="col-lg-6 sign__right">
+          <router-link
+            tag="a"
+            to="/"
+            class="sign__logo"
+          >
+            <img
+              class="img"
+              src="@/assets/img/logo/logo.png"
+              alt=""
+              draggable="false"
             >
-              <img
-                class="img"
-                src="@/assets/img/logo/logo.png"
-                alt=""
-                draggable="false"
-              >
-            </router-link>
-            <div class="sign__text">
-              <p>Минимум информации, максимум интереса!</p>
-            </div>
+          </router-link>
+          <div class="sign__text">
+            <p>Минимум информации, максимум интереса!</p>
+          </div>
 
-            <div class="sign__animation">
-              <div class="sign__film">
-                <FilmItemInfo
-                  class="sing__item col-6"
-                  v-for="release in newRelease"
-                  :key="release.filmId"
-                  :item-info="release"
-                />
-              </div>
+          <div class="sign__animation">
+            <div class="sign__film">
+              <FilmItemInfo
+                class="sing__item col-6"
+                v-for="release in newRelease"
+                :key="release.filmId"
+                :item-info="release"
+              />
             </div>
           </div>
-          <div class="col-lg-6 d-flex">
-            <div class="sign__dialog">
-              <router-view />
-            </div>
+        </div>
+        <div class="col-lg-6 d-flex">
+          <div class="sign__dialog">
+            <router-view />
           </div>
         </div>
       </div>

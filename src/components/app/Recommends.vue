@@ -84,6 +84,11 @@
         </button>
       </div>
     </div>
+
+    <span
+      class="more"
+      ref="more"
+    />
   </section>
 </template>
 
@@ -139,6 +144,11 @@ export default {
     }
 
     this.loading = false
+  },
+  mounted () {
+    if (!this.userInfo) {
+      this.lazyLoad()
+    }
   },
   methods: {
     async sortRecommends () {
@@ -252,8 +262,25 @@ export default {
         console.log(e)
       }
     },
-    lazyLoad () {
-      console.log('e')
+    async lazyLoad () {
+      const options = {
+        root: null,
+        threshold: 0
+      }
+
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            if (!this.loading && this.page <= this.recommends.pagesCount - 1) {
+              this.loadMore()
+            }
+            observer.unobserve()
+          }
+        })
+      }, options)
+
+      const el = this.$refs.more
+      observer.observe(el)
     },
 
     async getNewReleaseFilm () {
@@ -393,5 +420,11 @@ export default {
   text-align: center;
   font-family: $font-family__sans;
   font-size: $font-size--normal + 5;
+}
+
+.more {
+  display: block;
+  height: 5px;
+  opacity: 0;
 }
 </style>

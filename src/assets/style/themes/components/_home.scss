@@ -19,3 +19,14 @@
     }
   }
 }
+
+.modal__advice{
+  a{
+    color:$colors__link;
+
+    &:hover,
+    &:active{
+      color: $colors__link--hover;
+    }
+  }
+}

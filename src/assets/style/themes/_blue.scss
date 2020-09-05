@@ -47,7 +47,7 @@
     // Grays
     $colors__grays--lighter: #eff1f6 !global;
     $colors__grays: #99a9be !global;
-    $colors__blackGrays: #7c7c7c !global;
+    $colors__blackGrays: #4e5572 !global;
 
     // Green
     $colors__green: #3cd87a !global;
@@ -59,8 +59,8 @@
     $colors__red: #e72f2f !global;
 
     // Links
-    $colors__link: $colors__primary;
-    $colors__link--hover: darken(#44529c, $fade);
+    $colors__link: $colors__green;
+    $colors__link--hover: fade-out($colors__green, .3%);
 
     // Borders and shadows
     $colors__shadows: $colors__black;

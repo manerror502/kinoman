@@ -32,7 +32,7 @@
         <nav class="col-lg col-3 nav">
           <router-link
             tag="a"
-            :to="userInfo"
+            to="/profile"
             class="nav__link"
           >
             <span class="nav__link-user">
@@ -93,13 +93,6 @@ export default {
     },
     name () {
       return this.$store.getters.info.name
-    },
-    userInfo () {
-      if (!Object.keys(this.$store.getters.info).length) {
-        return '/login'
-      } else {
-        return '/profile'
-      }
     }
   },
   mounted () {},
@@ -164,6 +157,7 @@ export default {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  width: 100%;
 }
 
 .nav {

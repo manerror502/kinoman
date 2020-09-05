@@ -469,8 +469,8 @@ export default {
     font-size: $font-size--normal + 5;
     font-weight: $font-weight__sans__regular;
     color: #fff;
-    box-shadow: $shadows__coords-x - 1 $shadows__coords-y - 3 $shadows__size
-      fade-out(#000, 0.5%);
+    box-shadow: $shadows__coords-x $shadows__coords-y $shadows__size
+    fade-out(#000, 0.8%);
     text-shadow: $shadows__coords-x - 1 $shadows__coords-y - 3 $shadows__size
       fade-out(#000, 0.8%);
 

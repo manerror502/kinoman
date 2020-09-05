@@ -38,7 +38,10 @@
       </div>
     </section>
 
-    <Modal v-if="modal">
+    <Modal
+      v-if="modal"
+      v-scroll-lock="modal"
+    >
       <div class="modal__dialog">
         <div class="modal__header">
           <div class="modal__img">
@@ -129,7 +132,11 @@
         <div class="modal__text">
           <p>
             Спасибо за регистрацию! <br>
-            Теперь рекомендации будут подбирать вам интересное и увелекательное кино. В скором времени вам откроются плейлисты.
+            Теперь рекомендации будут подбирать вам интересное и увелекательное кино. <br>
+            <span class="modal__advice">
+              Совет: Для точного подбора рекомендаций, найдите ваши любимое кино в
+              <router-link to="/search">поиске</router-link>
+            </span>
           </p>
         </div>
 
@@ -199,6 +206,7 @@ export default {
     text-align: center;
     font-family: $font-family__sans;
     font-size: $font-size--normal + 5;
+    @include adaptiv-font($size--normal + 5, $size--small + 5);
   }
 }
 
@@ -215,7 +223,14 @@ export default {
     transition: $transition-duration $transition-timing-function;
     text-align: center;
     font-family: $font-family__sans;
-    font-size: $font-size--normal + 5;
+    @include adaptiv-font($size--normal + 5, $size--small + 5);
   }
+}
+
+.modal__advice {
+  font-family: $font-family__sans__light;
+  line-height: $line-height--small;
+  @include adaptiv-font($size--normal, $size--small);
+  font-weight: $font-weight__sans__light;
 }
 </style>

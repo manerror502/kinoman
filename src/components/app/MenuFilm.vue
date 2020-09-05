@@ -102,7 +102,7 @@ export default {
   },
   methods: {
     async like () {
-      if (this.$store.getters.info === undefined) {
+      if (!(await this.$store.dispatch('getUid'))) {
         // Если не авторизован
         this.$router.push('/login')
         this.$toast.error('Вы не авторизованны')
@@ -158,7 +158,7 @@ export default {
       }
     },
     async bookmark () {
-      if (this.$store.getters.info === undefined) {
+      if (!(await this.$store.dispatch('getUid'))) {
         // Если не авторизован
 
         this.$router.push('/login')
@@ -261,8 +261,9 @@ export default {
   right: 100%;
   top: 0;
   z-index: 4;
-  border-radius: $border-radius__small;
+  border-radius: $border-radius__small - 3;
   padding: 5px;
+  @include adaptiv-image(300, 240);
 }
 
 .menu__header {
@@ -307,6 +308,9 @@ export default {
       font-size: $font-size--normal;
       line-height: $line-height--normal + 7;
       font-family: $font-family__sans;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
     }
 
     span {

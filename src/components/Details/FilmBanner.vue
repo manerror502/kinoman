@@ -145,7 +145,7 @@ export default {
   },
   methods: {
     async like () {
-      if (this.$store.getters.info === undefined) {
+      if (!(await this.$store.dispatch('getUid'))) {
         // Если не авторизован
 
         this.$router.push('/login')
@@ -202,7 +202,7 @@ export default {
       }
     },
     async bookmark () {
-      if (this.$store.getters.info === undefined) {
+      if (!(await this.$store.dispatch('getUid'))) {
         // Если не авторизован
 
         this.$router.push('/login')

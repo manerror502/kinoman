@@ -32,7 +32,11 @@
           <main
             class="row no-gutters w-100"
           >
-            <router-view />
+            <transition
+              name="fade"
+            >
+              <router-view />
+            </transition>
           </main>
         </div>
       </div>
@@ -45,6 +49,7 @@ import Header from '@/components/app/Header.vue'
 import Navbar from '@/components/app/NavBar.vue'
 
 import randomIdArr from '@/utils/randomIdArr'
+import messages from '@/utils/messages'
 
 export default {
   name: 'MainLayout',
@@ -55,7 +60,11 @@ export default {
   data: () => ({
     loading: true
   }),
-  computed: {},
+  computed: {
+    error () {
+      return this.$store.getters.error
+    }
+  },
   async mounted () {
     // Получение информации о пользователе
     if (!Object.keys(this.$store.getters.info).length) {
@@ -74,14 +83,14 @@ export default {
           to: '10'
         },
         year: {
-          from: '2018',
+          from: '2015',
           to: '2020'
         },
         page: ['1', '2', '3', '4', '5']
       }
       try {
         const filmsArr = await this.$store.dispatch(
-          'getReleasesArr',
+          'getReleasesArrIntro',
           releasesSettings
         )
 
@@ -109,6 +118,12 @@ export default {
     //     console.log(e)
     //   }
     // }
+  },
+  watch: {
+    error (fbError) {
+      this.$toast.error(messages[fbError.code] || 'Что-то пошло не так')
+      console.log(fbError)
+    }
   }
 }
 </script>
@@ -116,14 +131,8 @@ export default {
 <style lang="scss">
 @import "@/assets/style/vars/_vars";
 
-.fade-enter,
-.fade-leave-active {
-  opacity: 0;
-}
-
-.fade-enter-active,
-.fade-leave-active {
-  transition: 0.2s ease;
+.page {
+  overflow: hidden;
 }
 
 .w-100 {

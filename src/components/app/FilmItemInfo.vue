@@ -61,11 +61,13 @@
           </svg>
         </button>
 
-        <MenuFilm
-          v-if="menu"
-          @closeMenu="closeMenu"
-          :menu-info="itemInfo"
-        />
+        <transition name="slide-fade">
+          <MenuFilm
+            v-if="menu"
+            @closeMenu="closeMenu"
+            :menu-info="itemInfo"
+          />
+        </transition>
       </div>
     </div>
   </li>
@@ -143,8 +145,8 @@ export default {
   overflow: hidden;
   transition: $transition-duration $transition-timing-function;
   padding: 0 1px;
-  box-shadow: $shadows__coords-x - 1 $shadows__coords-y - 3 $shadows__size
-    fade-out(#000, 0.5%);
+  box-shadow: $shadows__coords-x $shadows__coords-y $shadows__size + 3
+    fade-out(#000, 0.7%);
 
   &::after {
     content: "";
@@ -159,6 +161,11 @@ export default {
       rgba(0, 0, 0, 0.8) 30%,
       rgba(9, 9, 9, 0) 100%
     );
+  }
+
+  &:hover {
+    box-shadow: $shadows__coords-x $shadows__coords-y $shadows__size + 5
+      fade-out(#000, 0.5%);
   }
 }
 
@@ -202,7 +209,7 @@ export default {
   padding-right: 20%;
 
   @media (max-width: $breackpoints__xs) {
-    padding: 5px 10px;
+    padding: 10px;
   }
 }
 
@@ -211,13 +218,17 @@ export default {
   display: flex;
 
   h3 {
-    @include adaptiv-font($size--normal + 5, $size--small);
+    @include adaptiv-font($size--normal + 5, $size--small + 5);
     font-family: $font-family__sans__black;
     font-weight: 900;
     line-height: $line-height--small + 7;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
+
+    @media (max-width: $breackpoints__xs) {
+      line-height: $line-height--small;
+    }
   }
 
   @media (max-width: $breackpoints__xs) {
@@ -239,6 +250,10 @@ export default {
       font-weight: 300;
       font-family: $font-family__sans__light;
     }
+
+    @media (max-width: $breackpoints__xs) {
+      line-height: $line-height--small;
+    }
   }
 }
 
@@ -256,7 +271,7 @@ export default {
 
 .filmitem__menu-button {
   padding: 5px 0;
-  width: 60px;
+  @include adaptiv-image(60, 40);
   border-radius: $border-radius__small;
   transition: $transition-duration $transition-timing-function;
 

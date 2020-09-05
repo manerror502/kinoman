@@ -189,6 +189,7 @@ export default {
 }
 
 .navbar__link {
+  overflow: hidden;
   li {
     display: inline-flex;
     border-radius: $border-radius__small - 4;
@@ -208,6 +209,12 @@ export default {
       margin-right: 5px;
     }
 
+    span {
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
     &:hover,
     &:focus,
     &:active {
@@ -222,7 +229,7 @@ export default {
     @media (max-width: $breackpoints__lg) {
       justify-content: center;
       img {
-        max-width: 50px;
+        max-width: 40px;
       }
 
       span {

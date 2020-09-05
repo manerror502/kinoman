@@ -37,8 +37,11 @@ export default {
     hooperSettings: {
       itemsToShow: 3.1,
       breakpoints: {
-        993: {
+        1303: {
           itemsToShow: 3.1
+        },
+        993: {
+          itemsToShow: 2.1
         },
         576: {
           itemsToShow: 2.1

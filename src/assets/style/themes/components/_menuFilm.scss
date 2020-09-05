@@ -1,5 +1,7 @@
 .menu {
   background-color: $colors__blackGrays;
+  box-shadow: $shadows__coords-x $shadows__coords-y $shadows__size + 10
+    fade-out(#000, 0.5%);
 }
 
 .menu__title {
@@ -43,7 +45,7 @@
         color: $colors__white;
 
         span {
-          color: fade-out($colors__white, 0%);
+          color: fade-out(#fff, .1%);
         }
       }
 
