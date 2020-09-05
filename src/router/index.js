@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Details from '@/views/Details.vue'
 import ReccomendsForYou from '@/views/RecommendsForYou.vue'
+import firebase from 'firebase/app'
 
 Vue.use(VueRouter)
 
@@ -64,19 +65,19 @@ const routes = [
   {
     path: '/yourMovie',
     name: 'Your Movie',
-    meta: { layout: 'main', title: 'Ваше любимое кино' },
+    meta: { layout: 'main', title: 'Ваше любимое кино', auth: true },
     component: () => import('../views/YourMovie.vue')
   },
   {
     path: '/yourBookmarks',
     name: 'Your Bookmark',
-    meta: { layout: 'main', title: 'Ваши закладки' },
+    meta: { layout: 'main', title: 'Ваши закладки', auth: true },
     component: () => import('../views/YourBookmark.vue')
   },
   {
     path: '/profile',
     name: 'Profile',
-    meta: { layout: 'main', title: 'Профиль' },
+    meta: { layout: 'main', title: 'Профиль', auth: true },
     component: () => import('../views/Profile.vue')
   },
 
@@ -91,7 +92,23 @@ const routes = [
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
-  routes
+  routes,
+  scrollBehavior (to, from, savedPosition) {
+    // return desired position
+    return { x: 0, y: 0 }
+  }
+})
+
+// Защита роута
+router.beforeEach((to, from, next) => {
+  const currentUser = firebase.auth().currentUser
+  const requireAuth = to.matched.some(record => record.meta.auth)
+
+  if (requireAuth && !currentUser) {
+    next('/login')
+  } else {
+    next()
+  }
 })
 
 export default router
