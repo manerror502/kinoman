@@ -7,7 +7,6 @@ import InfoFilm from '@/components/Details/InfoFilm'
 // import infoPlaylist from '@/components/Details/InfoPlaylist'
 // import infoCollection from '@/components/Details/InfoCollection'
 
-
 export default {
   name: 'Details',
   components: {

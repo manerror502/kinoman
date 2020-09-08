@@ -69,7 +69,6 @@ const routes = [
     component: () => import('../views/Profile/Profile.vue')
   },
 
-
   {
     path: '*',
     name: '404',
