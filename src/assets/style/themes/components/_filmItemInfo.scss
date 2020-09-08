@@ -1,0 +1,53 @@
+.filmitem__link {
+  border: $border-width solid fade-out($colors__green, 1%);
+
+  &:hover,
+  &:focus,
+  &:active {
+    border: $border-width solid $colors__green;
+  }
+}
+
+.filmitem {
+  &:hover,
+  &:focus,
+  &:active {
+    color: $colors__green;
+  }
+}
+
+.filmitem__title {
+  h3 {
+    color: #e1e3e7;
+  }
+}
+
+.filmitem__ul {
+  li {
+    color: #99a9be;
+  }
+}
+
+.filmitem__rating {
+  color: $colors__green;
+  &.green {
+    color: $colors__green;
+  }
+
+  &.yellow {
+    color: $colors__yellow;
+  }
+
+  &.red {
+    color: $colors__red;
+  }
+}
+
+.filmitem__menu-button {
+  color: #99a9be;
+  &:hover,
+  &:focus,
+  &:active {
+    color: $colors__green;
+  }
+}

@@ -1,0 +1,49 @@
+$line-height--base: 1.428571429;
+$normal-letter-spacing: normal;
+
+// Guide
+
+$font-size--base: 16px;
+$font-size__coefficient--large: 3;
+$font-size__coefficient--normal: 1.5;
+$font-size__coefficient--small: 1;
+$font-size__coefficient--xsmall: 0.9;
+
+$font-size--large: round(
+  $font-size--base * $font-size__coefficient--large
+); // 64px
+$font-size--normal: round(
+  $font-size--base * $font-size__coefficient--normal
+); // 18px
+$font-size--small: round(
+  $font-size--base * $font-size__coefficient--small
+); // 14px
+$font-size--xsmall: round(
+  $font-size--base * $font-size__coefficient--xsmall
+); // 13px
+
+$line-height--computed: round($font-size--base * $line-height--base);
+$line-height--large: floor(
+  $line-height--computed * $font-size__coefficient--large
+); // 34px
+$line-height--normal: floor(
+  $line-height--computed * $font-size__coefficient--normal
+); // 26px
+$line-height--small: floor(
+  $line-height--computed * $font-size__coefficient--small
+); // 20px
+$line-height--xsmall: floor(
+  $line-height--computed * $font-size__coefficient--xsmall
+); // 18px
+
+// stylelint-disable value-keyword-case
+$font-family__sans: "Product Sans", Helvetica, Arial, sans-serif;
+
+$font-family__sans__black: "Product Sans Black", Helvetica, Arial, sans-serif;
+
+$font-family__sans__light: "Product Sans Light", Helvetica, Arial, sans-serif;
+// stylelint-enable value-keyword-case
+$font-weight__sans__regular: 400;
+$font-weight__sans__bold: 700;
+$font-weight__sans__black: 900;
+$font-weight__sans__light: 300;

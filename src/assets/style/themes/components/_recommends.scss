@@ -1,0 +1,38 @@
+.recommends__text {
+  background-color: $colors__primary;
+
+  p {
+    color: $colors__grays--lighter;
+  }
+}
+
+.recommends__btn {
+  background-image: $gradient__blue;
+  color: $colors__white;
+  box-shadow: $shadows__coords-x $shadows__coords-y $shadows__size
+    fade-out(#000, 0.8%);
+}
+
+.recommends__animation {
+  &::after {
+    background: linear-gradient(
+      90deg,
+      $colors__body 0%,
+      rgba(24, 24, 24, 0) 31%,
+      rgba(24, 24, 24, 0) 51%,
+      rgba(24, 24, 24, 0) 70%,
+      $colors__body 100%
+    );
+  }
+}
+
+.lazyload {
+  background-color: fade-out($colors__green, 0.2%);
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: $colors__white;
+    background-color: fade-out($colors__green, 0%);
+  }
+}

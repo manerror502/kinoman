@@ -1,0 +1,14 @@
+.modal {
+  background-color: fade-out(darken($colors__blackPrimary, 0.9%), 0.5%);
+}
+
+.theme {
+  background: $colors__body;
+
+  h5 {
+    color: $colors__grays--lighter;
+  }
+}
+
+.theme__wrap {
+}

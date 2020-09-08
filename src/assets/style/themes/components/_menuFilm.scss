@@ -1,0 +1,90 @@
+.menu {
+  background-color: $colors__blackGrays;
+  box-shadow: $shadows__coords-x $shadows__coords-y $shadows__size + 10
+    fade-out(#000, 0.5%);
+}
+
+.menu__title {
+  border-bottom: $border-width solid fade-out($colors__grays, 0.7%);
+
+  h5 {
+    color: $colors__grays--lighter;
+  }
+}
+
+.menu__button {
+  button {
+    color: $colors__grays--lighter;
+
+    span {
+      color: fade-out($colors__grays--lighter, 0.5%);
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: fade-out(#fff, 0.9%);
+      color: $colors__white;
+
+      span {
+        color: fade-out($colors__white, 0.4%);
+      }
+    }
+
+    &:nth-child(1) {
+      color: $colors__green;
+
+      span {
+        color: fade-out($colors__green, 0.5%);
+      }
+
+      &:hover,
+      &:focus,
+      &:active {
+        background-color: $colors__green;
+        color: $colors__white;
+
+        span {
+          color: fade-out(#fff, .1%);
+        }
+      }
+
+      &.like {
+        color: $colors__red;
+
+        span {
+          color: fade-out($colors__red, 0%);
+        }
+
+        &:hover,
+        &:focus,
+        &:active {
+          color: #fff;
+          background: $colors__red;
+          span {
+            color: fade-out(#fff, 0%);
+          }
+        }
+      }
+    }
+
+    &:nth-child(0) {
+      color: $colors__red;
+
+      span {
+        color: fade-out($colors__red, 0.5%);
+      }
+
+      &:hover,
+      &:focus,
+      &:active {
+        background-color: $colors__red;
+        color: $colors__white;
+
+        span {
+          color: fade-out($colors__white, 0.5%);
+        }
+      }
+    }
+  }
+}

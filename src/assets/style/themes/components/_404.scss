@@ -1,0 +1,5 @@
+.undefined__text {
+  background-color: $colors__red;
+  box-shadow: $shadows__coords-x $shadows__coords-y $shadows__size
+    fade-out($colors__black, 0.8%);
+}

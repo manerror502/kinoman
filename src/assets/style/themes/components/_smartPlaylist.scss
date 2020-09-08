@@ -1,0 +1,59 @@
+.playlists__item {
+  border: $border-width solid fade-out($colors__green, 1%);
+
+  &:hover,
+  &:focus {
+    border: $border-width solid $colors__green;
+  }
+}
+
+.playlists__item-title,
+.playlists__item-descr {
+  h5 {
+    color: $colors__grays--lighter;
+  }
+}
+
+.playlists__item-descr {
+  h6 {
+    color: $colors__grays;
+  }
+}
+
+.playlists__item-hover {
+  button {
+    color: $colors__white;
+
+    &.heart {
+      &:hover,
+      &:focus,
+      &:active {
+        color: $colors__green;
+      }
+    }
+  }
+}
+
+.playlists__day {
+  background-color: fade-out($colors__primary2, 0.5%);
+}
+
+.playlists__day-title {
+  h4 {
+    color: $colors__grays--lighter;
+    border-bottom: $border-width solid fade-out($colors__grays--lighter, 0.5%);
+  }
+}
+
+.playlists__day-info {
+  p {
+    color: $colors__grays--lighter;
+  }
+}
+
+.playlists__day-btn {
+  button {
+    background-image: $gradient__green;
+    color: $colors__white;
+  }
+}

@@ -1,0 +1,48 @@
+.searchpage {
+}
+
+.searchpage__input {
+  background: $colors__blackPrimary;
+  border: $border-width + 1 solid $colors__primary;
+  color: $colors__grays--lighter;
+  &:focus {
+    border-color: $colors__green;
+  }
+}
+
+.recommends__no-input {
+  input {
+    background: $colors__blackPrimary;
+    border: $border-width + 1 solid $colors__primary;
+    color: $colors__grays--lighter;
+
+    &:focus {
+      border-color: $colors__green;
+    }
+
+    &.invalid {
+      border: $border-width + 1 solid $colors__red;
+    }
+  }
+}
+
+@keyframes color {
+  0% {
+    border: $border-width + 1 solid $colors__primary;
+  }
+  20% {
+    border: $border-width + 1 solid $colors__green;
+  }
+  40% {
+    border: $border-width + 1 solid $colors__yellow;
+  }
+  60% {
+    border: $border-width + 1 solid $colors__primary2;
+  }
+  80% {
+    border: $border-width + 1 solid $colors__second;
+  }
+  100% {
+    border: $border-width + 1 solid $colors__red;
+  }
+}

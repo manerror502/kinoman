@@ -1,0 +1,35 @@
+.border-r {
+  border-right: $border-width solid $colors__border;
+}
+
+.intro {
+  box-shadow: $shadows__coords-x $shadows__coords-y $shadows__size
+    fade-out($colors__black, 0.9%);
+  background-color: $colors__body;
+}
+
+.intro__title {
+  color: #e1e3e7;
+}
+
+.intro__text {
+  color: fade-out(#e1e3e7, 0.1%);
+}
+.intro__descr-item {
+  border-top: $border-width solid fade-out($colors__border, 0.5%);
+  color: #ffffff;
+
+  li {
+    color: fade-out(#e1e3e7, 0.1%);
+
+    span {
+      color: #e1e3e7;
+    }
+
+    &:last-child {
+      span {
+        color: $colors__green;
+      }
+    }
+  }
+}

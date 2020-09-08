@@ -1,0 +1,71 @@
+.app {
+  &--white {
+    $gradient__primary: linear-gradient(
+      180deg,
+      rgb(58, 87, 204) 0%,
+      rgb(23, 6, 129) 100%
+    ) !global;
+
+    $gradient__green: linear-gradient(
+      90deg,
+      rgb(12, 149, 78) 0%,
+      rgb(37, 189, 128) 80%
+    ) !global;
+
+    $gradient__purpule: radial-gradient(
+      circle,
+      rgba(139, 15, 206, 0.5) 0%,
+      rgba(255, 0, 235, 0.5) 100%
+    ) !global;
+
+    $gradient__yellow: radial-gradient(
+      circle,
+      rgba(205, 167, 29, 0.3) 0%,
+      rgba(217, 126, 17, 0.3) 100%
+    ) !global;
+
+    $gradient__blue: radial-gradient(
+      circle,
+      rgb(205, 152, 29) 0%,
+      rgb(217, 24, 17) 100%
+    ) !global;
+
+    // Palette
+    $colors__body: #f4f4f4 !global;
+
+    $colors__white: rgb(0, 0, 0) !global;
+    $colors__black: rgb(255, 255, 255) !global;
+
+    $colors__primary: #61a8f8 !global;
+    $colors__primary2: #0081ff !global;
+    $colors__blackPrimary: #EFF1F6 !global;
+
+    $colors__second: #d930aa !global;
+
+    // Grays
+    $colors__grays--lighter: #3a3a3a !global;
+    $colors__grays: #575757 !global;
+    $colors__blackGrays: #dadada !global;
+
+    // Green
+    $colors__green: #60CA91 !global;
+
+    // Yellow
+    $colors__yellow: #dfd51c !global;
+
+    // Red
+    $colors__red: #c52c1e !global;
+
+    // Links
+    $colors__link: $colors__green;
+    $colors__link--hover: fade-out($colors__green, .3%);
+
+    // Borders and shadows
+    $colors__shadows: $colors__black;
+
+    $colors__border: $colors__grays--lighter;
+
+    background: $colors__body;
+    @import "./themes__content";
+  }
+}

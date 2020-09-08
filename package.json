@@ -1,19 +1,42 @@
 {
   "name": "kinoman",
+  "description": "Приложение для тех, кто любит кино",
   "version": "0.1.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/manerror502/kinoman"
+  },
+  "keywords": [
+    "фильмы",
+    "сериалы",
+    "кино",
+    "SPA"
+  ],
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
+    "start": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "axios": "^0.19.2",
     "core-js": "^3.6.5",
+    "firebase": "^7.17.1",
+    "firebase-tools": "^8.9.2",
+    "hooper": "^0.3.4",
     "less": "^3.11.3",
     "less-loader": "^6.1.3",
+    "node-sass": "^4.14.1",
     "register-service-worker": "^1.7.1",
+    "sass": "^1.26.10",
+    "sass-loader": "^10.0.1",
+    "v-scroll-lock": "^1.2.0",
     "vue": "^2.6.11",
+    "vue-meta": "^2.4.0",
     "vue-router": "^3.2.0",
+    "vue-toast-notification": "^0.4.1",
+    "vue-youtube-embed": "^2.2.2",
+    "vuelidate": "^0.7.5",
     "vuex": "^3.4.0"
   },
   "devDependencies": {

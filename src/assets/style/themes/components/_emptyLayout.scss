@@ -1,0 +1,55 @@
+.sign__dialog {
+}
+
+.sign__text {
+  p {
+    color: $colors__grays;
+  }
+}
+
+.sign__login {
+  h2 {
+    color: $colors__grays;
+    // box-shadow: $shadows__coords-x $shadows__coords-y $shadows__size
+    //   fade-out($colors__black, 0.8%);
+  }
+
+  small {
+    color: $colors__red;
+  }
+
+  input {
+    background: $colors__blackPrimary;
+    border: $border-width + 1 solid $colors__primary;
+    color: $colors__white;
+
+    &:focus {
+      border-color: $colors__green;
+    }
+
+    &.invalid {
+      border: $border-width + 1 solid $colors__red;
+    }
+  }
+
+  a {
+    color: $colors__grays;
+    &:hover,
+    &:focus {
+      color: $colors__green;
+    }
+  }
+}
+
+.sign__animation {
+  &::after {
+    background: linear-gradient(
+      90deg,
+      $colors__body 0%,
+      rgba(24, 24, 24, 0) 31%,
+      rgba(24, 24, 24, 0) 51%,
+      rgba(24, 24, 24, 0) 70%,
+      $colors__body 100%
+    );
+  }
+}
