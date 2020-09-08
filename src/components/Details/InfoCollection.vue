@@ -66,7 +66,6 @@ export default {
 
       const collectionTitle = collections.forEach(element => {
         if (element.id === id) {
-          console.log(element.title)
           return element.title
         }
       })

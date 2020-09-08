@@ -27,18 +27,6 @@ const routes = [
     component: Details
   },
   {
-    path: '/kinolenta/:name',
-    name: 'InfoPlaylist',
-    meta: { layout: 'main', title: 'Плейлист' },
-    component: Details
-  },
-  {
-    path: '/collection/:colId',
-    name: 'InfoCollection',
-    meta: { layout: 'main', title: 'Коллеция' },
-    component: Details
-  },
-  {
     path: '/login',
     name: 'Login',
     meta: { layout: 'empty', title: 'Войти' },
@@ -80,12 +68,7 @@ const routes = [
     meta: { layout: 'main', title: 'Профиль', auth: true },
     component: () => import('../views/Profile/Profile.vue')
   },
-  // {
-  //   path: '/profile/preferences',
-  //   name: 'Preferences',
-  //   meta: { layout: 'main', title: 'Ваши предпочтения', auth: true },
-  //   component: () => import('../views/Profile/Preferences.vue')
-  // },
+
 
   {
     path: '*',
