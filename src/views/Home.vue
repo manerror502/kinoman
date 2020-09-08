@@ -1,5 +1,5 @@
 <template>
-  <div class="row no-gutters">
+  <div class="row no-gutters w-100">
     <Intro />
 
     <section
@@ -190,14 +190,14 @@ export default {
     time () {
       const currentDate = new Date().getHours()
 
-      if (currentDate >= 0) {
+      if (currentDate <= 6) {
         return 'Доброй ночи'
-      } else if (currentDate >= 6) {
+      } else if (currentDate <= 11) {
         return 'Доброй утро'
-      } else if (currentDate >= 12) {
+      } else if (currentDate <= 16) {
         return 'Добрый день'
       } else {
-        return 'Доброго вечера'
+        return 'Добрый вечер'
       }
     },
     userName () {
