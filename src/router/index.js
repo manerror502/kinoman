@@ -23,7 +23,7 @@ const routes = [
   {
     path: '/film/:id',
     name: 'InfoFilm',
-    meta: { layout: 'main', title: 'Информация о фильме' },
+    meta: { layout: 'main', title: 'Информация о кино' },
     component: Details
   },
   {
@@ -78,8 +78,14 @@ const routes = [
     path: '/profile',
     name: 'Profile',
     meta: { layout: 'main', title: 'Профиль', auth: true },
-    component: () => import('../views/Profile.vue')
+    component: () => import('../views/Profile/Profile.vue')
   },
+  // {
+  //   path: '/profile/preferences',
+  //   name: 'Preferences',
+  //   meta: { layout: 'main', title: 'Ваши предпочтения', auth: true },
+  //   component: () => import('../views/Profile/Preferences.vue')
+  // },
 
   {
     path: '*',

@@ -1,6 +1,7 @@
 <template>
   <div
     class="infofilm__banner banner"
+    :class="{playlist: !param}"
   >
     <div class="banner__wrap">
       <div
@@ -12,7 +13,6 @@
     <div class="banner__content">
       <div
         class="banner__preview"
-        :class="{playlist: !param}"
       >
         <img
           :src="bannerInfo.data.posterUrl"
@@ -110,7 +110,10 @@ export default {
     filmsLike: [],
     filmsBookmarks: [],
     filters: null,
-    counter: 0
+    counter: 0,
+
+    fade: false,
+    scrollPrev: 0
   }),
   computed: {
     filmLike () {
@@ -145,7 +148,7 @@ export default {
   },
   methods: {
     async like () {
-      if (!(await this.$store.dispatch('getUid'))) {
+      if (!await this.$store.dispatch('getUid')) {
         // Если не авторизован
 
         this.$router.push('/login')
@@ -202,7 +205,7 @@ export default {
       }
     },
     async bookmark () {
-      if (!(await this.$store.dispatch('getUid'))) {
+      if (!await this.$store.dispatch('getUid')) {
         // Если не авторизован
 
         this.$router.push('/login')
@@ -295,7 +298,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "@/assets/style/vars/_vars";
+@import '@/assets/style/vars/_vars';
 
 .banner__wrap {
   overflow: hidden;
@@ -306,9 +309,25 @@ export default {
   height: 400px;
   position: relative;
   z-index: 2;
+  transition: $transition-duration $transition-timing-function;
 
-  @media (max-width: $breackpoints__md) {
+  &.playlist {
+    .banner__preview {
+      max-width: 200px;
+      max-height: 215px;
+    }
+  }
+
+  @media (max-width: $breackpoints__sm) {
     height: 600px;
+
+    &.playlist {
+      height: 450px;
+
+      .banner__title {
+        top: 70%;
+      }
+    }
   }
 }
 
@@ -337,12 +356,7 @@ export default {
     height: 100%;
   }
 
-  &.playlist {
-    max-width: 200px;
-    max-height: 215px;
-  }
-
-  @media (max-width: $breackpoints__md) {
+  @media (max-width: $breackpoints__sm) {
     top: 100px;
     left: 50%;
     transform: translateX(-50%);
@@ -368,14 +382,20 @@ export default {
   h3 {
     font-size: $font-size--large + 5;
     font-family: $font-family__sans__black;
+    @include adaptiv-font($size--large + 5, $size--normal + 5);
     font-weight: 500;
     margin-bottom: 30px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
   }
 
-  @media (max-width: $breackpoints__md) {
+  @media (max-width: $breackpoints__sm) {
     padding: 0;
     position: absolute;
-    top: 60%;
+    top: 57%;
     left: 50%;
     transform: translateX(-50%);
     margin: 0;
@@ -384,6 +404,12 @@ export default {
     text-align: center;
     margin-top: 20px;
     line-height: $line-height--normal;
+    padding: 0 10px;
+
+    h3 {
+      margin-bottom: 10px;
+      line-height: $line-height--normal + 10;
+    }
   }
 }
 
@@ -411,7 +437,7 @@ export default {
     }
   }
 
-  @media (max-width: $breackpoints__md) {
+  @media (max-width: $breackpoints__sm) {
     position: relative;
     padding-top: 50px;
     text-align: center;

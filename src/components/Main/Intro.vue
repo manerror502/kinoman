@@ -108,10 +108,6 @@ export default {
   z-index: 5;
 }
 
-a {
-  text-decoration: none;
-}
-
 .bg-c {
   background-color: fade-out(#fff, 0.9%);
   padding-bottom: 20px;

@@ -1,7 +1,4 @@
 .sign__dialog {
-  background-color: $colors__blackGrays;
-  box-shadow: $shadows__coords-x $shadows__coords-y $shadows__size
-    fade-out($colors__black, 0.8%);
 }
 
 .sign__text {
@@ -12,9 +9,9 @@
 
 .sign__login {
   h2 {
-    color: $colors__grays--lighter;
-    box-shadow: $shadows__coords-x $shadows__coords-y $shadows__size
-      fade-out($colors__black, 0.8%);
+    color: $colors__grays;
+    // box-shadow: $shadows__coords-x $shadows__coords-y $shadows__size
+    //   fade-out($colors__black, 0.8%);
   }
 
   small {

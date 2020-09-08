@@ -46,7 +46,7 @@ export default {
           return error
         })
     },
-    getInfoFilm ({ dispatch }, payload) {
+    getInfoFilm ({ dispatch, commit }, payload) {
       const url = `https://kinopoiskapiunofficial.tech/api/v2.1/films/${payload}?append_to_response=RATING&append_to_response=POSTERS&append_to_response=REVIEW`
 
       return axios(url, {
@@ -58,9 +58,9 @@ export default {
         .then(film => {
           return film.data
         })
-        .catch(error => {
-          console.log(error)
-          return error
+        .catch(e => {
+          commit('setError', e)
+          throw e
         })
     },
     getTrailerFilm ({ dispatch }, payload) {
@@ -184,8 +184,10 @@ export default {
           return error
         })
     },
-    getRecommendFilm ({ dispatch }, { country, genre, minYear, page }) {
-      const url = `https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-filters?country=${country}&genre=${genre}&order=RATING&ratingTo=10&yearFrom=${minYear}&yearTo=2020&page=${page}`
+    getRecommendFilm ({ dispatch, commit }, { genre, country, page }) {
+      const url = `https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-filters?country=${country}&genre=${genre}&order=${randomIdArr(
+        ['RATING', 'YEAR', 'NUM_VOTE']
+      )}&ratingTo=10&yearFrom=&yearTo=2020&page=${page}`
 
       return axios(url, {
         method: 'GET',
@@ -196,12 +198,12 @@ export default {
         .then(recommedFilm => {
           return recommedFilm.data
         })
-        .catch(error => {
-          console.log(error)
-          return error
+        .catch(e => {
+          commit('setError', e)
+          throw e
         })
     },
-    searchFilms ({ dispatch }, keyword) {
+    searchFilms ({ dispatch, commit }, keyword) {
       const url = `https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-keyword?keyword=${keyword}&page=1`
 
       return axios(url, {
@@ -213,9 +215,9 @@ export default {
         .then(searchFilms => {
           return searchFilms.data
         })
-        .catch(error => {
-          console.log(error)
-          return error
+        .catch(e => {
+          commit('setError', e)
+          throw e
         })
     }
   }

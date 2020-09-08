@@ -9,7 +9,9 @@
     <div v-else>
       <FilmBanner :banner-info="infoFilm" />
 
-      <div class="infofilm__content">
+      <div
+        class="infofilm__content"
+      >
         <div class="row">
           <div
             class="col-lg-6"
@@ -60,7 +62,7 @@
                 <span>{{ infoFilm.data.ratingAgeLimits || 'Нет информации' }}</span>
               </li>
               <li>
-                Рейтинг:
+                КиноПоиск:
                 <span :class="rating">{{ infoFilm.rating.rating || 'Нет информации' }}</span>
               </li>
             </ul>
@@ -85,7 +87,7 @@
             class="row infofilm__staff"
           >
             <div class="infofilm__heading">
-              <h2>Актёры</h2>
+              <h2>Команда</h2>
             </div>
 
             <div
@@ -136,7 +138,11 @@ export default {
     trailerFilm: {},
     staffFilm: [],
     videoId: 'videoId',
-    loading: true
+    loading: true,
+
+    // Для скролла
+    fade: false,
+    scrollPrev: 0
   }),
   components: {
     FilmBanner
@@ -223,7 +229,7 @@ export default {
 </script>
 
 <style lang="scss" >
-@import "@/assets/style/vars/_vars";
+@import '@/assets/style/vars/_vars';
 
 .infofilm {
   position: relative;
@@ -242,6 +248,8 @@ export default {
   z-index: 2;
   padding: 30px 20px;
   border-radius: $border-radius__big + 20;
+  transition: $transition-duration $transition-timing-function;
+  // box-shadow: 0 0 20px fade-out(#000, 0.7%);
 
   @media (max-width: $breackpoints__md) {
     border-radius: $border-radius__big;
@@ -263,7 +271,7 @@ export default {
   font-size: $font-size--normal;
 
   li {
-    font-family: "Product Sans Light";
+    font-family: 'Product Sans Light';
     font-weight: 300;
     max-width: 100%;
     overflow: hidden;
@@ -276,8 +284,13 @@ export default {
 
     &:last-child {
       font-size: $font-size--normal + 10;
-      font-weight: 600;
+      font-family: $font-family__sans;
+      font-weight: $font-weight__sans__bold;
       color: #f60;
+    }
+
+    @media (max-width: $breackpoints__md) {
+      text-align: center;
     }
   }
 }
@@ -293,6 +306,10 @@ export default {
     font-family: $font-family__sans;
     font-weight: 400;
     line-height: $line-height--small + 5;
+
+    @media (max-width: $breackpoints__md) {
+      text-align: center;
+    }
   }
 }
 
@@ -303,6 +320,10 @@ export default {
   h2 {
     font-size: $font-size--normal + 10;
     font-family: $font-family__sans__black;
+
+    @media (max-width: $breackpoints__md) {
+      text-align: center;
+    }
   }
 }
 
@@ -322,7 +343,6 @@ export default {
   filter: blur(100px);
   overflow: hidden;
   width: 100%;
-  max-height: 400px;
   height: 100%;
 }
 
@@ -330,7 +350,7 @@ export default {
   position: relative;
   z-index: 2;
   display: flex;
-  max-height: 265px;
+  max-height: 350px;
   height: 100%;
   flex-direction: column;
   // border: $border-width solid fade($colors__grays, 10%);

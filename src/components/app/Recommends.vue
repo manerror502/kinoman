@@ -86,6 +86,7 @@
     </div>
 
     <span
+      v-if="!($route.fullPath === '/')"
       class="more"
       ref="more"
     />
@@ -231,6 +232,14 @@ export default {
         'getRecommendFilm',
         recommendsInfo
       )
+
+      // await this.filterReccomends()
+    },
+    async filterReccomends (reccomends) {
+      const filmsLike = await this.$store.dispatch('fetchLikeFilm')
+      await this.recommends.films.filter(film =>
+        filmsLike.includes(film.filmId)
+      )
     },
 
     async loadMore () {
@@ -271,7 +280,11 @@ export default {
       const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
-            if (!this.loading && this.page <= this.recommends.pagesCount - 1) {
+            if (
+              !this.loading &&
+              this.page <= this.recommends.pagesCount - 1 &&
+              !this.lazyLoading
+            ) {
               this.loadMore()
             }
             observer.unobserve()
@@ -309,7 +322,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "@/assets/style/vars/_vars";
+@import '@/assets/style/vars/_vars';
 
 .recommends {
   max-width: 100%;
@@ -374,7 +387,7 @@ export default {
   max-width: 1000px;
 
   &::after {
-    content: "";
+    content: '';
     position: absolute;
     top: 0;
     left: 0;
@@ -420,11 +433,5 @@ export default {
   text-align: center;
   font-family: $font-family__sans;
   font-size: $font-size--normal + 5;
-}
-
-.more {
-  display: block;
-  height: 5px;
-  opacity: 0;
 }
 </style>

@@ -2,11 +2,27 @@
   <div class="row no-gutters">
     <Intro />
 
-    <section class="playlists">
+    <section
+      class="items"
+    >
       <div class="container-fluid">
         <div class="row">
           <div class="col">
-            <h3 class="playlists__title">
+            <h3 class="items__title time">
+              {{ time }}<span v-if="userName">, {{ userName }}</span>
+            </h3>
+          </div>
+        </div>
+
+        <!-- <div class="row">
+          <div class="col-lg-12">
+            <Playlists />
+          </div>
+        </div> -->
+
+        <div class="row">
+          <div class="col">
+            <h3 class="items__title">
               Новые релизы
             </h3>
           </div>
@@ -20,11 +36,11 @@
       </div>
     </section>
 
-    <section class="playlists">
+    <section class="items">
       <div class="container-fluid">
         <div class="row">
           <div class="col">
-            <h3 class="playlists__title">
+            <h3 class="items__title">
               Специально для вас
             </h3>
           </div>
@@ -152,7 +168,7 @@
 
 <script>
 import NewRelease from '@/components/Main/NewRelease'
-// import Collections from '@/components/Main/Collections'
+// import Playlists from '@/components/Main/Playlists'
 import Intro from '@/components/Main/Intro'
 import Recommends from '@/components/app/Recommends'
 import Modal from '@/components/app/Modal.vue'
@@ -165,10 +181,27 @@ export default {
     Intro,
     Modal,
     Recommends
+    // Playlists
   },
   computed: {
     modal () {
       return this.$route.query.user
+    },
+    time () {
+      const currentDate = new Date().getHours()
+
+      if (currentDate >= 0) {
+        return 'Доброй ночи'
+      } else if (currentDate >= 6) {
+        return 'Доброй утро'
+      } else if (currentDate >= 12) {
+        return 'Добрый день'
+      } else {
+        return 'Доброго вечера'
+      }
+    },
+    userName () {
+      return this.$store.getters.info.name
     }
   },
   methods: {
@@ -180,7 +213,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "@/assets/style/vars/_vars";
+@import '@/assets/style/vars/_vars';
 
 .modal__dialog {
   width: 100%;

@@ -33,8 +33,11 @@
             </ul>
           </div>
 
-          <div class="filmitem__rating">
-            <h5 :class="rating">
+          <div
+            class="filmitem__rating"
+            :class="rating"
+          >
+            <h5>
               {{ itemInfo.rating }}
             </h5>
           </div>
@@ -135,7 +138,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "@/assets/style/vars/_vars";
+@import '@/assets/style/vars/_vars';
 
 .filmitem__link {
   width: 100%;
@@ -149,7 +152,7 @@ export default {
     fade-out(#000, 0.7%);
 
   &::after {
-    content: "";
+    content: '';
     opacity: 1;
     width: 100%;
     height: 100%;

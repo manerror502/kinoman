@@ -105,13 +105,15 @@ export default {
 </script>
 
 <style lang="scss">
-@import "@/assets/style/vars/_vars";
+@import '@/assets/style/vars/_vars';
 
 .sign {
   height: 100vh;
   display: flex;
   align-items: center;
   overflow: hidden;
+  position: relative;
+  z-index: 2;
 }
 
 .sign__row {
@@ -122,7 +124,7 @@ export default {
   margin: auto;
   max-width: 600px;
   width: 100%;
-  border-radius: $border-radius__large;
+  border-radius: $border-radius__small;
   padding-bottom: 20px;
 }
 
@@ -134,10 +136,13 @@ export default {
 
 .sign__logo {
   display: flex;
+  max-height: 300px;
+  overflow: hidden;
 
   img {
     user-select: none;
     margin: auto;
+    max-height: 300px;
 
     &:hover,
     &:focus,
@@ -164,7 +169,7 @@ export default {
   padding: 0 10px;
 
   &::after {
-    content: "";
+    content: '';
     position: absolute;
     top: 0;
     left: 0;
@@ -200,14 +205,14 @@ export default {
 // стили компонентов
 
 .sign__login {
-  text-align: left;
+  text-align: center;
   position: relative;
 
   h2 {
     padding: 0 10px;
     font-family: $font-family__sans;
     line-height: $line-height--large;
-    text-align: left;
+    text-align: center;
     margin-bottom: 20px;
     @include adaptiv-font($size--normal + 5, $size--small);
   }
@@ -224,8 +229,9 @@ export default {
     width: 90%;
     border: 0;
     display: block;
+    margin: 0 auto;
     margin-top: 20px;
-    text-align: left;
+    text-align: center;
     padding: 14px 10px;
     outline: none;
     border-radius: $border-radius__large;
@@ -240,7 +246,7 @@ export default {
   a {
     transition: $transition-duration $transition-timing-function;
     font-size: $font-size--normal - 5;
-    text-align: left;
+    text-align: center;
     text-decoration: underline;
     @include adaptiv-font($size--normal - 5, $size--small);
 
@@ -248,6 +254,22 @@ export default {
     &:focus {
       outline: none;
     }
+  }
+}
+
+.btn--login {
+  font-family: $font-family__sans;
+  font-size: $font-size--normal - 5;
+  display: block;
+  width: 100%;
+  margin: 20px 0;
+  text-align: center;
+  padding: 14px 70px;
+  outline: none;
+  border-radius: $border-radius__large;
+  transition: $transition-duration $transition-timing-function;
+  @media (max-width: $breackpoints__sm) {
+    padding: 14px 50px;
   }
 }
 

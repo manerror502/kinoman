@@ -2,14 +2,13 @@
   <section>
     <Loader
       v-if="loading"
-      style="width: 100vw"
     />
     <div
       v-else
     >
       <ul
         class="row justify-content-arround"
-        v-if="heartFilms.length"
+        v-if="films.length"
       >
         <FilmItemInfo
           class="col-xl-4 col-md-6"
@@ -33,7 +32,14 @@
           </div>
         </div>
       </div>
+
+      <Loader v-if="lazyLoading" />
     </div>
+
+    <span
+      class="more"
+      ref="more"
+    />
   </section>
 </template>
 
@@ -46,7 +52,10 @@ export default {
   data: () => ({
     loading: true,
     heartFilms: [],
-    films: []
+    films: [],
+
+    arrIndex: 19,
+    lazyLoading: false
   }),
   components: {
     FilmItemInfo,
@@ -63,13 +72,48 @@ export default {
 
     this.loading = false
   },
+  mounted () {
+    this.lazyLoad()
+  },
   methods: {
     async getFilmsInfo () {
+      // Для того чтобы не перегружать сервер запросами
+      const films = this.heartFilms.splice(0, this.arrIndex)
       // Добавляем в массив
-      await this.heartFilms.forEach(async filmId => {
-        const film = await this.$store.dispatch('getInfoFilm', filmId)
-        this.films.push(film.data)
+      films.forEach(async filmId => {
+        try {
+          const film = await this.$store.dispatch('getInfoFilm', filmId)
+          this.films.push(film.data)
+        } catch (e) {}
       })
+    },
+    async loadMore () {
+      this.lazyLoading = true
+
+      await this.getFilmsInfo()
+
+      this.lazyLoading = false
+    },
+    async lazyLoad () {
+      const options = {
+        root: null,
+        threshold: 0
+      }
+
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            if (this.films.length > this.arrIndex - 1) {
+              this.loadMore()
+            }
+
+            observer.unobserve()
+          }
+        })
+      }, options)
+
+      const el = this.$refs.more
+      observer.observe(el)
     }
   }
 }

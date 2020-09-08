@@ -72,6 +72,7 @@ export default {
 
 .searchpage__info {
   border-radius: $border-radius__large;
+  width: 100%;
 
   &::-webkit-scrollbar {
     width: 0;

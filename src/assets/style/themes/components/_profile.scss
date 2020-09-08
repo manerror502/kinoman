@@ -1,8 +1,16 @@
 .profile__name {
   border-bottom: $border-width solid fade-out($colors__grays--lighter, 0.5%);
 
-  h3 {
+  input {
     color: $colors__grays--lighter;
+
+    &::-webkit-input-placeholder {
+      color: $colors__grays--lighter;
+    }
+
+    &:focus {
+      outline: none;
+    }
   }
 }
 

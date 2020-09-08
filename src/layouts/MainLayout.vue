@@ -2,45 +2,47 @@
   <div
     class="page"
   >
-    <Loader
-      v-if="loading"
-      style="min-height: 100vh"
-    />
+    <transition name="fade">
+      <Loader
+        v-if="loading"
+        style="min-height: 100vh"
+      />
 
-    <div
-      v-else
-      class="row no-gutters justify-content-end"
-    >
-      <aside
-        class="navbar__container col-lg-2 "
+      <div
+        v-else
+        class="row no-gutters justify-content-end"
       >
-        <Navbar />
-      </aside>
+        <aside
+          class="navbar__container col-lg-2 "
+        >
+          <Navbar />
+        </aside>
 
-      <div class="col-lg-10 no-padding">
-        <div class="row no-gutters">
+        <div class="col-lg-10 no-padding">
+          <div class="row no-gutters">
+            <div
+              class="header__container col-lg-10 no-padding"
+            >
+              <Header />
+            </div>
+          </div>
+
           <div
-            class="header__container col-lg-10 no-padding"
+            class="row no-gutters"
           >
-            <Header />
+            <main
+              class="row no-gutters w-100"
+            >
+              <transition
+                name="fade"
+              >
+                <router-view />
+              </transition>
+            </main>
           </div>
         </div>
-
-        <div
-          class="row no-gutters"
-        >
-          <main
-            class="row no-gutters w-100"
-          >
-            <transition
-              name="fade"
-            >
-              <router-view />
-            </transition>
-          </main>
-        </div>
       </div>
-    </div>
+    </transition>
   </div>
 </template>
 
@@ -49,7 +51,7 @@ import Header from '@/components/app/Header.vue'
 import Navbar from '@/components/app/NavBar.vue'
 
 import randomIdArr from '@/utils/randomIdArr'
-import messages from '@/utils/messages'
+// import messages from '@/utils/messages'
 
 export default {
   name: 'MainLayout',
@@ -83,7 +85,7 @@ export default {
           to: '10'
         },
         year: {
-          from: '2015',
+          from: '2018',
           to: '2020'
         },
         page: ['1', '2', '3', '4', '5']
@@ -121,7 +123,7 @@ export default {
   },
   watch: {
     error (fbError) {
-      this.$toast.error(messages[fbError.code] || 'Что-то пошло не так')
+      // this.$toast.error(messages[fbError.code] || 'Что-то пошло не так')
       console.log(fbError)
     }
   }
@@ -133,22 +135,31 @@ export default {
 
 .page {
   overflow: hidden;
+  position: relative;
+  z-index: 2;
 }
 
 .w-100 {
   width: 100%;
 }
 
-.playlists {
+.items {
   max-width: 100%;
   width: 100%;
   margin-top: 44px;
 }
 
-.playlists__title {
+.items__title {
   @include adaptiv-font($size--large, $size--normal + 10);
   font-family: $font-family__sans__black;
   user-select: none;
   margin-bottom: 23px;
+}
+
+// lazyload
+.more {
+  display: block;
+  height: 5px;
+  opacity: 0;
 }
 </style>

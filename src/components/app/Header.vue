@@ -34,11 +34,8 @@
             tag="a"
             to="/profile"
             class="nav__link"
+            active-class="active"
           >
-            <span class="nav__link-user">
-              {{ name }}
-            </span>
-
             <svg
               viewBox="-42 0 512 512.001"
             >
@@ -120,7 +117,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "@/assets/style/vars/_vars";
+@import '@/assets/style/vars/_vars';
 
 .header__container {
   position: fixed;
@@ -184,6 +181,7 @@ export default {
 }
 
 .nav__link-user {
+  max-width: 200px;
   font-family: $font-family__sans;
   font-size: $font-size--normal;
   font-weight: $font-weight__sans__bold;

@@ -33,6 +33,7 @@ export default {
   width: 100%;
   height: 100vh;
   padding-top: 100px;
+  overflow-y: auto;
 }
 
 .undefined__wrap {

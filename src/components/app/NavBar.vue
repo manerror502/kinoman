@@ -180,6 +180,13 @@ export default {
   transition: $transition-duration $transition-timing-function;
   overflow: hidden;
   margin-bottom: 20px;
+  width: 100%;
+  max-height: 200px;
+
+  img {
+    max-height: 200px;
+    margin: 0 auto;
+  }
 
   &:hover,
   &:focus,

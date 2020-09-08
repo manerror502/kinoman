@@ -3,27 +3,14 @@ import firebase from 'firebase/app'
 export default {
   state: {},
   actions: {
-    async uppdateNotifications ({ dispatch, commit }, { notifications }) {
+    async uppdateSettings ({ dispatch, commit, getters }, toUppdate) {
       try {
         const uid = await dispatch('getUid')
-
+        const uppdateData = { ...getters.info.settings, ...toUppdate }
         await firebase
           .database()
-          .ref(`/users/${uid}/info/settings/`)
-          .update({ notifications })
-      } catch (e) {
-        commit('setError', e)
-        throw e
-      }
-    },
-    async uppdateReverse ({ dispatch, commit }, { inTheBeginning }) {
-      try {
-        const uid = await dispatch('getUid')
-
-        await firebase
-          .database()
-          .ref(`/users/${uid}/info/settings/`)
-          .update({ inTheBeginning })
+          .ref(`/users/${uid}/info/settings`)
+          .update(uppdateData)
       } catch (e) {
         commit('setError', e)
         throw e

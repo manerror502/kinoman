@@ -14,8 +14,9 @@
       >Введите коректный E-mail</small>
       <input
         autofocus
-        type="text"
+        type="email"
         placeholder="Электронная почта"
+        name="email"
         v-model.trim="email"
         :class="{invalid: ($v.email.$dirty && !$v.email.required) || ($v.email.$dirty && !$v.email.email)}"
       >
@@ -25,6 +26,7 @@
       <input
         type="password"
         placeholder="Пароль"
+        name="password"
         v-model.trim="password"
         :class="{invalid: $v.password.$dirty && !$v.password.required}"
       >
@@ -93,20 +95,5 @@ export default {
 </script>
 
 <style lang="scss" >
-@import "@/assets/style/vars/_vars";
-
-.btn--login {
-  font-family: $font-family__sans;
-  font-size: $font-size--normal - 5;
-  display: block;
-  margin: 20px 0;
-  text-align: center;
-  padding: 14px 70px;
-  outline: none;
-  border-radius: $border-radius__large;
-  transition: $transition-duration $transition-timing-function;
-  @media (max-width: $breackpoints__sm) {
-    padding: 14px 50px;
-  }
-}
+@import '@/assets/style/vars/_vars';
 </style>

@@ -4,7 +4,7 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col">
-            <h3 class="playlists__title">
+            <h3 class="items__title">
               Плейлисты
             </h3>
           </div>
@@ -18,12 +18,12 @@
       </div>
     </section> -->
 
-    <section class="playlists">
+    <section class="items">
       <div class="container-fluid">
         <div class="row">
           <div class="col">
-            <h3 class="playlists__title">
-              Фильмы
+            <h3 class="items__title">
+              Фильмы и сериалы
             </h3>
           </div>
         </div>

@@ -15,7 +15,7 @@ export default {
             .push({ filmId })
         })
 
-        firebase
+        await firebase
           .database()
           .ref(`/users/${uid}/playlist/${namePlaylist}/${date}`)
           .push({ date })

@@ -1,6 +1,11 @@
-.fade-enter-active, .fade-leave-active {
-  transition: .1s ease;
+.fade-enter-active,
+.fade-leave-active {
+  filter: blur(100%);
+  opacity: 0;
+  transition: 0.1s ease;
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active до версии 2.1.8 */ {
   opacity: 0;
+  filter: blur(100%);
+  transition: 0.1s ease;
 }
