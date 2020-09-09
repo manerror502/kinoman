@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.c71c45c122fad2ec3f6f08fb1c698fd0.js"
+  "/precache-manifest.b1bb477d9d6a519bb698614feb1473bb.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "kinoman"});

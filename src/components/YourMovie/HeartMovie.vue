@@ -69,7 +69,6 @@ export default {
       this.heartFilms.reverse()
     }
     await this.getFilmsInfo()
-
     this.loading = false
   },
   mounted () {
@@ -80,7 +79,7 @@ export default {
       // Для того чтобы не перегружать сервер запросами
       const films = this.heartFilms.splice(0, this.arrIndex)
       // Добавляем в массив
-      films.forEach(async filmId => {
+      await films.forEach(async filmId => {
         try {
           const film = await this.$store.dispatch('getInfoFilm', filmId)
           this.films.push(film.data)
@@ -120,7 +119,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "@/assets/style/vars/_vars";
+@import '@/assets/style/vars/_vars';
 
 .films__no {
   margin-top: 20px;

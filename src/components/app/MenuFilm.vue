@@ -278,7 +278,7 @@ export default {
   h5 {
     font-size: $font-size--normal + 10;
     font-family: $font-family__sans;
-    font-weight: 700;
+    font-weight: $font-weight__sans__bold;
     line-height: $line-height--normal + 7;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -297,7 +297,7 @@ export default {
     align-items: center;
     text-align: left;
 
-    font-weight: 400;
+    font-weight: $font-weight__sans__regular;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;

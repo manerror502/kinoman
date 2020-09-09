@@ -160,7 +160,7 @@ export default {
 .playlists__item-descr {
   h6 {
     @include adaptiv-font($size--normal, $size--small);
-    font-weight: 400;
+    font-weight: $font-weight__sans__regular;
   }
 }
 
@@ -224,7 +224,7 @@ export default {
 
 .playlists__day-title {
   h4 {
-    font-family: $font-family__sans__black;
+    font-family: $font-family__sans;
     @include adaptiv-font($size--large, $size--normal);
   }
 }
