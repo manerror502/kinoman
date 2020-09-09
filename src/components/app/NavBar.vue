@@ -205,7 +205,7 @@ export default {
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-    font-weight: 400;
+    font-weight: $font-weight__sans__regular;
     padding: 10px;
     width: 100%;
     transition: $transition-duration $transition-timing-function;
@@ -255,7 +255,7 @@ export default {
 
   h5 {
     font-family: $font-family__sans;
-    font-weight: 700;
+    font-weight: $font-weight__sans__bold;
     font-size: $font-size--normal;
     margin-bottom: 10px;
     text-overflow: ellipsis;
@@ -276,7 +276,7 @@ export default {
   text-align: left;
 
   p {
-    font-weight: 400;
+    font-weight: $font-weight__sans__regular;
     padding-left: 60px;
     font-size: $font-size--normal;
     line-height: $line-height--normal + 1;

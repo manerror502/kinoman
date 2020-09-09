@@ -151,7 +151,7 @@ export default {
 
 .items__title {
   @include adaptiv-font($size--large, $size--normal + 10);
-  font-family: $font-family__sans__black;
+  font-family: $font-family__sans;
   user-select: none;
   margin-bottom: 23px;
 }

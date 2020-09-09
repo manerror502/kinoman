@@ -222,8 +222,8 @@ export default {
 
   h3 {
     @include adaptiv-font($size--normal + 5, $size--small + 5);
-    font-family: $font-family__sans__black;
-    font-weight: 900;
+    font-family: $font-family__sans;
+    font-weight: $font-weight__sans__black;
     line-height: $line-height--small + 7;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -243,15 +243,15 @@ export default {
   li {
     @include adaptiv-font($size--normal, $size--small);
     line-height: $line-height--normal;
-    font-weight: 400;
+    font-weight: $font-weight__sans__regular;
     margin-bottom: 5px;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
 
     &:first-child {
-      font-weight: 300;
-      font-family: $font-family__sans__light;
+      font-weight: $font-weight__sans__light;
+      font-family: $font-family__sans;
     }
 
     @media (max-width: $breackpoints__xs) {
@@ -268,7 +268,7 @@ export default {
   h5 {
     @include adaptiv-font($size--large - 10, $size--normal);
     line-height: $line-height--normal;
-    font-weight: 400;
+    font-weight: $font-weight__sans__regular;
   }
 }
 

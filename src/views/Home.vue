@@ -261,7 +261,7 @@ export default {
 }
 
 .modal__advice {
-  font-family: $font-family__sans__light;
+  font-family: $font-family__sans;
   line-height: $line-height--small;
   @include adaptiv-font($size--normal, $size--small);
   font-weight: $font-weight__sans__light;

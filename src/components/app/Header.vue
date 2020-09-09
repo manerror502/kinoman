@@ -145,11 +145,11 @@ export default {
 }
 
 .header__title {
-  font-family: $font-family__sans__black;
+  font-family: $font-family__sans;
   @include adaptiv-font($size--large - 5, $size--normal);
   line-height: $line-height--large;
   user-select: none;
-  font-weight: 900;
+  font-weight: $font-weight__sans__black;
   transition: $transition-duration $transition-timing-function;
   white-space: nowrap;
   overflow: hidden;
