@@ -381,7 +381,7 @@ export default {
 
   h3 {
     font-size: $font-size--large + 5;
-    font-family: $font-family__sans__black;
+    font-family: $font-family__sans;
     @include adaptiv-font($size--large + 5, $size--normal + 5);
     font-weight: 500;
     margin-bottom: 30px;
@@ -427,7 +427,7 @@ export default {
     max-width: 300px;
     font-size: $font-size--normal;
     font-family: $font-family__sans;
-    font-weight: 400;
+    font-weight: $font-weight__sans__regular;
     transition: $transition-duration $transition-timing-function;
     // box-shadow: $shadows__coords-x $shadows__coords-y $shadows__size
     //   fade($colors__black, 20%);

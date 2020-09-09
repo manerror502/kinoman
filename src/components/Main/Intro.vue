@@ -179,7 +179,7 @@ export default {
 }
 
 .intro__title {
-  font-family: "Product Sans Medium";
+  font-family: $font-family__sans;
   font-weight: 500;
   @include adaptiv-font($size--large, $size--normal);
   line-height: $line-height--large - 12px;
@@ -199,8 +199,8 @@ export default {
 .intro__text {
   padding: 0 10px;
   display: -webkit-box;
-  font-family: "Product Sans Light";
-  font-weight: 300;
+  font-family: $font-family__sans;
+  font-weight: $font-weight__sans__light;
   line-height: $line-height--small + 5px;
   @include adaptiv-font($size--small + 10, $size--small);
   -webkit-line-clamp: 4;
@@ -223,15 +223,15 @@ export default {
   @include adaptiv-font($size--normal, $size--small);
 
   li {
-    font-family: "Product Sans Light";
-    font-weight: 300;
+    font-family: $font-family__sans;
+    font-weight: $font-weight__sans__light;
     max-width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
 
     span {
       font-family: $font-family__sans;
-      font-weight: 400;
+      font-weight: $font-weight__sans__regular;
     }
 
     &:last-child {

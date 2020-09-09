@@ -7,7 +7,8 @@ import store from './store'
 // https://github.com/nuxt/vue-meta
 import VueMeta from 'vue-meta'
 import VScrollLock from 'v-scroll-lock'
-import VueYouTubeEmbed from 'vue-youtube-embed'
+// https://www.npmjs.com/package/vue-youtube
+import VueYoutube from 'vue-youtube'
 // https://vuelidate.js.org/
 import Vuelidate from 'vuelidate'
 // https://vuejsexamples.com/yet-another-toast-notification-plugin-for-vue-js/
@@ -39,7 +40,7 @@ Vue.directive('scroll', {
 })
 
 Vue.use(VScrollLock)
-Vue.use(VueYouTubeEmbed)
+Vue.use(VueYoutube)
 Vue.use(Vuelidate)
 Vue.use(VueToast)
 Vue.use(VueMeta)

@@ -66,7 +66,7 @@ export default {
   h5 {
     color: $colors__grays--lighter;
     font-family: $font-family__sans;
-    font-weight: 700;
+    font-weight: $font-weight__sans__bold;
     font-size: $font-size--large;
     overflow: hidden;
     text-overflow: ellipsis;

@@ -22,8 +22,7 @@
               class="infofilm__trailer"
             >
               <youtube
-                player-width="100%"
-                player-height="450"
+                ref="youtube"
                 :video-id="videoId"
               />
             </div>
@@ -208,10 +207,9 @@ export default {
       }
 
       if (this.trailerFilm.trailers) {
+        const url = this.trailerFilm.trailers[0].url
         // получаем id для ютуба
-        this.videoId = this.$youtube.getIdFromURL(
-          this.trailerFilm.trailers[0].url
-        )
+        this.videoId = this.$youtube.getIdFromUrl(url)
       }
     },
     async getStaff (filmId) {
@@ -258,6 +256,7 @@ export default {
 
 .infofilm__trailer {
   padding-bottom: 20px;
+  height: 100%;
 }
 
 .infofilm__attributes {
@@ -271,15 +270,15 @@ export default {
   font-size: $font-size--normal;
 
   li {
-    font-family: 'Product Sans Light';
-    font-weight: 300;
+    font-family: $font-family__sans;
+    font-weight: $font-weight__sans__light;
     max-width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
 
     span {
       font-family: $font-family__sans;
-      font-weight: 400;
+      font-weight: $font-weight__sans__regular;
     }
 
     &:last-child {
@@ -304,7 +303,7 @@ export default {
     padding: 10px 0;
     font-size: $font-size--normal;
     font-family: $font-family__sans;
-    font-weight: 400;
+    font-weight: $font-weight__sans__regular;
     line-height: $line-height--small + 5;
 
     @media (max-width: $breackpoints__md) {
@@ -319,7 +318,7 @@ export default {
 
   h2 {
     font-size: $font-size--normal + 10;
-    font-family: $font-family__sans__black;
+    font-family: $font-family__sans;
 
     @media (max-width: $breackpoints__md) {
       text-align: center;
@@ -384,5 +383,10 @@ export default {
     font-weight: $font-weight__sans__regular;
     // border-bottom: $border-width + 1 solid fade($colors__grays, 40%);
   }
+}
+
+iframe {
+  width: 100%;
+  height: 450;
 }
 </style>

@@ -452,7 +452,7 @@ export default {
     font-size: $font-size--normal;
     line-height: $line-height--normal + 7;
     font-family: $font-family__sans;
-    font-weight: 400;
+    font-weight: $font-weight__sans__regular;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
