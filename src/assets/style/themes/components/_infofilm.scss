@@ -35,10 +35,23 @@
 }
 
 .infofilm__descr {
+  border-bottom: $border-width solid fade-out($colors__grays, 0.7%);
   p {
-    border-bottom: $border-width solid fade-out($colors__grays, 0.7%);
     color: $colors__grays--lighter;
   }
+}
+
+.infofilm__episodes {
+  border-bottom: $border-width solid fade-out($colors__grays, 0.7%);
+}
+
+.infofilm__episodes-seasons {
+  color: $colors__grays--lighter;
+  border-bottom: $border-width solid fade-out($colors__border, 0.5%);
+}
+
+.infofilm__episodes-films {
+  color: fade-out($color: $colors__grays--lighter, $amount: 0.2%);
 }
 
 .infofilm__heading {
