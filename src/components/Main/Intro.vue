@@ -13,7 +13,7 @@
           <div class="intro__descr">
             <div class="row justify-content-between align-items-center">
               <div class="col-lg-6  d-flex flex-column">
-                <div class="intro__wrap bg-c">
+                <div class="intro__wrap">
                   <h2 class="intro__title">
                     {{ introFilm.data.nameRu }}
                   </h2>
@@ -96,7 +96,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "@/assets/style/vars/_vars";
+@import '@/assets/style/vars/_vars';
 
 .btn--intro {
   width: 100%;
@@ -139,17 +139,16 @@ export default {
   // border-radius: 0 0 $border-radius__small $border-radius__small;
 
   &::after {
-    content: "";
+    content: '';
     opacity: 1;
     width: 100%;
     height: 100%;
     position: absolute;
     bottom: 0;
     background: linear-gradient(
-      to right,
-      rgba(0, 0, 0, 1) 0%,
-      rgba(4, 4, 4, 0.7) 40%,
-      rgba(9, 9, 9, 0) 60%
+      90deg,
+      rgba(15, 15, 15, 1) 0%,
+      rgba(0, 0, 0, 0) 75%
     );
 
     @media (max-width: $breackpoints__md) {
@@ -180,8 +179,8 @@ export default {
 
 .intro__title {
   font-family: $font-family__sans;
-  font-weight: 500;
   @include adaptiv-font($size--large, $size--normal);
+  font-weight: $font-weight__sans__light;
   line-height: $line-height--large - 12px;
   margin-bottom: 10px;
   letter-spacing: 2px;
@@ -200,7 +199,7 @@ export default {
   padding: 0 10px;
   display: -webkit-box;
   font-family: $font-family__sans;
-  font-weight: $font-weight__sans__light;
+  font-weight: $font-weight__sans__regular;
   line-height: $line-height--small + 5px;
   @include adaptiv-font($size--small + 10, $size--small);
   -webkit-line-clamp: 4;

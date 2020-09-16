@@ -176,7 +176,6 @@ export default {
   width: 100%;
   overflow: hidden;
   display: flex;
-  position: relative;
   user-select: none;
   border-radius: $border-radius__small - 5;
   background-size: cover;
@@ -221,7 +220,7 @@ export default {
   display: flex;
 
   h3 {
-    @include adaptiv-font($size--normal + 5, $size--small + 5);
+    @include adaptiv-font($size--normal + 5, $size--small + 7);
     font-family: $font-family__sans;
     font-weight: $font-weight__sans__black;
     line-height: $line-height--small + 7;

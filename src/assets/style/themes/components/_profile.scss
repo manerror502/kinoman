@@ -21,15 +21,22 @@
 
   h4 {
     color: $colors__grays--lighter;
-
-    &.logout {
-      color: $colors__red;
-      margin-bottom: 0;
-    }
   }
 
   p {
     color: $colors__grays;
+  }
+
+  &.logout {
+    h4 {
+      color: $colors__red;
+      margin-bottom: 0;
+    }
+
+    &:hover,
+    &:focus {
+      background-color: fade-out($colors__red, 0.8%);
+    }
   }
 
   &:hover,

@@ -282,7 +282,7 @@ export default {
           if (entry.isIntersecting) {
             if (
               !this.loading &&
-              this.page <= this.recommends.pagesCount - 1 &&
+              this.page <= this.recommends.pagesCount &&
               !this.lazyLoading
             ) {
               this.loadMore()

@@ -68,6 +68,7 @@ export default {
     if (!this.$store.getters.info.settings.inTheBeginning) {
       this.heartFilms.reverse()
     }
+
     await this.getFilmsInfo()
     this.loading = false
   },
@@ -78,13 +79,13 @@ export default {
     async getFilmsInfo () {
       // Для того чтобы не перегружать сервер запросами
       const films = this.heartFilms.splice(0, this.arrIndex)
-      // Добавляем в массив
-      await films.forEach(async filmId => {
+      for (const filmsId of films) {
         try {
-          const film = await this.$store.dispatch('getInfoFilm', filmId)
+          const film = await this.$store.dispatch('getInfoFilm', filmsId)
+          // Добавляем в массив
           this.films.push(film.data)
         } catch (e) {}
-      })
+      }
     },
     async loadMore () {
       this.lazyLoading = true
@@ -102,7 +103,7 @@ export default {
       const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
-            if (this.films.length > this.arrIndex - 1) {
+            if (this.films.length > this.arrIndex - 1 && !this.lazyLoading) {
               this.loadMore()
             }
 

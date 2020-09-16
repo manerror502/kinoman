@@ -80,12 +80,12 @@ export default {
       // Для того чтобы не перегружать сервер запросами
       const films = this.bookmarkFilms.splice(0, this.arrIndex)
       // Добавляем в массив
-      films.forEach(async filmId => {
+      for (const filmsId of films) {
         try {
-          const film = await this.$store.dispatch('getInfoFilm', filmId)
+          const film = await this.$store.dispatch('getInfoFilm', filmsId)
           this.films.push(film.data)
         } catch (e) {}
-      })
+      }
     },
     async loadMore () {
       this.lazyLoading = true
@@ -103,7 +103,7 @@ export default {
       const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
-            if (this.films.length > this.arrIndex - 1) {
+            if (this.films.length > this.arrIndex - 1 && !this.lazyLoading) {
               this.loadMore()
             }
 
@@ -120,7 +120,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "@/assets/style/vars/_vars";
+@import '@/assets/style/vars/_vars';
 
 .films__no {
   margin-top: 20px;

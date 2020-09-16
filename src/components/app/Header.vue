@@ -25,6 +25,7 @@
           </button>
           <h2
             class="header__title"
+            :key="$route.meta.title"
           >
             {{ pageTitle }}
           </h2>

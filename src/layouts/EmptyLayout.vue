@@ -30,7 +30,7 @@
           <div class="sign__animation">
             <div class="sign__film">
               <FilmItemInfo
-                class="sing__item col-6"
+                class="sing__item"
                 v-for="release in newRelease"
                 :key="release.filmId"
                 :item-info="release"
@@ -190,6 +190,8 @@ export default {
 }
 
 .sing__item {
+  min-width: 400px;
+  max-width: 400px;
   animation: translate 100s linear infinite alternate;
 }
 
