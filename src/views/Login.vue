@@ -42,7 +42,7 @@
         tag="a"
         to="/registered"
       >
-        У меня ещё нет аккаунт КиноMan
+        У меня ещё нет аккаунта КиноMan
       </router-link>
     </div>
   </form>

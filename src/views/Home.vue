@@ -8,8 +8,18 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col">
-            <h3 class="items__title time">
-              {{ time }}<span v-if="userName">, {{ userName }}</span>
+            <h3
+              class="items__title time"
+              v-if="userName"
+            >
+              {{ time }}, {{ userName }}
+            </h3>
+
+            <h3
+              class="items__title time"
+              v-else
+            >
+              {{ time }}
             </h3>
           </div>
         </div>
@@ -54,7 +64,7 @@
       </div>
     </section>
 
-    <Modal
+    <!-- <Modal
       v-if="modal"
       v-scroll-lock="modal"
     >
@@ -162,7 +172,7 @@
           </button>
         </div>
       </div>
-    </Modal>
+    </Modal> -->
   </div>
 </template>
 
@@ -171,7 +181,7 @@ import NewRelease from '@/components/Main/NewRelease'
 // import Playlists from '@/components/Main/Playlists'
 import Intro from '@/components/Main/Intro'
 import Recommends from '@/components/app/Recommends'
-import Modal from '@/components/app/Modal.vue'
+// import Modal from '@/components/app/Modal.vue'
 
 export default {
   name: 'Home',
@@ -179,14 +189,14 @@ export default {
   components: {
     NewRelease,
     Intro,
-    Modal,
+    // Modal,
     Recommends
     // Playlists
   },
   computed: {
-    modal () {
-      return this.$route.query.user
-    },
+    // modal () {
+    //   return this.$route.query.user
+    // },
     time () {
       const currentDate = new Date().getHours()
 

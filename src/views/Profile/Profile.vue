@@ -179,11 +179,11 @@
         <div class="col-lg-3">
           <label
             for="logout"
-            class="profile__item"
+            class="profile__item logout"
           >
 
             <div class="col">
-              <h4 class="logout">Выйти</h4>
+              <h4 class="">Выйти</h4>
             </div>
 
             <button

@@ -69,17 +69,63 @@
         </div>
 
         <div class="infofilm__wrap">
-          <div
-            class="infofilm__descr"
-            v-if="infoFilm.data.description"
-          >
-            <div class="infofilm__heading">
-              <h2>Описание</h2>
+          <div class="row infofilm__mah">
+            <div
+              class="col"
+              v-if="infoFilm.data.description"
+            >
+              <div
+                class="infofilm__descr"
+              >
+                <div class="infofilm__heading">
+                  <h2>Описание</h2>
+                </div>
+
+                <p>
+                  {{ infoFilm.data.description || "Нет описания" }}
+                </p>
+              </div>
             </div>
 
-            <p>
-              {{ infoFilm.data.description }}
-            </p>
+            <div
+              class="col-lg"
+              v-if="(infoFilm.data.seasons).length"
+            >
+              <div class="infofilm__episodes">
+                <div class="infofilm__heading">
+                  <h2>
+                    Эпизоды ({{ sumEpisodes }})
+                  </h2>
+                </div>
+
+                <div class="infofilm__episodes-scroll">
+                  <div
+                    v-for="seasons in infoFilm.data.seasons"
+                    :key="seasons.number"
+                  >
+                    <h4 class="infofilm__episodes-seasons">
+                      Сезон {{ seasons.number }}
+                    </h4>
+
+                    <div
+                      class="infofilm__episodes-films"
+                      v-for="episode in seasons.episodes "
+                      :key="episode.episodeNumber"
+                    >
+                      <div class="d-flex">
+                        {{ episode.episodeNumber }}.
+                        <p>
+                          {{ episode.nameRu || episode.nameEn || "Нет инофрмации о названии" }}
+                        </p>
+                      </div>
+                      <time>
+                        {{ episode.releaseDate || "Неизвестна дата выхода" }}
+                      </time>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
           <div
@@ -163,6 +209,23 @@ export default {
     filterCountries () {
       const countries = this.infoFilm.data.countries
       return filterCountriesArr(countries)
+    },
+
+    sumEpisodes () {
+      const lengthArr = []
+
+      // Добавляем в массив число эпизодов
+      this.infoFilm.data.seasons.forEach(season => {
+        lengthArr.push(season.episodes.length)
+      })
+
+      // Складываем все сезоны
+      let sum = 0
+      lengthArr.forEach(length => {
+        sum = sum + length
+      })
+
+      return sum
     }
   },
 
@@ -228,6 +291,10 @@ export default {
 
 <style lang="scss" >
 @import '@/assets/style/vars/_vars';
+
+.infofilm__mah {
+  // max-height: 500px;
+}
 
 .infofilm {
   position: relative;
@@ -299,6 +366,8 @@ export default {
 }
 
 .infofilm__descr {
+  min-height: 200px;
+  height: 100%;
   p {
     padding: 10px 0;
     font-size: $font-size--normal;
@@ -309,6 +378,48 @@ export default {
     @media (max-width: $breackpoints__md) {
       text-align: center;
     }
+  }
+}
+
+.infofilm__episodes {
+  height: 100%;
+  overflow: hidden;
+}
+
+.infofilm__episodes-scroll {
+  overflow-x: hidden;
+  overflow-y: auto;
+  max-height: 300px;
+}
+
+.infofilm__episodes-seasons {
+  font-size: $font-size--normal;
+  font-family: $font-family__sans;
+  font-weight: $font-weight__sans__light;
+  line-height: $line-height--small + 5;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+
+  @media (max-width: $breackpoints__md) {
+    text-align: center;
+  }
+}
+
+.infofilm__episodes-films {
+  font-size: $font-size--small + 5;
+  font-family: $font-family__sans;
+  font-weight: $font-weight__sans__regular;
+  line-height: $line-height--small;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+
+  p {
+    margin-right: 10px;
+  }
+
+  time {
+    margin-right: 30px;
   }
 }
 
@@ -342,7 +453,7 @@ export default {
   filter: blur(100px);
   overflow: hidden;
   width: 100%;
-  height: 100%;
+  height: 60%;
 }
 
 .infofilm__staff-item {
@@ -366,6 +477,7 @@ export default {
   max-height: 190px;
   margin: 0 auto;
   overflow: hidden;
+  border-radius: $border-radius__small;
 
   img {
     width: 120px;

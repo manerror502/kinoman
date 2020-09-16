@@ -427,7 +427,7 @@ export default {
     max-width: 300px;
     font-size: $font-size--normal;
     font-family: $font-family__sans;
-    font-weight: $font-weight__sans__regular;
+    font-weight: $font-weight__sans__medium;
     transition: $transition-duration $transition-timing-function;
     // box-shadow: $shadows__coords-x $shadows__coords-y $shadows__size
     //   fade($colors__black, 20%);

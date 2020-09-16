@@ -3,13 +3,13 @@
     <div class="container-fluid">
       <div class="row justify-content-center">
         <input
-          type="text"
+          autofocus
+          type="search"
           role="search"
           v-model="inputSearch"
           placeholder="Найдите свои любимые фильмы"
           @keyup="searchFilms"
-          autofocus
-          tabindex="0"
+          tabindex="1"
           class="searchpage__input"
         >
 
@@ -46,7 +46,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "@/assets/style/vars/_vars";
+@import '@/assets/style/vars/_vars';
 
 .searchpage {
   margin-top: 70px;

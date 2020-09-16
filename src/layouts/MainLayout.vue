@@ -131,7 +131,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "@/assets/style/vars/_vars";
+@import '@/assets/style/vars/_vars';
 
 .page {
   overflow: hidden;
