@@ -75,11 +75,10 @@ export default {
   },
   methods: {
     async getFilmsInfo () {
-      // Добавляем в массив
-
       // Для того чтобы не перегружать сервер запросами
       const films = this.bookmarkFilms.splice(0, this.arrIndex)
-      // Добавляем в массив
+
+      // Получаем информацию для всех фтльмов
       for (const filmsId of films) {
         try {
           const film = await this.$store.dispatch('getInfoFilm', filmsId)

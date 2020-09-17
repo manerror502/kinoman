@@ -50,7 +50,6 @@
 import Header from '@/components/app/Header.vue'
 import Navbar from '@/components/app/NavBar.vue'
 
-import randomIdArr from '@/utils/randomIdArr'
 // import messages from '@/utils/messages'
 
 export default {
@@ -72,42 +71,10 @@ export default {
     if (!Object.keys(this.$store.getters.info).length) {
       await this.$store.dispatch('fetchInfo')
     }
-    // Получение фильма в интро
-    await this.getIntroFilm()
     await this.getFilters()
     this.loading = false
   },
   methods: {
-    async getIntroFilm () {
-      const releasesSettings = {
-        rating: {
-          from: '6',
-          to: '10'
-        },
-        year: {
-          from: '2018',
-          to: '2020'
-        },
-        page: ['1', '2', '3', '4', '5']
-      }
-      try {
-        const filmsArr = await this.$store.dispatch(
-          'getReleasesArrIntro',
-          releasesSettings
-        )
-
-        const filmId = await randomIdArr(filmsArr).filmId
-        const film = await this.$store.dispatch('getInfoFilm', filmId)
-
-        if (film.images.backdrops.length) {
-          await this.$store.dispatch('setIntroFilm', film)
-        } else {
-          await this.getIntroFilm()
-        }
-      } catch (e) {
-        console.log(e)
-      }
-    },
     async getFilters () {
       const filters = await this.$store.dispatch('getFiltersJSON')
       await this.$store.dispatch('setFilters', filters)
