@@ -260,8 +260,8 @@ export default {
   position: absolute;
   right: 100%;
   top: 0;
-  z-index: 4;
-  border-radius: $border-radius__small - 3;
+  z-index: 3;
+  border-radius: $border-radius__small;
   padding: 5px;
   @include adaptiv-image(300, 240);
 }

@@ -66,7 +66,7 @@
 
         <transition name="slide-fade">
           <MenuFilm
-            v-if="menu"
+            v-show="menu"
             @closeMenu="closeMenu"
             :menu-info="itemInfo"
           />
