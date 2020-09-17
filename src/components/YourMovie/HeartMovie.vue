@@ -79,6 +79,8 @@ export default {
     async getFilmsInfo () {
       // Для того чтобы не перегружать сервер запросами
       const films = this.heartFilms.splice(0, this.arrIndex)
+
+      // Получаем информацию для всех фтльмов
       for (const filmsId of films) {
         try {
           const film = await this.$store.dispatch('getInfoFilm', filmsId)
