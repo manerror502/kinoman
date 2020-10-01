@@ -48,19 +48,20 @@ export default {
 </script>
 
 <style  lang="scss">
-@import "./assets/style/_base.scss";
-@import "./assets/style/manGrid.css";
+@import './assets/style/_base.scss';
+@import './assets/style/manGrid.css';
 
 .app {
   min-height: 100vh;
   position: relative;
+  overflow-y: scroll;
 
   @media (max-width: $breackpoints__md) {
     padding-bottom: 50px;
   }
 
   &:after {
-    content: "";
+    content: '';
     position: absolute;
     top: 0;
     width: 100vw;
@@ -74,19 +75,22 @@ export default {
   }
 }
 
+a {
+  text-decoration: none;
+}
+
+// scrollbar
 ::-webkit-scrollbar {
-  width: 15px;
+  width: 13px;
+    border-radius: $border-radius__large;
 
   &-track {
-    background: $colors__blackPrimary;
+    background: rgb(59, 59, 59);
   }
 
   &-thumb {
-    background: $colors__grays;
+    background: rgba(118, 146, 223, 0.699);
+    border-radius: $border-radius__large;
   }
-}
-
-a {
-  text-decoration: none;
 }
 </style>
