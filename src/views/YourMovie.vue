@@ -22,14 +22,6 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col">
-            <h3 class="items__title">
-              Фильмы и сериалы
-            </h3>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col">
             <HeartMovie />
           </div>
         </div>

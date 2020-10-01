@@ -75,6 +75,7 @@ export default {
   },
   methods: {
     async getFilmsInfo () {
+      // Добавляем в массив
       // Для того чтобы не перегружать сервер запросами
       const films = this.bookmarkFilms.splice(0, this.arrIndex)
 
