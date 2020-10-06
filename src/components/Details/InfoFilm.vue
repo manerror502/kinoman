@@ -137,7 +137,7 @@
               </div>
 
               <div
-                class="col-xl-2 col-lg-4 col-md-4 col-6"
+                class="col-xl-2 col-lg-4 col-sm-4 col-12"
                 v-for="staff in staffFilm"
                 :key="staff.staffId"
               >

@@ -341,6 +341,10 @@ export default {
   width: calc(100% - 100px);
   height: 100%;
   margin-left: auto;
+
+  @media (max-width: $breackpoints__md) {
+    width: 100%;
+  }
 }
 
 .banner__preview {
