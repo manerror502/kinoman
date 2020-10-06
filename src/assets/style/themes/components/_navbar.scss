@@ -28,23 +28,11 @@
 }
 
 .navbar__playlists-item {
-  p {
-    color: $colors__grays;
-    span {
-      background: fade-out($colors__green, 0.5%);
-    }
-  }
-
+  background: fade-out($colors__green, 0.5%);
+  color: $colors__grays;
   &:hover,
-  &:focus,
-  &:active {
-    p {
-      color: $colors__grays--lighter;
-    }
-
-    span {
-      background: fade-out($colors__green, 0.2%);
-      color: $colors__grays--lighter;
-    }
+  &:focus {
+    background: fade-out($colors__green, 0.2%);
+    color: $colors__grays--lighter;
   }
 }

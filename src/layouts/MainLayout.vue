@@ -13,15 +13,15 @@
         class="row no-gutters justify-content-end"
       >
         <aside
-          class="navbar__container col-lg-2 "
+          class="navbar__container"
         >
           <Navbar />
         </aside>
 
-        <div class="col-lg-10 no-padding">
+        <div class="col-lg-12 no-padding">
           <div class="row no-gutters">
             <div
-              class="header__container col-lg-10 no-padding"
+              class="header__container col-lg-12 no-padding"
             >
               <Header />
             </div>
@@ -33,11 +33,7 @@
             <main
               class="row no-gutters w-100"
             >
-              <transition
-                name="fade"
-              >
-                <router-view />
-              </transition>
+              <router-view />
             </main>
           </div>
         </div>
