@@ -75,10 +75,9 @@
         <Loader v-if="lazyLoading" />
 
         <button
-          v-if="page <= recommends.pagesCount"
-          @click.prevent="loadMore"
+          v-if="checkingItemsRecommeds"
+          @click="loadMore"
           class="lazyload"
-          ref="filmItem"
         >
           Загрузить больше
         </button>
@@ -116,15 +115,21 @@ export default {
 
     loading: true,
     lazyLoading: false
-
-    // Если нет рекомендаций
   }),
+
   computed: {
     userInfo () {
       return !Object.keys(this.$store.getters.info).length
     },
     recommendsInfoLength () {
       return !Object.keys(this.recommendsInfo).length
+    },
+
+    checkingItemsRecommeds () {
+      const pagesCount = this.recommends.pagesCount
+      const page = this.page
+
+      return pagesCount >= page
     }
   },
   async created () {
@@ -282,7 +287,7 @@ export default {
           if (entry.isIntersecting) {
             if (
               !this.loading &&
-              this.page <= this.recommends.pagesCount &&
+              this.checkingItemsRecommeds &&
               !this.lazyLoading
             ) {
               this.loadMore()
@@ -420,18 +425,5 @@ export default {
   100% {
     transform: translateX(-5000px);
   }
-}
-
-.lazyload {
-  display: block;
-  flex-direction: column;
-  justify-content: center;
-  border-radius: $buttons__border-radius;
-  padding: 10px 50px;
-  margin: 30px auto;
-  transition: $transition-duration $transition-timing-function;
-  text-align: center;
-  font-family: $font-family__sans;
-  font-size: $font-size--normal + 5;
 }
 </style>

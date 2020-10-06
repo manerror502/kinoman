@@ -12,157 +12,159 @@
       <div
         class="infofilm__content"
       >
-        <div class="row">
-          <div
-            class="col-lg-6"
-            v-if="trailerFilm.trailers"
-          >
+        <div class="container-fluid">
+          <div class="row">
             <div
-
-              class="infofilm__trailer"
-            >
-              <youtube
-                ref="youtube"
-                :video-id="videoId"
-              />
-            </div>
-          </div>
-
-          <div class="col-lg-6">
-            <ul class="infofilm__attributes">
-              <li>
-                Страна:
-                <span> {{ filterCountries || 'Нет информации' }}
-                </span>
-              </li>
-              <li>
-                Год:
-                <span>{{ infoFilm.data.year || 'Нет информации' }}</span>
-              </li>
-              <li>
-                Премьера в мире: <span>{{ infoFilm.data.premiereWorld ||infoFilm.data.premiereRu || 'Нет информации' }} </span> (год-месяц-день)
-              </li>
-              <li>
-                Жанр:
-                <span> {{ filterGenres || 'Нет информации' }}
-                </span>
-              </li>
-
-              <li>
-                Слоган:
-                <span>{{ infoFilm.data.slogan || 'Нет информации' }}</span>
-              </li>
-              <li>
-                Длина:
-                <span>{{ infoFilm.data.filmLength || 'Нет информации' }}</span>
-              </li>
-              <li>
-                Возрастное ограничение:
-                <span>{{ infoFilm.data.ratingAgeLimits || 'Нет информации' }}</span>
-              </li>
-              <li>
-                КиноПоиск:
-                <span :class="rating">{{ infoFilm.rating.rating || 'Нет информации' }}</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="infofilm__wrap">
-          <div class="row infofilm__mah">
-            <div
-              class="col"
-              v-if="infoFilm.data.description"
+              class="col-lg-6"
+              v-if="trailerFilm.trailers"
             >
               <div
-                class="infofilm__descr"
-              >
-                <div class="infofilm__heading">
-                  <h2>Описание</h2>
-                </div>
 
-                <p>
-                  {{ infoFilm.data.description || "Нет описания" }}
-                </p>
+                class="infofilm__trailer"
+              >
+                <youtube
+                  ref="youtube"
+                  :video-id="videoId"
+                />
               </div>
             </div>
 
-            <div
-              class="col-lg"
-              v-if="(infoFilm.data.seasons).length"
-            >
-              <div class="infofilm__episodes">
-                <div class="infofilm__heading">
-                  <h2>
-                    Эпизоды ({{ sumEpisodes }})
-                  </h2>
+            <div class="col-lg-6">
+              <ul class="infofilm__attributes">
+                <li>
+                  Страна:
+                  <span> {{ filterCountries || 'Нет информации' }}
+                  </span>
+                </li>
+                <li>
+                  Год:
+                  <span>{{ infoFilm.data.year || 'Нет информации' }}</span>
+                </li>
+                <li>
+                  Премьера в мире: <span>{{ infoFilm.data.premiereWorld ||infoFilm.data.premiereRu || 'Нет информации' }} </span> (год-месяц-день)
+                </li>
+                <li>
+                  Жанр:
+                  <span> {{ filterGenres || 'Нет информации' }}
+                  </span>
+                </li>
+
+                <li>
+                  Слоган:
+                  <span>{{ infoFilm.data.slogan || 'Нет информации' }}</span>
+                </li>
+                <li>
+                  Длина:
+                  <span>{{ infoFilm.data.filmLength || 'Нет информации' }}</span>
+                </li>
+                <li>
+                  Возрастное ограничение:
+                  <span>{{ infoFilm.data.ratingAgeLimits || 'Нет информации' }}</span>
+                </li>
+                <li>
+                  КиноПоиск:
+                  <span :class="rating">{{ infoFilm.rating.rating || 'Нет информации' }}</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="infofilm__wrap">
+            <div class="row infofilm__mah">
+              <div
+                class="col"
+                v-if="infoFilm.data.description"
+              >
+                <div
+                  class="infofilm__descr"
+                >
+                  <div class="infofilm__heading">
+                    <h2>Описание</h2>
+                  </div>
+
+                  <p>
+                    {{ infoFilm.data.description || "Нет описания" }}
+                  </p>
                 </div>
+              </div>
 
-                <div class="infofilm__episodes-scroll">
-                  <div
-                    v-for="seasons in infoFilm.data.seasons"
-                    :key="seasons.number"
-                  >
-                    <h4 class="infofilm__episodes-seasons">
-                      Сезон {{ seasons.number }}
-                    </h4>
+              <div
+                class="col-lg"
+                v-if="(infoFilm.data.seasons).length"
+              >
+                <div class="infofilm__episodes">
+                  <div class="infofilm__heading">
+                    <h2>
+                      Эпизоды ({{ sumEpisodes }})
+                    </h2>
+                  </div>
 
+                  <div class="infofilm__episodes-scroll">
                     <div
-                      class="infofilm__episodes-films"
-                      v-for="episode in seasons.episodes "
-                      :key="episode.episodeNumber"
+                      v-for="seasons in infoFilm.data.seasons"
+                      :key="seasons.number"
                     >
-                      <div class="d-flex">
-                        {{ episode.episodeNumber }}.
-                        <p>
-                          {{ episode.nameRu || episode.nameEn || "Нет инофрмации о названии" }}
-                        </p>
+                      <h4 class="infofilm__episodes-seasons">
+                        Сезон {{ seasons.number }}
+                      </h4>
+
+                      <div
+                        class="infofilm__episodes-films"
+                        v-for="episode in seasons.episodes "
+                        :key="episode.episodeNumber"
+                      >
+                        <div class="d-flex">
+                          {{ episode.episodeNumber }}.
+                          <p>
+                            {{ episode.nameRu || episode.nameEn || "Нет инофрмации о названии" }}
+                          </p>
+                        </div>
+                        <time>
+                          {{ episode.releaseDate || "Неизвестна дата выхода" }}
+                        </time>
                       </div>
-                      <time>
-                        {{ episode.releaseDate || "Неизвестна дата выхода" }}
-                      </time>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-
-          <div
-            class="row infofilm__staff"
-          >
-            <div class="infofilm__heading">
-              <h2>Команда</h2>
-            </div>
 
             <div
-              class="col-xl-2 col-lg-4 col-md-4"
-              v-for="staff in staffFilm"
-              :key="staff.staffId"
+              class="row infofilm__staff"
             >
-              <div
-                class="infofilm__staff-item"
-              >
-                <div class="infofilm__staff-img">
-                  <img
-                    :src="staff.posterUrl"
-                    alt=""
-                    class="img"
-                  >
-                </div>
+              <div class="infofilm__heading">
+                <h2>Команда</h2>
+              </div>
 
-                <div class="infofilm__staff-title">
-                  <h4>{{ staff.nameRu || staff.nameEn }}</h4>
+              <div
+                class="col-xl-2 col-lg-4 col-md-4 col-6"
+                v-for="staff in staffFilm"
+                :key="staff.staffId"
+              >
+                <div
+                  class="infofilm__staff-item"
+                >
+                  <div class="infofilm__staff-img">
+                    <img
+                      :src="staff.posterUrl"
+                      alt=""
+                      class="img"
+                    >
+                  </div>
+
+                  <div class="infofilm__staff-title">
+                    <h4>{{ staff.nameRu || staff.nameEn }}</h4>
 
                   <!-- <h5>{{ staff.professionText }}</h5> -->
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div
-              class="infofilm__staff-bg"
-              :style="{backgroundImage: 'url(' + infoFilm.data.posterUrl + ')'}"
-            />
+              <div
+                class="infofilm__staff-bg"
+                :style="{backgroundImage: 'url(' + infoFilm.data.posterUrl + ')'}"
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -354,10 +356,6 @@ export default {
       font-weight: $font-weight__sans__bold;
       color: #f60;
     }
-
-    @media (max-width: $breackpoints__md) {
-      text-align: center;
-    }
   }
 }
 
@@ -370,14 +368,10 @@ export default {
   height: 100%;
   p {
     padding: 10px 0;
-    font-size: $font-size--normal;
+    @include adaptiv-font($size--normal, $size--small);
     font-family: $font-family__sans;
     font-weight: $font-weight__sans__regular;
     line-height: $line-height--small + 5;
-
-    @media (max-width: $breackpoints__md) {
-      text-align: center;
-    }
   }
 }
 
@@ -394,19 +388,17 @@ export default {
 
 .infofilm__episodes-seasons {
   font-size: $font-size--normal;
+  @include adaptiv-font($size--normal, $size--small);
   font-family: $font-family__sans;
   font-weight: $font-weight__sans__light;
   line-height: $line-height--small + 5;
   padding-bottom: 10px;
   margin-bottom: 10px;
-
-  @media (max-width: $breackpoints__md) {
-    text-align: center;
-  }
 }
 
 .infofilm__episodes-films {
   font-size: $font-size--small + 5;
+  @include adaptiv-font($size--small + 5, $size--small);
   font-family: $font-family__sans;
   font-weight: $font-weight__sans__regular;
   line-height: $line-height--small;
@@ -430,10 +422,7 @@ export default {
   h2 {
     font-size: $font-size--normal + 10;
     font-family: $font-family__sans;
-
-    @media (max-width: $breackpoints__md) {
-      text-align: center;
-    }
+    @include adaptiv-font($size--normal + 10, $size--small + 10);
   }
 }
 
