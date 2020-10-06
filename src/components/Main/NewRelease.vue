@@ -7,7 +7,7 @@
       :settings="hooperSettings"
     >
       <slide
-        v-for="release in newRelease.films"
+        v-for="release in newRelease"
         :key="release.filmId"
       >
         <FilmItemInfo
@@ -26,8 +26,6 @@ import FilmItemInfo from '@/components/app/FilmItemInfo'
 import { Hooper, Slide } from 'hooper'
 import 'hooper/dist/hooper.css'
 
-import randomIdArr from '@/utils/randomIdArr'
-
 export default {
   name: 'NewRelease',
   data: () => ({
@@ -38,10 +36,10 @@ export default {
       itemsToShow: 3.1,
       breakpoints: {
         1303: {
-          itemsToShow: 3.1
+          itemsToShow: 3.5
         },
         993: {
-          itemsToShow: 2.1
+          itemsToShow: 3.1
         },
         576: {
           itemsToShow: 2.1
@@ -76,11 +74,11 @@ export default {
           from: currentYear,
           to: currentYear
         },
-        page: randomIdArr([3, 4, 1, 2, 5])
+        page: [3, 4, 1, 2, 5]
       }
 
       try {
-        this.newRelease = await this.$store.dispatch('getNewRelease', options)
+        this.newRelease = await this.$store.dispatch('getReleasesArr', options)
       } catch (e) {
         console.log(e)
       }
@@ -96,7 +94,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "@/assets/style/vars/_vars";
+@import '@/assets/style/vars/_vars';
 .release {
   overflow: hidden;
 }
