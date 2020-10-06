@@ -51,7 +51,7 @@ export default {
       const filmsArr = Object.keys(this.newRelease.releases)
       const totalMovies = this.newRelease.total
 
-      return filmsArr.length >= totalMovies
+      return filmsArr.length >= totalMovies + 10
     }
   },
   async created () {
@@ -85,6 +85,13 @@ export default {
     },
 
     currentMonth (date) {
+      // Если закончились фильмы в текущем месяце переключать на другой
+      if (this.page >= 2 && this.checkingItemsRelease === false) {
+        const currentMonth = date.getMonth()
+        debugger
+        date.setMonth(currentMonth - 1)
+      }
+
       const options = {
         month: 'long'
       }
