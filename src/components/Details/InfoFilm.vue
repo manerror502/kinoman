@@ -165,6 +165,33 @@
                 :style="{backgroundImage: 'url(' + infoFilm.data.posterUrl + ')'}"
               />
             </div>
+
+            <div
+              class="row infofilm__sequels "
+              v-if="sequels.length"
+            >
+              <div class="infofilm__heading">
+                <h2>Привквелы и сиквелы</h2>
+              </div>
+
+              <Loader
+                v-if="sequelsLoading"
+                style="width: 100%"
+              />
+
+              <ul
+                class="row justify-content-arround"
+                style="width: 100%"
+                v-else
+              >
+                <FilmItemInfo
+                  class="col-xl-4 col-md-6"
+                  v-for="sequel in sequels"
+                  :key="sequel.filmId"
+                  :item-info="sequel.data"
+                />
+              </ul>
+            </div>
           </div>
         </div>
       </div>
@@ -174,6 +201,7 @@
 
 <script>
 import FilmBanner from '@/components/Details/FilmBanner'
+import FilmItemInfo from '@/components/app/FilmItemInfo'
 
 import filterCountriesArr from '@/utils/filterCountries.js'
 import filterGenresArr from '@/utils/filterGenres.js'
@@ -187,12 +215,19 @@ export default {
     videoId: 'videoId',
     loading: true,
 
+    counter: 0,
+
+    // Сиквелы
+    sequels: [],
+    sequelsLoading: true,
+
     // Для скролла
     fade: false,
     scrollPrev: 0
   }),
   components: {
-    FilmBanner
+    FilmBanner,
+    FilmItemInfo
   },
   computed: {
     rating () {
@@ -231,10 +266,14 @@ export default {
     }
   },
 
-  async created () {
+  async mounted () {
     // Получаем всю информацию о фильме
     await this.getInfoFilm()
     this.loading = false
+
+    // Получаем приквелы и сиквелы
+    await this.getSequels()
+    this.sequelsLoading = false
   },
   methods: {
     async getInfoFilm () {
@@ -285,6 +324,20 @@ export default {
         this.filterStaff(staff)
       } catch (e) {
         console.log(e)
+      }
+    },
+    async getSequels () {
+      const sequels = await this.$store.dispatch(
+        'getSequels',
+        this.infoFilm.data.filmId
+      )
+
+      if (sequels.length) {
+        await sequels.forEach(async sequel => {
+          const filmId = sequel.filmId
+          const film = await this.$store.dispatch('getInfoFilm', filmId)
+          this.sequels.push(film)
+        })
       }
     }
   }
@@ -484,6 +537,10 @@ export default {
     font-weight: $font-weight__sans__regular;
     // border-bottom: $border-width + 1 solid fade($colors__grays, 40%);
   }
+}
+
+.infofilm__sequels {
+  width: 100%;
 }
 
 iframe {

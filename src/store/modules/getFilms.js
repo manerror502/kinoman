@@ -219,6 +219,23 @@ export default {
           commit('setError', e)
           throw e
         })
+    },
+    getSequels ({ dispatch, commit }, filmId) {
+      const url = `https://kinopoiskapiunofficial.tech/api/v2.1/films/${filmId}/sequels_and_prequels`
+
+      return axios(url, {
+        method: 'GET',
+        headers: {
+          'X-API-KEY': process.env.VUE_APP_KINOPOISK
+        }
+      })
+        .then(sequels => {
+          return sequels.data
+        })
+        .catch(e => {
+          commit('setError', e)
+          throw e
+        })
     }
   }
 }
