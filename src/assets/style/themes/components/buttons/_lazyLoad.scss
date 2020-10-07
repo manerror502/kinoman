@@ -1,0 +1,26 @@
+.lazyload {
+  display: block;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: $buttons__border-radius;
+  padding: 10px 50px;
+  margin: 30px auto;
+  transition: $transition-duration $transition-timing-function;
+
+  text-align: center;
+  font-family: $font-family__sans;
+  font-size: $font-size--normal + 5;
+  font-weight: $font-weight__sans__regular;
+
+  color: $colors__grays--lighter;
+  background-color: fade-out($colors__green, 0.2%);
+
+  &:hover,
+  &:focus {
+    transform: scale(1.1);
+  }
+
+  &:active {
+    background-color: fade-out($colors__green, 0%);
+  }
+}

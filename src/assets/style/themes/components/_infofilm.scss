@@ -67,7 +67,7 @@
 
 .infofilm__staff-title {
   h4 {
-    color: #99a9be;
+    color: $colors__grays;
     text-shadow: $shadows__coords-x $shadows__coords-y $shadows__size + 10
       fade-out($colors__black, 0.8%);
   }

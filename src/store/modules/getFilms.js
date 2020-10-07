@@ -133,7 +133,7 @@ export default {
         })
     },
     getNewRelease ({ dispatch }, payload) {
-      const url = `https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-filters?order=YEAR&ratingFrom=${payload.rating.from}&ratingTo=${payload.rating.to}&yearFrom=${payload.year.from}&yearTo=${payload.year.to}&page=${payload.page}`
+      const url = `https://kinopoiskapiunofficial.tech/api/v2.1/films/releases?year=${payload.year}&month=${payload.month}&page=${payload.page}`
 
       return axios(url, {
         method: 'GET',
@@ -214,6 +214,23 @@ export default {
       })
         .then(searchFilms => {
           return searchFilms.data
+        })
+        .catch(e => {
+          commit('setError', e)
+          throw e
+        })
+    },
+    getSequels ({ dispatch, commit }, filmId) {
+      const url = `https://kinopoiskapiunofficial.tech/api/v2.1/films/${filmId}/sequels_and_prequels`
+
+      return axios(url, {
+        method: 'GET',
+        headers: {
+          'X-API-KEY': process.env.VUE_APP_KINOPOISK
+        }
+      })
+        .then(sequels => {
+          return sequels.data
         })
         .catch(e => {
           commit('setError', e)

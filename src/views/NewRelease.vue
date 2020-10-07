@@ -10,7 +10,7 @@
       >
         <FilmItemInfo
           class="col-xl-4 col-md-6"
-          v-for="release in newRelease.films"
+          v-for="release in newRelease.releases"
           :key="release.filmId"
           :item-info="release"
         />
@@ -19,7 +19,7 @@
       <Loader v-if="lazyLoading" />
 
       <button
-        v-if="page <= newRelease.pagesCount - 1"
+        v-if="!checkingItemsRelease"
         @click.prevent="loadMore"
         class="lazyload"
       >
@@ -42,10 +42,19 @@ export default {
   data: () => ({
     newRelease: {},
     page: 1,
+    totalMovies: 60,
 
     loading: true,
     lazyLoading: false
   }),
+  computed: {
+    checkingItemsRelease () {
+      const filmsArr = Object.keys(this.newRelease.releases)
+      const totalMovies = this.newRelease.total
+
+      return filmsArr.length >= totalMovies + this.totalMovies
+    }
+  },
   async created () {
     await this.getNewRelease()
     this.loading = false
@@ -58,18 +67,14 @@ export default {
   },
   methods: {
     async getNewRelease () {
+      // Обрабатывем дату
       const currentDate = new Date()
       const currentYear = await this.currentYear(currentDate)
+      const currentMonth = await this.currentMonth(currentDate)
 
       const options = {
-        rating: {
-          from: '0',
-          to: '10'
-        },
-        year: {
-          from: currentYear,
-          to: currentYear
-        },
+        year: currentYear,
+        month: currentMonth,
         page: 1
       }
 
@@ -79,19 +84,35 @@ export default {
         console.log(e)
       }
     },
+
     currentMonth (date) {
+      // Если закончились фильмы в текущем месяце переключать на другой
+      if (this.page >= 2 && this.checkingItemsRelease === false) {
+        const currentMonth = date.getMonth()
+        debugger
+        date.setMonth(currentMonth - 1)
+      }
+
       const options = {
         month: 'long'
       }
       return new Intl.DateTimeFormat('en-EN', options).format(date)
     },
     currentYear (date) {
+      // Если закончились фильмы в текущем году переключать на другой
+      if (this.page >= 2 && this.checkingItemsRelease === false) {
+        const currentYear = date.getYear()
+        debugger
+        date.setYear(currentYear - 1)
+      }
+
       const options = {
         year: 'numeric'
       }
       return new Intl.DateTimeFormat('en-EN', options).format(date)
     },
 
+    // Загрузить больше
     async loadMore () {
       this.lazyLoading = true
 
@@ -103,26 +124,21 @@ export default {
     async getMoreNewRelease () {
       const currentDate = new Date()
       const currentYear = await this.currentYear(currentDate)
+      const currentMonth = await this.currentMonth(currentDate)
 
       this.page++
 
       const options = {
-        rating: {
-          from: '0',
-          to: '10'
-        },
-        year: {
-          from: currentYear,
-          to: currentYear
-        },
+        year: currentYear,
+        month: currentMonth,
         page: this.page
       }
 
       try {
         const newRelease = await this.$store.dispatch('getNewRelease', options)
 
-        newRelease.films.forEach(film => {
-          this.newRelease.films.push(film)
+        newRelease.releases.forEach(film => {
+          this.newRelease.releases.push(film)
         })
       } catch (e) {
         console.log(e)
@@ -137,7 +153,7 @@ export default {
       const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
-            if (!this.loading && this.page <= this.newRelease.pagesCount - 1) {
+            if (!this.loading && !this.checkingItemsRelease) {
               this.loadMore()
             }
             observer.unobserve()
@@ -153,24 +169,10 @@ export default {
 </script>
 
 <style lang="scss">
-@import "@/assets/style/vars/_vars";
+@import '@/assets/style/vars/_vars';
 
 .collection {
   padding-top: 50px;
-}
-
-.lazyload {
-  display: block;
-  flex-direction: column;
-  justify-content: center;
-  border-radius: $buttons__border-radius;
-  padding: 10px 50px;
-  margin: 30px auto;
-  transition: $transition-duration $transition-timing-function;
-
-  text-align: center;
-  font-family: $font-family__sans;
-  font-size: $font-size--normal + 5;
 }
 
 .more {

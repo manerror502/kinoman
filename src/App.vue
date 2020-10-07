@@ -59,20 +59,6 @@ export default {
   @media (max-width: $breackpoints__md) {
     padding-bottom: 50px;
   }
-
-  &:after {
-    content: '';
-    position: absolute;
-    top: 0;
-    width: 100vw;
-    height: 100vh;
-    filter: blur(50px);
-    background: linear-gradient(
-      to bottom,
-      fade-out(rgb(143, 168, 235), 0.4%) 0%,
-      rgba(9, 9, 9, 0) 20%
-    );
-  }
 }
 
 a {
@@ -82,7 +68,7 @@ a {
 // scrollbar
 ::-webkit-scrollbar {
   width: 13px;
-    border-radius: $border-radius__large;
+  border-radius: $border-radius__large;
 
   &-track {
     background: rgb(59, 59, 59);

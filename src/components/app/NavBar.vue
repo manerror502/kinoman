@@ -26,13 +26,10 @@
           class="img"
           alt=""
         >
-        <span>{{ link.title }}</span>
       </router-link>
     </ul>
 
     <div class="navbar__playlists">
-      <h5>КиноЛенты </h5>
-
       <!-- <button class="navbar__playlists-item">
         <div class="navbar__playlists-wrap">
           <p>
@@ -58,18 +55,13 @@
         class="navbar__playlists-item"
         tag="a"
       >
-        <div class="navbar__playlists-wrap">
-          <p>
-            Ваше кино
-
-            <span>
-              <svg
-                class=""
-                viewBox="0 0 479.958 479.958"
-              >
-                <path
-                  fill="currentColor"
-                  d="M463.441,189.294c-0.061-0.214-0.133-0.425-0.216-0.632c0-0.088-0.048-0.192-0.088-0.28
+        <svg
+          class=""
+          viewBox="0 0 479.958 479.958"
+        >
+          <path
+            fill="currentColor"
+            d="M463.441,189.294c-0.061-0.214-0.133-0.425-0.216-0.632c0-0.088-0.048-0.192-0.088-0.28
                   c-0.372-0.722-0.852-1.383-1.424-1.96c-0.128-0.136-0.288-0.232-0.424-0.36c-0.553-0.491-1.169-0.905-1.832-1.232
                   c-0.24-0.112-0.464-0.224-0.712-0.312c-0.882-0.351-1.819-0.541-2.768-0.56H127.025l-2.104-2.624l103.216-32.408l1.256-0.392
                   l1.848-0.576l99.2-31.152l21.048-6.608l31.152-9.776l75.736-23.768c4.215-1.325,6.557-5.816,5.232-10.031c0,0,0-0.001,0-0.001
@@ -87,11 +79,8 @@
                   M118.625,116.23l-14.016,39.728l-22.576-28.24L118.625,116.23z M31.977,135.958h36.16l36.984,46.24l11.792,14.728l5.6,7.024
                   l0.968,1.208l4.448,5.552v37.248H31.977V135.958z M447.977,455.958c0,4.418-3.582,8-8,8h-400c-4.418,0-8-3.582-8-8v-192h416
                   V455.958z M447.977,247.958h-24l24-32V247.958z"
-                />
-              </svg>
-            </span>
-          </p>
-        </div>
+          />
+        </svg>
       </router-link>
 
       <router-link
@@ -99,26 +88,18 @@
         class="navbar__playlists-item"
         tag="a"
       >
-        <div class="navbar__playlists-wrap">
-          <p>
-            Ваши закладки
-
-            <span>
-              <svg
-                class=""
-                viewBox="0 0 423.936 423.936"
-              >
-                <path
-                  fill="currentColor"
-                  d="M327.68,0H96.256c-22.528,0-40.96,18.432-40.96,40.96v357.376c0,9.728,5.632,18.944,14.336,23.04
+        <svg
+          class=""
+          viewBox="0 0 423.936 423.936"
+        >
+          <path
+            fill="currentColor"
+            d="M327.68,0H96.256c-22.528,0-40.96,18.432-40.96,40.96v357.376c0,9.728,5.632,18.944,14.336,23.04
                   c9.216,4.096,19.456,3.072,27.136-3.072l0.512-0.512l114.688-96.768l114.688,96.768l0.512,0.512
                   c4.608,3.584,10.24,5.632,15.872,5.632c3.584,0,7.68-1.024,11.264-3.072c8.704-4.096,14.336-13.312,14.336-23.04V40.96
                   C368.64,18.432,350.208,0,327.68,0z"
-                />
-              </svg>
-            </span>
-          </p>
-        </div>
+          />
+        </svg>
       </router-link>
     </div>
   </nav>
@@ -151,13 +132,14 @@ export default {
 </script>
 
 <style lang="scss">
-@import "@/assets/style/vars/_vars";
+@import '@/assets/style/vars/_vars';
 
 .navbar__container {
   position: fixed;
   top: 0;
   left: 0;
   z-index: 20;
+  width: 100px;
 
   @media (max-width: $breackpoints__md) {
     display: none;
@@ -199,6 +181,7 @@ export default {
   overflow: hidden;
   li {
     display: inline-flex;
+    justify-content: center;
     border-radius: $border-radius__small - 4;
     user-select: none;
     font-size: $font-size--normal - 2;
@@ -212,14 +195,8 @@ export default {
 
     img {
       display: inline-block;
-      max-width: $font-size--normal - 2;
+      max-width: 30px;
       margin-right: 5px;
-    }
-
-    span {
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      overflow: hidden;
     }
 
     &:hover,
@@ -232,18 +209,6 @@ export default {
       border-bottom: 0;
       margin-bottom: 10px;
     }
-
-    @media (max-width: $breackpoints__lg) {
-      justify-content: center;
-      img {
-        max-width: 40px;
-      }
-
-      span {
-        display: none;
-        visibility: hidden;
-      }
-    }
   }
 }
 
@@ -252,6 +217,8 @@ export default {
   width: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
   h5 {
     font-family: $font-family__sans;
@@ -265,49 +232,20 @@ export default {
 }
 
 .navbar__playlists-item {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  width: 100%;
-  padding: 10px 5px;
-  border-radius: $border-radius__small - 4;
-  height: 57px;
-  overflow: hidden;
-  text-align: left;
-
-  p {
-    font-weight: $font-weight__sans__regular;
-    padding-left: 60px;
-    font-size: $font-size--normal;
-    line-height: $line-height--normal + 1;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-
-    span {
-      position: absolute;
-      top: 50%;
-      left: 10px;
-      transform: translateY(-50%);
-      display: flex;
-      align-items: center;
-      margin-right: 10px;
-      border-radius: 50%;
-      overflow: hidden;
-      padding: 10px;
-
-      svg {
-        padding: 0px;
-        width: $font-size--normal;
-        height: $font-size--normal;
-      }
-    }
-  }
-}
-
-.navbar__playlists-wrap {
   display: flex;
-  overflow: hidden;
+  justify-content: center;
   align-items: center;
+  overflow: hidden;
+  transition: $transition-duration $transition-timing-function;
+  margin-bottom: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+
+  svg {
+    width: $font-size--normal;
+    height: $font-size--normal;
+  }
 }
 </style>

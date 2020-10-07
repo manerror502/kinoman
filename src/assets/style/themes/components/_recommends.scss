@@ -25,14 +25,3 @@
     );
   }
 }
-
-.lazyload {
-  background-color: fade-out($colors__green, 0.2%);
-
-  &:hover,
-  &:focus,
-  &:active {
-    color: $colors__white;
-    background-color: fade-out($colors__green, 0%);
-  }
-}

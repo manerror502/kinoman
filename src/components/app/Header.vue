@@ -150,7 +150,7 @@ export default {
   @include adaptiv-font($size--large - 5, $size--normal);
   line-height: $line-height--large;
   user-select: none;
-  font-weight: $font-weight__sans__black;
+  font-weight: $font-weight__sans__bold;
   transition: $transition-duration $transition-timing-function;
   white-space: nowrap;
   overflow: hidden;

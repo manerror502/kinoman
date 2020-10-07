@@ -1,12 +1,12 @@
 .slide-fade-enter-active {
-  transition: all 0.2s linear;
+  transition: all 0.1s linear;
 }
 .slide-fade-leave-active {
   transform: translateX(100vw);
-  transition: all 0.2s linear;
+  transition: all 0.1s linear;
 }
 .slide-fade-enter, .slide-fade-leave-to
 /* .slide-fade-leave-active до версии 2.1.8 */ {
   transform: translateX(100vw);
-  transition: all 0.2s linear;
+  transition: all 0.1s linear;
 }

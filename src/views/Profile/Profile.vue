@@ -68,9 +68,9 @@
             </div>
 
             <div class="col">
-              <h4>Тема</h4>
+              <h4>Внешний вид</h4>
               <p>
-                Выберите цветовую тему которая нравиться именно вам
+                Выберите цветовую тему которая нравиться вам
               </p>
             </div>
 
@@ -390,7 +390,7 @@ export default {
     height: 80%;
 
     h4 {
-      font-weight: $font-weight__sans__bold;
+      font-weight: $font-weight__sans__medium;
       font-size: $font-size--large;
       margin-bottom: 30px;
       @include adaptiv-font($size--large, $size--small + 10);

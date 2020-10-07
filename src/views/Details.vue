@@ -1,5 +1,8 @@
 <template>
-  <component :is="param" />
+  <component
+    :is="param"
+    :key="filmId"
+  />
 </template>
 
 <script>
@@ -23,6 +26,11 @@ export default {
       } else {
         return 'infoPlaylist'
       }
+    },
+
+    // При изменении фильм id будет обновляться страница
+    filmId () {
+      return this.$route.params.id
     }
   }
 }
