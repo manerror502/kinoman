@@ -42,6 +42,7 @@ export default {
   data: () => ({
     newRelease: {},
     page: 1,
+    totalMovies: 60,
 
     loading: true,
     lazyLoading: false
@@ -51,7 +52,7 @@ export default {
       const filmsArr = Object.keys(this.newRelease.releases)
       const totalMovies = this.newRelease.total
 
-      return filmsArr.length >= totalMovies + 10
+      return filmsArr.length >= totalMovies + this.totalMovies
     }
   },
   async created () {
@@ -98,6 +99,13 @@ export default {
       return new Intl.DateTimeFormat('en-EN', options).format(date)
     },
     currentYear (date) {
+      // Если закончились фильмы в текущем году переключать на другой
+      if (this.page >= 2 && this.checkingItemsRelease === false) {
+        const currentYear = date.getYear()
+        debugger
+        date.setYear(currentYear - 1)
+      }
+
       const options = {
         year: 'numeric'
       }
