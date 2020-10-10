@@ -51,7 +51,7 @@
       </button> -->
 
       <router-link
-        to="/yourMovie"
+        to="/profile/heartMovie"
         class="navbar__playlists-item"
         tag="a"
       >
@@ -84,7 +84,7 @@
       </router-link>
 
       <router-link
-        to="/yourBookmarks"
+        to="/profile/bookmarksMovie"
         class="navbar__playlists-item"
         tag="a"
       >

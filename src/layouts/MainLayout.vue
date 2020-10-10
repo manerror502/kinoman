@@ -2,7 +2,10 @@
   <div
     class="page"
   >
-    <transition name="fade">
+    <transition
+      name="fade"
+      mode="in-out"
+    >
       <Loader
         v-if="loading"
         style="min-height: 100vh"
@@ -39,6 +42,27 @@
         </div>
       </div>
     </transition>
+
+    <router-link
+      to="/search"
+      tag="button"
+      active-class="active"
+      class="btn app__search"
+    >
+      <svg viewBox="0 0 512 512">
+        <path
+          fill="currentColor"
+          d="M181.341,0C81.352,0,0.008,81.344,0.008,181.333s81.344,181.333,181.333,181.333s181.333-81.344,181.333-181.333
+                    S281.331,0,181.341,0z M181.341,341.333c-88.235,0-160-71.765-160-160s71.765-160,160-160s160,71.765,160,160
+                    S269.576,341.333,181.341,341.333z"
+        />
+        <path
+          fill="currentColor"
+          d="M508.872,493.803L309.555,294.485c-4.16-4.16-10.923-4.16-15.083,0c-4.16,4.16-4.16,10.923,0,15.083l199.317,199.317
+                    c2.091,2.069,4.821,3.115,7.552,3.115c2.731,0,5.461-1.045,7.531-3.115C513.032,504.725,513.032,497.963,508.872,493.803z"
+        />
+      </svg>
+    </router-link>
   </div>
 </template>
 
@@ -67,8 +91,8 @@ export default {
     if (!Object.keys(this.$store.getters.info).length) {
       await this.$store.dispatch('fetchInfo')
     }
-    await this.getFilters()
     this.loading = false
+    await this.getFilters()
   },
   methods: {
     async getFilters () {

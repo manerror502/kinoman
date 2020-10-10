@@ -8,9 +8,18 @@
       color: $colors__grays--lighter;
     }
 
-    &:focus {
+    &:focus,
+    &:hover {
       outline: none;
+      background-color: darken($colors__body, 1%);
     }
+  }
+}
+
+.profile__title {
+  border-bottom: $border-width solid fade-out($colors__grays--lighter, 0.5%);
+  h4 {
+    color: $colors__grays--lighter;
   }
 }
 

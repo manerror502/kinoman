@@ -44,14 +44,9 @@ export default {
         icon: require('../../assets/img/navBar/ball.svg')
       },
       {
-        title: ' Моё кино ',
-        url: '/yourMovie',
-        icon: require('../../assets/img/navBar/popcorn.svg')
-      },
-      {
-        title: ' Мои закладки ',
-        url: '/yourBookmarks',
-        icon: require('../../assets/img/navBar/bookmark.svg')
+        title: ' Профиль ',
+        url: '/profile',
+        icon: require('../../assets/img/navBar/profile.svg')
       }
     ]
   })

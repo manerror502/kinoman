@@ -1,0 +1,6 @@
+.items__text {
+  border-bottom: $border-width solid fade-out($colors__grays--lighter, 0.5%);
+  h4 {
+    color: $colors__grays--lighter;
+  }
+}
