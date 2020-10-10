@@ -5,6 +5,9 @@
       v-else
       class="container-fluid"
     >
+      <div class="items__text">
+        <h4>Релизы за {{ currentMonth().ru }}</h4>
+      </div>
       <ul
         class="row justify-content-arround"
       >
@@ -17,14 +20,6 @@
       </ul>
 
       <Loader v-if="lazyLoading" />
-
-      <button
-        v-if="!checkingItemsRelease"
-        @click.prevent="loadMore"
-        class="lazyload"
-      >
-        Загрузить больше
-      </button>
     </div>
 
     <span
@@ -42,7 +37,13 @@ export default {
   data: () => ({
     newRelease: {},
     page: 1,
-    totalMovies: 60,
+    totalMovies: 10,
+
+    date: {
+      full: null,
+      month: 'Januar',
+      year: '2020'
+    },
 
     loading: true,
     lazyLoading: false
@@ -52,10 +53,11 @@ export default {
       const filmsArr = Object.keys(this.newRelease.releases)
       const totalMovies = this.newRelease.total
 
-      return filmsArr.length >= totalMovies + this.totalMovies
+      return filmsArr.length >= totalMovies
     }
   },
   async created () {
+    await this.getDate()
     await this.getNewRelease()
     this.loading = false
   },
@@ -66,15 +68,16 @@ export default {
     FilmItemInfo
   },
   methods: {
-    async getNewRelease () {
-      // Обрабатывем дату
-      const currentDate = new Date()
-      const currentYear = await this.currentYear(currentDate)
-      const currentMonth = await this.currentMonth(currentDate)
+    async getDate () {
+      this.date.full = new Date()
+      this.date.year = await this.currentYear()
+      this.date.month = await this.currentMonth().en
+    },
 
+    async getNewRelease () {
       const options = {
-        year: currentYear,
-        month: currentMonth,
+        year: this.date.year,
+        month: this.date.month,
         page: 1
       }
 
@@ -85,27 +88,25 @@ export default {
       }
     },
 
-    currentMonth (date) {
-      // Если закончились фильмы в текущем месяце переключать на другой
-      if (this.page >= 2 && this.checkingItemsRelease === false) {
-        const currentMonth = date.getMonth()
-        debugger
-        date.setMonth(currentMonth - 1)
-      }
-
+    currentMonth () {
+      const date = this.date.full
       const options = {
         month: 'long'
       }
-      return new Intl.DateTimeFormat('en-EN', options).format(date)
-    },
-    currentYear (date) {
-      // Если закончились фильмы в текущем году переключать на другой
-      if (this.page >= 2 && this.checkingItemsRelease === false) {
-        const currentYear = date.getYear()
-        debugger
-        date.setYear(currentYear - 1)
+
+      if (this.page > 2 && this.checkingItemsRelease) {
+        const currentMonth = date.getMonth()
+        date.setMonth(currentMonth - 1)
+        this.page = 0
       }
 
+      return {
+        en: new Intl.DateTimeFormat('en-EN', options).format(date),
+        ru: new Intl.DateTimeFormat('ru-RU', options).format(date)
+      }
+    },
+    currentYear () {
+      const date = this.date.full
       const options = {
         year: 'numeric'
       }
@@ -122,15 +123,16 @@ export default {
     },
 
     async getMoreNewRelease () {
-      const currentDate = new Date()
-      const currentYear = await this.currentYear(currentDate)
-      const currentMonth = await this.currentMonth(currentDate)
+      // Если закончились релизы в текущем месяцу, переключать на другой
+      if (this.checkingItemsRelease) {
+        this.date.month = await this.currentMonth().en
+      }
 
       this.page++
 
       const options = {
-        year: currentYear,
-        month: currentMonth,
+        year: this.date.year,
+        month: this.date.month,
         page: this.page
       }
 
@@ -153,7 +155,7 @@ export default {
       const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
-            if (!this.loading && !this.checkingItemsRelease) {
+            if (!this.loading) {
               this.loadMore()
             }
             observer.unobserve()
@@ -173,6 +175,15 @@ export default {
 
 .collection {
   padding-top: 50px;
+}
+
+.items__text {
+  margin-bottom: 20px;
+  h4 {
+    font-family: $font-family__sans;
+    line-height: $line-height--large;
+    @include adaptiv-font($size--large + 10, $size--normal + 10);
+  }
 }
 
 .more {
