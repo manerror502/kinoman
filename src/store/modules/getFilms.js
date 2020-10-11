@@ -236,6 +236,24 @@ export default {
           commit('setError', e)
           throw e
         })
+    },
+    getChartFilms ({ dispatch, commit }) {
+      const url =
+        'https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_100_POPULAR_FILMS&page=1'
+
+      return axios(url, {
+        method: 'GET',
+        headers: {
+          'X-API-KEY': process.env.VUE_APP_KINOPOISK
+        }
+      })
+        .then(charts => {
+          return charts.data
+        })
+        .catch(e => {
+          commit('setError', e)
+          throw e
+        })
     }
   }
 }
