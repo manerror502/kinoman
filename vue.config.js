@@ -3,11 +3,12 @@ module.exports = {
 
   pwa: {
     name: 'КиноMan',
-    themeColor: '#609DC5',
-    msTileColor: '#6696D1',
+    themeColor: '#A7BDF7',
+    msTileColor: '#A7BDF7',
     manifestOptions: {
-      background_color: '#42C087'
-    }
+      background_color: '#DCFEEC'
+    },
+    manifestCrossorigin: 'use-credentials'
   },
 
   lintOnSave: false,
