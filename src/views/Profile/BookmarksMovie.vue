@@ -1,44 +1,54 @@
 <template>
-  <section>
-    <Loader v-if="loading" />
-    <div
-      v-else
-    >
-      <ul
-        class="row justify-content-arround"
-        v-if="films.length"
-      >
-        <FilmItemInfo
-          class="col-xl-4 col-md-6"
-          v-for="bookmark in films"
-          :key="bookmark.filmId"
-          :item-info="bookmark"
-        />
-      </ul>
+  <div class="row no-gutters your__movie">
+    <section class="items">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col">
+            <section>
+              <Loader v-if="loading" />
+              <div
+                v-else
+              >
+                <ul
+                  class="row justify-content-arround"
+                  v-if="films.length"
+                >
+                  <FilmItemInfo
+                    class="col-xl-4 col-md-6"
+                    v-for="bookmark in films"
+                    :key="bookmark.filmId"
+                    :item-info="bookmark"
+                  />
+                </ul>
 
-      <div
-        class="row"
-        v-else
-      >
-        <div class="col d-flex justify-content-center">
-          <div class="films__no">
-            <div class="films__text">
-              <p>У вас пока нет фильмов</p>
-            </div>
+                <div
+                  class="row"
+                  v-else
+                >
+                  <div class="col d-flex justify-content-center">
+                    <div class="films__no">
+                      <div class="films__text">
+                        <p>У вас пока нет фильмов</p>
+                      </div>
 
-            <Search />
+                      <Search />
+                    </div>
+                  </div>
+                </div>
+
+                <Loader v-if="lazyLoading" />
+              </div>
+
+              <span
+                class="more"
+                ref="more"
+              />
+            </section>
           </div>
         </div>
       </div>
-
-      <Loader v-if="lazyLoading" />
-    </div>
-
-    <span
-      class="more"
-      ref="more"
-    />
-  </section>
+    </section>
+  </div>
 </template>
 
 <script>
@@ -46,7 +56,7 @@ import FilmItemInfo from '@/components/app/FilmItemInfo'
 import Search from '@/components/app/Search'
 
 export default {
-  name: 'HeartMovie',
+  name: 'YourMovie',
   data: () => ({
     loading: true,
     bookmarkFilms: [],
@@ -121,6 +131,11 @@ export default {
 
 <style lang="scss">
 @import '@/assets/style/vars/_vars';
+
+.your__movie {
+  margin-top: 50px;
+  width: 100%;
+}
 
 .films__no {
   margin-top: 20px;

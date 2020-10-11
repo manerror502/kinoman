@@ -1,46 +1,56 @@
 <template>
-  <section>
-    <Loader
-      v-if="loading"
-    />
-    <div
-      v-else
-    >
-      <ul
-        class="row justify-content-arround"
-        v-if="films.length"
-      >
-        <FilmItemInfo
-          class="col-xl-4 col-md-6"
-          v-for="heart in films"
-          :key="heart.filmId"
-          :item-info="heart"
-        />
-      </ul>
+  <div class="row no-gutters your__movie">
+    <section class="items">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col">
+            <section>
+              <Loader
+                v-if="loading"
+              />
+              <div
+                v-else
+              >
+                <ul
+                  class="row justify-content-arround"
+                  v-if="films.length"
+                >
+                  <FilmItemInfo
+                    class="col-xl-4 col-md-6"
+                    v-for="heart in films"
+                    :key="heart.filmId"
+                    :item-info="heart"
+                  />
+                </ul>
 
-      <div
-        class="row"
-        v-else
-      >
-        <div class="col d-flex justify-content-center">
-          <div class="films__no">
-            <div class="films__text">
-              <p>У вас пока нет фильмов</p>
-            </div>
+                <div
+                  class="row"
+                  v-else
+                >
+                  <div class="col d-flex justify-content-center">
+                    <div class="films__no">
+                      <div class="films__text">
+                        <p>У вас пока нет фильмов</p>
+                      </div>
 
-            <Search />
+                      <Search />
+                    </div>
+                  </div>
+                </div>
+
+                <Loader v-if="lazyLoading" />
+              </div>
+
+              <span
+                class="more"
+                ref="more"
+              />
+            </section>
           </div>
         </div>
       </div>
-
-      <Loader v-if="lazyLoading" />
-    </div>
-
-    <span
-      class="more"
-      ref="more"
-    />
-  </section>
+    </section>
+  </div>
 </template>
 
 <script>
@@ -122,6 +132,11 @@ export default {
 </script>
 
 <style lang="scss">
+.your__movie {
+  margin-top: 50px;
+  width: 100%;
+}
+
 @import '@/assets/style/vars/_vars';
 
 .films__no {

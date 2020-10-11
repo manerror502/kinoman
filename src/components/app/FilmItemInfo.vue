@@ -211,7 +211,7 @@ export default {
   padding-right: 20%;
 
   @media (max-width: $breackpoints__xs) {
-    padding: 10px;
+    padding: 20px 10px;
   }
 }
 

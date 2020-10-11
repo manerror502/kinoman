@@ -67,15 +67,15 @@ a {
 
 // scrollbar
 ::-webkit-scrollbar {
-  width: 13px;
+  width: 10px;
   border-radius: $border-radius__large;
 
   &-track {
-    background: rgb(59, 59, 59);
+    background: rgba(59, 59, 59, 0);
   }
 
   &-thumb {
-    background: rgba(118, 146, 223, 0.699);
+    background: rgb(163, 163, 163);
     border-radius: $border-radius__large;
   }
 }

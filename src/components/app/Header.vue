@@ -6,20 +6,17 @@
   >
     <div class="container-fluid">
       <div class="row justify-content-between">
-        <div class="col-8 d-flex">
+        <div class="col-lg-8 d-flex">
           <button
             class="header__back"
             @click.prevent="back"
           >
-            <svg viewBox="0 0 512 512">
+            <svg viewBox="0 0 240.823 240.823">
               <path
                 fill="currentColor"
-                d="M256,0C114.615,0,0,114.615,0,256s114.615,256,256,256s256-114.615,256-256S397.385,0,256,0z M256,480
-                C132.288,480,32,379.712,32,256S132.288,32,256,32s224,100.288,224,224S379.712,480,256,480z"
-              />
-              <path
-                fill="currentColor"
-                d="M292.64,116.8l-128,128c-6.204,6.241-6.204,16.319,0,22.56l128,128l22.56-22.72L198.56,256L315.2,139.36L292.64,116.8z"
+                d="M57.633,129.007L165.93,237.268c4.752,4.74,12.451,4.74,17.215,0c4.752-4.74,4.752-12.439,0-17.179
+                l-99.707-99.671l99.695-99.671c4.752-4.74,4.752-12.439,0-17.191c-4.752-4.74-12.463-4.74-17.215,0L57.621,111.816
+                C52.942,116.507,52.942,124.327,57.633,129.007z"
               />
             </svg>
           </button>
@@ -163,10 +160,10 @@ export default {
   justify-content: flex-end;
   align-items: center;
 
-  // @media (max-width: $breackpoints__md) {
-  //   display: none;
-  //   visibility: hidden;
-  // }
+  @media (max-width: $breackpoints__md) {
+    display: none;
+    visibility: hidden;
+  }
 }
 
 .nav__link {

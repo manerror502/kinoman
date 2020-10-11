@@ -15,7 +15,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "@/assets/style/vars/_vars";
+@import '@/assets/style/vars/_vars';
 
 .modal {
   width: 100%;
@@ -28,6 +28,13 @@ export default {
   padding: 0;
   overflow-x: hidden;
   overflow-y: auto;
+
+  @media (max-width: $breackpoints__md) {
+    &::-webkit-scrollbar {
+      width: 0px;
+
+    }
+  }
 }
 
 .modal__close {

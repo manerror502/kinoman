@@ -18,11 +18,11 @@
         </div>
       </div>
 
-      <div class="row">
-        <!-- <div class="col-lg-6">
+      <div class="row no-gutters">
+        <div class="col-lg-6">
           <router-link
             tag="a"
-            to="/profile/preferences"
+            to="/profile/heartMovie"
             class="profile__item large"
           >
             <div class="profile__item-img col-lg-3">
@@ -34,10 +34,7 @@
             </div>
 
             <div class="col">
-              <h4>Ваши предпочтения</h4>
-              <p>
-                Узнайте на сколько точно мы подобрали ваши интересы в кино
-              </p>
+              <h4>Любимое кино</h4>
             </div>
 
             <button class="profile__item-btn">
@@ -52,14 +49,52 @@
               </svg>
             </button>
           </router-link>
-        </div> -->
+        </div>
 
         <div class="col-lg-6">
-          <label
-            for="theme"
+          <router-link
+            tag="a"
+            to="/profile/heartMovie"
             class="profile__item large"
           >
-            <div class="profile__item-img col-3">
+            <div class="profile__item-img col-lg-3">
+              <img
+                src="../../assets/img/profile/profile5.jpg"
+                alt=""
+                class="img"
+              >
+            </div>
+
+            <div class="col">
+              <h4>Закладки</h4>
+            </div>
+
+            <button class="profile__item-btn">
+              <svg viewBox="0 0 512 512">
+                <path
+                  fill="currentColor"
+                  d="M508.875,248.458l-160-160c-4.167-4.167-10.917-4.167-15.083,0c-4.167,4.167-4.167,10.917,0,15.083l141.792,141.792
+                  H10.667C4.771,245.333,0,250.104,0,256s4.771,10.667,10.667,10.667h464.917L333.792,408.458c-4.167,4.167-4.167,10.917,0,15.083
+                  c2.083,2.083,4.813,3.125,7.542,3.125c2.729,0,5.458-1.042,7.542-3.125l160-160C513.042,259.375,513.042,252.625,508.875,248.458z
+                  "
+                />
+              </svg>
+            </button>
+          </router-link>
+        </div>
+
+        <div class="profile__title col-12">
+          <h4>Настройки</h4>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-8">
+          <label
+            for="theme"
+            class="profile__item"
+          >
+            <div class="profile__item-img col-2">
               <img
                 src="../../assets/img/profile/profile2.jpg"
                 alt=""
@@ -89,23 +124,9 @@
                 />
               </svg>
             </button>
-
-            <div
-              class="profile__menu"
-              v-if="menu"
-            >
-              <button
-                v-for="theme in theme.themeArr"
-                :key="theme.id"
-                @click.prevent="themeSet(theme.id)"
-              >{{ theme.name }}</button>
-
-            </div>
           </label>
         </div>
-      </div>
 
-      <div class="row">
         <div class="col-lg-8">
           <label
             for="checkbox"
@@ -352,6 +373,18 @@ export default {
     @include adaptiv-font($size--large + 10, $size--normal + 10);
     background: none;
     border: none;
+    border-radius: $border-radius__small;
+    transition: $transition-duration $transition-timing-function;
+  }
+}
+
+.profile__title {
+  margin-bottom: 20px;
+  overflow: hidden;
+  h4 {
+    font-family: $font-family__sans;
+    line-height: $line-height--large;
+    @include adaptiv-font($size--large + 10, $size--normal + 10);
   }
 }
 
@@ -386,6 +419,7 @@ export default {
 
   &.large {
     margin-bottom: 50px;
+    margin-left: 40px;
     padding: 20px;
     height: 80%;
 
@@ -398,6 +432,7 @@ export default {
 
     @media (max-width: $breackpoints__md) {
       height: auto;
+      margin-left: 0;
     }
   }
 

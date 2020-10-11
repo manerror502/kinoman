@@ -73,14 +73,6 @@
         v-if="!($route.fullPath === '/')"
       >
         <Loader v-if="lazyLoading" />
-
-        <button
-          v-if="checkingItemsRecommeds"
-          @click="loadMore"
-          class="lazyload"
-        >
-          Загрузить больше
-        </button>
       </div>
     </div>
 
@@ -152,7 +144,7 @@ export default {
     this.loading = false
   },
   mounted () {
-    if (!this.userInfo) {
+    if (!this.userInfo && !(this.$route.fullPath === '/')) {
       this.lazyLoad()
     }
   },

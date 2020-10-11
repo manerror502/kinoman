@@ -3,6 +3,8 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Details from '@/views/Details.vue'
 import ReccomendsForYou from '@/views/RecommendsForYou.vue'
+import HeartMovie from '@/views/Profile/HeartMovie.vue'
+import BookmarksMovie from '@/views/Profile/BookmarksMovie.vue'
 import firebase from 'firebase/app'
 
 Vue.use(VueRouter)
@@ -41,7 +43,7 @@ const routes = [
   {
     path: '/foryou',
     name: 'RecommendsForYou',
-    meta: { layout: 'main', title: 'Рекоммендации для вас' },
+    meta: { layout: 'main', title: 'Рекоммендации' },
     component: ReccomendsForYou
   },
   {
@@ -51,16 +53,16 @@ const routes = [
     component: () => import('../views/SearchPage.vue')
   },
   {
-    path: '/yourMovie',
+    path: '/profile/heartMovie',
     name: 'Your Movie',
-    meta: { layout: 'main', title: 'Ваше любимое кино', auth: true },
-    component: () => import('../views/YourMovie.vue')
+    meta: { layout: 'main', title: 'Любимое кино', auth: true },
+    component: HeartMovie
   },
   {
-    path: '/yourBookmarks',
-    name: 'Your Bookmark',
-    meta: { layout: 'main', title: 'Ваши закладки', auth: true },
-    component: () => import('../views/YourBookmark.vue')
+    path: '/profile/bookmarksMovie',
+    name: 'Bookmarks Movie',
+    meta: { layout: 'main', title: 'Закладки', auth: true },
+    component: BookmarksMovie
   },
   {
     path: '/profile',
