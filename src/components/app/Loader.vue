@@ -1,12 +1,6 @@
 <template>
-  <div class="loader">
-    <svg>
-      <circle
-        cx="70"
-        cy="70"
-        r="70"
-      />
-    </svg>
+  <div class="loader__container">
+    <div class="loader" />
   </div>
 </template>
 
@@ -17,55 +11,32 @@ export default {
 </script>
 
 <style lang="scss">
-.loader {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
+.loader__container {
+  width: 100%;
   height: 100%;
-
-  svg {
-    position: relative;
-    width: 150px;
-    height: 150px;
-    animation: rotate 2s linear infinite;
-
-    circle {
-      width: 100%;
-      height: 100%;
-      fill: none;
-      stroke-width: 10;
-      stroke-linecap: round;
-      stroke: #00a1ff;
-      stroke-dasharray: 440;
-      stroke-dashoffset: 440;
-      transform: translate(5px, 5px);
-      animation: animate 4s linear infinite;
-    }
-  }
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-@keyframes rotate {
+.loader {
+  border: 8px solid #f3f3f300;
+  border-top: 8px solid #3498db;
+  border-right: 8px solid #3498db;
+  border-bottom: 8px solid #3498db;
+  border-radius: 50%;
+  width: 90px;
+  height: 90px;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
   0% {
     transform: rotate(0deg);
   }
-
   100% {
     transform: rotate(360deg);
-  }
-}
-
-@keyframes animate {
-  0%,
-  100% {
-    stroke-dashoffset: 440;
-  }
-  50% {
-    stroke-dashoffset: 0;
-  }
-
-  50.1% {
-    stroke-dashoffset: 880;
   }
 }
 </style>
