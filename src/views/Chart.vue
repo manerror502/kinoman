@@ -67,11 +67,12 @@ export default {
   name: 'Chart',
   data: () => ({
     charts: {},
-    loading: false
+    loading: true
   }),
   computed: {},
-  created () {
-    this.getChartFilms()
+  async created () {
+    await this.getChartFilms()
+    this.loading = false
   },
   methods: {
     async getChartFilms () {
