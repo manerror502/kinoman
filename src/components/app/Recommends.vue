@@ -59,6 +59,11 @@
       class="recommends__item"
       v-else
     >
+      <div
+        class=" blur__img"
+        :style="{backgroundImage: 'url(' + recommends.films[0].posterUrl + ')'}"
+      />
+
       <div class="row">
         <FilmItemInfo
           class="col-xl-4 col-md-6"
@@ -323,6 +328,7 @@ export default {
 
 .recommends {
   max-width: 100%;
+  position: relative;
 }
 
 .recommends__no {

@@ -2,6 +2,11 @@
   <div class="row no-gutters your__movie">
     <section class="items">
       <div class="container-fluid">
+        <div
+          class=" blur__img"
+          :style="{backgroundImage: 'url(' + films[0].posterUrl + ')'}"
+        />
+
         <div class="row">
           <div class="col">
             <section>
@@ -135,6 +140,7 @@ export default {
 .your__movie {
   margin-top: 50px;
   width: 100%;
+  min-height: 100vh;
 }
 
 @import '@/assets/style/vars/_vars';

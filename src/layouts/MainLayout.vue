@@ -143,6 +143,34 @@ export default {
   margin-bottom: 23px;
 }
 
+.blur__img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: blur(50px);
+  width: 100%;
+  height: 500px;
+
+  &::after {
+    content: '';
+    opacity: 1;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    bottom: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(15, 15, 15, 1) 0%,
+      rgba(15, 15, 15, 0.6) 90%,
+      rgba(0, 0, 0, 0) 100%
+    );
+  }
+}
+
 // lazyload
 .more {
   display: block;
