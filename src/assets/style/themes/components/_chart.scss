@@ -1,0 +1,4 @@
+.chart__title {
+  color: $colors__grays--lighter;
+  border-bottom: $border-width solid fade-out($colors__grays--lighter, 0.5%);
+}
