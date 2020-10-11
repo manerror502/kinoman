@@ -127,6 +127,11 @@ export default {
         icon: require('../../assets/img/navBar/new.svg')
       },
       {
+        title: ' Чарт ',
+        url: '/chart',
+        icon: require('../../assets/img/navBar/chart.svg')
+      },
+      {
         title: ' Рекоммендации ',
         url: '/foryou',
         icon: require('../../assets/img/navBar/ball.svg')
