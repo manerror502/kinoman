@@ -22,6 +22,7 @@ import 'firebase/database'
 import titlePlugin from '@/utils/plugins/title.plugin'
 
 import Loader from './components/app/Loader'
+import FilmItemInfo from './components/app/FilmItemInfo'
 
 import './registerServiceWorker'
 
@@ -47,6 +48,7 @@ Vue.use(VueMeta)
 Vue.use(titlePlugin)
 
 Vue.component('Loader', Loader)
+Vue.component('FilmItemInfo', FilmItemInfo)
 
 firebase.initializeApp({
   apiKey: 'AIzaSyC8DQK49dJ8Fqfj3oI06pYTjgXRDOsfKPg',

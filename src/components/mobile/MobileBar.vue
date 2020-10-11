@@ -44,6 +44,11 @@ export default {
         icon: require('../../assets/img/navBar/ball.svg')
       },
       {
+        title: ' Чарт ',
+        url: '/chart',
+        icon: require('../../assets/img/navBar/chart.svg')
+      },
+      {
         title: ' Профиль ',
         url: '/profile',
         icon: require('../../assets/img/navBar/profile.svg')
@@ -54,7 +59,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "@/assets/style/vars/_vars";
+@import '@/assets/style/vars/_vars';
 
 .mobile {
   position: fixed;

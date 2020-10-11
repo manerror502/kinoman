@@ -23,6 +23,12 @@ const routes = [
     component: () => import('@/views/NewRelease.vue')
   },
   {
+    path: '/chart',
+    name: 'Chart',
+    meta: { layout: 'main', title: 'Чарт' },
+    component: () => import('@/views/Chart.vue')
+  },
+  {
     path: '/film/:id',
     name: 'InfoFilm',
     meta: { layout: 'main', title: 'Информация о кино' },
