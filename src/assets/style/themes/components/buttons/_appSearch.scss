@@ -27,6 +27,10 @@
     background: darken($colors__green, 10%);
   }
 
+  &.fade {
+    transform: translateY(300%);
+  }
+
   @media (min-width: $breackpoints__md) {
     display: none;
     visibility: hidden;

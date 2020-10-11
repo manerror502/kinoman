@@ -6,13 +6,7 @@
       name="fade"
       mode="in-out"
     >
-      <Loader
-        v-if="loading"
-        style="min-height: 100vh"
-      />
-
       <div
-        v-else
         class="row no-gutters justify-content-end"
       >
         <aside
@@ -36,7 +30,12 @@
             <main
               class="row no-gutters w-100"
             >
-              <router-view />
+              <Loader
+                v-if="loading"
+                style="width: 100%; min-height: 100vh"
+              />
+
+              <router-view v-else />
             </main>
           </div>
         </div>
@@ -48,6 +47,8 @@
       tag="button"
       active-class="active"
       class="btn app__search"
+      v-scroll="handleScroll"
+      :class="{fade: fadeSearch}"
     >
       <svg viewBox="0 0 512 512">
         <path
@@ -79,7 +80,10 @@ export default {
     Navbar
   },
   data: () => ({
-    loading: true
+    loading: true,
+
+    fadeSearch: false,
+    scrollPrev: 0
   }),
   computed: {
     error () {
@@ -98,15 +102,17 @@ export default {
     async getFilters () {
       const filters = await this.$store.dispatch('getFiltersJSON')
       await this.$store.dispatch('setFilters', filters)
+    },
+    handleScroll () {
+      const scroll = window.scrollY
+      if (scroll > 200 && scroll > this.scrollPrev) {
+        this.fadeSearch = true
+      } else {
+        this.fadeSearch = false
+      }
+
+      this.scrollPrev = scroll
     }
-    // async getCollections () {
-    //   try {
-    //     const collections = await this.$store.dispatch('getCollections')
-    //     await this.$store.dispatch('setCollections', collections)
-    //   } catch (e) {
-    //     console.log(e)
-    //   }
-    // }
   },
   watch: {
     error (fbError) {

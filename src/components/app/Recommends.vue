@@ -360,6 +360,7 @@ export default {
 
   p {
     font-size: $font-size--normal + 15;
+    @include adaptiv-font($size--normal + 15, $size--normal);
     font-family: $font-family__sans;
     font-weight: $font-weight__sans__bold;
     text-align: center;
@@ -374,6 +375,7 @@ export default {
   padding: 10px 50px;
   border-radius: $border-radius__small;
   transition: $transition-duration $transition-timing-function;
+  @include adaptiv-font($size--normal, $size--small);
 
   &:hover,
   &:focus,
