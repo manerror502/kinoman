@@ -180,6 +180,10 @@ export default {
 // lazyload
 .more {
   display: block;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  right: 0;
   height: 5px;
   opacity: 0;
 }
