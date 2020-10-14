@@ -25,7 +25,7 @@
             to="/profile/heartMovie"
             class="profile__item large"
           >
-            <div class="profile__item-img col-lg-3">
+            <div class="profile__item-img col-3">
               <img
                 src="../../assets/img/profile/profile1.jpg"
                 alt=""
@@ -57,7 +57,7 @@
             to="/profile/heartMovie"
             class="profile__item large"
           >
-            <div class="profile__item-img col-lg-3">
+            <div class="profile__item-img col-3">
               <img
                 src="../../assets/img/profile/profile5.jpg"
                 alt=""
@@ -94,7 +94,7 @@
             for="theme"
             class="profile__item"
           >
-            <div class="profile__item-img col-2">
+            <div class="profile__item-img col-lg-2 col-0">
               <img
                 src="../../assets/img/profile/profile2.jpg"
                 alt=""
@@ -132,7 +132,7 @@
             for="checkbox"
             class="profile__item"
           >
-            <div class="profile__item-img col-2">
+            <div class="profile__item-img col-lg-2 col-0">
               <img
                 src="../../assets/img/profile/profile3.jpg"
                 alt=""
@@ -166,7 +166,7 @@
             for="checkbox1"
             class="profile__item"
           >
-            <div class="profile__item-img col-2">
+            <div class="profile__item-img col-lg-2">
               <img
                 src="../../assets/img/profile/profile4.jpg"
                 alt=""
@@ -426,19 +426,25 @@ export default {
     h4 {
       font-weight: $font-weight__sans__medium;
       font-size: $font-size--large;
-      margin-bottom: 30px;
+      margin-bottom: 0px;
       @include adaptiv-font($size--large, $size--small + 10);
     }
 
     @media (max-width: $breackpoints__md) {
       height: auto;
       margin-left: 0;
+
+      .profile__item-img {
+        display: block;
+        visibility: visible;
+      }
     }
   }
 
   @media (max-width: $breackpoints__md) {
-    display: block;
-    text-align: center;
+    h4 {
+      margin-bottom: 10px;
+    }
   }
 }
 
@@ -449,9 +455,8 @@ export default {
   overflow: hidden;
 
   @media (max-width: $breackpoints__md) {
-    max-width: 200px;
-    margin: 0 auto;
-    margin-bottom: 20px;
+    display: none;
+    visibility: hidden;
   }
 
   img {

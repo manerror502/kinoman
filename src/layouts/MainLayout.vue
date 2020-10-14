@@ -1,5 +1,5 @@
 <template>
-  <div
+  <section
     class="page"
   >
     <transition
@@ -64,7 +64,7 @@
         />
       </svg>
     </router-link>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -157,9 +157,9 @@ export default {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  filter: blur(50px);
+  filter: blur(100px);
   width: 100%;
-  height: 500px;
+  height: 700px;
 
   &::after {
     content: '';
