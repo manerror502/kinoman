@@ -4,13 +4,12 @@
   &.fixed {
     background-color: fade-out($colors__body, 0%);
     border-bottom: $border-width solid fade-out($colors__grays--lighter, 1%);
-
-    @media (max-width: $breackpoints__md) {
-      border-bottom: 0;
-    }
+    box-shadow: $shadows__coords-x $shadows__coords-y $shadows__size
+      fade-out(#000, 0.9%);
   }
 
   &.fade {
+    background-color: fade-out($colors__body, 0%);
     transform: translateY(-100%);
     border-bottom: $border-width solid fade-out($colors__grays--lighter, 1%);
   }

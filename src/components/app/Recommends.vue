@@ -328,6 +328,7 @@ export default {
 
 .recommends {
   max-width: 100%;
+  position: relative;
 }
 
 .recommends__no {

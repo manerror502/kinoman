@@ -5,7 +5,7 @@
     :class="{fixed: headerFixed, fade: fade}"
   >
     <div class="container-fluid">
-      <div class="row justify-content-between">
+      <div class="row justify-content-between ">
         <div class="col-lg-8 d-flex">
           <button
             class="header__back"
@@ -94,7 +94,7 @@ export default {
   methods: {
     handleScroll () {
       const scroll = window.scrollY
-      if (scroll > 200 && scroll > this.scrollPrev) {
+      if (scroll > 20 && scroll > this.scrollPrev) {
         this.fade = true
         this.headerFixed = false
       } else if (scroll <= 10) {

@@ -105,7 +105,7 @@ export default {
     },
     handleScroll () {
       const scroll = window.scrollY
-      if (scroll > 200 && scroll > this.scrollPrev) {
+      if (scroll > 20 && scroll > this.scrollPrev) {
         this.fadeSearch = true
       } else {
         this.fadeSearch = false

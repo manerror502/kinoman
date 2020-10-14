@@ -94,7 +94,7 @@
             for="theme"
             class="profile__item"
           >
-            <div class="profile__item-img col-lg-2 col-0">
+            <div class="profile__item-img col-sm-2">
               <img
                 src="../../assets/img/profile/profile2.jpg"
                 alt=""
@@ -132,7 +132,7 @@
             for="checkbox"
             class="profile__item"
           >
-            <div class="profile__item-img col-lg-2 col-0">
+            <div class="profile__item-img col-sm-2">
               <img
                 src="../../assets/img/profile/profile3.jpg"
                 alt=""
@@ -166,7 +166,7 @@
             for="checkbox1"
             class="profile__item"
           >
-            <div class="profile__item-img col-lg-2">
+            <div class="profile__item-img col-sm-2">
               <img
                 src="../../assets/img/profile/profile4.jpg"
                 alt=""
@@ -407,7 +407,7 @@ export default {
     font-weight: $font-weight__sans__regular;
     line-height: $line-height--normal;
     margin-bottom: 20px;
-    @include adaptiv-font($size--normal + 10, $size--small + 10);
+    @include adaptiv-font($size--normal + 10, $size--small + 5);
   }
 
   p {
@@ -415,6 +415,10 @@ export default {
     font-size: $font-size--normal;
     line-height: $line-height--normal;
     @include adaptiv-font($size--normal, $size--small);
+
+    @media (max-width: $breackpoints__md) {
+      line-height: $line-height--small;
+    }
   }
 
   &.large {
@@ -433,6 +437,7 @@ export default {
     @media (max-width: $breackpoints__md) {
       height: auto;
       margin-left: 0;
+      padding: 10px;
 
       .profile__item-img {
         display: block;
@@ -442,6 +447,8 @@ export default {
   }
 
   @media (max-width: $breackpoints__md) {
+    padding: 10px 0;
+
     h4 {
       margin-bottom: 10px;
     }
@@ -454,7 +461,7 @@ export default {
   justify-content: center;
   overflow: hidden;
 
-  @media (max-width: $breackpoints__md) {
+  @media (max-width: $breackpoints__sm) {
     display: none;
     visibility: hidden;
   }
@@ -565,13 +572,13 @@ export default {
       background-size: cover;
     }
 
-    &:nth-child(2) {
+    &:nth-child(1) {
       background: rgb(26, 55, 168) url('../../assets/img/profile/sonic.jpg')
         no-repeat center;
       background-size: cover;
     }
 
-    &:nth-child(3) {
+    &:nth-child(2) {
       background: rgb(43, 44, 49) url('../../assets/img/profile/black.jpg')
         no-repeat center;
       background-size: cover;
