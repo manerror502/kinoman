@@ -33,37 +33,37 @@
               <ul class="infofilm__attributes">
                 <li>
                   Страна:
-                  <span> {{ filterCountries || 'Нет информации' }}
+                  <span> {{ filterCountries || "N/A" }}
                   </span>
                 </li>
                 <li>
                   Год:
-                  <span>{{ infoFilm.data.year || 'Нет информации' }}</span>
+                  <span>{{ infoFilm.data.year || "N/A" }}</span>
                 </li>
                 <li>
-                  Премьера в мире: <span>{{ infoFilm.data.premiereWorld ||infoFilm.data.premiereRu || 'Нет информации' }} </span> (год-месяц-день)
+                  Премьера в мире: <span>{{ infoFilm.data.premiereWorld ||infoFilm.data.premiereRu || "N/A" }} </span> (год-месяц-день)
                 </li>
                 <li>
                   Жанр:
-                  <span> {{ filterGenres || 'Нет информации' }}
+                  <span> {{ filterGenres || "N/A" }}
                   </span>
                 </li>
 
                 <li>
                   Слоган:
-                  <span>{{ infoFilm.data.slogan || 'Нет информации' }}</span>
+                  <span>{{ infoFilm.data.slogan || "N/A" }}</span>
                 </li>
                 <li>
                   Длина:
-                  <span>{{ infoFilm.data.filmLength || 'Нет информации' }}</span>
+                  <span>{{ infoFilm.data.filmLength ||"N/A" }}</span>
                 </li>
                 <li>
                   Возрастное ограничение:
-                  <span>{{ infoFilm.data.ratingAgeLimits || 'Нет информации' }}</span>
+                  <span>{{ infoFilm.data.ratingAgeLimits || "N/A" }}</span>
                 </li>
                 <li>
                   КиноПоиск:
-                  <span :class="rating">{{ infoFilm.rating.rating || 'Нет информации' }}</span>
+                  <span :class="rating">{{ infoFilm.rating.rating || "N/A" }}</span>
                 </li>
               </ul>
             </div>
@@ -83,7 +83,7 @@
                   </div>
 
                   <p>
-                    {{ infoFilm.data.description || "Нет описания" }}
+                    {{ infoFilm.data.description || "Описание отсутсвует" }}
                   </p>
                 </div>
               </div>
@@ -116,11 +116,11 @@
                         <div class="d-flex">
                           {{ episode.episodeNumber }}.
                           <p>
-                            {{ episode.nameRu || episode.nameEn || "Нет инофрмации о названии" }}
+                            {{ episode.nameRu || episode.nameEn || "Нет информации о названии" }}
                           </p>
                         </div>
                         <time>
-                          {{ episode.releaseDate || "Неизвестна дата выхода" }}
+                          {{ episode.releaseDate || "N/A" }}
                         </time>
                       </div>
                     </div>
