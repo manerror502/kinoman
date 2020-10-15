@@ -54,7 +54,7 @@
         <div class="col-lg-6">
           <router-link
             tag="a"
-            to="/profile/heartMovie"
+            to="/profile/bookmarksMovie"
             class="profile__item large"
           >
             <div class="profile__item-img col-3">
