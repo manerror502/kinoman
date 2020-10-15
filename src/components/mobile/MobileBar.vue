@@ -1,7 +1,7 @@
 <template>
   <nav class="mobile">
     <div class="mobile__wrap">
-      <div class="mobile__links row">
+      <div class="mobile__links row justify-content-between">
         <router-link
           v-for="link in links"
           :key="link.url"
@@ -9,7 +9,7 @@
           :to="link.url"
           active-class="active"
           :exact="link.exact"
-          class="col-2"
+          class="mobile__item"
         >
           <img
             :src="link.icon"
@@ -74,22 +74,22 @@ export default {
 
 .mobile__links {
   display: flex;
-  justify-content: space-between;
   padding: 0 20px;
+}
 
-  li {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: right;
-    overflow: hidden;
-    padding: 15px 10px;
-    transition: $transition-duration $transition-timing-function;
+.mobile__item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: right;
+  overflow: hidden;
+  padding: 15px 10px;
+  width: calc(100% / 5);
+  transition: $transition-duration $transition-timing-function;
 
-    img {
-      max-width: 30px;
-    }
+  img {
+    max-width: 30px;
   }
 }
 </style>

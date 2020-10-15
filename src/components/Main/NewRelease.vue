@@ -39,9 +39,9 @@ export default {
           itemsToShow: 3.5
         },
         993: {
-          itemsToShow: 3.1
+          itemsToShow: 2.1
         },
-        576: {
+        645: {
           itemsToShow: 2.1
         },
         0: {

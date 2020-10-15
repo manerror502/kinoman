@@ -1,5 +1,5 @@
 <template>
-  <div
+  <section
     class="page"
   >
     <transition
@@ -64,7 +64,7 @@
         />
       </svg>
     </router-link>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -105,7 +105,7 @@ export default {
     },
     handleScroll () {
       const scroll = window.scrollY
-      if (scroll > 200 && scroll > this.scrollPrev) {
+      if (scroll > 20 && scroll > this.scrollPrev) {
         this.fadeSearch = true
       } else {
         this.fadeSearch = false
@@ -157,9 +157,9 @@ export default {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  filter: blur(50px);
+  filter: blur(100px);
   width: 100%;
-  height: 500px;
+  height: 700px;
 
   &::after {
     content: '';
@@ -180,6 +180,10 @@ export default {
 // lazyload
 .more {
   display: block;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  right: 0;
   height: 5px;
   opacity: 0;
 }

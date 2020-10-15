@@ -9,22 +9,16 @@
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background-image: $gradient__green;
-  background-size: 200%;
-  padding: 10px;
-  color: #e1e3e7;
+  background-color: $colors__blackGrays;
+  padding: 12px;
+  color: $colors__green;
   overflow: hidden;
-  box-shadow: $shadows__coords-x - 1 $shadows__coords-y - 3 $shadows__size
-    fade-out(#000, 0.8%);
-  animation: search__bg 10s ease infinite alternate;
+  box-shadow: $shadows__coords-x - 2 $shadows__coords-y - 2 $shadows__size + 5
+    fade-out($colors__white, 0.8%);
   transition: $transition-duration $transition-timing-function;
 
   svg {
     width: 40px;
-  }
-
-  &.active {
-    background: darken($colors__green, 10%);
   }
 
   &.fade {
@@ -34,14 +28,5 @@
   @media (min-width: $breackpoints__md) {
     display: none;
     visibility: hidden;
-  }
-}
-
-@keyframes search__bg {
-  0% {
-    background-position: 0 0;
-  }
-  100% {
-    background-position: 100% 100%;
   }
 }

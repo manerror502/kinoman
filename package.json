@@ -1,7 +1,7 @@
 {
   "name": "kinoman",
   "description": "Приложение для тех, кто любит кино",
-  "version": "0.2.2",
+  "version": "0.3.1",
   "repository": {
     "type": "git",
     "url": "https://github.com/manerror502/kinoman"

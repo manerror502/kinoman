@@ -23,23 +23,26 @@
           />
         </ul>
       </div>
+
+      <Loader v-if="loading" />
     </div>
   </section>
 </template>
 
 <script>
-import FilmItemInfo from '@/components/app/FilmItemInfo'
-
 export default {
   name: 'SearchPage',
   data: () => ({
     inputSearch: '',
-    search: {}
+    search: {},
+
+    loading: false
   }),
-  components: { FilmItemInfo },
   methods: {
     async searchFilms () {
+      this.loading = true
       this.search = await this.$store.dispatch('searchFilms', this.inputSearch)
+      this.loading = false
     }
   }
 }

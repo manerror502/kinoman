@@ -1,0 +1,18 @@
+.loader {
+  border: 8px solid #f3f3f300;
+
+  &.green {
+    border-top: 8px solid $colors__green;
+    border-bottom: 8px solid $colors__green;
+  }
+
+  &.yellow {
+    border-top: 8px solid $colors__yellow;
+    border-bottom: 8px solid $colors__yellow;
+  }
+
+  &.red {
+    border-top: 8px solid $colors__red;
+    border-bottom: 8px solid $colors__red;
+  }
+}

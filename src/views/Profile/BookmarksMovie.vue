@@ -1,7 +1,12 @@
 <template>
   <div class="row no-gutters your__movie">
     <section class="items">
-      <div class="container-fluid">
+      <Loader v-if="loading" />
+
+      <div
+        class="container-fluid"
+        v-else
+      >
         <div
           class=" blur__img"
           :style="{backgroundImage: 'url(' + films[0].posterUrl + ')'}"
@@ -10,10 +15,7 @@
         <div class="row">
           <div class="col">
             <section>
-              <Loader v-if="loading" />
-              <div
-                v-else
-              >
+              <div>
                 <ul
                   class="row justify-content-arround"
                   v-if="films.length"
@@ -43,16 +45,16 @@
 
                 <Loader v-if="lazyLoading" />
               </div>
-
-              <span
-                class="more"
-                ref="more"
-              />
             </section>
           </div>
         </div>
       </div>
     </section>
+
+    <span
+      class="more"
+      ref="more"
+    />
   </div>
 </template>
 

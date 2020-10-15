@@ -1,12 +1,12 @@
 <template>
-  <li>
+  <li class="">
     <div
-      class="filmitem__link"
+      class="filmitem"
     >
       <router-link
         tag="a"
         :to="'/film/' + itemInfo.filmId"
-        class="filmitem"
+        class="filmitem__link"
         :style="{backgroundImage: 'url(' + itemInfo.posterUrl + ')'}"
       >
         <div
@@ -140,7 +140,7 @@ export default {
 <style lang="scss">
 @import '@/assets/style/vars/_vars';
 
-.filmitem__link {
+.filmitem {
   width: 100%;
   position: relative;
   margin-bottom: 20px;
@@ -169,17 +169,21 @@ export default {
   &:hover {
     box-shadow: $shadows__coords-x $shadows__coords-y $shadows__size + 5
       fade-out(#000, 0.5%);
+
+    .filmitem__link {
+      background-position: 0px -100px;
+    }
   }
 }
 
-.filmitem {
+.filmitem__link {
   width: 100%;
   overflow: hidden;
   display: flex;
   user-select: none;
   border-radius: $border-radius__small - 5;
   background-size: cover;
-  background-position: top;
+  background-position: 0px -50px;
   background-repeat: no-repeat;
   transition: $transition-duration $transition-timing-function;
 
@@ -198,8 +202,8 @@ export default {
   overflow: hidden;
 
   img {
-    object-fit: cover;
-    object-position: center;
+    object-fit: contain;
+    object-position: top;
   }
 }
 
