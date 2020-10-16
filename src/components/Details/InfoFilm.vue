@@ -113,15 +113,20 @@
                         v-for="episode in seasons.episodes "
                         :key="episode.episodeNumber"
                       >
-                        <div class="d-flex">
+                        <div class="col-1">
                           {{ episode.episodeNumber }}.
+                        </div>
+                        <div class="col-9">
                           <p>
                             {{ episode.nameRu || episode.nameEn || "Нет информации о названии" }}
                           </p>
                         </div>
-                        <time>
-                          {{ episode.releaseDate || "N/A" }}
-                        </time>
+
+                        <div class="col-3">
+                          <time>
+                            {{ episode.releaseDate || "N/A" }}
+                          </time>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -347,10 +352,6 @@ export default {
 <style lang="scss" >
 @import '@/assets/style/vars/_vars';
 
-.infofilm__mah {
-  // max-height: 500px;
-}
-
 .infofilm {
   position: relative;
   z-index: 10;
@@ -456,7 +457,7 @@ export default {
   font-weight: $font-weight__sans__regular;
   line-height: $line-height--small;
   display: flex;
-  justify-content: space-between;
+  // justify-content: space-between;
   margin-bottom: 10px;
 
   p {

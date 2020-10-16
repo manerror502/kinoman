@@ -6,17 +6,20 @@
   border-bottom: $border-width solid fade-out($colors__grays--lighter, 0.6%);
   li {
     color: $colors__grays;
+    opacity: 0.6;
 
     &:hover,
-    &:focus,
-    &:active {
+    &:focus {
       background-color: fade-out($colors__white, 0.9%);
       color: $colors__grays--lighter;
     }
 
+    &:active {
+      background-color: fade-out($colors__white, 0.8%);
+    }
+
     &.active {
-      color: $colors__white;
-      background-color: fade-out($colors__grays--lighter, 0.87%);
+      opacity: 1;
     }
   }
 }

@@ -75,7 +75,7 @@ a {
   }
 
   &-thumb {
-    background: rgb(163, 163, 163);
+    background: rgba(134, 134, 134, 0.486);
     border-radius: $border-radius__large;
   }
 }

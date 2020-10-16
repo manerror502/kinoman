@@ -13,7 +13,7 @@
                 class="header__description"
                 v-if="loading"
               >
-                <span>Подключение...</span>
+                <span>Загрузка...</span>
               </div>
             </transition>
 
