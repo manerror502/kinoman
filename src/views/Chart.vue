@@ -69,14 +69,44 @@ export default {
     charts: {},
     loading: true
   }),
-  computed: {},
+  computed: {
+    chartsLS () {
+      return JSON.parse(localStorage.getItem('charts'))
+    }
+  },
   async created () {
+    this.$store.state.app.loading = true
+    if (this.chartsLS) {
+      this.getChartFilmsLS()
+      this.loading = false
+    }
+
     await this.getChartFilms()
+    this.$store.state.app.loading = false
     this.loading = false
   },
   methods: {
+    getChartFilmsLS () {
+      // Получение фильмов из LS
+      if (!this.chartsLS) {
+        return
+      }
+
+      this.charts = this.chartsLS
+    },
+    setChartFilmssLS () {
+      // Отправляем информацию о фильмах в LS
+      const charts = JSON.stringify(this.charts)
+      localStorage.setItem('charts', charts)
+    },
+
     async getChartFilms () {
-      this.charts = await this.$store.dispatch('getChartFilms')
+      try {
+        this.charts = await this.$store.dispatch('getChartFilms')
+        this.setChartFilmssLS()
+      } catch (e) {
+        this.getChartFilmsLS()
+      }
     }
   }
 }
@@ -86,7 +116,7 @@ export default {
 @import '@/assets/style/vars/_vars';
 
 .chart {
-  padding-top: 100px;
+  padding-top: $padding__views;
   width: 100%;
 }
 

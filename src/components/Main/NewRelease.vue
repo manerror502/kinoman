@@ -50,6 +50,11 @@ export default {
       }
     }
   }),
+  computed: {
+    newReleaseLS () {
+      return JSON.parse(localStorage.getItem('newRelease'))
+    }
+  },
   components: {
     FilmItemInfo,
     Hooper,
@@ -57,27 +62,32 @@ export default {
     // HooperNavigation
   },
   async created () {
-    this.getLocalStorageInfo()
-    this.loading = false
-
     this.$store.state.app.loading = true
+
+    // Если ничего нет в LS
+    if (this.newReleaseLS) {
+      this.getLocalStorageInfo()
+      this.loading = false
+    }
+
     await this.getNewRelease()
     this.$store.state.app.loading = false
+    this.loading = false
   },
   methods: {
     getLocalStorageInfo () {
       this.getNewReleaseLS()
     },
     getNewReleaseLS () {
-      // Получение фильма в интро из LS
-      if (!localStorage.newRelease) {
+      // Получение фильмов из LS
+      if (!this.newReleaseLS) {
         return
       }
 
       this.newRelease = JSON.parse(localStorage.getItem('newRelease'))
     },
     setNewReleaseLS () {
-      // Отправляем информацию о фильме в LS
+      // Отправляем информацию о фильмах в LS
       const newRelease = JSON.stringify(this.newRelease)
       localStorage.setItem('newRelease', newRelease)
     },
@@ -102,7 +112,7 @@ export default {
         this.newRelease = await this.$store.dispatch('getReleasesArr', options)
         this.setNewReleaseLS()
       } catch (e) {
-        console.log(e)
+        this.getNewReleaseLS()
       }
     },
     currentYear (date) {

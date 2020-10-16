@@ -71,7 +71,7 @@
 import Header from '@/components/app/Header.vue'
 import Navbar from '@/components/app/NavBar.vue'
 
-// import messages from '@/utils/messages'
+import messages from '@/utils/messages'
 
 export default {
   name: 'MainLayout',
@@ -91,11 +91,6 @@ export default {
     }
   },
   async mounted () {
-    if (this.$store.dispatch('uId')) {
-      this.getLocalStorageInfo()
-      this.loading = false
-    }
-
     await this.getBasicInfo()
     this.setLocalStorageInfo()
     this.loading = false
@@ -145,7 +140,9 @@ export default {
   },
   watch: {
     error (fbError) {
-      // this.$toast.error(messages[fbError.code] || 'Что-то пошло не так')
+      this.$toast.error(
+        messages[fbError.code] || messages[fbError] || 'Что-то пошло не так'
+      )
       console.log(fbError)
     }
   }
@@ -215,5 +212,11 @@ export default {
   right: 0;
   height: 5px;
   opacity: 0;
+}
+
+// Movie
+.your__movie {
+  padding-top: $padding__views;
+  width: 100%;
 }
 </style>
