@@ -14,8 +14,8 @@ export default {
     }
   },
   getters: {
-    getCurrentTheme (state) {
-      state.currentTheme = localStorage.theme
+    theme (state) {
+      return state
     }
   }
 }

@@ -19,7 +19,7 @@ import MainLayout from '@/layouts/MainLayout'
 import EmptyLayout from '@/layouts/EmptyLayout'
 import MobileBar from '@/components/mobile/MobileBar'
 
-import { mapState } from 'vuex'
+import { mapGetters } from 'vuex'
 export default {
   name: 'App',
   metaInfo () {
@@ -34,7 +34,7 @@ export default {
     MobileBar
   },
   computed: {
-    ...mapState(['theme']),
+    ...mapGetters(['theme']),
     layout () {
       return (this.$route.meta.layout || 'main') + '-layout'
     }
