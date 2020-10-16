@@ -57,10 +57,31 @@ export default {
     // HooperNavigation
   },
   async created () {
-    await this.getNewRelease()
+    this.getLocalStorageInfo()
     this.loading = false
+
+    this.$store.state.app.loading = true
+    await this.getNewRelease()
+    this.$store.state.app.loading = false
   },
   methods: {
+    getLocalStorageInfo () {
+      this.getNewReleaseLS()
+    },
+    getNewReleaseLS () {
+      // Получение фильма в интро из LS
+      if (!localStorage.newRelease) {
+        return
+      }
+
+      this.newRelease = JSON.parse(localStorage.getItem('newRelease'))
+    },
+    setNewReleaseLS () {
+      // Отправляем информацию о фильме в LS
+      const newRelease = JSON.stringify(this.newRelease)
+      localStorage.setItem('newRelease', newRelease)
+    },
+
     async getNewRelease () {
       const currentDate = new Date()
       const currentYear = await this.currentYear(currentDate)
@@ -79,6 +100,7 @@ export default {
 
       try {
         this.newRelease = await this.$store.dispatch('getReleasesArr', options)
+        this.setNewReleaseLS()
       } catch (e) {
         console.log(e)
       }

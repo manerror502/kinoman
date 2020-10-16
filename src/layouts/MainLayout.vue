@@ -91,18 +91,47 @@ export default {
     }
   },
   async mounted () {
-    // Получение информации о пользователе
-    if (!Object.keys(this.$store.getters.info).length) {
-      await this.$store.dispatch('fetchInfo')
+    if (this.$store.dispatch('uId')) {
+      this.getLocalStorageInfo()
+      this.loading = false
     }
+
+    await this.getBasicInfo()
+    this.setLocalStorageInfo()
     this.loading = false
-    await this.getFilters()
+    this.$store.state.app.loading = false
   },
   methods: {
+    getLocalStorageInfo () {
+      // Получение Инфорамии о пользователе из локального хранилища
+      if (!localStorage.infoUser) {
+        return
+      }
+
+      const infoUser = JSON.parse(localStorage.getItem('infoUser'))
+      this.$store.commit('setInfo', infoUser)
+    },
+    setLocalStorageInfo () {
+      const infoUser = JSON.stringify(this.$store.getters.info)
+      localStorage.setItem('infoUser', infoUser)
+    },
+
+    async getBasicInfo () {
+      // Получение Инфорамии о пользователе из базы данных
+      await this.getInfoUser()
+      // Получаем фильтры для фильмов
+      // Жанры, Страны
+      await this.getFilters()
+    },
+    async getInfoUser () {
+      // Получение информации о пользователе
+      await this.$store.dispatch('fetchInfo')
+    },
     async getFilters () {
       const filters = await this.$store.dispatch('getFiltersJSON')
       await this.$store.dispatch('setFilters', filters)
     },
+
     handleScroll () {
       const scroll = window.scrollY
       if (scroll > 20 && scroll > this.scrollPrev) {
