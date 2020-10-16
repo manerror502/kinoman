@@ -139,11 +139,6 @@ export default {
 <style lang="scss">
 @import '@/assets/style/vars/_vars';
 
-.your__movie {
-  margin-top: 50px;
-  width: 100%;
-}
-
 .films__no {
   margin-top: 20px;
   margin-bottom: 50px;

@@ -169,10 +169,6 @@ export default {
   &:hover {
     box-shadow: $shadows__coords-x $shadows__coords-y $shadows__size + 5
       fade-out(#000, 0.5%);
-
-    .filmitem__link {
-      background-position: 0px -100px;
-    }
   }
 }
 
@@ -181,7 +177,6 @@ export default {
   overflow: hidden;
   display: flex;
   user-select: none;
-  border-radius: $border-radius__small - 5;
   background-size: cover;
   background-position: 0px -50px;
   background-repeat: no-repeat;

@@ -144,8 +144,10 @@ export default {
   },
   async mounted () {
     try {
-      this.filmsLike = await this.$store.dispatch('fetchLikeFilm')
-      this.filmsBookmarks = await this.$store.dispatch('fetchBookmarkFilm')
+      if (Object.keys(this.$store.getters.info).length) {
+        this.filmsLike = await this.$store.dispatch('fetchLikeFilm')
+        this.filmsBookmarks = await this.$store.dispatch('fetchBookmarkFilm')
+      }
     } catch (e) {}
   },
   methods: {

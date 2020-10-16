@@ -357,7 +357,7 @@ export default {
 @import '@/assets/style/vars/_vars';
 
 .profile {
-  padding-top: 100px;
+  padding-top: $padding__views;
   width: 100%;
 }
 

@@ -12,7 +12,6 @@ import recommend from './modules/recommend'
 import filters from './modules/filters'
 import playlist from './modules/playlist'
 import settings from './modules/settings'
-import newReleaseFilms from './modules/newReleaseFilms'
 
 Vue.use(Vuex)
 
@@ -48,7 +47,6 @@ export default new Vuex.Store({
     recommend,
     filters,
     playlist,
-    settings,
-    newReleaseFilms
+    settings
   }
 })

@@ -145,9 +145,7 @@ export default {
         } else {
           await this.getIntroFilm()
         }
-      } catch (e) {
-        console.log(e)
-      }
+      } catch (e) {}
     },
     modalClose () {
       this.$router.push('/')

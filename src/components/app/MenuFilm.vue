@@ -96,13 +96,15 @@ export default {
   },
   async mounted () {
     try {
-      this.filmsLike = await this.$store.dispatch('fetchLikeFilm')
-      this.filmsBookmarks = await this.$store.dispatch('fetchBookmarkFilm')
+      if (Object.keys(this.$store.getters.info).length) {
+        this.filmsLike = await this.$store.dispatch('fetchLikeFilm')
+        this.filmsBookmarks = await this.$store.dispatch('fetchBookmarkFilm')
+      }
     } catch (e) {}
   },
   methods: {
     async like () {
-      if (!(await this.$store.dispatch('getUid'))) {
+      if (!await this.$store.dispatch('getUid')) {
         // Если не авторизован
         this.$router.push('/login')
         this.$toast.error('Вы не авторизованны')
@@ -158,7 +160,7 @@ export default {
       }
     },
     async bookmark () {
-      if (!(await this.$store.dispatch('getUid'))) {
+      if (!await this.$store.dispatch('getUid')) {
         // Если не авторизован
 
         this.$router.push('/login')
@@ -251,7 +253,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "@/assets/style/vars/_vars";
+@import '@/assets/style/vars/_vars';
 
 .menu {
   display: flex;

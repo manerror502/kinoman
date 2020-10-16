@@ -139,12 +139,6 @@ export default {
 </script>
 
 <style lang="scss">
-.your__movie {
-  margin-top: 50px;
-  width: 100%;
-  min-height: 100vh;
-}
-
 @import '@/assets/style/vars/_vars';
 
 .films__no {

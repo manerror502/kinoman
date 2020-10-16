@@ -1,18 +1,13 @@
 .filmitem__link {
-  border: $border-width solid fade-out($colors__green, 1%);
-
-  &:hover,
-  &:focus,
-  &:active {
-    border: $border-width solid $colors__green;
-  }
 }
 
 .filmitem {
+  border: $border-width solid fade-out($colors__green, 1%);
+
   &:hover,
-  &:focus,
-  &:active {
+  &:focus {
     color: $colors__green;
+    border: $border-width solid $colors__green;
   }
 }
 
