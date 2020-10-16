@@ -17,10 +17,10 @@ const routes = [
     component: Home
   },
   {
-    path: '/new-release',
-    name: 'NewRelease',
+    path: '/releases',
+    name: 'Releases',
     meta: { layout: 'main', title: 'Новые релизы' },
-    component: () => import('@/views/NewRelease.vue')
+    component: () => import('@/views/Releases.vue')
   },
   {
     path: '/chart',

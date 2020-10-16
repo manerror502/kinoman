@@ -123,7 +123,7 @@ export default {
       },
       {
         title: ' Новые релизы ',
-        url: '/new-release',
+        url: '/releases',
         icon: require('../../assets/img/navBar/new.svg')
       },
       {
