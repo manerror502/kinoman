@@ -2,7 +2,7 @@
   <header
     v-scroll="handleScroll"
     class="header"
-    :class="{fixed: headerFixed, fade: fade}"
+    :class="{fixed: headerFixed, fade: fade, loading: loading}"
   >
     <div class="container-fluid">
       <div class="row justify-content-between ">
@@ -86,8 +86,9 @@ export default {
     pageTitle () {
       return this.$route.meta.title
     },
-    name () {
-      return this.$store.getters.info.name
+
+    loading () {
+      return this.$store.state.app.loading
     }
   },
   mounted () {},
@@ -125,6 +126,7 @@ export default {
 }
 
 .header {
+  position: relative;
   overflow: hidden;
   width: 100%;
   transition: $transition-duration $transition-timing-function;
@@ -132,6 +134,20 @@ export default {
 
   &.fade {
     transform: translateY(-100%);
+  }
+
+  &.loading {
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      z-index: 2;
+      width: 50%;
+      height: 1px;
+
+      animation: moving__border 2s ease-in-out infinite alternate;
+    }
   }
 }
 

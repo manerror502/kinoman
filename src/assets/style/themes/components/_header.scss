@@ -13,6 +13,26 @@
     transform: translateY(-100%);
     border-bottom: $border-width solid fade-out($colors__grays--lighter, 1%);
   }
+
+  &::after {
+    background-color: $colors__green;
+  }
+
+  @keyframes moving__border {
+    0% {
+      transform: translateX(0);
+      background-color: $colors__green;
+    }
+
+    50% {
+      background-color: $colors__yellow;
+    }
+
+    100% {
+      transform: translateX(100%);
+      background-color: $colors__red;
+    }
+  }
 }
 
 .header__back {
