@@ -18,8 +18,10 @@
           <div class="col">
             <section>
               <div>
-                <ul
+                <transition-group
                   class="row justify-content-arround"
+                  tag="ul"
+                  name="transform-fade"
                   v-if="films.length"
                 >
                   <FilmItemInfo
@@ -28,7 +30,7 @@
                     :key="heart.filmId"
                     :item-info="heart"
                   />
-                </ul>
+                </transition-group>
 
                 <div
                   class="row"

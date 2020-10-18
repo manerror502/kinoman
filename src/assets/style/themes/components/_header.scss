@@ -21,7 +21,11 @@
   @keyframes moving__border {
     0% {
       transform: translateX(0);
+      width: 0%;
       background-color: $colors__green;
+    }
+    20% {
+      width: 30%;
     }
 
     50% {
@@ -30,6 +34,7 @@
 
     100% {
       transform: translateX(100%);
+      width: 100%;
       background-color: $colors__red;
     }
   }

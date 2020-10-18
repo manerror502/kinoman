@@ -1,31 +1,39 @@
 <template>
   <section class="items collection">
     <Loader v-if="loading" />
-    <div
+
+    <transition
       v-else
-      class="container-fluid"
+      name="transform-fade"
     >
       <div
-        class=" blur__img"
-        :style="{backgroundImage: 'url(' + newRelease.releases[0].posterUrl + ')'}"
-      />
-
-      <div class="items__text">
-        <h4>Релизы за {{ currentMonth().ru }}</h4>
-      </div>
-      <ul
-        class="row justify-content-arround"
+        class="container-fluid"
       >
-        <FilmItemInfo
-          class="col-xl-4 col-md-6"
-          v-for="release in newRelease.releases"
-          :key="release.filmId"
-          :item-info="release"
+        <div
+          class=" blur__img"
+          :style="{backgroundImage: 'url(' + newRelease.releases[0].posterUrl + ')'}"
         />
-      </ul>
 
-      <Loader v-if="lazyLoading" />
-    </div>
+        <div class="items__text">
+          <h4>Релизы за {{ currentMonth().ru }}</h4>
+        </div>
+
+        <transition-group
+          class="row justify-content-arround "
+          tag="ul"
+          name="transform-fade"
+        >
+          <FilmItemInfo
+            class="col-xl-4 col-md-6"
+            v-for="release in newRelease.releases"
+            :key="release.filmId"
+            :item-info="release"
+          />
+        </transition-group>
+
+        <Loader v-if="lazyLoading" />
+      </div>
+    </transition>
 
     <span
       class="more"
@@ -202,7 +210,7 @@ export default {
 @import '@/assets/style/vars/_vars';
 
 .collection {
-  padding-top: $padding__views - 20;
+  padding-top: $padding__views - 40;
 }
 
 .items__text {

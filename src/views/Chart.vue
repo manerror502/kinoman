@@ -46,8 +46,10 @@
 
       <div class="row">
         <div class="col-12">
-          <ul
-            class="row justify-content-arround"
+          <transition-group
+            class="row justify-content-arround "
+            tag="ul"
+            name="transform-fade"
           >
             <FilmItemInfo
               class="col-xl-4 col-md-6"
@@ -55,7 +57,7 @@
               :key="chart.filmId"
               :item-info="chart"
             />
-          </ul>
+          </transition-group>
         </div>
       </div>
     </div>

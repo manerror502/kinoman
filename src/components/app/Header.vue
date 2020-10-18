@@ -1,5 +1,8 @@
 <template>
-  <transition name="fade">
+  <transition
+    name="fade"
+    :duration="1000"
+  >
     <header
       v-scroll="handleScroll"
       class="header"
@@ -8,14 +11,14 @@
       <div class="container-fluid">
         <div class="row justify-content-between ">
           <div class="col-lg-8 d-flex position-relative">
-            <transition name="fade">
+            <!-- <transition name="fade">
               <div
                 class="header__description"
                 v-if="loading"
               >
                 <span>Загрузка...</span>
               </div>
-            </transition>
+            </transition> -->
 
             <button
               class="header__back"
@@ -190,7 +193,6 @@ export default {
   overflow: hidden;
   text-overflow: ellipsis;
   width: 100%;
-  padding-top: 10px;
 }
 
 .nav {
