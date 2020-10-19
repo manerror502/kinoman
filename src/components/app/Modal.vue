@@ -32,7 +32,6 @@ export default {
   @media (max-width: $breackpoints__md) {
     &::-webkit-scrollbar {
       width: 0px;
-
     }
   }
 }

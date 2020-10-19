@@ -1,11 +1,11 @@
 export default {
   state: {
     themeArr: [
-      // { id: 'white', name: 'Ледниковый период' },
+      { id: 'white', name: 'Ледниковый период' },
       { id: 'blue', name: 'Соник X' },
       { id: 'dark', name: 'Люди в чёрном' }
     ],
-    currentTheme: localStorage.theme || 'dark'
+    currentTheme: localStorage.theme || 'white'
   },
   actions: {
     setTheme ({ dispatch, state }, { id, name }) {

@@ -11,11 +11,6 @@
     >
       <Intro />
 
-      <div
-        class=" blur__img"
-        :style="{backgroundImage: 'url(' + $store.state.intro.introFilm.data.posterUrl + ')'}"
-      />
-
       <section
         class="items"
       >

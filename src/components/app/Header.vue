@@ -1,9 +1,8 @@
 <template>
-  <transition
-    name="fade"
-    :duration="1000"
+  <header
+    class="header__container col-lg-12 no-padding"
   >
-    <header
+    <div
       v-scroll="handleScroll"
       class="header"
       :class="{fixed: headerFixed, fade: fade, loading: loading}"
@@ -85,8 +84,8 @@
           </nav>
         </div>
       </div>
-    </header>
-  </transition>
+    </div>
+  </header>
 </template>
 
 <script>
@@ -134,18 +133,20 @@ export default {
 @import '@/assets/style/vars/_vars';
 
 .header__container {
-  position: fixed;
+  position: relative;
   top: 0;
   right: 0;
   z-index: 11;
 }
 
 .header {
-  position: relative;
+  max-width: calc(100% - 115px);
+  position: fixed;
   overflow: hidden;
   width: 100%;
   transition: $transition-duration $transition-timing-function;
   padding-right: 10px;
+  border-radius: 0 0 $border-radius__small $border-radius__small;
 
   &.fade {
     transform: translateY(-100%);
@@ -166,6 +167,10 @@ export default {
 
       animation: moving__border 2s ease-in-out infinite alternate;
     }
+  }
+
+  @media (max-width: $breackpoints__md) {
+    max-width: 100%;
   }
 }
 

@@ -7,11 +7,6 @@
         class="container-fluid"
         v-else
       >
-        <div
-          class=" blur__img"
-          :style="{backgroundImage: 'url(' + films[0].posterUrl + ')'}"
-        />
-
         <div class="row">
           <div class="col">
             <section>

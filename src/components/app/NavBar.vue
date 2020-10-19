@@ -123,8 +123,8 @@ export default {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 20;
-  width: 100px;
+  z-index: 2;
+  width: $navbar__width;
 
   @media (max-width: $breackpoints__md) {
     display: none;
@@ -164,10 +164,11 @@ export default {
 
 .navbar__link {
   overflow: hidden;
+  text-align: center;
   li {
     display: inline-flex;
     justify-content: center;
-    border-radius: $border-radius__small - 4;
+    border-radius: 50%;
     user-select: none;
     font-size: $font-size--normal - 2;
     text-overflow: ellipsis;
@@ -175,13 +176,13 @@ export default {
     overflow: hidden;
     font-weight: $font-weight__sans__regular;
     padding: 10px;
-    width: 100%;
+    width: 50px;
+    height: 100%;
     transition: $transition-duration $transition-timing-function;
 
     img {
       display: inline-block;
       max-width: 30px;
-      margin-right: 5px;
     }
 
     &:hover,

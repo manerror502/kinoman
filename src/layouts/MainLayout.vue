@@ -1,75 +1,77 @@
 <template>
   <section
-    class="page"
+    class="page row justify-content-end no-gutters"
   >
-    <transition
-      name="fade"
-      mode="in-out"
+    <!-- NavBar -->
+
+    <aside
+      class="navbar__container"
     >
-      <div
-        class="row no-gutters justify-content-end"
-      >
-        <aside
-          class="navbar__container"
-        >
-          <Navbar />
-        </aside>
+      <Navbar />
+    </aside>
 
-        <div class="col-lg-12 no-padding">
-          <div class="row no-gutters">
-            <div
-              class="header__container col-lg-12 no-padding"
-            >
-              <Header />
-            </div>
-          </div>
-
-          <div
-            class="row no-gutters"
-          >
-            <main
-              class="row no-gutters w-100"
-            >
-              <Loader
-                v-if="loading"
-                style="width: 100%; min-height: 100vh"
-              />
-
-              <router-view v-else />
-            </main>
-          </div>
-        </div>
+    <!-- Контент -->
+    <div class="content">
+      <div class="row no-gutters h-0">
+        <Header />
       </div>
-    </transition>
 
-    <router-link
-      to="/search"
-      tag="button"
-      active-class="active"
-      class="btn app__search"
-      v-scroll="handleScroll"
-      :class="{fade: fadeSearch}"
-    >
-      <svg viewBox="0 0 512 512">
-        <path
-          fill="currentColor"
-          d="M181.341,0C81.352,0,0.008,81.344,0.008,181.333s81.344,181.333,181.333,181.333s181.333-81.344,181.333-181.333
+      <main
+        class="row no-gutters w-100"
+      >
+        <Loader
+          v-if="loading"
+          style="width: 100%; min-height: 100vh"
+        />
+
+        <router-view v-else />
+
+        <MobileBar />
+      </main>
+
+      <!-- Search button -->
+      <router-link
+        to="/search"
+        tag="a"
+        active-class="active"
+        class="btn app__search"
+        v-scroll="handleScroll"
+        :class="{fade: fadeSearch || $route.fullPath === '/search'}"
+      >
+        <svg viewBox="0 0 512 512">
+          <path
+            fill="currentColor"
+            d="M181.341,0C81.352,0,0.008,81.344,0.008,181.333s81.344,181.333,181.333,181.333s181.333-81.344,181.333-181.333
                     S281.331,0,181.341,0z M181.341,341.333c-88.235,0-160-71.765-160-160s71.765-160,160-160s160,71.765,160,160
                     S269.576,341.333,181.341,341.333z"
-        />
-        <path
-          fill="currentColor"
-          d="M508.872,493.803L309.555,294.485c-4.16-4.16-10.923-4.16-15.083,0c-4.16,4.16-4.16,10.923,0,15.083l199.317,199.317
+          />
+          <path
+            fill="currentColor"
+            d="M508.872,493.803L309.555,294.485c-4.16-4.16-10.923-4.16-15.083,0c-4.16,4.16-4.16,10.923,0,15.083l199.317,199.317
                     c2.091,2.069,4.821,3.115,7.552,3.115c2.731,0,5.461-1.045,7.531-3.115C513.032,504.725,513.032,497.963,508.872,493.803z"
-        />
-      </svg>
-    </router-link>
+          />
+        </svg>
+      </router-link>
+
+      <!-- Модальные окна -->
+      <transition name="slide-fade">
+        <Modal
+          v-if="filmMenuOpen"
+          v-scroll-lock="filmMenuOpen"
+        >
+          <MenuFilm />
+        </Modal>
+      </transition>
+    </div>
   </section>
 </template>
 
 <script>
 import Header from '@/components/app/Header.vue'
 import Navbar from '@/components/app/NavBar.vue'
+import MenuFilm from '@/components/app/MenuFilm.vue'
+import Modal from '@/components/app/Modal.vue'
+import MobileBar from '@/components/mobile/MobileBar'
 
 import messages from '@/utils/messages'
 
@@ -77,7 +79,10 @@ export default {
   name: 'MainLayout',
   components: {
     Header,
-    Navbar
+    Navbar,
+    MenuFilm,
+    Modal,
+    MobileBar
   },
   data: () => ({
     loading: true,
@@ -88,6 +93,9 @@ export default {
   computed: {
     error () {
       return this.$store.getters.error
+    },
+    filmMenuOpen () {
+      return this.$store.getters.menuFilmOpen
     }
   },
   async mounted () {
@@ -153,6 +161,8 @@ export default {
 @import '@/assets/style/vars/_vars';
 
 .page {
+  min-height: 100vh;
+  width: 100vw;
   overflow: hidden;
   position: relative;
   z-index: 2;
@@ -160,6 +170,27 @@ export default {
 
 .w-100 {
   width: 100%;
+}
+
+.h-0 {
+  height: 0;
+}
+
+.content {
+  max-width: calc(100% - 100px);
+  width: 100%;
+  height: auto;
+  margin-bottom: 20px;
+  overflow: hidden;
+  border-radius: $border-radius__big;
+  position: relative;
+  z-index: 2;
+
+  @media (max-width: $breackpoints__md) {
+    margin: 0;
+    max-width: 100%;
+    border-radius: 0;
+  }
 }
 
 .items {
