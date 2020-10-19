@@ -14,8 +14,8 @@
   padding: 12px;
   color: $colors__green;
   overflow: hidden;
-  box-shadow: $shadows__coords-x - 2 $shadows__coords-y - 2 $shadows__size + 5
-    fade-out($colors__blackGrays, 0.8%);
+  box-shadow: $shadows__coords-x $shadows__coords-y $shadows__size + 5
+    fade-out(#000, 0.7%);
   transition: $transition-duration $transition-timing-function;
 
   svg {

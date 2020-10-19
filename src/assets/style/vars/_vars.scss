@@ -1,11 +1,11 @@
-@import "typografi.scss";
-@import "../mixines/size.scss";
+@import 'typografi.scss';
+@import '../mixines/size.scss';
 // Project variables
 //////////////////////////////////////////////////////
 //////////////////////////////////////////////////////
 
 // Paths
-$images__path--root: "assets/images/";
+$images__path--root: 'assets/images/';
 
 // Sizes and rounding
 //////////////////////////////////////////////////////
@@ -39,6 +39,7 @@ $inputs__height: $controls__height;
 $loader__size--default: 100px;
 
 $padding__views: 100px;
+$navbar__width: 100px;
 
 $header__height: 70px;
 
@@ -55,10 +56,9 @@ $layouts__content: 1000;
 
 $fade: 0.2;
 $fade--percent: 8%;
-
 $shadows__coords-x: 2px;
 $shadows__coords-y: 4px;
-$shadows__size: 5px;
+$shadows__size: 12px;
 $shadows__stretch: 0;
 
 $transition-duration: 0.2s;

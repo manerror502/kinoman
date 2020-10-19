@@ -59,11 +59,6 @@
       class="recommends__item"
       v-else
     >
-      <div
-        class=" blur__img"
-        :style="{backgroundImage: 'url(' + recommends.films[0].posterUrl + ')'}"
-      />
-
       <transition-group
         class="row justify-content-arround"
         tag="ul"

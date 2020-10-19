@@ -11,7 +11,6 @@
       >
         <div
           class="filmitem__content"
-          @mousemove="closeMenu"
         >
           <div class="filmitem__text">
             <div class="filmitem__title">
@@ -63,33 +62,18 @@
             />
           </svg>
         </button>
-
-        <transition name="slide-fade">
-          <MenuFilm
-            v-show="menu"
-            @closeMenu="closeMenu"
-            :menu-info="itemInfo"
-          />
-        </transition>
       </div>
     </div>
   </li>
 </template>
 
 <script>
-import MenuFilm from '@/components/app/MenuFilm.vue'
-
 import filterCountriesArr from '@/utils/filterCountries.js'
 import filterGenresArr from '@/utils/filterGenres.js'
 
 export default {
   name: 'FilmItemInfo',
-  data: () => ({
-    menu: false
-  }),
-  components: {
-    MenuFilm
-  },
+  data: () => ({}),
   props: {
     itemInfo: {
       type: Object,
@@ -115,23 +99,12 @@ export default {
       return filterCountriesArr(countries)
     }
   },
-  created () {
-    this.getFilmInfo()
-  },
-  mounted () {},
 
   methods: {
-    getFilmInfo () {
-      try {
-      } catch (e) {
-        console.log(e)
-      }
-    },
-    targetMenu () {
-      this.menu = !this.menu
-    },
-    closeMenu () {
-      this.menu = false
+    async targetMenu () {
+      const filmInfo = this.itemInfo
+      await this.$store.dispatch('setMenuFilm', filmInfo)
+      await this.$store.dispatch('targetMenuFilm')
     }
   }
 }

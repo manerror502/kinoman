@@ -18,23 +18,12 @@
 
 .banner__buttoon-wrap {
   button {
-    background-color: fade-out($colors__blackPrimary, 1%);
-    color: fade-out($colors__grays--lighter, 0.3%);
+    color: fade-out(#fff, 0.3%);
 
     &:hover,
     &:focus,
     &:active {
-      color: $colors__white;
-    }
-
-    &.active {
-      color: $colors__green;
-
-      &:hover,
-      &:focus,
-      &:active {
-        color: fade-out($colors__green, 0.3%);
-      }
+      color: #fff;
     }
   }
 }

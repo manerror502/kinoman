@@ -9,5 +9,9 @@
     &.active {
       opacity: 1;
     }
+
+    &.contrast {
+      filter: invert(90%);
+    }
   }
 }

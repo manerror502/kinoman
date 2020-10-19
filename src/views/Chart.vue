@@ -7,11 +7,6 @@
       v-else
       class="container-fluid"
     >
-      <div
-        class="chart__img blur__img"
-        :style="{backgroundImage: 'url(' + charts.films[0].posterUrl + ')'}"
-      />
-
       <div class="row">
         <div class="col">
           <h3 class="chart__title">
