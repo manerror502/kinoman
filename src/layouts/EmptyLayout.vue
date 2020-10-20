@@ -128,9 +128,6 @@ export default {
   padding-bottom: 20px;
 }
 
-.sign__right {
-}
-
 .sign__logo {
   display: flex;
   max-height: 300px;

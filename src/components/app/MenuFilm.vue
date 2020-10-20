@@ -405,6 +405,7 @@ export default {
   align-items: center;
   padding-bottom: 3px;
   padding: 10px 0;
+  user-select: none;
 }
 
 .menu__info {

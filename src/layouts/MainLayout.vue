@@ -248,7 +248,7 @@ export default {
 
 // Movie
 .your__movie {
-  padding-top: $padding__views;
+  padding-top: $padding__views - 30;
   width: 100%;
 }
 </style>

@@ -113,19 +113,21 @@
                         v-for="episode in seasons.episodes "
                         :key="episode.episodeNumber"
                       >
-                        <div class="col-1">
-                          {{ episode.episodeNumber }}.
-                        </div>
-                        <div class="col-9">
-                          <p>
-                            {{ episode.nameRu || episode.nameEn || "Нет информации о названии" }}
-                          </p>
-                        </div>
+                        <div class="row no-gutters">
+                          <div class="col-1">
+                            {{ episode.episodeNumber }}.
+                          </div>
+                          <div class="col-8">
+                            <p>
+                              {{ episode.nameRu || episode.nameEn || "Нет информации о названии" }}
+                            </p>
+                          </div>
 
-                        <div class="col-3">
-                          <time>
-                            {{ episode.releaseDate || "N/A" }}
-                          </time>
+                          <div class="col-3">
+                            <time>
+                              {{ episode.releaseDate || "N/A" }}
+                            </time>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -435,7 +437,6 @@ export default {
 }
 
 .infofilm__episodes-scroll {
-  overflow-x: hidden;
   overflow-y: auto;
   max-height: 300px;
 }

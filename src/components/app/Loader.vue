@@ -32,6 +32,7 @@ export default {
 }
 
 .loader {
+  margin: 10px;
   border-radius: 50%;
   width: 90px;
   height: 90px;
