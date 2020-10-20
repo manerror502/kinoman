@@ -1,7 +1,7 @@
 export default {
   state: {
     themeArr: [
-      // { id: 'white', name: 'Ледниковый период' },
+      { id: 'white', name: 'Ледниковый период' },
       { id: 'blue', name: 'Соник X' },
       { id: 'dark', name: 'Люди в чёрном' }
     ],
@@ -14,8 +14,8 @@ export default {
     }
   },
   getters: {
-    getCurrentTheme (state) {
-      state.currentTheme = localStorage.theme
+    theme (state) {
+      return state
     }
   }
 }

@@ -20,9 +20,9 @@ export default {
         .then(films => {
           return films.data.films
         })
-        .catch(error => {
-          console.log(error)
-          return error
+        .catch(e => {
+          commit('setError', e)
+          throw e
         })
     },
     getReleasesArr ({ commit }, payload) {
@@ -41,9 +41,9 @@ export default {
         .then(films => {
           return films.data.films
         })
-        .catch(error => {
-          console.log(error)
-          return error
+        .catch(e => {
+          commit('setError', e)
+          throw e
         })
     },
     getInfoFilm ({ dispatch, commit }, payload) {
@@ -63,7 +63,7 @@ export default {
           throw e
         })
     },
-    getTrailerFilm ({ dispatch }, payload) {
+    getTrailerFilm ({ dispatch, commit }, payload) {
       const url = `https://kinopoiskapiunofficial.tech/api/v2.1/films/${payload}/videos`
 
       return axios(url, {
@@ -80,7 +80,7 @@ export default {
           return error
         })
     },
-    getReviewsFilm ({ dispatch }, payload) {
+    getReviewsFilm ({ dispatch, commit }, payload) {
       const url = `https://kinopoiskapiunofficial.tech/api/v1/reviews?filmId=${payload}&page=1`
 
       return axios(url, {
@@ -92,12 +92,12 @@ export default {
         .then(reviews => {
           return reviews.data
         })
-        .catch(error => {
-          console.log(error)
-          return error
+        .catch(e => {
+          commit('setError', e)
+          throw e
         })
     },
-    getStaffFilm ({ dispatch }, payload) {
+    getStaffFilm ({ dispatch, commit }, payload) {
       const url = `https://kinopoiskapiunofficial.tech/api/v1/staff?filmId=${payload}`
 
       return axios(url, {
@@ -109,12 +109,12 @@ export default {
         .then(staff => {
           return staff.data
         })
-        .catch(error => {
-          console.log(error)
-          return error
+        .catch(e => {
+          commit('setError', e)
+          throw e
         })
     },
-    getCollections ({ dispatch }, payload) {
+    getCollections ({ dispatch, commit }, payload) {
       const url =
         'https://kinopoiskapiunofficial.tech/api/v1/collections/films?listType=BEST_FILMS_LIST&listId=1'
 
@@ -127,12 +127,12 @@ export default {
         .then(collections => {
           return collections.data
         })
-        .catch(error => {
-          console.log(error)
-          return error
+        .catch(e => {
+          commit('setError', e)
+          throw e
         })
     },
-    getNewRelease ({ dispatch }, payload) {
+    getNewRelease ({ dispatch, commit }, payload) {
       const url = `https://kinopoiskapiunofficial.tech/api/v2.1/films/releases?year=${payload.year}&month=${payload.month}&page=${payload.page}`
 
       return axios(url, {
@@ -145,12 +145,12 @@ export default {
           return releaseFilms.data
           // dispatch('getInfoFilm', film)
         })
-        .catch(error => {
-          console.log(error)
-          return error
+        .catch(e => {
+          commit('setError', e)
+          throw e
         })
     },
-    getCollection ({ dispatch }, payload) {
+    getCollection ({ dispatch, commit }, payload) {
       const url = `https://kinopoiskapiunofficial.tech/api/v2.1/films/top?listId=${payload}`
 
       return axios(url, {
@@ -162,9 +162,9 @@ export default {
         .then(collection => {
           return collection.data
         })
-        .catch(error => {
-          console.log(error)
-          return error
+        .catch(e => {
+          commit('setError', e)
+          throw e
         })
     },
     getFiltersJSON ({ dispatch }) {
@@ -233,7 +233,6 @@ export default {
           return sequels.data
         })
         .catch(e => {
-          commit('setError', e)
           throw e
         })
     },

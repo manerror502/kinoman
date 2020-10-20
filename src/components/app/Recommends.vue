@@ -59,19 +59,18 @@
       class="recommends__item"
       v-else
     >
-      <div
-        class=" blur__img"
-        :style="{backgroundImage: 'url(' + recommends.films[0].posterUrl + ')'}"
-      />
-
-      <div class="row">
+      <transition-group
+        class="row justify-content-arround"
+        tag="ul"
+        name="transform-fade"
+      >
         <FilmItemInfo
           class="col-xl-4 col-md-6"
           v-for="recommends in recommends.films"
           :key="recommends.filmId"
           :item-info="recommends"
         />
-      </div>
+      </transition-group>
 
       <div
         class="col-12"

@@ -9,17 +9,14 @@
         <router-view />
       </component>
     </transition>
-
-    <MobileBar />
   </div>
 </template>
 
 <script>
 import MainLayout from '@/layouts/MainLayout'
 import EmptyLayout from '@/layouts/EmptyLayout'
-import MobileBar from '@/components/mobile/MobileBar'
 
-import { mapState } from 'vuex'
+import { mapGetters } from 'vuex'
 export default {
   name: 'App',
   metaInfo () {
@@ -30,11 +27,10 @@ export default {
   data: () => ({}),
   components: {
     MainLayout,
-    EmptyLayout,
-    MobileBar
+    EmptyLayout
   },
   computed: {
-    ...mapState(['theme']),
+    ...mapGetters(['theme']),
     layout () {
       return (this.$route.meta.layout || 'main') + '-layout'
     }
@@ -75,7 +71,7 @@ a {
   }
 
   &-thumb {
-    background: rgb(163, 163, 163);
+    background: rgba(134, 134, 134, 0.486);
     border-radius: $border-radius__large;
   }
 }

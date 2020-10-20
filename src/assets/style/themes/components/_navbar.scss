@@ -1,22 +1,21 @@
 .navbar {
-  background: $colors__blackPrimary;
+  background: $colors__primary2;
 }
 
 .navbar__link {
   border-bottom: $border-width solid fade-out($colors__grays--lighter, 0.6%);
   li {
     color: $colors__grays;
+    opacity: 0.6;
 
     &:hover,
-    &:focus,
-    &:active {
+    &:focus {
       background-color: fade-out($colors__white, 0.9%);
       color: $colors__grays--lighter;
     }
 
     &.active {
-      color: $colors__white;
-      background-color: fade-out($colors__grays--lighter, 0.87%);
+      opacity: 1;
     }
   }
 }
@@ -29,10 +28,10 @@
 
 .navbar__playlists-item {
   background: fade-out($colors__green, 0.5%);
-  color: $colors__grays;
+  color: rgb(224, 224, 224);
   &:hover,
   &:focus {
     background: fade-out($colors__green, 0.2%);
-    color: $colors__grays--lighter;
+    color: #fff;
   }
 }

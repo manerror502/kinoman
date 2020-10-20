@@ -10,6 +10,7 @@
           active-class="active"
           :exact="link.exact"
           class="mobile__item"
+          :class="{contrast: themeWhite}"
         >
           <img
             :src="link.icon"
@@ -35,7 +36,7 @@ export default {
       },
       {
         title: ' Новые релизы ',
-        url: '/new-release',
+        url: '/releases',
         icon: require('../../assets/img/navBar/new.svg')
       },
       {
@@ -54,7 +55,12 @@ export default {
         icon: require('../../assets/img/navBar/profile.svg')
       }
     ]
-  })
+  }),
+  computed: {
+    themeWhite () {
+      return this.$store.getters.theme.currentTheme === 'white'
+    }
+  }
 }
 </script>
 
@@ -66,6 +72,7 @@ export default {
   bottom: 0;
   z-index: 20;
   width: 100%;
+  user-select: none;
 
   @media (min-width: $breackpoints__md) {
     display: none;

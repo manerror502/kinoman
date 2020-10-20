@@ -1,10 +1,5 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
-import Details from '@/views/Details.vue'
-import ReccomendsForYou from '@/views/RecommendsForYou.vue'
-import HeartMovie from '@/views/Profile/HeartMovie.vue'
-import BookmarksMovie from '@/views/Profile/BookmarksMovie.vue'
 import firebase from 'firebase/app'
 
 Vue.use(VueRouter)
@@ -14,13 +9,13 @@ const routes = [
     path: '/',
     name: 'Home',
     meta: { layout: 'main', title: 'Главная' },
-    component: Home
+    component: () => import('@/views/Home.vue')
   },
   {
-    path: '/new-release',
-    name: 'NewRelease',
+    path: '/releases',
+    name: 'Releases',
     meta: { layout: 'main', title: 'Новые релизы' },
-    component: () => import('@/views/NewRelease.vue')
+    component: () => import('@/views/Releases.vue')
   },
   {
     path: '/chart',
@@ -32,7 +27,7 @@ const routes = [
     path: '/film/:id',
     name: 'InfoFilm',
     meta: { layout: 'main', title: 'Информация о кино' },
-    component: Details
+    component: () => import('@/views/Details.vue')
   },
   {
     path: '/login',
@@ -50,7 +45,7 @@ const routes = [
     path: '/foryou',
     name: 'RecommendsForYou',
     meta: { layout: 'main', title: 'Рекоммендации' },
-    component: ReccomendsForYou
+    component: () => import('@/views/RecommendsForYou.vue')
   },
   {
     path: '/search',
@@ -62,13 +57,13 @@ const routes = [
     path: '/profile/heartMovie',
     name: 'Your Movie',
     meta: { layout: 'main', title: 'Любимое кино', auth: true },
-    component: HeartMovie
+    component: () => import('@/views/Profile/HeartMovie.vue')
   },
   {
     path: '/profile/bookmarksMovie',
     name: 'Bookmarks Movie',
     meta: { layout: 'main', title: 'Закладки', auth: true },
-    component: BookmarksMovie
+    component: () => import('@/views/Profile/BookmarksMovie.vue')
   },
   {
     path: '/profile',

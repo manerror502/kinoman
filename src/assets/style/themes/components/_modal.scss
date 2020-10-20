@@ -1,5 +1,16 @@
 .modal {
-  background-color: fade-out(darken($colors__blackPrimary, 0.9%), 0.5%);
+  // background-color: fade-out(darken($colors__blackPrimary, 0.9%), 0.3%);
+  animation: bg_fade 1s ease forwards;
+}
+
+@keyframes bg_fade {
+  50% {
+    background-color: fade-out(darken($colors__white, 0.3%), 1%);
+  }
+
+  100% {
+    background-color: fade-out(darken($colors__white, 0.3%), 0.3%);
+  }
 }
 
 .theme {
@@ -8,7 +19,4 @@
   h5 {
     color: $colors__grays--lighter;
   }
-}
-
-.theme__wrap {
 }

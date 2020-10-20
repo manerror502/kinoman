@@ -7,17 +7,14 @@
         class="container-fluid"
         v-else
       >
-        <div
-          class=" blur__img"
-          :style="{backgroundImage: 'url(' + films[0].posterUrl + ')'}"
-        />
-
         <div class="row">
           <div class="col">
             <section>
               <div>
-                <ul
+                <transition-group
                   class="row justify-content-arround"
+                  tag="ul"
+                  name="transform-fade"
                   v-if="films.length"
                 >
                   <FilmItemInfo
@@ -26,7 +23,7 @@
                     :key="bookmark.filmId"
                     :item-info="bookmark"
                   />
-                </ul>
+                </transition-group>
 
                 <div
                   class="row"
@@ -138,11 +135,6 @@ export default {
 
 <style lang="scss">
 @import '@/assets/style/vars/_vars';
-
-.your__movie {
-  margin-top: 50px;
-  width: 100%;
-}
 
 .films__no {
   margin-top: 20px;

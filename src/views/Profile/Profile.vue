@@ -357,7 +357,7 @@ export default {
 @import '@/assets/style/vars/_vars';
 
 .profile {
-  padding-top: 100px;
+  padding-top: $padding__views;
   width: 100%;
 }
 
@@ -572,13 +572,13 @@ export default {
       background-size: cover;
     }
 
-    &:nth-child(1) {
+    &:nth-child(2) {
       background: rgb(26, 55, 168) url('../../assets/img/profile/sonic.jpg')
         no-repeat center;
       background-size: cover;
     }
 
-    &:nth-child(2) {
+    &:nth-child(3) {
       background: rgb(43, 44, 49) url('../../assets/img/profile/black.jpg')
         no-repeat center;
       background-size: cover;

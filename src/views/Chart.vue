@@ -7,11 +7,6 @@
       v-else
       class="container-fluid"
     >
-      <div
-        class="chart__img blur__img"
-        :style="{backgroundImage: 'url(' + charts.films[0].posterUrl + ')'}"
-      />
-
       <div class="row">
         <div class="col">
           <h3 class="chart__title">
@@ -46,8 +41,10 @@
 
       <div class="row">
         <div class="col-12">
-          <ul
-            class="row justify-content-arround"
+          <transition-group
+            class="row justify-content-arround "
+            tag="ul"
+            name="transform-fade"
           >
             <FilmItemInfo
               class="col-xl-4 col-md-6"
@@ -55,7 +52,7 @@
               :key="chart.filmId"
               :item-info="chart"
             />
-          </ul>
+          </transition-group>
         </div>
       </div>
     </div>
@@ -69,14 +66,44 @@ export default {
     charts: {},
     loading: true
   }),
-  computed: {},
+  computed: {
+    chartsLS () {
+      return JSON.parse(localStorage.getItem('charts'))
+    }
+  },
   async created () {
+    this.$store.state.app.loading = true
+    if (this.chartsLS) {
+      this.getChartFilmsLS()
+      this.loading = false
+    }
+
     await this.getChartFilms()
+    this.$store.state.app.loading = false
     this.loading = false
   },
   methods: {
+    getChartFilmsLS () {
+      // Получение фильмов из LS
+      if (!this.chartsLS) {
+        return
+      }
+
+      this.charts = this.chartsLS
+    },
+    setChartFilmssLS () {
+      // Отправляем информацию о фильмах в LS
+      const charts = JSON.stringify(this.charts)
+      localStorage.setItem('charts', charts)
+    },
+
     async getChartFilms () {
-      this.charts = await this.$store.dispatch('getChartFilms')
+      try {
+        this.charts = await this.$store.dispatch('getChartFilms')
+        this.setChartFilmssLS()
+      } catch (e) {
+        this.getChartFilmsLS()
+      }
     }
   }
 }
@@ -86,7 +113,7 @@ export default {
 @import '@/assets/style/vars/_vars';
 
 .chart {
-  padding-top: 100px;
+  padding-top: $padding__views;
   width: 100%;
 }
 

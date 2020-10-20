@@ -4,8 +4,14 @@
 
 .mobile__links {
   li {
+    opacity: 0.6;
+
     &.active {
-      background-color: fade-out($colors__grays--lighter, 0.87%);
+      opacity: 1;
+    }
+
+    &.contrast {
+      filter: invert(90%);
     }
   }
 }

@@ -1,0 +1,14 @@
+.transform-fade-enter-active {
+  transition: all 0.1s linear;
+}
+.transform-fade-leave-active {
+  opacity: 0;
+  transform: translateY(100px); 
+  transition: all 0.2s linear;
+}
+.transform-fade-enter, .transform-fade-leave-to
+/* .slide-fade-leave-active до версии 2.1.8 */ {
+  opacity: 0;
+  transform: translateY(100px); 
+  transition: all 0.2s linear;
+}

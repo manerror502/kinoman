@@ -24,7 +24,7 @@
 }
 
 .profile__item {
-  background-color: $colors__blackPrimary;
+  background-color: lighten($colors__body, 1%);
   box-shadow: $shadows__coords-x $shadows__coords-y $shadows__size
     fade-out(#000, 0.9%);
 
@@ -50,7 +50,7 @@
 
   &:hover,
   &:focus {
-    background-color: lighten($colors__blackPrimary, 0.8%);
+    background-color: lighten($colors__body, 2%);
     box-shadow: $shadows__coords-x $shadows__coords-y $shadows__size + 2
       fade-out(#000, 0.9%);
   }

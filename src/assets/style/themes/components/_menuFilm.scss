@@ -1,89 +1,60 @@
 .menu {
   background-color: $colors__blackGrays;
-  box-shadow: $shadows__coords-x $shadows__coords-y $shadows__size + 10
-    fade-out(#000, 0.5%);
+  box-shadow: $shadows__coords-x $shadows__coords-y $shadows__size
+    fade-out(#000, 0.7%);
+}
+
+.menu__header {
+  border-bottom: $border-width solid fade-out($colors__grays--lighter, 0.5%);
+}
+
+.menu__close {
+  button {
+    color: $colors__white;
+    opacity: 0.5;
+
+    &:hover,
+    &:focus {
+      opacity: 1;
+    }
+  }
 }
 
 .menu__title {
-  border-bottom: $border-width solid fade-out($colors__grays, 0.7%);
-
-  h5 {
-    color: $colors__grays--lighter;
-  }
+  color: $colors__grays--lighter;
 }
 
 .menu__button {
   button {
-    color: $colors__grays--lighter;
+    color: $colors__grays;
 
     span {
-      color: fade-out($colors__grays--lighter, 0.5%);
+      color: fade-out($colors__grays, 0.5%);
     }
 
-    &:hover,
-    &:focus,
-    &:active {
-      background-color: fade-out(#fff, 0.9%);
-      color: $colors__white;
-
-      span {
-        color: fade-out($colors__white, 0.4%);
-      }
-    }
-
-    &:nth-child(1) {
-      color: $colors__green;
-
+    &.like {
       span {
         color: fade-out($colors__green, 0.5%);
       }
 
       &:hover,
-      &:focus,
-      &:active {
-        background-color: $colors__green;
+      &:focus {
+        background-color: fade-out($colors__green, 0.9%);
         color: $colors__white;
 
         span {
-          color: fade-out(#fff, .1%);
-        }
-      }
-
-      &.like {
-        color: $colors__red;
-
-        span {
-          color: fade-out($colors__red, 0%);
-        }
-
-        &:hover,
-        &:focus,
-        &:active {
-          color: #fff;
-          background: $colors__red;
-          span {
-            color: fade-out(#fff, 0%);
-          }
+          color: fade-out($colors__green, 0.4%);
         }
       }
     }
 
-    &:nth-child(0) {
-      color: $colors__red;
+    &:hover,
+    &:focus {
+      background-color: fade-out($colors__grays, 0.9%);
+      color: $colors__white;
 
       span {
-        color: fade-out($colors__red, 0.5%);
-      }
-
-      &:hover,
-      &:focus,
-      &:active {
-        background-color: $colors__red;
-        color: $colors__white;
-
-        span {
-          color: fade-out($colors__white, 0.5%);
-        }
+        color: fade-out($colors__white, 0.4%);
       }
     }
   }

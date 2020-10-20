@@ -12,6 +12,7 @@ import recommend from './modules/recommend'
 import filters from './modules/filters'
 import playlist from './modules/playlist'
 import settings from './modules/settings'
+import menuFilm from './modules/menuFilm'
 
 Vue.use(Vuex)
 
@@ -19,7 +20,8 @@ export default new Vuex.Store({
   state: {
     error: null,
     app: {
-      modalTheme: false
+      modalTheme: false,
+      loading: true
     }
   },
   mutations: {
@@ -46,6 +48,7 @@ export default new Vuex.Store({
     recommend,
     filters,
     playlist,
-    settings
+    settings,
+    menuFilm
   }
 })

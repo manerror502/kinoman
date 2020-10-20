@@ -10,6 +10,7 @@ export default {
     },
     clearInfo (state) {
       state.info = {}
+      localStorage.infoUser = null
     }
   },
   actions: {

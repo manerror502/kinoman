@@ -1,31 +1,34 @@
 <template>
   <section class="items collection">
     <Loader v-if="loading" />
-    <div
+
+    <transition
       v-else
-      class="container-fluid"
+      name="transform-fade"
     >
       <div
-        class=" blur__img"
-        :style="{backgroundImage: 'url(' + newRelease.releases[0].posterUrl + ')'}"
-      />
-
-      <div class="items__text">
-        <h4>Релизы за {{ currentMonth().ru }}</h4>
-      </div>
-      <ul
-        class="row justify-content-arround"
+        class="container-fluid"
       >
-        <FilmItemInfo
-          class="col-xl-4 col-md-6"
-          v-for="release in newRelease.releases"
-          :key="release.filmId"
-          :item-info="release"
-        />
-      </ul>
+        <div class="items__text">
+          <h4>Релизы за {{ currentMonth().ru }}</h4>
+        </div>
 
-      <Loader v-if="lazyLoading" />
-    </div>
+        <transition-group
+          class="row justify-content-arround "
+          tag="ul"
+          name="transform-fade"
+        >
+          <FilmItemInfo
+            class="col-xl-4 col-md-6"
+            v-for="release in newRelease.releases"
+            :key="release.filmId"
+            :item-info="release"
+          />
+        </transition-group>
+
+        <Loader v-if="lazyLoading" />
+      </div>
+    </transition>
 
     <span
       class="more"
@@ -59,11 +62,22 @@ export default {
       const totalMovies = this.newRelease.total
 
       return filmsArr.length >= totalMovies
+    },
+    releasesLS () {
+      return JSON.parse(localStorage.getItem('releases'))
     }
   },
   async created () {
+    this.$store.state.app.loading = true
+
+    if (this.releasesLS) {
+      this.getNewReleaseLS()
+      this.loading = false
+    }
+
     await this.getDate()
     await this.getNewRelease()
+    this.$store.state.app.loading = false
     this.loading = false
   },
   async mounted () {
@@ -73,6 +87,19 @@ export default {
     FilmItemInfo
   },
   methods: {
+    getNewReleaseLS () {
+      if (!this.releasesLS) {
+        return
+      }
+
+      this.newRelease = this.releasesLS
+    },
+    setNewReleaseLS () {
+      // Отправляем информацию о фильме в LS
+      const newRelease = JSON.stringify(this.newRelease)
+      localStorage.setItem('releases', newRelease)
+    },
+
     async getDate () {
       this.date.full = new Date()
       this.date.year = await this.currentYear()
@@ -88,9 +115,8 @@ export default {
 
       try {
         this.newRelease = await this.$store.dispatch('getNewRelease', options)
-      } catch (e) {
-        console.log(e)
-      }
+        this.setNewReleaseLS()
+      } catch (e) {}
     },
 
     currentMonth () {
@@ -179,7 +205,7 @@ export default {
 @import '@/assets/style/vars/_vars';
 
 .collection {
-  padding-top: 50px;
+  padding-top: $padding__views - 40;
 }
 
 .items__text {

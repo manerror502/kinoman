@@ -22,11 +22,11 @@ export default {
 </script>
 
 <style lang="scss">
-@import "@/assets/style/vars/_vars";
+@import '@/assets/style/vars/_vars';
 
 .yourecommends {
   width: 100%;
   margin: 0 auto;
-  margin-top: 100px;
+  margin-top: $padding__views;
 }
 </style>

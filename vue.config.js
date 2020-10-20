@@ -1,17 +1,16 @@
 module.exports = {
-  assetsDir: 'src/assets',
-
   pwa: {
     name: 'КиноMan',
-    themeColor: '#A7BDF7',
-    msTileColor: '#A7BDF7',
+    themeColor: '#5a96d3',
+    msTileColor: '#5a96d3',
     manifestOptions: {
-      background_color: '#DCFEEC'
+      background_color: '#f1f5f8'
     },
     manifestCrossorigin: 'use-credentials'
   },
 
   lintOnSave: false,
+  productionSourceMap: false,
 
   css: {
     extract: false
