@@ -50,13 +50,6 @@
               </svg>
             </button>
           </div>
-
-        <!-- <a
-          target="_blank"
-          v-if="trailerFilm.trailers"
-          :href="trailerFilm.trailers[0].url"
-          class="btn--trailer"
-        > Смотерть трейлер </a> -->
         </div>
       </div>
     </div>

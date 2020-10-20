@@ -113,7 +113,10 @@
                         v-for="episode in seasons.episodes "
                         :key="episode.episodeNumber"
                       >
-                        <div class="row no-gutters">
+                        <div
+                          class="row no-gutters"
+                          style="width: 100%"
+                        >
                           <div class="col-1">
                             {{ episode.episodeNumber }}.
                           </div>

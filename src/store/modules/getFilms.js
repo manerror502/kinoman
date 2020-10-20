@@ -233,7 +233,6 @@ export default {
           return sequels.data
         })
         .catch(e => {
-          commit('setError', e)
           throw e
         })
     },
