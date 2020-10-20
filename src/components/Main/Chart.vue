@@ -7,11 +7,11 @@
       :settings="hooperSettings"
     >
       <slide
-        v-for="release in newRelease"
-        :key="release.filmId"
+        v-for="film in charts.films"
+        :key="film.filmId"
       >
         <FilmItemInfo
-          :item-info="release"
+          :item-info="film"
           class="film"
         />
       </slide>
@@ -25,9 +25,9 @@ import { Hooper, Slide } from 'hooper'
 import 'hooper/dist/hooper.css'
 
 export default {
-  name: 'NewRelease',
+  name: 'Charts',
   data: () => ({
-    newRelease: {},
+    charts: {},
     loading: true,
 
     hooperSettings: {
@@ -49,8 +49,8 @@ export default {
     }
   }),
   computed: {
-    newReleaseLS () {
-      return JSON.parse(localStorage.getItem('newRelease'))
+    chartLS () {
+      return localStorage.charts
     }
   },
   components: {
@@ -60,63 +60,41 @@ export default {
   },
   async created () {
     this.$store.state.app.loading = true
-
     // Если ничего нет в LS
-    if (this.newReleaseLS) {
+    if (this.chartLS) {
       this.getLocalStorageInfo()
       this.loading = false
     }
 
-    await this.getNewRelease()
+    await this.getChartsFilms()
     this.$store.state.app.loading = false
     this.loading = false
   },
   methods: {
     getLocalStorageInfo () {
-      this.getNewReleaseLS()
+      this.getChartLS()
     },
-    getNewReleaseLS () {
+    getChartLS () {
       // Получение фильмов из LS
-      if (!this.newReleaseLS) {
+      if (!this.chartLS) {
         return
       }
 
-      this.newRelease = JSON.parse(localStorage.getItem('newRelease'))
+      this.chart = JSON.parse(localStorage.getItem('charts'))
     },
-    setNewReleaseLS () {
+    setChartLS () {
       // Отправляем информацию о фильмах в LS
-      const newRelease = JSON.stringify(this.newRelease)
-      localStorage.setItem('newRelease', newRelease)
+      const charts = JSON.stringify(this.charts)
+      localStorage.setItem('charts', charts)
     },
 
-    async getNewRelease () {
-      const currentDate = new Date()
-      const currentYear = await this.currentYear(currentDate)
-
-      const options = {
-        rating: {
-          from: '0',
-          to: '10'
-        },
-        year: {
-          from: currentYear,
-          to: currentYear
-        },
-        page: [3, 4, 1, 2, 5]
-      }
-
+    async getChartsFilms () {
       try {
-        this.newRelease = await this.$store.dispatch('getReleasesArr', options)
-        this.setNewReleaseLS()
+        this.charts = await this.$store.dispatch('getChartFilms')
+        this.setChartLS()
       } catch (e) {
-        this.getNewReleaseLS()
+        this.getChartLS()
       }
-    },
-    currentYear (date) {
-      const options = {
-        year: 'numeric'
-      }
-      return new Intl.DateTimeFormat('en-EN', options).format(date)
     }
   }
 }

@@ -250,6 +250,8 @@ export default {
           this.$toast.error(`"${film.title}" удалён из понравившегося`)
         }
       }
+
+      this.menuClose()
     },
     async bookmark () {
       if (!await this.$store.dispatch('getUid')) {
@@ -289,6 +291,8 @@ export default {
           this.$toast.error(`"${film.title}" удалён из закладок`)
         }
       }
+
+      this.menuClose()
     },
     goToFilm () {
       const filmId = this.menuInfo.filmId
@@ -312,6 +316,8 @@ export default {
       } else {
         this.$toast.error('Ошибка')
       }
+
+      this.menuClose()
     },
 
     genresRecommendSet (filmReccomendInfo) {
@@ -477,10 +483,15 @@ export default {
 }
 
 .menu__close {
+  display: flex;
+  height: 100%;
+
   button {
     width: 30px;
-    height: 30px;
+    height: 100%;
     transition: $transition-duration $transition-timing-function;
+    padding: 10px 5px;
+    margin-right: 10px;
 
     &:active {
       transform: scale(1.2);

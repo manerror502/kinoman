@@ -177,9 +177,10 @@ export default {
 }
 
 .content {
-  max-width: calc(100% - 100px);
+  max-width: calc(100% - 110px);
   width: 100%;
   height: auto;
+  margin: 0 10px;
   margin-bottom: 20px;
   overflow: hidden;
   border-radius: $border-radius__big;

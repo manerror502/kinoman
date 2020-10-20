@@ -5,7 +5,7 @@ export default {
       { id: 'blue', name: 'Соник X' },
       { id: 'dark', name: 'Люди в чёрном' }
     ],
-    currentTheme: localStorage.theme || 'white'
+    currentTheme: localStorage.theme || 'dark'
   },
   actions: {
     setTheme ({ dispatch, state }, { id, name }) {

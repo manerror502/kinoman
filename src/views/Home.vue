@@ -23,12 +23,6 @@
             </div>
           </div>
 
-          <!-- <div class="row">
-          <div class="col-lg-12">
-            <Playlists />
-          </div>
-        </div> -->
-
           <div class="row">
             <div class="col">
               <h3 class="items__title">
@@ -40,6 +34,20 @@
           <div class="row">
             <div class="col-lg-12">
               <NewRelease />
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col">
+              <h3 class="items__title">
+                Популярное
+              </h3>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-12">
+              <Charts />
             </div>
           </div>
         </div>
@@ -68,10 +76,9 @@
 
 <script>
 import NewRelease from '@/components/Main/NewRelease'
-// import Playlists from '@/components/Main/Playlists'
+import Charts from '@/components/Main/Chart'
 import Intro from '@/components/Main/Intro'
 import Recommends from '@/components/app/Recommends'
-// import Modal from '@/components/app/Modal.vue'
 
 import randomIdArr from '@/utils/randomIdArr'
 
@@ -83,9 +90,8 @@ export default {
   components: {
     NewRelease,
     Intro,
-    // Modal,
-    Recommends
-    // Playlists
+    Recommends,
+    Charts
   },
   computed: {
     time () {

@@ -129,9 +129,6 @@ export default {
 }
 
 .sign__right {
-  @media (max-width: $breackpoints__md) {
-    display: none;
-  }
 }
 
 .sign__logo {
@@ -150,6 +147,12 @@ export default {
       filter: contrast(80%);
     }
   }
+
+   @media (max-width: $breackpoints__md) {
+    img{
+      max-width: 200px;
+    }
+  }
 }
 
 .sign__text {
@@ -160,6 +163,10 @@ export default {
     font-family: $font-family__sans;
     line-height: $line-height--large;
     @include adaptiv-font($size--normal + 5, $size--normal);
+  }
+
+  @media (max-width: $breackpoints__md) {
+    display: none;
   }
 }
 
@@ -176,6 +183,10 @@ export default {
     z-index: 2;
     width: 100%;
     height: 100%;
+  }
+
+  @media (max-width: $breackpoints__md) {
+    display: none;
   }
 }
 

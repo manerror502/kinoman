@@ -140,7 +140,7 @@ export default {
 }
 
 .header {
-  max-width: calc(100% - 115px);
+  max-width: calc(100% - 100px);
   position: fixed;
   overflow: hidden;
   width: 100%;
